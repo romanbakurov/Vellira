@@ -1,0 +1,68 @@
+{
+  "name": "Flux UI",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "format": "prettier --write src",
+    "stylelint": "stylelint \"src/**/*.{css,scss,module.scss}\" --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.1.2",
+    "@eslint/js": "^9.39.4",
+    "@storybook/addon-a11y": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/addon-onboarding": "^10.3.6",
+    "@storybook/addon-vitest": "^10.4.0",
+    "@storybook/react-vite": "^10.4.0",
+    "@types/node": "^24.12.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/browser-playwright": "^4.1.6",
+    "@vitest/coverage-v8": "^4.1.6",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-postcss-modules": "^2.0.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-storybook": "^10.4.0",
+    "globals": "^17.6.0",
+    "playwright": "^1.60.0",
+    "prettier": "^3.8.3",
+    "sass": "^1.99.0",
+    "storybook": "^10.3.6",
+    "stylelint": "^17.11.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-scss": "^7.1.1",
+    "typescript": "5.5",
+    "typescript-eslint": "^8.59.3",
+    "typescript-plugin-css-modules": "^5.2.0",
+    "vite": "^8.0.13",
+    "vite-plugin-dts": "^5.0.0",
+    "vitest": "^4.1.6"
+  }
+}
