@@ -17,7 +17,7 @@
 }
 
 @mixin text-sm {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--font-line-height-sm);
 }

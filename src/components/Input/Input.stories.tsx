@@ -20,9 +20,7 @@ export const Interactive: Story = {
   },
 
   render: (args, { updateArgs }) => {
-    return (
-      <Input {...args} size='md' onChange={(value) => updateArgs({ value })} />
-    );
+    return <Input {...args} onChange={(value) => updateArgs({ value })} />;
   },
 };
 
@@ -33,6 +31,7 @@ export const Error: Story = {
     required: true,
     value: '',
     error: 'This field is required',
+    size: 'md',
   },
 };
 
@@ -42,6 +41,7 @@ export const Disabled: Story = {
     placeholder: '+33 ___-__-__-__',
     value: '123456',
     disabled: true,
+    size: 'md',
   },
 };
 
@@ -49,7 +49,6 @@ export const Sizes: Story = {
   args: {
     label: 'Name',
     value: '',
-    size: 'sm',
   },
 
   render: (args) => {

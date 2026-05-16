@@ -1,5 +1,5 @@
 {
-  "name": "Flux UI",
+  "name": "@romanbakurov/flux-ui",
   "private": false,
   "version": "0.0.0",
   "type": "module",
@@ -13,14 +13,19 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src",
-    "format": "prettier --write src",
-    "stylelint": "stylelint \"src/**/*.{css,scss,module.scss}\" --fix",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss,css,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,scss,css,json,md}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{css,scss,module.scss}\" --fix",
+    "fix-all": "npm run lint:fix && npm run format && npm run stylelint:fix",
+    "check-all": "npm run lint && npm run format:check && npm run stylelint:fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "chromatic": "npx chromatic --project-token=chpt_9180bccf508f127"
+    "chromatic": "npx chromatic --project-token=chpt_9180bccf508f127",
+    "prepare": "husky"
   },
   "dependencies": {
     "classnames": "^2.5.1"
@@ -53,18 +58,22 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-storybook": "^10.4.0",
     "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "playwright": "^1.60.0",
     "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "storybook": "^10.3.6",
     "stylelint": "^17.11.0",
     "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-order": "^8.1.1",
     "stylelint-scss": "^7.1.1",
     "typescript": "5.5",
     "typescript-eslint": "^8.59.3",
     "typescript-plugin-css-modules": "^5.2.0",
     "vite": "^8.0.13",
     "vite-plugin-dts": "^5.0.0",
+    "vite-plugin-svgr": "^5.2.0",
     "vitest": "^4.1.6"
   }
 }

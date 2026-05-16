@@ -1,0 +1,37 @@
+name: Auto Commit Fixes
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  auto-fix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linters and fix
+        run: |
+          npm run lint:fix
+          npm run format
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🔧 Auto-fix: Apply linting and formatting fixes"
+          commit_options: '--no-verify'
+          file_pattern: '*.{ts,tsx,js,jsx,scss,css,json,md}'
