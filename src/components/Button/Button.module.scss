@@ -1,12 +1,12 @@
 .button {
+  margin: var(--space-0);
+  color: var(--color-gray-0);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-md);
   border: none;
   border-radius: var(--radius-md);
-  font-family: var(--font-family-base);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-gray-0);
-  line-height: var(--font-line-height-md);
-  margin: var(--space-0);
   cursor: pointer;
+  font-family: var(--font-family-base);
 }
 
 .button:disabled {
@@ -14,32 +14,32 @@
   cursor: not-allowed;
 }
 
-.button_color_red {
+.button_color_delete {
   background-color: var(--color-error);
   transition: all 0.2s ease;
 }
 
-.button_color_red:hover {
+.button_color_delete:hover {
   background-color: var(--color-error-accent);
   transform: translateY(-1px);
 }
 
-.button_color_violet {
+.button_color_primary {
   background-color: var(--color-primary);
   transition: all 0.2s ease;
 }
 
-.button_color_violet:hover {
+.button_color_primary:hover {
   background-color: var(--color-primary-accent);
   transform: translateY(-1px);
 }
 
-.button_color_blue {
+.button_color_secondary {
   background-color: var(--color-secondary);
   transition: all 0.2s ease;
 }
 
-.button_color_blue:hover {
+.button_color_secondary:hover {
   background-color: var(--color-secondary-accent);
   transform: translateY(-1px);
 }

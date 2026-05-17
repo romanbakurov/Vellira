@@ -1,13 +1,10 @@
-// src/InfoBlock/InfoBlock.stories.tsx
-
-/* Импорт из @storybook/react, потому что пишем на React */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { InfoBlock } from './InfoBlock.tsx';
 
 const meta = {
   /* Название компонента и путь, по которому его нужно отобразить на витрине */
-  title: 'components/InfoBlock',
+  title: 'Components/InfoBlock',
 
   /* Передаём сам компонент */
   component: InfoBlock,
@@ -29,21 +26,34 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/* История с компонентом белого цвета */
-export const White: Story = {
-  /* Для React-компонентов args === props */
+export const Basic: Story = {
   args: {
     title: 'Hello',
     caption: 'I am — white InfoBlock',
-    color: 'white',
+    color: 'primary',
   },
 };
 
-/* История с компонентом красного цвета */
-export const Green: Story = {
+export const Info: Story = {
   args: {
     title: 'Hello',
     caption: 'I am — green InfoBlock',
-    color: 'green',
+    color: 'info',
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    title: 'Hello',
+    caption: 'I am — green InfoBlock',
+    color: 'warning',
+  },
+};
+
+export const Error: Story = {
+  args: {
+    title: 'Hello',
+    caption: 'I am — green InfoBlock',
+    color: 'error',
   },
 };
