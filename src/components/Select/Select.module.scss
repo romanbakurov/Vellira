@@ -11,6 +11,11 @@
   @include text-md;
 }
 
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-1);
+}
+
 .control {
   display: flex;
   justify-content: space-between;

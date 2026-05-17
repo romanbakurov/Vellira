@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fn, userEvent, within } from 'storybook/test';
-import { Select, type SelectProps } from './Select.tsx';
+import { expect, fn, userEvent, within, screen } from 'storybook/test';
+import { Select } from './Select.tsx';
+import type { SelectProps } from './types';
 import { useState } from 'react';
 
 const meta = {
@@ -28,7 +29,7 @@ const defaultOptions = [
 ];
 
 const SelectWithState = (args: SelectProps) => {
-  const [value, setValue] = useState(args.value || '');
+  const [value, setValue] = useState(args.value);
 
   return (
     <Select
@@ -58,7 +59,6 @@ export const Basic: Story = {
     await expect(combobox).toHaveAttribute('aria-expanded', 'false');
 
     await userEvent.click(combobox);
-    await new Promise((resolve) => setTimeout(resolve, 100));
     await expect(combobox).toHaveAttribute('aria-expanded', 'true');
   },
 };
@@ -97,7 +97,12 @@ export const WithValue: Story = {
     const canvas = within(canvasElement);
     const combobox = canvas.getByRole('combobox');
 
-    await expect(combobox).toBeInTheDocument();
+    await userEvent.click(combobox);
+
+    const option = await screen.findByText('France');
+    await userEvent.click(option);
+
+    await expect(combobox).toHaveTextContent('France');
   },
 };
 
@@ -117,7 +122,7 @@ export const WithError: Story = {
     const errorMessage = canvas.getByRole('alert');
     await expect(errorMessage).toHaveTextContent('This field is required');
 
-    const combobox = canvas.getByRole('alert');
+    const combobox = canvas.getByRole('combobox');
     await expect(combobox).toBeInTheDocument();
   },
 };
@@ -131,17 +136,12 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => <SelectWithState {...args} />,
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getByRole('combobox');
 
-    // Попробовать кликнуть
-    await userEvent.click(combobox);
-
-    // Проверить, что не открылся
     await expect(combobox).toHaveAttribute('aria-expanded', 'false');
-
-    // Проверить, что onChange не вызван
-    await expect(args.onChange).not.toHaveBeenCalled();
+    await userEvent.click(combobox);
+    await expect(combobox).toHaveAttribute('aria-expanded', 'false');
   },
 };

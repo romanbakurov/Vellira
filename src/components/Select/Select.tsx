@@ -1,24 +1,10 @@
 import { cn } from '@/utils/cn';
 import styles from './Select.module.scss';
-import { useState, useRef, useId, useEffect, useCallback } from 'react';
-import ChevronDown from '@/assets/icons/ChevronDown.svg?react';
+import type { SelectProps } from './types';
+import { useSelect } from './useSelect';
+import { useId } from 'react';
 import { createPortal } from 'react-dom';
-
-export type SelectOptions = {
-  label: string;
-  value: string;
-};
-
-export interface SelectProps {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  options: SelectOptions[];
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  error?: boolean | string;
-}
+import ChevronDown from '@/assets/icons/ChevronDown.svg?react';
 
 export const Select = ({
   label,
@@ -30,180 +16,33 @@ export const Select = ({
   disabled,
   error,
 }: SelectProps) => {
-  const [open, setOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [dropdownPosition, setDropdownPosition] = useState({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
-
-  const controlRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLUListElement>(null);
-  const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
-
+  const {
+    open,
+    activeIndex,
+    dropdownPosition,
+    listboxId,
+    controlRef,
+    dropdownRef,
+    optionRefs,
+    selectOption,
+    handleKeyDown,
+    handleControlClick,
+    highlightOption,
+  } = useSelect({ options, value, onChange, disabled });
   const labelId = useId();
   const errorId = useId();
-  const listboxId = useRef(
-    `select-listbox-${Math.random().toString(36).slice(2)}`
-  ).current;
 
   const selected = options.find((option) => option.value === value);
-
-  // Update dropDown position
-  const updatePosition = useCallback(() => {
-    if (!controlRef.current) return;
-
-    const rect = controlRef.current.getBoundingClientRect();
-    setDropdownPosition({
-      top: rect.bottom + window.scrollY,
-      left: rect.left + window.scrollX,
-      width: rect.width,
-    });
-  }, []);
-
-  //Open/close
-  const toggleOpen = useCallback(() => {
-    if (disabled) return;
-    setOpen((prev) => {
-      const newOpen = !prev;
-      if (newOpen) {
-        updatePosition();
-
-        const currentIndex = options.findIndex((opt) => opt.value === value);
-        setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
-      }
-      return newOpen;
-    });
-  }, [disabled, updatePosition, options, value]);
-
-  //close
-  const close = useCallback(() => {
-    setOpen(false);
-    controlRef.current?.focus();
-  }, []);
-
-  //choosing option
-  const selectOption = useCallback(
-    (optionValue: string) => {
-      onChange(optionValue);
-      close();
-    },
-    [onChange, close]
-  );
-
-  //Keyboard Event
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!open) {
-      if (
-        e.key === ' ' ||
-        e.key === 'Enter' ||
-        e.key === 'ArrowDown' ||
-        e.key === 'ArrowUp'
-      ) {
-        e.preventDefault();
-        setOpen(true);
-
-        const currentIndex = options.findIndex((opt) => opt.value === value);
-        setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
-        updatePosition();
-      }
-      return;
-    }
-
-    //when open
-    switch (e.key) {
-      case 'Escape':
-        e.preventDefault();
-        close();
-        break;
-
-      case 'ArrowDown':
-        e.preventDefault();
-        setActiveIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
-        break;
-
-      case 'ArrowUp':
-        e.preventDefault();
-        setActiveIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
-        break;
-
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        if (activeIndex >= 0 && activeIndex < options.length) {
-          selectOption(options[activeIndex].value);
-        }
-        break;
-
-      case 'Home':
-        e.preventDefault();
-        setActiveIndex(0);
-        break;
-
-      case 'End':
-        e.preventDefault();
-        setActiveIndex(options.length - 1);
-        break;
-
-      case 'Tab':
-        close();
-        break;
-    }
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-
-      if (
-        controlRef.current &&
-        !controlRef.current.contains(target) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(target)
-      ) {
-        close();
-      }
-    };
-
-    if (open) {
-      document.addEventListener('pointerdown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('pointerdown', handleClickOutside);
-    };
-  }, [open, close]);
-
-  useEffect(() => {
-    if (!open) return;
-
-    const handleUpdate = () => updatePosition();
-
-    window.addEventListener('scroll', handleUpdate, true);
-    window.addEventListener('resize', handleUpdate);
-
-    return () => {
-      window.removeEventListener('scroll', handleUpdate, true);
-      window.removeEventListener('resize', handleUpdate);
-    };
-  }, [open, updatePosition]);
-
-  useEffect(() => {
-    if (open && activeIndex >= 0) {
-      const activeElement = optionRefs.current[activeIndex];
-      activeElement?.scrollIntoView({
-        block: 'nearest',
-        behavior: 'smooth',
-      });
-    }
-  }, [open, activeIndex]);
 
   return (
     <div className={styles.wrapper}>
       <label id={labelId} className={styles.label}>
         {label}
-        {required && <span aria-hidden='true'>*</span>}
+        {required && (
+          <span aria-hidden='true' className={styles.required}>
+            *
+          </span>
+        )}
       </label>
 
       <div
@@ -226,7 +65,7 @@ export const Select = ({
           [styles.error]: !!error,
           [styles.disabled]: disabled,
         })}
-        onClick={toggleOpen}
+        onClick={handleControlClick}
         onKeyDown={handleKeyDown}
       >
         <span
@@ -272,7 +111,7 @@ export const Select = ({
                   e.stopPropagation();
                   selectOption(option.value);
                 }}
-                onMouseEnter={() => setActiveIndex(index)}
+                onMouseEnter={() => highlightOption(index)}
               >
                 {option.label}
               </li>
