@@ -15,6 +15,7 @@ export interface SelectProps {
   onChange: (value: string) => void;
   options: SelectOptions[];
   placeholder?: string;
+  required?: boolean;
   disabled?: boolean;
   error?: boolean | string;
 }
@@ -25,6 +26,7 @@ export const Select = ({
   onChange,
   options = [],
   placeholder,
+  required = false,
   disabled,
   error,
 }: SelectProps) => {
@@ -37,13 +39,14 @@ export const Select = ({
   });
 
   const controlRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const dropdownRef = useRef<HTMLUListElement>(null);
+  const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   const labelId = useId();
   const errorId = useId();
-  const listboxId = useId();
-  const selectedValueId = useId();
+  const listboxId = useRef(
+    `select-listbox-${Math.random().toString(36).slice(2)}`
+  ).current;
 
   const selected = options.find((option) => option.value === value);
 
@@ -67,7 +70,7 @@ export const Select = ({
       if (newOpen) {
         updatePosition();
 
-        const currentIndex = options.findIndex((otp) => otp.value === value);
+        const currentIndex = options.findIndex((opt) => opt.value === value);
         setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
       }
       return newOpen;
@@ -90,72 +93,64 @@ export const Select = ({
   );
 
   //Keyboard Event
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!open) {
-        if (
-          e.key === ' ' ||
-          e.key === 'Enter' ||
-          e.key === 'ArrowDown' ||
-          e.key === 'ArrowUp'
-        ) {
-          if (document.activeElement === controlRef.current) {
-            e.preventDefault();
-            setOpen(true);
-            const currentIndex = options.findIndex(
-              (otp) => otp.value === value
-            );
-            setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
-            updatePosition();
-          }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!open) {
+      if (
+        e.key === ' ' ||
+        e.key === 'Enter' ||
+        e.key === 'ArrowDown' ||
+        e.key === 'ArrowUp'
+      ) {
+        e.preventDefault();
+        setOpen(true);
+
+        const currentIndex = options.findIndex((opt) => opt.value === value);
+        setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
+        updatePosition();
+      }
+      return;
+    }
+
+    //when open
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        close();
+        break;
+
+      case 'ArrowDown':
+        e.preventDefault();
+        setActiveIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
+        break;
+
+      case 'ArrowUp':
+        e.preventDefault();
+        setActiveIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
+        break;
+
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < options.length) {
+          selectOption(options[activeIndex].value);
         }
-        return;
-      }
+        break;
 
-      //when open
-      switch (e.key) {
-        case 'Escape':
-          e.preventDefault();
-          close();
-          break;
+      case 'Home':
+        e.preventDefault();
+        setActiveIndex(0);
+        break;
 
-        case 'ArrowDown':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
-          break;
+      case 'End':
+        e.preventDefault();
+        setActiveIndex(options.length - 1);
+        break;
 
-        case 'ArrowUp':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev < 0 ? prev - 1 : options.length - 1));
-          break;
-
-        case 'Enter':
-        case ' ':
-          e.preventDefault();
-          if (activeIndex >= 0 && activeIndex < options.length) {
-            selectOption(options[activeIndex].value);
-          }
-          break;
-
-        case 'Home':
-          e.preventDefault();
-          setActiveIndex(0);
-          break;
-
-        case 'End':
-          e.preventDefault();
-          setActiveIndex(options.length - 1);
-          break;
-
-        case 'Tab':
-          close();
-          break;
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, activeIndex, options, close, selectOption, updatePosition, value]);
+      case 'Tab':
+        close();
+        break;
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -172,22 +167,18 @@ export const Select = ({
     };
 
     if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
+      document.addEventListener('pointerdown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('pointerdown', handleClickOutside);
     };
   }, [open, close]);
 
   useEffect(() => {
     if (!open) return;
 
-    const handleUpdate = () => {
-      updatePosition();
-    };
+    const handleUpdate = () => updatePosition();
 
     window.addEventListener('scroll', handleUpdate, true);
     window.addEventListener('resize', handleUpdate);
@@ -208,39 +199,35 @@ export const Select = ({
     }
   }, [open, activeIndex]);
 
-  useEffect(() => {
-    if (open && dropdownRef.current) {
-      dropdownRef.current.focus();
-    }
-  }, [open]);
-
   return (
     <div className={styles.wrapper}>
       <label id={labelId} className={styles.label}>
         {label}
+        {required && <span aria-hidden='true'>*</span>}
       </label>
-
-      {!label && (
-        <span id={selectedValueId} hidden>
-          {selected?.label || placeholder || 'Select option'}
-        </span>
-      )}
 
       <div
         ref={controlRef}
         role='combobox'
         aria-expanded={open}
         aria-haspopup='listbox'
-        aria-label={label || selected?.label || placeholder || 'Select option'}
         aria-labelledby={labelId}
         aria-controls={open ? listboxId : undefined}
-        {...(error ? { 'aria-labelledby': errorId } : {})}
+        aria-activedescendant={
+          open && activeIndex >= 0
+            ? `${listboxId}-option-${activeIndex}`
+            : undefined
+        }
+        aria-describedby={error ? errorId : undefined}
+        aria-disabled={disabled}
+        aria-required={required}
         tabIndex={disabled ? -1 : 0}
         className={cn(styles.control, {
           [styles.error]: !!error,
           [styles.disabled]: disabled,
         })}
         onClick={toggleOpen}
+        onKeyDown={handleKeyDown}
       >
         <span
           className={cn(styles.value, {
@@ -256,30 +243,24 @@ export const Select = ({
 
       {open &&
         createPortal(
-          <div
+          <ul
             id={listboxId}
             ref={dropdownRef}
             role='listbox'
             aria-labelledby={labelId}
-            tabIndex={open ? -1 : undefined}
             className={styles.dropdown}
-            style={
-              open
-                ? {
-                    position: 'absolute',
-                    top: `${dropdownPosition.top}px`,
-                    left: `${dropdownPosition.left}px`,
-                    width: `${dropdownPosition.width}px`,
-                    zIndex: 9999,
-                  }
-                : {
-                    display: 'none',
-                  }
-            }
+            style={{
+              position: 'absolute',
+              top: `${dropdownPosition.top}px`,
+              left: `${dropdownPosition.left}px`,
+              width: `${dropdownPosition.width}px`,
+              zIndex: 9999,
+            }}
           >
             {options.map((option, index) => (
-              <div
+              <li
                 key={option.value}
+                id={`${listboxId}-option-${index}`}
                 ref={(el) => (optionRefs.current[index] = el)}
                 role='option'
                 aria-selected={option.value === value}
@@ -294,15 +275,15 @@ export const Select = ({
                 onMouseEnter={() => setActiveIndex(index)}
               >
                 {option.label}
-              </div>
+              </li>
             ))}
-          </div>,
+          </ul>,
           document.body
         )}
 
-      {error && (
+      {error && typeof error === 'string' && (
         <span id={errorId} className={styles.errorText} role='alert'>
-          {typeof error === 'string' ? error : error}
+          {error}
         </span>
       )}
     </div>

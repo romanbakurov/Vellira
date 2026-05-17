@@ -1,8 +1,8 @@
-@use "@/styles/abstracts/mixins" as *;
+@use '@/styles/abstracts/mixins' as *;
 
 .infoBlock {
-  border-radius: var(--radius-2xl);
   padding: 14px 14px 14px 20px;
+  border-radius: var(--radius-2xl);
 }
 
 .infoBlock_color_white {
@@ -16,6 +16,7 @@
 .title,
 .caption {
   @include text-md;
+
   margin: var(--space-0);
 }
 
@@ -24,11 +25,11 @@
 }
 
 .infoBlock_color_white .title {
-  color: var(--color-gray-700);
+  color: var(--color-gray-900);
 }
 
 .infoBlock_color_white .caption {
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
 }
 
 .infoBlock_color_green .title {

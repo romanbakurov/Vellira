@@ -4,10 +4,12 @@ import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import storybook from 'eslint-plugin-storybook';
 import prettier from 'eslint-plugin-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
   ...storybook.configs['flat/recommended'],
   {
     files: ['src/**/*.{ts,tsx}'],
@@ -21,6 +23,7 @@ export default [
       },
     },
     rules: {
+      'jsx-a11y/click-events-have-key-events': 'off',
       // Кавычки
       quotes: ['error', 'single', { avoidEscape: true }],
 
