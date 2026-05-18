@@ -1,3 +1,3 @@
-import classNames from 'classnames';
+import clsx, { type ClassValue } from 'clsx';
 
-export const cn = classNames;
+export const cn = (...classes: ClassValue[]) => clsx(classes);

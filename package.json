@@ -31,9 +31,6 @@
     "release:major": "standard-version --release-as major",
     "release:patch": "standard-version --release-as patch"
   },
-  "dependencies": {
-    "classnames": "^2.5.1"
-  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
@@ -93,5 +90,8 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
   }
 }

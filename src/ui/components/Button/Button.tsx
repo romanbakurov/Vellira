@@ -10,6 +10,7 @@ export const Button = ({
   leftIcon,
   rightIcon,
   fullWidth = false,
+  className,
   onClick,
 }: ButtonProps) => {
   return (
@@ -17,7 +18,7 @@ export const Button = ({
       type='button'
       disabled={disabled}
       onClick={onClick}
-      className={cn(styles.button, styles[variant], styles[size], {
+      className={cn(styles.button, styles[variant], styles[size], className, {
         [styles.disabled]: disabled,
         [styles.fullWidth]: fullWidth,
       })}

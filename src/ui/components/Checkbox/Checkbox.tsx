@@ -1,36 +1,57 @@
 import styles from './Checkbox.module.scss';
 import { cn } from '@/ui/utils/cn';
+import { forwardRef, ChangeEvent, useId } from 'react';
+import { useControllableState } from '../../hooks';
+import type { CheckboxProps } from './types';
 
-export type CheckboxSize = 'xs' | 'sm' | 'md';
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    {
+      label,
+      checked,
+      defaultChecked = false,
+      disabled = false,
+      className,
+      onCheckedChange,
+    },
+    ref
+  ) => {
+    const generatedId = useId();
 
-export interface CheckboxProps {
-  label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  disabled?: boolean;
-}
+    const [isChecked, setIsChecked] = useControllableState({
+      value: checked,
+      defaultValue: defaultChecked,
+      onChange: onCheckedChange,
+    });
 
-export const Checkbox = ({
-  label,
-  checked,
-  onChange,
-  disabled = false,
-}: CheckboxProps) => {
-  return (
-    <label className={cn(styles.wrapper, { [styles.disabled]: disabled })}>
-      <input
-        type='checkbox'
-        checked={checked}
-        disabled={disabled}
-        onChange={(e) => onChange(e.target.checked)}
-        className={styles.input}
-      />
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setIsChecked(event.target.checked);
+    };
 
-      <span className={styles.customCheckbox}>
-        {checked && <span className={styles.checkmark}>✓</span>}
-      </span>
+    return (
+      <label
+        htmlFor={generatedId}
+        className={cn(styles.wrapper, disabled && styles.disabled, className)}
+      >
+        <input
+          ref={ref}
+          id={generatedId}
+          type='checkbox'
+          aria-checked={isChecked}
+          disabled={disabled}
+          onChange={handleChange}
+          className={styles.input}
+          aria-disabled={disabled}
+        />
 
-      <span className={styles.label}>{label}</span>
-    </label>
-  );
-};
+        <span className={styles.customCheckbox}>
+          {isChecked && <span className={styles.checkmark}>✓</span>}
+        </span>
+
+        {label && <span className={styles.label}>{label}</span>}
+      </label>
+    );
+  }
+);
+
+Checkbox.displayName = 'Checkbox';
