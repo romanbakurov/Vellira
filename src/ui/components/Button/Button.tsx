@@ -1,5 +1,5 @@
 import styles from './Button.module.scss';
-import { cn } from '@/utils/cn';
+import { cn } from '@/ui/utils/cn';
 
 export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonColor = 'primary' | 'secondary' | 'delete';

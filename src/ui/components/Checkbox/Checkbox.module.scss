@@ -13,19 +13,19 @@
 }
 
 .customCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 22px;
   height: 22px;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all 0.2s ease;
 }
 
 .checkmark {
-  font-size: var(--font-size-sm);
   color: var(--color-gray-0);
+  font-size: var(--font-size-sm);
   opacity: 0;
   transform: scale(0.5);
   transition: all 0.2s ease;
@@ -45,7 +45,7 @@
 }
 
 .wrapper:hover .input:not(:disabled) + .customCheckbox {
-  box-shadow: 0 0 0 4px rgba(76, 139, 245, 0.12);
+  box-shadow: 0 0 0 4px rgb(76 139 245 / 12%);
 }
 
 .input:checked + .customCheckbox {
@@ -59,9 +59,9 @@
 
 .input:disabled + .customCheckbox {
   background: var(--color-gray-50);
-  border-color: var(--color-gray-200);
-  cursor: not-allowed;
   opacity: 0.6;
+  cursor: not-allowed;
+  border-color: var(--color-gray-200);
 }
 
 .input:disabled + .customCheckbox .checkmark {
@@ -73,6 +73,12 @@
   cursor: not-allowed;
 }
 
-.sm { transform: scale(0.9); }
-.md { transform: scale(1); }
-.lg { transform: scale(1.2); }
+.sm {
+  transform: scale(0.9);
+}
+.md {
+  transform: scale(1);
+}
+.lg {
+  transform: scale(1.2);
+}

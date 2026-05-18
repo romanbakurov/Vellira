@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@/ui/utils/cn';
 import styles from './Select.module.scss';
 import type { SelectProps } from './types';
 import { useSelect } from './useSelect';

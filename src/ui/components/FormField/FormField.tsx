@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@/ui/utils/cn';
 import styles from './FormField.module.scss';
 import React from 'react';
 
