@@ -1,6 +1,8 @@
 .button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: var(--space-0);
-  color: var(--color-gray-0);
   font-weight: var(--font-weight-regular);
   line-height: var(--font-line-height-md);
   border: none;
@@ -14,47 +16,77 @@
   cursor: not-allowed;
 }
 
-.button_color_delete {
+.delete {
+  color: var(--color-gray-0);
   background-color: var(--color-error);
   transition: all 0.2s ease;
 }
 
-.button_color_delete:hover {
+.button:not(:disabled).delete:hover {
+  color: var(--color-gray-0);
   background-color: var(--color-error-accent);
   transform: translateY(-1px);
 }
 
-.button_color_primary {
+.primary {
+  color: var(--color-gray-0);
   background-color: var(--color-primary);
   transition: all 0.2s ease;
 }
 
-.button_color_primary:hover {
+.button:not(:disabled).primary:hover {
+  color: var(--color-gray-0);
   background-color: var(--color-primary-accent);
   transform: translateY(-1px);
 }
 
-.button_color_secondary {
+.secondary {
+  color: var(--color-gray-0);
   background-color: var(--color-secondary);
   transition: all 0.2s ease;
 }
 
-.button_color_secondary:hover {
+.button:not(:disabled).secondary:hover {
+  color: var(--color-gray-0);
   background-color: var(--color-secondary-accent);
   transform: translateY(-1px);
 }
 
-.button_small {
+.button[data-size='small'],
+.small {
+  --icon-size: 16px;
+
   padding: var(--button-padding-sm);
   font-size: var(--font-size-xs);
 }
 
-.button_medium {
+.button[data-size='medium'],
+.medium {
+  --icon-size: 20px;
+
   padding: var(--button-padding-md);
   font-size: var(--font-size-sm);
 }
 
-.button_large {
+.button[data-size='large'],
+.large {
+  --icon-size: 24px;
+
   padding: var(--button-padding-lg);
   font-size: var(--font-size-md);
+}
+
+.disabled {
+  opacity: 0.6;
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: currentcolor;
+  }
 }

@@ -1,35 +1,30 @@
 import styles from './Button.module.scss';
 import { cn } from '@/ui/utils/cn';
-
-export type ButtonSize = 'small' | 'medium' | 'large';
-export type ButtonColor = 'primary' | 'secondary' | 'delete';
-
-export interface ButtonProps {
-  title: string;
-  color: ButtonColor;
-  size?: ButtonSize;
-  disabled?: boolean;
-  onClick?: () => void;
-}
+import type { ButtonProps } from './types';
 
 export const Button = ({
-  title,
-  color,
+  children,
+  variant = 'primary',
   size = 'medium',
   disabled = false,
+  leftIcon,
+  rightIcon,
+  fullWidth = false,
   onClick,
 }: ButtonProps) => {
   return (
     <button
-      className={cn(
-        styles.button,
-        styles[`button_color_${color}`],
-        styles[`button_${size}`]
-      )}
+      type='button'
       disabled={disabled}
       onClick={onClick}
+      className={cn(styles.button, styles[variant], styles[size], {
+        [styles.disabled]: disabled,
+        [styles.fullWidth]: fullWidth,
+      })}
     >
-      {title}
+      {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
+      <span>{children}</span>
+      {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
     </button>
   );
 };
