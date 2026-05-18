@@ -1,5 +1,5 @@
 import styles from './Checkbox.module.scss';
-import { cn } from '@/utils/cn';
+import { cn } from '@/ui/utils/cn';
 
 export type CheckboxSize = 'xs' | 'sm' | 'md';
 

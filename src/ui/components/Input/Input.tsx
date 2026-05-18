@@ -1,7 +1,7 @@
 import styles from './Input.module.scss';
-import { cn } from '@/utils/cn';
+import { cn } from '@/ui/utils/cn';
 import { useId } from 'react';
-import { FormField } from '@/components/FormField/FormField';
+import { FormField } from '@/ui/components/FormField';
 
 export type InputSize = 'sm' | 'md' | 'lg';
 
