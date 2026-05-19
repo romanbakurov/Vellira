@@ -39,7 +39,7 @@ export const WithError: Story = {
         placeholder='Enter email'
         style={{
           padding: '8px 12px',
-          border: '1px solid #d8d8d8',
+          border: '1px solid #cf2333',
           borderRadius: '6px',
           fontSize: '14px',
         }}
