@@ -38,7 +38,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           placeholder={placeholder}
           disabled={disabled}
           aria-invalid={!!error}
-          {...(error ? { 'aria-describedby': `${id}-error` } : {})}
         />
       </FormField>
     );
