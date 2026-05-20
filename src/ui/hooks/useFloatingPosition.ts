@@ -21,17 +21,30 @@ export const useFloatingPosition = () => {
 
     const rect = refRef.current.getBoundingClientRect();
 
-    setPosition({
-      top: rect.bottom + window.scrollY,
-      left: rect.left + window.scrollX,
-      width: rect.width,
+    setPosition((prev) => {
+      const next = {
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      };
+
+      if (
+        prev.top === next.top &&
+        prev.left === next.left &&
+        prev.width === next.width
+      ) {
+        return prev;
+      }
+      return next;
     });
   }, []);
 
   const setRef = useCallback(
     (ref: HTMLElement | null) => {
-      refRef.current = ref;
-      updatePosition();
+      if (ref !== refRef.current) {
+        refRef.current = ref;
+        if (ref) updatePosition();
+      }
     },
     [updatePosition]
   );

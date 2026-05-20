@@ -1,127 +1,139 @@
-import { cn } from '@/ui/utils/cn';
 import styles from './Select.module.scss';
+import { cn } from '@/ui/utils/cn';
+import { useState, useId, useRef, useMemo } from 'react';
+import { useControllableState } from '@/ui/hooks/useControllableState';
+import { useKeyboardNavigation } from '@/ui/hooks/useKeyboardNavigation';
+import { useOutsideClick } from '@/ui/hooks/useOutsideClick';
+import { useFloatingPosition } from '@/ui/hooks/useFloatingPosition';
+import { SelectTrigger } from './SelectTrigger/SelectTrigger';
+import { SelectDropdown } from './SelectDropdown/SelectDropdown';
 import type { SelectProps } from './types';
-import { useSelect } from './useSelect';
-import { useId } from 'react';
-import { createPortal } from 'react-dom';
-import ChevronDown from '@/assets/icons/ChevronDown.svg?react';
 
 export const Select = ({
   label,
-  value,
+  id,
+  name,
+  value: controlledValue,
+  defaultValue,
   onChange,
-  options = [],
-  placeholder,
-  required = false,
+  options,
+  placeholder = 'Select...',
+  required,
   disabled,
   error,
+  className,
 }: SelectProps) => {
-  const {
-    open,
-    activeIndex,
-    dropdownPosition,
-    listboxId,
-    controlRef,
-    dropdownRef,
-    optionRefs,
-    selectOption,
-    handleKeyDown,
-    handleControlClick,
-    highlightOption,
-  } = useSelect({ options, value, onChange, disabled });
-  const labelId = useId();
-  const errorId = useId();
+  const [selectedValue, setSelectedValue] = useControllableState({
+    value: controlledValue,
+    defaultValue: defaultValue ?? '',
+    onChange,
+  });
 
-  const selected = options.find((option) => option.value === value);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const labelId = useId();
+  const listboxId = useId();
+  const errorId = `${id || listboxId}-error`;
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  const selectedOption = useMemo(
+    () => options.find((option) => option.value === selectedValue),
+    [options, selectedValue]
+  );
+
+  const { position, setRef } = useFloatingPosition();
+
+  const toggleOpen = () => {
+    if (disabled) return;
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        const index = options.findIndex((opt) => opt.value === selectedValue);
+        setActiveIndex(index >= 0 ? index : 0);
+      }
+      return next;
+    });
+  };
+
+  const handleSelect = (value: string) => {
+    setSelectedValue(value);
+    setIsOpen(false);
+    buttonRef.current?.focus();
+  };
+
+  const { onKeyDown } = useKeyboardNavigation({
+    activeIndex,
+    setActiveIndex,
+    itemsCount: options.length,
+    isOpen,
+    onOpen: toggleOpen,
+    onSelect: () => {
+      if (
+        activeIndex >= 0 &&
+        options[activeIndex] &&
+        !options[activeIndex].disabled
+      ) {
+        handleSelect(options[activeIndex].value);
+      }
+    },
+    onClose: () => setIsOpen(false),
+  });
+
+  useOutsideClick([buttonRef, listRef], () => setIsOpen(false), isOpen);
+
+  const triggerRef = (el: HTMLButtonElement | null) => {
+    buttonRef.current = el;
+    setRef(el);
+  };
 
   return (
-    <div className={styles.wrapper}>
-      <label id={labelId} className={styles.label}>
-        {label}
-        {required && (
-          <span aria-hidden='true' className={styles.required}>
-            *
-          </span>
-        )}
-      </label>
+    <div className={cn(styles.wrapper, className)}>
+      {label && (
+        <label id={labelId} className={styles.label}>
+          {label}
+          {required && <span className={styles.required}>*</span>}
+        </label>
+      )}
 
-      <div
-        ref={controlRef}
-        role='combobox'
-        aria-expanded={open}
-        aria-haspopup='listbox'
-        aria-labelledby={labelId}
-        aria-controls={open ? listboxId : undefined}
-        aria-activedescendant={
-          open && activeIndex >= 0
-            ? `${listboxId}-option-${activeIndex}`
-            : undefined
-        }
-        aria-describedby={error ? errorId : undefined}
-        aria-disabled={disabled}
-        aria-required={required}
-        tabIndex={disabled ? -1 : 0}
-        className={cn(styles.control, {
-          [styles.error]: !!error,
-          [styles.disabled]: disabled,
-        })}
-        onClick={handleControlClick}
-        onKeyDown={handleKeyDown}
-      >
-        <span
-          className={cn(styles.value, {
-            [styles.empty]: !selected,
-          })}
-        >
-          {selected?.label || placeholder || 'Select...'}
-        </span>
-        <span className={cn(styles.arrow, { [styles.open]: open })}>
-          <ChevronDown />
-        </span>
-      </div>
-
-      {open &&
-        createPortal(
-          <ul
-            id={listboxId}
-            ref={dropdownRef}
-            role='listbox'
-            aria-labelledby={labelId}
-            className={styles.dropdown}
-            style={{
-              position: 'absolute',
-              top: `${dropdownPosition.top}px`,
-              left: `${dropdownPosition.left}px`,
-              width: `${dropdownPosition.width}px`,
-              zIndex: 9999,
-            }}
-          >
-            {options.map((option, index) => (
-              <li
-                key={option.value}
-                id={`${listboxId}-option-${index}`}
-                ref={(el) => (optionRefs.current[index] = el)}
-                role='option'
-                aria-selected={option.value === value}
-                className={cn(styles.option, {
-                  [styles.selected]: option.value === value,
-                  [styles.active]: index === activeIndex,
-                })}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectOption(option.value);
-                }}
-                onMouseEnter={() => highlightOption(index)}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>,
-          document.body
-        )}
+      <SelectTrigger
+        id={id}
+        name={name}
+        isOpen={isOpen}
+        disabled={disabled}
+        hasLabel={!!label}
+        labelId={labelId}
+        listboxId={listboxId}
+        activeIndex={activeIndex}
+        ariaLabel={!label ? selectedOption?.label || placeholder : undefined}
+        error={error}
+        displayText={selectedOption?.label ?? placeholder}
+        buttonRef={triggerRef}
+        onClick={toggleOpen}
+        onKeyDown={onKeyDown}
+      />
+      <SelectDropdown
+        isOpen={isOpen}
+        listboxId={listboxId}
+        labelId={labelId}
+        hasLabel={!!label}
+        position={position}
+        options={options}
+        selectedValue={selectedValue}
+        activeIndex={activeIndex}
+        listRef={listRef}
+        onSelect={handleSelect}
+        onMouseEnter={setActiveIndex}
+      />
 
       {error && typeof error === 'string' && (
-        <span id={errorId} className={styles.errorText} role='alert'>
+        <span
+          id={error ? errorId : undefined}
+          className={styles.errorText}
+          role='alert'
+        >
           {error}
         </span>
       )}

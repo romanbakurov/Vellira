@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within, screen } from 'storybook/test';
-import { Select } from './Select.tsx';
+import { Select } from './Select';
 import type { SelectProps } from './types';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 const defaultOptions = [
   { label: 'France', value: 'fr' },
-  { label: 'Spain', value: 'es' },
+  { label: 'Spain', value: 'es', disabled: true },
   { label: 'Germany', value: 'de' },
 ];
 

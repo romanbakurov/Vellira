@@ -24,7 +24,9 @@ export const FormField = ({
 
       <div className={styles.control}>
         {Children.map(children, (child) =>
-          isValidElement(child) ? cloneElement(child, { id: fieldId }) : child
+          isValidElement(child)
+            ? cloneElement(child, { id: child.props.id ?? fieldId })
+            : child
         )}
       </div>
 

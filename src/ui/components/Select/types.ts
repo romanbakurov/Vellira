@@ -1,22 +1,29 @@
-export type SelectOption = {
+type SelectOption = {
   label: string;
   value: string;
+  disabled?: boolean;
 };
 
 export interface SelectProps {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
+  // Accessibility
+  label?: string;
+  id?: string;
+  name?: string;
+
+  // Controlled / Uncontrolled
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+
+  // Options
   options: SelectOption[];
   placeholder?: string;
+
+  // State
   required?: boolean;
   disabled?: boolean;
-  error?: boolean | string;
-}
+  error?: string;
 
-export interface UseSelectProps {
-  options: SelectOption[];
-  value: string;
-  onChange: (value: string) => void;
-  disabled?: boolean;
+  // Styling
+  className?: string;
 }

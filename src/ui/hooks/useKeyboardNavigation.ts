@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, KeyboardEvent } from 'react';
 
 type Params = {
   activeIndex: number;
@@ -22,7 +22,7 @@ export const useKeyboardNavigation = ({
   onClose,
 }: Params) => {
   const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLElement>) => {
+    (e: KeyboardEvent<HTMLElement>) => {
       if (!isOpen) {
         if (
           e.key === ' ' ||

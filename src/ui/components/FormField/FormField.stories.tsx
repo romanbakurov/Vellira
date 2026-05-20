@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FormField } from './FormField';
-import { Input } from '@ui/components/Input';
 import { Checkbox } from '@ui/components/Checkbox';
 
 const meta = {
@@ -15,7 +14,18 @@ type Story = StoryObj<typeof meta>;
 export const WithInput: Story = {
   args: {
     label: 'Email',
-    children: <Input placeholder='Enter email' />,
+    children: (
+      <input
+        type='text'
+        placeholder='Enter email'
+        style={{
+          padding: '8px 12px',
+          border: '1px solid #d8d8d8',
+          borderRadius: '6px',
+          fontSize: '14px',
+        }}
+      />
+    ),
   },
 };
 
@@ -23,7 +33,18 @@ export const WithError: Story = {
   args: {
     label: 'Password',
     error: 'Password must be at least 8 characters',
-    children: <Input type='password' placeholder='Enter password' />,
+    children: (
+      <input
+        type='text'
+        placeholder='Enter email'
+        style={{
+          padding: '8px 12px',
+          border: '1px solid #cf2333',
+          borderRadius: '6px',
+          fontSize: '14px',
+        }}
+      />
+    ),
   },
 };
 
@@ -31,7 +52,18 @@ export const Required: Story = {
   args: {
     label: 'Username',
     required: true,
-    children: <Input placeholder='Enter username' />,
+    children: (
+      <input
+        type='text'
+        placeholder='Enter email'
+        style={{
+          padding: '8px 12px',
+          border: '1px solid #d8d8d8',
+          borderRadius: '6px',
+          fontSize: '14px',
+        }}
+      />
+    ),
   },
 };
 
@@ -39,7 +71,18 @@ export const Disabled: Story = {
   args: {
     label: 'Email',
     disabled: true,
-    children: <Input placeholder='Enter email' disabled />,
+    children: (
+      <input
+        type='text'
+        placeholder='Enter email'
+        style={{
+          padding: '8px 12px',
+          border: '1px solid #d8d8d8',
+          borderRadius: '6px',
+          fontSize: '14px',
+        }}
+      />
+    ),
   },
 };
 

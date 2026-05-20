@@ -1,25 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 //Закрывать dropdown/modal при клике вне элемента
 export const useOutsideClick = (
-  ref: React.RefObject<HTMLElement | null>,
+  refs: React.RefObject<HTMLElement | null>[],
   handler: () => void,
   enabled = true
 ) => {
+  const refsRef = useRef(refs);
+  refsRef.current = refs;
+
+  const handleRef = useRef(handler);
+  handleRef.current = handler;
+
   useEffect(() => {
     if (!enabled) return;
 
     const listener = (e: MouseEvent) => {
       const target = e.target as Node;
 
-      if (ref.current && !ref.current.contains(target)) {
-        handler();
+      const isOutside = refsRef.current.every(
+        (ref) => ref.current && !ref.current.contains(target)
+      );
+
+      if (isOutside) {
+        handleRef.current();
       }
     };
-
     // pointerdown for touch + mouse
     document.addEventListener('pointerdown', listener);
 
     return () => document.removeEventListener('pointerdown', listener);
-  }, [ref, handler, enabled]);
+  }, [enabled]);
 };
