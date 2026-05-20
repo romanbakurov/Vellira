@@ -19,6 +19,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const iconOnly = !children && (leftIcon || rightIcon);
+
     return (
       <button
         ref={ref}
@@ -29,6 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(styles.button, styles[variant], styles[size], className, {
           [styles.disabled]: disabled,
           [styles.fullWidth]: fullWidth,
+          [styles.iconOnly]: iconOnly,
         })}
       >
         {leftIcon && <span className={styles.icon}>{leftIcon}</span>}

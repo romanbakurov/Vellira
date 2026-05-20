@@ -3,6 +3,10 @@ import { Button } from './Button.tsx';
 import { fn } from 'storybook/test';
 import Download from '@/assets/icons/Download.svg?react';
 import Save from '@/assets/icons/Save.svg?react';
+import Filter from '@/assets/icons/Filter.svg?react';
+import Search from '@/assets/icons/Search.svg?react';
+import Delete from '@/assets/icons/Delete.svg?react';
+import Profile from '@/assets/icons/Profile.svg?react';
 
 const meta = {
   title: 'Components/Button',
@@ -20,6 +24,8 @@ const meta = {
       control: 'radio',
       options: ['small', 'medium', 'large'],
     },
+    leftIcon: { table: { disable: true } },
+    rightIcon: { table: { disable: true } },
     iconPosition: {
       control: 'radio',
       options: ['none', 'left', 'right', 'both'],
@@ -60,18 +66,58 @@ export const Variants: Story = {
   args: {
     size: 'medium',
     disabled: false,
+    iconPosition: 'left',
   },
 
-  render: (args) => {
+  render: ({ iconPosition, ...args }) => {
     return (
       <div style={{ display: 'flex', gap: 12 }}>
-        <Button {...args} variant='primary'>
+        <Button
+          {...args}
+          variant='primary'
+          leftIcon={
+            iconPosition === 'left' || iconPosition === 'both' ? (
+              <Profile />
+            ) : undefined
+          }
+          rightIcon={
+            iconPosition === 'right' || iconPosition === 'both' ? (
+              <Profile />
+            ) : undefined
+          }
+        >
           Primary
         </Button>
-        <Button {...args} variant='secondary'>
+        <Button
+          {...args}
+          variant='secondary'
+          leftIcon={
+            iconPosition === 'left' || iconPosition === 'both' ? (
+              <Search />
+            ) : undefined
+          }
+          rightIcon={
+            iconPosition === 'right' || iconPosition === 'both' ? (
+              <Search />
+            ) : undefined
+          }
+        >
           Secondary
         </Button>
-        <Button {...args} variant='delete'>
+        <Button
+          {...args}
+          variant='delete'
+          leftIcon={
+            iconPosition === 'left' || iconPosition === 'both' ? (
+              <Delete />
+            ) : undefined
+          }
+          rightIcon={
+            iconPosition === 'right' || iconPosition === 'both' ? (
+              <Delete />
+            ) : undefined
+          }
+        >
           Delete
         </Button>
       </div>
@@ -123,7 +169,7 @@ export const WidthComparison: Story = {
   ),
 };
 
-export const WithIcons: Story = {
+export const WithoutIcons: Story = {
   args: {
     children: 'Save',
     variant: 'primary',
@@ -142,6 +188,21 @@ export const WithIcons: Story = {
         }
       />
     );
+  },
+};
+
+export const OnlyIcon: Story = {
+  argTypes: {
+    iconPosition: { table: { disable: true } },
+    children: { table: { disable: true } },
+  },
+  args: {
+    variant: 'primary',
+    size: 'medium',
+    ariaLabel: 'Filter',
+  },
+  render: (args) => {
+    return <Button {...args} leftIcon={<Filter />} />;
   },
 };
 
