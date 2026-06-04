@@ -1,3 +1,5 @@
+import React from 'react';
+
 type SelectOption = {
   label: string;
   value: string;
@@ -26,4 +28,19 @@ export interface SelectProps {
 
   // Styling
   className?: string;
+}
+
+export interface SelectDropdownProps {
+  isOpen: boolean;
+  listboxId: string;
+  labelId: string;
+  hasLabel: boolean;
+  style: React.CSSProperties;
+  options: SelectOption[];
+  selectedValue: string;
+  activeIndex: number;
+  listRef: RefObject<HTMLUListElement | null>;
+  onSelect: (value: string) => void;
+  onMouseEnter: (index: number) => void;
+  floatingRef: (node: HTMLUListElement | null) => void;
 }
