@@ -1,4 +1,4 @@
-@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/tokens/mixins' as *;
 
 .inputWrapper {
   position: relative;
@@ -17,6 +17,32 @@
   white-space: nowrap;
   transition: all 0.2s ease;
 
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+
+  &.error {
+    border-color: var(--color-error);
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgb(239 68 68 / 10%);
+    }
+  }
+
+  &.withEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.disabled {
+    background-color: var(--color-disabled);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   &.sm {
     padding: var(--button-padding-sm);
     font-size: var(--font-size-sm);
@@ -31,34 +57,13 @@
     padding: var(--button-padding-lg);
     font-size: var(--font-size-lg);
   }
-
-  &.error {
-    border-color: var(--color-error);
-  }
-
-  &.withEllipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  &:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px var(--color-primary);
-  }
-
-  &.disabled {
-    background-color: var(--color-disabled);
-    cursor: not-allowed;
-  }
 }
 
 .tooltip {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: var(--z-tooltip);
   padding: 8px 12px;
   color: var(--color-gray-0);
   font-size: var(--font-size-sm);

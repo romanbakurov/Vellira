@@ -21,3 +21,12 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--font-line-height-sm);
 }
+
+@mixin focus-ring {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@mixin smooth-transition($properties: all, $duration: 0.2s) {
+  transition: $properties $duration ease;
+}

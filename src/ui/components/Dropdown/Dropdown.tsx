@@ -8,7 +8,9 @@ import styles from './Dropdown.module.scss';
 import { DropdownTrigger } from './Trigger/DropdownTrigger';
 import { DropdownContent } from './Content/DropdownContent';
 import { DropdownItem } from './Item/DropdownItem';
-import { isMenuItem } from './types';
+import { DropdownGroup } from './Group/DropdownGroup';
+import { DropdownSeparator } from './Separator/DropdownSeparator';
+import { isMenuItem, isGroup, isSeparator } from './types';
 
 export const Dropdown = ({
   label,
@@ -21,6 +23,7 @@ export const Dropdown = ({
   rotateAngle = 90,
   placement,
   matchTriggerWidth,
+  textWrap,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -110,24 +113,33 @@ export const Dropdown = ({
           role='menu'
         >
           {items.map((item, index) => {
-            if (!isMenuItem(item)) {
-              return null;
+            if (isGroup(item)) {
+              return (
+                <DropdownGroup key={`group-${item.label}`} label={item.label} />
+              );
             }
 
-            return (
-              <DropdownItem
-                key={item.value}
-                {...item}
-                active={activeIndex === index}
-                onClick={() => {
-                  if (!item.disabled) {
-                    onSelect?.(item.value);
-                    close();
-                  }
-                }}
-                onMouseEnter={() => setActiveIndex(index)}
-              />
-            );
+            if (isSeparator(item)) {
+              return <DropdownSeparator key={`separator-${index}`} />;
+            }
+
+            if (isMenuItem(item)) {
+              return (
+                <DropdownItem
+                  key={item.value}
+                  {...item}
+                  active={activeIndex === index}
+                  textWrap={item.textWrap || textWrap}
+                  onClick={() => {
+                    if (!item.disabled) {
+                      onSelect?.(item.value);
+                      close();
+                    }
+                  }}
+                  onMouseEnter={() => setActiveIndex(index)}
+                />
+              );
+            }
           })}
         </DropdownContent>
       )}

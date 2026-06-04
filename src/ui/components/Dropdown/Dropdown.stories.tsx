@@ -10,6 +10,7 @@ import SettingsIcon from '@/assets/icons/Settings.svg?react';
 import UserIcon from '@/assets/icons/Profile.svg?react';
 import PlusIcon from '@/assets/icons/Plus.svg?react';
 import CopyIcon from '@/assets/icons/Copy.svg?react';
+import LogOutIcon from '@/assets/icons/Exit.svg?react';
 // import { fn } from '@storybook/test';
 
 const meta = {
@@ -317,12 +318,18 @@ export const WithGroups: Story = {
     label: 'Menu with groups',
     trigger: 'Select',
     items: [
-      { label: '--- Recent ---', value: 'recent', disabled: true },
+      { label: 'Recent', type: 'group' },
       { label: 'Document 1', value: 'doc1' },
       { label: 'Document 2', value: 'doc2' },
-      { label: '--- Actions ---', value: 'actions', disabled: true },
+      { type: 'separator' },
+      { label: 'Actions', type: 'group' },
       { label: 'New document', value: 'new', icon: <PlusIcon /> },
-      { label: 'Settings', value: 'settings', icon: <SettingsIcon /> },
+      {
+        label: 'Settings',
+        value: 'settings',
+        icon: <SettingsIcon />,
+        danger: true,
+      },
     ],
   },
 };
@@ -405,30 +412,90 @@ export const AccessibilityTest: Story = {
   },
 };
 
-export const LongLabels: Story = {
+export const LongLabelsTruncate: Story = {
   args: {
-    trigger: 'Long labels',
+    trigger: 'Long labels (truncate)',
+    textWrap: 'truncate',
     items: [
       {
-        label: 'Very very very very very very very long menu item label',
+        label:
+          'Very very very very very very very long menu item label that will be truncated with ellipsis',
         value: '1',
+      },
+      {
+        label: 'Another long label that also gets truncated',
+        value: '2',
+      },
+      {
+        label: 'Short label',
+        value: '3',
       },
     ],
   },
 };
 
-export const MatchTriggerWidth: Story = {
+export const LongLabelsWrap: Story = {
   args: {
-    trigger: 'Wide button',
-    matchTriggerWidth: true,
-    items: defaultOptions,
+    trigger: 'Long labels (wrap)',
+    textWrap: 'wrap',
+    items: [
+      {
+        label:
+          'Very very very very very very very long menu item label that will wrap to multiple lines for better readability',
+        value: '1',
+      },
+      {
+        label: 'Another long label that also wraps to show full content',
+        value: '2',
+      },
+    ],
   },
 };
 
-export const IndependentWidth: Story = {
+export const MixedTextWrap: Story = {
   args: {
-    icon: <DropdownMenuIcon />,
-    matchTriggerWidth: false,
-    items: defaultOptions,
+    trigger: 'Mixed text wrap modes',
+    items: [
+      {
+        label: 'This item will truncate very long text with ellipsis...',
+        value: '1',
+        textWrap: 'truncate',
+      },
+      {
+        label:
+          'This item will wrap long text onto multiple lines for better readability when content needs to be fully visible',
+        value: '2',
+        textWrap: 'wrap',
+      },
+      {
+        label: 'Normal item without special wrapping',
+        value: '3',
+      },
+    ],
+  },
+};
+
+export const WithIconsAndLongText: Story = {
+  args: {
+    trigger: 'With icons',
+    textWrap: 'truncate',
+    items: [
+      {
+        label: 'Very long user profile name that needs truncation',
+        value: 'profile',
+        icon: <UserIcon size={16} />,
+      },
+      {
+        label: 'Very long settings menu option with description',
+        value: 'settings',
+        icon: <SettingsIcon size={16} />,
+      },
+      {
+        label: 'Log out from the system',
+        value: 'logout',
+        icon: <LogOutIcon size={16} />,
+        danger: true,
+      },
+    ],
   },
 };

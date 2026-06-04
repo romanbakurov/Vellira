@@ -1,6 +1,6 @@
 export { Dropdown } from './Dropdown';
-export type { DropdownMenuItem } from './types';
+export { DropdownTrigger } from './Trigger/DropdownTrigger';
+export { DropdownItem } from './Item/DropdownItem';
+export { DropdownContent } from './Content/DropdownContent';
+export { DropdownGroup } from './Group/DropdownGroup';
 export type { DropdownProps } from './types';
-export type { DropdownTriggerProps } from './types';
-export type { DropdownContentProps } from './types';
-export type { DropdownItemProps } from './types';

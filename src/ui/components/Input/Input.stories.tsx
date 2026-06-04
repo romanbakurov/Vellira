@@ -54,9 +54,9 @@ export const Sizes: Story = {
   render: (args) => {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Input {...args} size='sm' />
-        <Input {...args} size='md' />
-        <Input {...args} size='lg' />
+        <Input {...args} id='name-sm' size='sm' />
+        <Input {...args} id='name-md' size='md' />
+        <Input {...args} id='name-lg' size='lg' />
       </div>
     );
   },
