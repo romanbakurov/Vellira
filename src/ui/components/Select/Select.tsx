@@ -44,7 +44,9 @@ export const Select = ({
     [options, selectedValue]
   );
 
-  const { position, setRef } = useFloatingPosition();
+  const { floatingStyles, setRef, setFloatingRef } = useFloatingPosition({
+    matchTriggerWidth: true,
+  });
 
   const toggleOpen = () => {
     if (disabled) return;
@@ -119,11 +121,12 @@ export const Select = ({
         listboxId={listboxId}
         labelId={labelId}
         hasLabel={!!label}
-        position={position}
+        style={floatingStyles}
         options={options}
         selectedValue={selectedValue}
         activeIndex={activeIndex}
         listRef={listRef}
+        floatingRef={setFloatingRef}
         onSelect={handleSelect}
         onMouseEnter={setActiveIndex}
       />

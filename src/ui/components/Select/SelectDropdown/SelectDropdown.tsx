@@ -7,8 +7,9 @@ export const SelectDropdown = ({
   isOpen,
   listboxId,
   labelId,
+  floatingRef,
   hasLabel,
-  position,
+  style,
   options,
   selectedValue,
   activeIndex,
@@ -20,18 +21,15 @@ export const SelectDropdown = ({
 
   return createPortal(
     <ul
-      ref={listRef}
+      ref={(node) => {
+        listRef.current = node;
+        floatingRef(node);
+      }}
       id={listboxId}
       role='listbox'
       aria-labelledby={hasLabel ? labelId : undefined}
       className={styles.dropdown}
-      style={{
-        position: 'absolute',
-        top: position.top,
-        left: position.left,
-        width: position.width,
-        zIndex: 9999,
-      }}
+      style={style}
     >
       {options.map((option, index) => (
         <SelectOption
