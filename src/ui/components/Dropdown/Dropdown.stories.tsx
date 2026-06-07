@@ -43,7 +43,6 @@ const defaultOptions = [
     label: 'Edit',
     value: 'edit',
     icon: <Edit />,
-    // disabled: true,
   },
   { label: 'Refresh', value: 'refresh', icon: <Restart /> },
   {
