@@ -1,8 +1,21 @@
 import { createContext, useContext } from 'react';
 
+export interface RegisteredTab {
+  disabled?: boolean;
+}
+
 export interface TabsContextValue {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
+  orientation: 'horizontal' | 'vertical';
+  appearance: 'default' | 'underline' | 'pills';
+
+  registerTab: (
+    index: number,
+    el: HTMLButtonElement | null,
+    disabled?: boolean
+  ) => void;
+  onTabKeyDown: (e: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 export const TabsContext = createContext<TabsContextValue | null>(null);

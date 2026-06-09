@@ -2,14 +2,25 @@ import type { TabsPanelProps } from './types';
 import styles from './TabsPanel.module.scss';
 import { useTabs } from '../TabsContext';
 import { cn } from '@utils/cn';
+import { useState, useEffect } from 'react';
 
 export const TabsPanel = ({
   index,
   children,
   className = '',
 }: TabsPanelProps) => {
-  const { activeIndex } = useTabs();
+  const { activeIndex, orientation } = useTabs();
+  const [isVisible, setIsVisible] = useState(false);
   const isActive = activeIndex === index;
+
+  useEffect(() => {
+    if (isActive) {
+      const timer = setTimeout(() => setIsVisible(true), 10);
+      return () => clearTimeout(timer);
+    } else {
+      setIsVisible(false);
+    }
+  }, [isActive]);
 
   if (!isActive) return null;
 
@@ -17,7 +28,12 @@ export const TabsPanel = ({
     <div
       role='tabpanel'
       id={`tab-panel-${index}`}
-      className={cn(styles.panel, className)}
+      className={cn(
+        styles.panel,
+        isVisible && styles.visible,
+        orientation === 'vertical' && styles.vertical,
+        className
+      )}
       aria-labelledby={`tab-${index}`}
     >
       {children}

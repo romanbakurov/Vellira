@@ -1,20 +1,156 @@
 .tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 16px;
-  color: var(--color-primary);
+  color: var(--color-gray-600);
   font-size: var(--font-size-md);
+  font-weight: var(--font-weight-normal);
   background: transparent;
   border: none;
-  transition: all 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
 
-  &:hover {
-    border-bottom-color: var(--color-primary-accent);
-    color: var(--color-primary-accent);
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
-  &.active {
-    border-bottom-color: var(--color-primary);
+  &.iconOnly {
+    padding: 8px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.tabIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  line-height: 0;
+  aspect-ratio: 1;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: currentcolor;
+  }
+}
+
+.label {
+  display: inline-block;
+  font-size: var(--font-size-md);
+}
+
+.default {
+  &:hover:not(:disabled) {
     color: var(--color-primary);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--color-primary-hover-light);
+  }
+}
+
+// Variant Underlined
+.underline {
+  position: relative;
+  border-radius: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+
+  &:hover:not(:disabled)::after {
+    width: 100%;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-primary);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--color-primary-hover-light);
+
+    &::after {
+      width: 100%;
+      background-color: var(--color-primary-hover-light);
+    }
+  }
+}
+
+// Variant Pills
+.pills {
+  border-radius: 6px;
+
+  &:hover:not(:disabled) {
+    color: var(--color-gray-900);
+    background-color: var(--color-gray-100);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--color-gray-0);
+    background-color: var(--color-primary-hover-light);
+  }
+}
+
+// Vertical orientation
+.vertical {
+  justify-content: flex-start;
+  width: 100%;
+  color: var(--color-gray-700);
+  text-align: left;
+}
+
+.vertical.default {
+  border-left: 2px solid transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-gray-blue-50);
+  }
+
+  &[aria-selected='true'] {
+    background-color: var(--color-primary-50);
+  }
+}
+
+.vertical.underline {
+  &::after {
+    display: none;
+  }
+
+  border-left: 2px solid transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-gray-blue-50);
+    border-left-color: var(--color-gray-blue-200);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+  }
+}
+
+.vertical.pills {
+  border-radius: 8px;
+
+  &[aria-selected='true'] {
+    color: var(--color-gray-0);
+    background-color: var(--color-primary-hover-light);
   }
 }

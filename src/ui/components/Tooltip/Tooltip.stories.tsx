@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { Tooltip } from './Tooltip';
 import { Button } from '../Button/Button';
-import { useState } from 'react';
+import { Tabs } from '@components/Tabs';
 import SearchIcon from '@/assets/icons/Search.svg?react';
 
 const meta = {
@@ -56,10 +56,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const InteractivePlacementDemo = () => {
-  const [placement, setPlacement] = useState<
-    'top' | 'bottom' | 'left' | 'right'
-  >('top');
-
   return (
     <div
       style={{
@@ -69,16 +65,74 @@ const InteractivePlacementDemo = () => {
         alignItems: 'center',
       }}
     >
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <Button onClick={() => setPlacement('top')}>Top</Button>
-        <Button onClick={() => setPlacement('bottom')}>Bottom</Button>
-        <Button onClick={() => setPlacement('left')}>Left</Button>
-        <Button onClick={() => setPlacement('right')}>Right</Button>
-      </div>
+      <Tabs defaultActiveIndex={0} variant='underlined' appearance='underline'>
+        <Tabs.List>
+          <Tabs.Tab index={0}>Top</Tabs.Tab>
+          <Tabs.Tab index={1}>Bottom</Tabs.Tab>
+          <Tabs.Tab index={2}>Left</Tabs.Tab>
+          <Tabs.Tab index={3}>Right</Tabs.Tab>
+        </Tabs.List>
 
-      <Tooltip content={`Tooltip on ${placement}`} placement={placement}>
-        <Button>Hover me</Button>
-      </Tooltip>
+        <Tabs.Panel index={0}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+            }}
+          >
+            <Tooltip content='Tooltip on top' placement='top'>
+              <Button>Hover me</Button>
+            </Tooltip>
+          </div>
+        </Tabs.Panel>
+
+        <Tabs.Panel index={1}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+            }}
+          >
+            <Tooltip content='Tooltip on bottom' placement='bottom'>
+              <Button>Hover me</Button>
+            </Tooltip>
+          </div>
+        </Tabs.Panel>
+
+        <Tabs.Panel index={2}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+            }}
+          >
+            <Tooltip content='Tooltip on left' placement='left'>
+              <Button>Hover me</Button>
+            </Tooltip>
+          </div>
+        </Tabs.Panel>
+
+        <Tabs.Panel index={3}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
+            }}
+          >
+            <Tooltip content='Tooltip on right' placement='right'>
+              <Button>Hover me</Button>
+            </Tooltip>
+          </div>
+        </Tabs.Panel>
+      </Tabs>
     </div>
   );
 };

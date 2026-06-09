@@ -1,6 +1,20 @@
 .panel {
+  flex: 1;
   padding: 16px;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.vertical {
+    padding-left: 16px;
+  }
 }
 
 @keyframes fadeIn {
