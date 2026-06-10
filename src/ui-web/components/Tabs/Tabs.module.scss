@@ -1,0 +1,8 @@
+.tabs {
+  width: 100%;
+
+  &.vertical {
+    display: flex;
+    gap: 24px;
+  }
+}

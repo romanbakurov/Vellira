@@ -1,0 +1,23 @@
+.option {
+  padding: var(--button-padding-sm);
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+
+  &:hover:not(.selected) {
+    background: var(--color-gray-100);
+  }
+}
+
+.selected {
+  color: var(--color-gray-0);
+  background: var(--color-primary);
+}
+
+.active:not(.selected) {
+  background: var(--color-gray-100);
+}
+
+.optionDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
