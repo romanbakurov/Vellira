@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 
-import '@romanbakurov/flux-ui-web/styles';
+import '../../../packages/flux-ui-web/src/styles/global.scss';
 
 const preview: Preview = {};
 
