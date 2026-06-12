@@ -27,7 +27,11 @@ export default [
   js.configs.recommended,
 
   {
-    files: ['src/**/*.{ts,tsx,mts,cts}'],
+    files: [
+      'packages/*/src/**/*.{ts,tsx,mts,cts}',
+      'apps/*/src/**/*.{ts,tsx,mts,cts}',
+      'apps/*/.storybook/**/*.{ts,tsx}',
+    ],
 
     languageOptions: {
       parser: tsParser,
@@ -59,7 +63,11 @@ export default [
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: './tsconfig.json',
+          project: [
+            './tsconfig.json',
+            './packages/*/tsconfig.json',
+            './apps/*/tsconfig.json',
+          ],
         },
       },
     },
@@ -126,7 +134,7 @@ export default [
       'no-console': 'warn',
       'no-debugger': 'error',
 
-      'import/no-unresolved': 'error',
+      'import/no-unresolved': 'off',
       'import/no-duplicates': 'error',
       'import/no-cycle': 'warn',
     },

@@ -1,142 +1,274 @@
 # Flux UI
 
-Flux UI is a lightweight, flexible React design system built with SCSS Modules and design tokens.  
-It provides a consistent foundation for building modern, accessible, and scalable user interfaces.
+A modern React component library built with TypeScript, SCSS Modules, and design tokens.
+
+Flux UI provides a scalable foundation for building consistent, accessible, and maintainable user interfaces across web and native platforms.
 
 ## ✨ Features
 
-- ⚛️ React components with TypeScript support
-- 🎨 SCSS Modules for styling
-- 🎯 Design tokens (colors, spacing, typography, radius)
-- 🧩 Reusable UI components (Input, Checkbox, etc.)
-- 📚 Storybook for component documentation
-- ⚡ Vite-based development setup
-- ♿ Accessibility-friendly components (WIP)
-
-
-## Live Demo
-[![Storybook](https://img.shields.io/badge/storybook-live-ff4785)](https://6a07269cf7126a71ef2f62ca-byvnojtjdx.chromatic.com)
+* React 19 + TypeScript
+* Design token-driven architecture
+* Modular component library
+* Storybook documentation
+* Vite-powered development workflow
+* Accessibility-first approach
+* pnpm workspace monorepo
+* Platform-agnostic design tokens
 
 ---
 
-## 📦 Installation
-Flux UI is designed to be used with React + TypeScript.
+## Live Demo
+
+Storybook:
+https://6a07269cf7126a71ef2f62ca-byvnojtjdx.chromatic.com
+
+---
+
+## Packages
+
+### @romanbakurov/flux-ui-web
+
+React component library.
+
+### @romanbakurov/flux-ui-tokens
+
+Platform-agnostic design tokens.
+
+### @romanbakurov/flux-ui-native
+
+React Native package (work in progress).
+
+---
+
+## Installation
+
+### React Components
 
 ```bash
-npm install flux-ui
-````
+npm install @romanbakurov/flux-ui-web
+```
 
-## 🚀 Usage
+### Design Tokens
+
+```bash
+npm install @romanbakurov/flux-ui-tokens
+```
+
+---
+
+## Usage
+
 ```tsx
-import { Input, Checkbox } from 'flux-ui';
+import {
+  Input,
+  Checkbox,
+  Modal,
+} from '@romanbakurov/flux-ui-web';
 
-export default function App() {
+export function App() {
   return (
-    <div>
+    <>
       <Input
         label="Name"
         value=""
-        onChange={(v) => console.log(v)}
+        onChange={() => {}}
       />
 
       <Checkbox
         label="Accept terms"
         checked={false}
-        onChange={(v) => console.log(v)}
+        onChange={() => {}}
       />
-    </div>
+    </>
   );
 }
 ```
 
-## 🎨 Design Tokens
-Flux UI uses CSS variables for consistent styling across the system.
-#### Example:
+---
+
+## Design Tokens
+
+Flux UI tokens are distributed as CSS custom properties.
+
 ```css
 :root {
   --color-primary: #4c8bf5;
   --color-error: #e5484d;
 
-  --font-size-md: 16px;
-  --font-size-lg: 20px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
 
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-
+  --radius-sm: 4px;
   --radius-md: 8px;
+
+  --z-index-modal: 1000;
 }
 ```
 
-## 🧱 Component Philosophy
-Flux UI follows a controlled component pattern:
+---
 
-- All form components are controlled (value / checked + onChange)
-- Styling is fully separated via SCSS modules
-- No internal state in UI components
-- Behavior is predictable and reusable
+## Package Contents
 
+### UI Primitives
 
-## 📚 Storybook
-Run Storybook locally:
+Foundation building blocks used to compose higher-level components.
+
+* Button
+* Input
+
+### Accessibility
+
+Utilities for building accessible interfaces.
+
+* VisuallyHidden
+
+### Infrastructure
+
+Internal primitives used by complex components.
+
+* Portal
+
+### Components
+
+Reusable UI components built on top of primitives.
+
+* Checkbox
+* Dropdown
+* Modal
+* RadioGroup
+* Select
+* Tabs
+* Tooltip
+
+### Patterns
+
+Higher-level composition abstractions.
+
+* FormField
+
+---
+
+## Hooks
+
+State and behavior utilities used throughout the library.
+
+* useControllableState
+* useDisclosure
+* useFloatingPosition
+* useFocusManager
+* useFocusTrap
+* useKeyboardNavigation
+* useModalKeyboard
+* useOutsideClick
+* useTabsKeyboard
+
+---
+
+## Development
+
+Install dependencies:
+
 ```bash
-npm run storybook
+pnpm install
 ```
 
-Build static documentation:
+Run Storybook:
+
 ```bash
-npm run build-storybook
+pnpm --filter @flux-ui/storybook storybook
 ```
 
-## 🧪 Development
-Start development server:
+Run playground application:
+
 ```bash
-npm run dev
+pnpm --filter test-app dev
 ```
-Run lint:
+
+Run linting:
+
 ```bash
-npm run lint
+pnpm lint
 ```
 
 Run tests:
-```bash
-npm run test
-```
-
-## 📁 Project Structure
 
 ```bash
-src/
-  components/
-    Input/
-    Checkbox/
-  styles/
-    abstracts/
-      _tokens.scss
-      _mixins.scss
-      _spacing.scss
-  utils/
-    cn.ts
+pnpm test
 ```
 
+Build all packages:
 
-## 🧠 Principles
+```bash
+pnpm -r build
+```
+
+---
+
+## Workspace Structure
+
+```text
+apps/
+├── storybook
+└── test-app
+
+packages/
+├── flux-ui-tokens
+├── flux-ui-web
+└── flux-ui-native
+```
+
+---
+
+## Design Principles
+
 Flux UI is built around:
 
-- Consistency over flexibility
-- Composition over duplication
-- Predictable UI behavior
-- Minimal abstraction leakage
-- Token-driven styling system
+* Consistency over flexibility
+* Composition over duplication
+* Predictable UI behavior
+* Accessibility by default
+* Token-driven styling
+* Platform independence
 
-## 📌 Roadmap
-- [x] Input component
-- [x] Checkbox component
-- [ ] Select component
-- [ ] FormField wrapper
-- [ ] Modal / Dialog system
-- [ ] Dark mode tokens
-- [ ] Animation system
-- [ ] Accessibility audit
-- [ ] Documentation site
+---
 
+## Roadmap
+
+### Web Components
+
+* [x] Button
+* [x] Input
+* [x] Checkbox
+* [x] Dropdown
+* [x] Modal
+* [x] RadioGroup
+* [x] Select
+* [x] Tabs
+* [x] Tooltip
+* [x] FormField
+
+### Design Tokens
+
+* [x] Colors
+* [x] Spacing
+* [x] Typography
+* [x] Radius
+* [x] Shadows
+* [x] Z-Index
+
+### Upcoming
+
+* [ ] Dark theme
+* [ ] Theme switching
+* [ ] Data display components
+* [ ] Animation primitives
+* [ ] Accessibility audit
+* [ ] React Native implementation
+* [ ] Documentation website
+
+---
+
+## License
+
+MIT © Roman Bakurov

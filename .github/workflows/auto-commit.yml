@@ -2,9 +2,10 @@ name: Auto Commit Fixes
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
+
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   auto-fix:
@@ -15,19 +16,22 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          version: 10.12.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run linters and fix
         run: |
-          npm run lint:fix
-          npm run format
+          pnpm lint:fix
+          pnpm format
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5

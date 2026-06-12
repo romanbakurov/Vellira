@@ -1,0 +1,51 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+import path from 'path';
+
+export default defineConfig({
+  plugins: [react(), svgr()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../../packages/flux-ui-web/src'),
+      '@components': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/components'
+      ),
+      '@hooks': path.resolve(__dirname, '../../packages/flux-ui-web/src/hooks'),
+      '@overlay': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/overlay'
+      ),
+      '@patterns': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/patterns'
+      ),
+      '@primitives': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/primitives'
+      ),
+      '@styles': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/styles'
+      ),
+      '@utils': path.resolve(__dirname, '../../packages/flux-ui-web/src/utils'),
+      '@assets': path.resolve(
+        __dirname,
+        '../../packages/flux-ui-web/src/assets'
+      ),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@styles/mixins" as *;`,
+      },
+    },
+  },
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
+});
