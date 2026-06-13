@@ -1,1 +1,1 @@
-export * from './common/button';
+export * from './button';
