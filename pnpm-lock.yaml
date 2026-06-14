@@ -271,8 +271,20 @@ importers:
         specifier: ^8.0.12
         version: 8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(jiti@2.6.1)(less@4.6.4)(sass@1.101.0)(stylus@0.62.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
 
+  packages/flux-ui-core:
+    devDependencies:
+      '@types/react':
+        specifier: ^19.1.0
+        version: 19.2.17
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+
   packages/flux-ui-native:
     dependencies:
+      '@romanbakurov/flux-ui-core':
+        specifier: workspace:*
+        version: link:../flux-ui-core
       '@romanbakurov/flux-ui-tokens':
         specifier: workspace:*
         version: link:../flux-ui-tokens
@@ -299,6 +311,9 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.19
         version: 0.27.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@romanbakurov/flux-ui-core':
+        specifier: workspace:*
+        version: link:../flux-ui-core
       '@romanbakurov/flux-ui-tokens':
         specifier: workspace:*
         version: link:../flux-ui-tokens

@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from '@romanbakurov/flux-ui-native';
+import { Checkbox } from '@romanbakurov/flux-ui-native';
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <Button variant='primary' size='md' onPress={() => alert('Flux UI!')}>
         Click me
       </Button>
+      <Checkbox></Checkbox>
       <StatusBar style='auto' />
     </View>
   );
