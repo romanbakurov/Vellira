@@ -1,9 +1,9 @@
 import { useCallback, useId, useMemo, useRef, useState } from 'react';
 
-import { useControllableState } from '@hooks/useControllableState';
 import { useFloatingPosition } from '@hooks/useFloatingPosition';
 import { useKeyboardNavigation } from '@hooks/useKeyboardNavigation';
 import { useOutsideClick } from '@hooks/useOutsideClick';
+import { useControllableState } from '@romanbakurov/flux-ui-core';
 import { cn } from '@utils/cn';
 
 import styles from './Select.module.scss';

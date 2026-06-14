@@ -21,6 +21,7 @@
     "@floating-ui/react": "^0.27.19",
     "@romanbakurov/flux-ui-tokens": "workspace:*",
     "@romanbakurov/flux-ui-types": "workspace:*",
+    "@romanbakurov/flux-ui-core": "workspace:*",
     "clsx": "^2.1.1",
     "focus-trap-react": "^12.0.2"
   },

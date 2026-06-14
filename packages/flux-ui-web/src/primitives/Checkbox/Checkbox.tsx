@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react';
 
 import Check from '@assets/icons/Check.svg?react';
 
-import { useControllableState } from '@hooks/useControllableState';
+import { useControllableState } from '@romanbakurov/flux-ui-core';
 import { cn } from '@utils/cn';
 
 import styles from './Checkbox.module.scss';

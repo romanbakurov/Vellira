@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pressable, Text } from 'react-native';
 
 import { theme } from '@romanbakurov/flux-ui-tokens/native';
@@ -6,7 +5,14 @@ import { theme } from '@romanbakurov/flux-ui-tokens/native';
 import { styles } from './Button.styles';
 import type { ButtonProps } from './types';
 
-const sizeMap = {
+const sizeMap: Record<
+  NonNullable<ButtonProps['size']>,
+  {
+    px: number;
+    py: number;
+    fontSize: number;
+  }
+> = {
   sm: {
     px: theme.spacing[3],
     py: theme.spacing[2],
@@ -26,10 +32,10 @@ const sizeMap = {
   },
 };
 
-const variantMap = {
+const variantMap: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: theme.colors.primary,
   secondary: theme.colors.secondary,
-  danger: theme.colors.warning,
+  danger: theme.colors.error,
 };
 
 export function Button({
@@ -45,12 +51,14 @@ export function Button({
     <Pressable
       disabled={disabled}
       onPress={onPress}
+      accessibilityRole='button'
+      accessibilityState={{ disabled }}
       style={({ pressed }) => [
         styles.button,
         {
           backgroundColor: variantMap[variant],
           paddingHorizontal: config.px,
-          paddingVertical: config.px,
+          paddingVertical: config.py,
         },
 
         disabled && styles.disabled,
