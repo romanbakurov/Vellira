@@ -25,6 +25,7 @@
     "tsx": "^4",
     "fast-glob": "^3.3.3",
     "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "typescript": "^6"
   }
 }

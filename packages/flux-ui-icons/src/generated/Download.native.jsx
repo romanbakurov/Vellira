@@ -1,0 +1,17 @@
+import Svg, { Path } from 'react-native-svg';
+const Download = (props) => (
+  <Svg
+    viewBox='0 0 16 16'
+    fill={props.color}
+    xmlns='http://www.w3.org/2000/svg'
+    width={props.size}
+    height={props.size}
+    {...props}
+  >
+    <Path
+      d='M7.59974 2.39972H8.39974V8.11892L9.47014 6.46692L10.1293 6.92212L8.35334 9.59972H7.64614L5.87014 6.92212L6.52934 6.46692L7.59974 8.11892V2.39972ZM7.9999 13.6C4.9119 13.6 2.3999 11.0872 2.3999 8.00004H3.1999C3.1999 10.6472 5.3527 12.8 7.9999 12.8C10.6463 12.8 12.7999 10.6472 12.7999 8.00004H13.5999C13.5999 11.0872 11.0879 13.6 7.9999 13.6Z'
+      fill='currentColor'
+    />
+  </Svg>
+);
+export default Download;

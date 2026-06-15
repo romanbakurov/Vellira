@@ -24,20 +24,21 @@ async function compile(
     svg,
     {
       native,
+      plugins: ['@svgr/plugin-jsx'],
       typescript: false,
       jsxRuntime: 'automatic',
       exportType: 'default',
       expandProps: 'end',
 
       svgProps: {
-        width: '{size}',
-        height: '{size}',
-        fill: '{color}',
+        width: '{props.size}',
+        height: '{props.size}',
+        fill: '{props.color}',
       },
 
       replaceAttrValues: {
-        '#000': '{color}',
-        black: '{color}',
+        '#000': '{props.color}',
+        black: '{props.color}',
       },
     },
     {
@@ -67,16 +68,16 @@ async function run(): Promise<void> {
 
     const nativeComponent = await compile(svg, name, true);
 
-    fs.writeFileSync(path.join(ICONS, `${name}.web.js`), webComponent);
+    fs.writeFileSync(path.join(ICONS, `${name}.web.jsx`), webComponent);
 
-    fs.writeFileSync(path.join(ICONS, `${name}.native.js`), nativeComponent);
+    fs.writeFileSync(path.join(ICONS, `${name}.native.jsx`), nativeComponent);
 
     webExports.push(
-      `export { default as ${name} } from './generated/${name}.web.js';`
+      `export { default as ${name} } from './generated/${name}.web.jsx';`
     );
 
     nativeExports.push(
-      `export { default as ${name} } from './generated/${name}.native.js';`
+      `export { default as ${name} } from './generated/${name}.native.jsx';`
     );
   }
 
@@ -87,7 +88,7 @@ async function run(): Promise<void> {
     `${nativeExports.join('\n')}\n`
   );
 
-  console.log(`✅ Generated ${files.length} generated`);
+  console.log(`✅ Generated ${files.length} icons`);
 }
 
 run().catch((error) => {
