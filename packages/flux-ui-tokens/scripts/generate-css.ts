@@ -1,13 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { colors } from '../src/tokens/colors';
 import { radius } from '../src/tokens/radius';
 import { shadows } from '../src/tokens/shadows';
 import { spacing } from '../src/tokens/spacing';
 import { typography } from '../src/tokens/typography';
 import { zIndex } from '../src/tokens/zIndex';
-
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

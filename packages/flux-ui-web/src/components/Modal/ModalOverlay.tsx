@@ -3,12 +3,12 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useModalKeyboard } from '@hooks/useModalKeyboard';
 import { cn } from '@utils/cn';
 import { Portal } from '@utils/Portal';
+import FocusTrap from 'focus-trap-react';
 
 import { useModalContext } from './ModalContext';
-import styles from './ModalOverlay.module.scss';
 import type { ModalOverlayProps } from './types';
 
-import FocusTrap from 'focus-trap-react';
+import styles from './ModalOverlay.module.scss';
 
 export const ModalOverlay = ({
   children,

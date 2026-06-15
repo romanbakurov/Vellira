@@ -2,8 +2,9 @@ import React, { useId } from 'react';
 
 import { cn } from '@utils/cn';
 
-import styles from './FormField.module.scss';
 import type { FormFieldProps } from './types';
+
+import styles from './FormField.module.scss';
 
 export const FormField = ({
   id,

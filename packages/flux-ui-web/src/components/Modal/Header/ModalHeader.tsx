@@ -1,8 +1,10 @@
 import CloseIcon from '@assets/icons/Close.svg?react';
 
 import { useModalContext } from '../ModalContext';
-import styles from './ModalHeader.module.scss';
+
 import type { ModalHeaderProps } from './types';
+
+import styles from './ModalHeader.module.scss';
 
 export const ModalHeader = ({ children }: ModalHeaderProps) => {
   const { onClose, titleId } = useModalContext();

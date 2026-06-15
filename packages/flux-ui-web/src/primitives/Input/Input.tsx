@@ -10,8 +10,9 @@ import {
 import { FormField } from '@patterns/FormField';
 import { cn } from '@utils/cn';
 
-import styles from './Input.module.scss';
 import type { InputProps } from './types';
+
+import styles from './Input.module.scss';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (

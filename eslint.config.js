@@ -1,152 +1,236 @@
 import js from '@eslint/js';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
-import globals from 'globals';
-
+import tseslint from 'typescript-eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+import globals from 'globals';
 
 export default [
+  /**
+   * =====================================================
+   * IGNORES
+   * =====================================================
+   */
   {
     ignores: [
-      '**/generated/**',
-      'dist/**',
-      'coverage/**',
-      'node_modules/**',
-      'storybook-static/**',
-      '.storybook/**',
-      'vite.config.*',
-      'vitest.config.*',
-      '**/*.config.*',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/coverage/**',
+      '**/*.d.ts',
+      '**/storybook-static/**',
+      '**/.storybook/**',
+      '**/.rnstorybook/**',
+      '**/android/**',
+      '**/ios/**',
+      '**/*.jar',
+      '**/*.aar',
     ],
   },
 
+  /**
+   * =====================================================
+   * BASE JS + TS
+   * =====================================================
+   */
   js.configs.recommended,
+  ...tseslint.configs.recommended,
 
+  /**
+   * =====================================================
+   * WEB / REACT / PACKAGES
+   * =====================================================
+   */
   {
     files: [
-      'packages/*/src/**/*.{ts,tsx,mts,cts}',
-      'packages/*/scripts/**/*.{ts,tsx,mts,cts}',
-      'apps/*/src/**/*.{ts,tsx,mts,cts}',
-      'apps/*/.storybook/**/*.{ts,tsx}',
+      'packages/**/*.{ts,tsx,js,jsx}',
+      'apps/test-app/**/*.{ts,tsx,js,jsx}',
+      'apps/storybook/**/*.{ts,tsx,js,jsx}',
     ],
 
     languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
+      globals: {
+        ...globals.browser,
+        __DEV__: 'readonly',
       },
+    },
+
+    plugins: {
+      react: reactPlugin,
+      'react-hooks': reactHooks,
+      'simple-import-sort': simpleImportSort,
+      import: importPlugin,
+      prettier: prettierPlugin,
+    },
+
+    settings: {
+      react: {
+        version: 'detect',
+        runtime: 'automatic',
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+        node: true,
+      },
+    },
+
+    rules: {
+      ...reactPlugin.configs.flat.recommended.rules,
+
+      /**
+       * GENERAL RULES
+       */
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-debugger': 'error',
+
+      /**
+       * TYPESCRIPT RULES
+       */
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports' },
+      ],
+      '@typescript-eslint/no-require-imports': 'off',
+
+      /**
+       * REACT RULES
+       */
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+
+      /**
+       * HOOKS RULES
+       */
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      /**
+       * IMPORTS RULES
+       */
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^react$', '^react-dom'],
+            ['^node:'],
+            ['^@?\\w'],
+            ['^@web', '^@native', '^@shared', '^@assets', '^@/'],
+            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+            ['\\.(css|scss|sass)$', '\\.(png|jpg|jpeg|gif|svg)$'],
+          ],
+        },
+      ],
+      'simple-import-sort/exports': 'error',
+
+      'import/no-duplicates': 'error',
+      'import/no-cycle': 'warn',
+      'import/no-unresolved': 'off',
+
+      /**
+       * PRETTIER RULES
+       */
+      'prettier/prettier': 'error',
+    },
+  },
+
+  /**
+   * =====================================================
+   * TESTS / STORIES
+   * =====================================================
+   */
+  {
+    files: ['**/*.test.*', '**/*.spec.*', '**/*.stories.*'],
+
+    languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
       },
     },
 
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-      react: reactPlugin,
-      'react-hooks': reactHooks,
-      'simple-import-sort': simpleImportSort,
-      import: importPlugin,
-    },
-
-    settings: {
-      react: {
-        version: 'detect',
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: [
-            './tsconfig.json',
-            './packages/*/tsconfig.json',
-            './apps/*/tsconfig.json',
-          ],
-        },
-      },
-    },
-
     rules: {
-      //
-      // отключаем JS версии правил
-      //
-      'no-undef': 'off',
-      'no-unused-vars': 'off',
-
-      //
-      // TS
-      //
-      '@typescript-eslint/no-explicit-any': 'warn',
-
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        {
-          prefer: 'type-imports',
-        },
-      ],
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-
-      //
-      // React
-      //
-      'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-react': 'off',
-      'react/prop-types': 'off',
-
-      //
-      // Hooks
-      //
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-
-      //
-      // Imports
-      //
-      'simple-import-sort/imports': [
-        'error',
-        {
-          groups: [
-            ['^react$', '^react'],
-            ['^@web', '^@native'],
-            ['^@shared', '^@assets'],
-            ['^@'],
-            ['^\\.'],
-          ],
-        },
-      ],
-      'simple-import-sort/exports': 'error',
-
-      //
-      // General
-      //
-      'no-console': 'warn',
-      'no-debugger': 'error',
-
-      'import/no-unresolved': 'off',
-      'import/no-duplicates': 'error',
-      'import/no-cycle': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': 'off',
+      'import/no-cycle': 'off',
     },
   },
 
+  /**
+   * =====================================================
+   * NODE / CONFIG / SCRIPTS
+   * =====================================================
+   */
   {
-    files: ['**/*.stories.{ts,tsx}'],
+    files: ['**/*.config.{js,ts,mjs,mts}', '**/scripts/**/*.{js,ts,mjs,mts}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+
     rules: {
+      '@typescript-eslint/no-require-imports': 'off',
       'no-console': 'off',
     },
   },
 
+  /**
+   * =====================================================
+   * COMMONJS CONFIGS
+   * =====================================================
+   */
+  {
+    files: ['**/*.cjs', '**/*.cts'],
+
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+      sourceType: 'commonjs',
+    },
+
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      'no-console': 'off',
+    },
+  },
+
+  /**
+   * =====================================================
+   * NATIVE (React Native / Expo)
+   * =====================================================
+   */
+  {
+    files: ['apps/native-playground/**/*.{js,ts,tsx}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        __DEV__: 'readonly',
+      },
+    },
+
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  /**
+   * =====================================================
+   * PRETTIER OVERRIDE (MUST BE LAST)
+   * =====================================================
+   */
   prettierConfig,
 ];

@@ -1,8 +1,10 @@
 import { Portal } from '@utils/Portal';
 
 import { SelectOption } from '../SelectOption/SelectOption';
-import styles from './SelectedDropdown.module.scss';
+
 import type { SelectDropdownProps } from './types';
+
+import styles from './SelectedDropdown.module.scss';
 
 export const SelectDropdown = ({
   isOpen,

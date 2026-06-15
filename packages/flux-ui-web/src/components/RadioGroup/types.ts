@@ -1,8 +1,8 @@
-export type RadioOption = {
+export interface RadioOption {
   label: string;
   value: string;
   disabled?: boolean;
-};
+}
 
 export interface RadioGroupProps {
   label?: string;

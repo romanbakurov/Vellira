@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
+
 import type { KeyboardEvent } from 'react';
 
-type TabsParams = {
+interface TabsParams {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   tabRefs: React.MutableRefObject<(HTMLButtonElement | null)[]>;
   orientation: 'horizontal' | 'vertical';
-};
+}
 
 export const useTabsKeyboard = ({
   activeIndex,

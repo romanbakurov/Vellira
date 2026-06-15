@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
-type UseModalKeyboardProps = {
+interface UseModalKeyboardProps {
   isOpen: boolean;
   onClose?: () => void;
-};
+}
 
 export const useModalKeyboard = ({
   isOpen,

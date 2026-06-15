@@ -3,11 +3,11 @@ import { useCallback, useState } from 'react';
 //Сделать одинаковую работу для:
 // controlled (value + onChange)
 // uncontrolled (internal state)
-type UseControllableStateProps<T> = {
+interface UseControllableStateProps<T> {
   value?: T;
   defaultValue: T;
   onChange?: (value: T) => void;
-};
+}
 
 export const useControllableState = <T>({
   value,

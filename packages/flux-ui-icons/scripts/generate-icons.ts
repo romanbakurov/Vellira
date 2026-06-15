@@ -1,8 +1,8 @@
-import { transform } from '@svgr/core';
-
-import fg from 'fast-glob';
 import fs from 'node:fs';
 import path from 'node:path';
+
+import { transform } from '@svgr/core';
+import fg from 'fast-glob';
 
 const ROOT = process.cwd();
 
@@ -72,11 +72,11 @@ async function run(): Promise<void> {
     fs.writeFileSync(path.join(ICONS, `${name}.native.js`), nativeComponent);
 
     webExports.push(
-      `export { default as ${name} } from './icons/${name}.web.js';`
+      `export { default as ${name} } from './generated/${name}.web.js';`
     );
 
     nativeExports.push(
-      `export { default as ${name} } from './icons/${name}.native.js';`
+      `export { default as ${name} } from './generated/${name}.native.js';`
     );
   }
 
@@ -84,7 +84,7 @@ async function run(): Promise<void> {
 
   fs.writeFileSync(path.join(ROOT, 'src/native.ts'), nativeExports.join('\n'));
 
-  console.log(`✅ Generated ${files.length} icons`);
+  console.log(`✅ Generated ${files.length} generated`);
 }
 
 run().catch((error) => {

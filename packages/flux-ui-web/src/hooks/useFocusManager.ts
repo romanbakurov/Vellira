@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
+
 import type React from 'react';
 
-type UseFocusManagerProps = {
+interface UseFocusManagerProps {
   active: boolean;
   containerRef: React.RefObject<HTMLElement | null>;
-};
+}
 
 //Focus trap + restore focus (Modal, Dialog)
 export const useFocusManager = ({

@@ -3,10 +3,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTabsKeyboard } from '@hooks/useTabsKeyboard';
 import { cn } from '@utils/cn';
 
-import styles from './Tabs.module.scss';
 import type { TabsContextValue } from './TabsContext';
 import { TabsContext } from './TabsContext';
 import type { TabsProps } from './types';
+
+import styles from './Tabs.module.scss';
 
 export const Tabs = ({
   children,

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
 
-export type ModalFooterProps = {
+export interface ModalFooterProps {
   children?: ReactNode;
-};
+}

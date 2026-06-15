@@ -1,13 +1,14 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
-import svgr from 'vite-plugin-svgr';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import react from '@vitejs/plugin-react';
 import { playwright } from '@vitest/browser-playwright';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
+import svgr from 'vite-plugin-svgr';
 
 const dirname =
   typeof __dirname !== 'undefined'

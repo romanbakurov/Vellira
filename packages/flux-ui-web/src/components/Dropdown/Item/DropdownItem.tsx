@@ -1,7 +1,8 @@
 import { cn } from '@utils/cn';
 
-import styles from './DropdownItem.module.scss';
 import type { DropdownItemProps } from './types';
+
+import styles from './DropdownItem.module.scss';
 
 export const DropdownItem = ({
   children,

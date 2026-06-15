@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react';
 
-export type OverlayProviderProps = {
+export interface OverlayProviderProps {
   children: React.ReactNode;
-};
+}
 
 const OverlayContext = createContext(null);
 

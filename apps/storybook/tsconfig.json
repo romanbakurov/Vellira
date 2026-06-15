@@ -1,9 +1,11 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2023",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
+    "composite": true,
     "strict": true,
     "skipLibCheck": true
   }

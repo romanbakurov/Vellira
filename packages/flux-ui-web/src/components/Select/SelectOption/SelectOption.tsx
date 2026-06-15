@@ -1,7 +1,8 @@
 import { cn } from '@utils/cn';
 
-import styles from './SelectOption.module.scss';
 import type { SelectOptionProps } from './types';
+
+import styles from './SelectOption.module.scss';
 
 export const SelectOption = ({
   option,

@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { cn } from '@utils/cn';
 
 import { useTabs } from '../TabsContext';
-import styles from './TabsPanel.module.scss';
+
 import type { TabsPanelProps } from './types';
+
+import styles from './TabsPanel.module.scss';
 
 export const TabsPanel = ({
   index,

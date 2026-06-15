@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import { cn } from '@utils/cn';
 import { Portal } from '@utils/Portal';
 
-import styles from './DropdownContent.module.scss';
 import type { DropdownContentProps } from './types';
+
+import styles from './DropdownContent.module.scss';
 
 export const DropdownContent = forwardRef<
   HTMLUListElement,

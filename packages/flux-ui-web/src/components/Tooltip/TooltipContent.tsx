@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { cn } from '@utils/cn';
 
-import styles from './Tooltip.module.scss';
 import type { TooltipContentProps } from './types';
+
+import styles from './Tooltip.module.scss';
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (

@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from '@romanbakurov/flux-ui-native';
-import { Checkbox } from '@romanbakurov/flux-ui-native';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Alert } from 'react-native';
+
+import { Button, Checkbox } from '@romanbakurov/flux-ui-native';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -17,7 +17,11 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      <Button variant='primary' size='md' onPress={() => alert('Flux UI!')}>
+      <Button
+        variant='primary'
+        size='md'
+        onPress={() => Alert.alert('Flux UI!')}
+      >
         Click me
       </Button>
       <Checkbox></Checkbox>

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import ChevronDown from '@assets/icons/ChevronDown.svg?react';
-
 import { cn } from '@utils/cn';
 
-import styles from './SelectedTigger.module.scss';
+import ChevronDown from '@assets/icons/ChevronDown.svg?react';
+
 import type { SelectTriggerProps } from './types';
+
+import styles from './SelectedTigger.module.scss';
 
 export const SelectTrigger = ({
   id,

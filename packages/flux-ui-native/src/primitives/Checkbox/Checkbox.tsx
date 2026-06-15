@@ -1,6 +1,5 @@
-import { Pressable, Text, View } from 'react-native';
-
 import { useControllableState } from '@romanbakurov/flux-ui-core';
+import { Pressable, Text, View } from 'react-native';
 
 import { styles } from './Checkbox.styles';
 import type { CheckboxProps } from './types';

@@ -1,6 +1,6 @@
 import type React from 'react';
 
-export type SelectTriggerProps = {
+export interface SelectTriggerProps {
   id?: string;
   errorId?: string;
   name?: string;
@@ -16,4 +16,4 @@ export type SelectTriggerProps = {
   buttonRef: React.Ref<HTMLButtonElement>;
   onClick: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
-};
+}

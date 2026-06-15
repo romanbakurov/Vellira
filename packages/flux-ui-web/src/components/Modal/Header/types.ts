@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
 
-export type ModalHeaderProps = {
+export interface ModalHeaderProps {
   children?: ReactNode;
-};
+}

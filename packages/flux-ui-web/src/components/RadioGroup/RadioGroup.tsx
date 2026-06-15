@@ -4,8 +4,9 @@ import { FormField } from '@patterns/FormField';
 import { useControllableState } from '@romanbakurov/flux-ui-core';
 import { cn } from '@utils/cn';
 
-import styles from './RadioGroup.module.scss';
 import type { RadioGroupProps } from './types';
+
+import styles from './RadioGroup.module.scss';
 
 export const RadioGroup = ({
   label,

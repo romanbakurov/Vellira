@@ -1,3 +1,3 @@
-export type DropdownGroupProps = {
+export interface DropdownGroupProps {
   label: string;
-};
+}

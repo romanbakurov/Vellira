@@ -7,10 +7,9 @@ import {
   Search,
 } from '@romanbakurov/flux-ui-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import { Button } from '../Button';
-
-import { fn } from 'storybook/test';
 
 const meta = {
   title: 'Components/Button',

@@ -1,20 +1,14 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-
-    "lib": ["ES2022", "DOM"],
-
-    "strict": true,
-
-    "jsx": "react-jsx",
-
-    "skipLibCheck": true,
-    "declaration": true,
-
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["types/**/*.d.ts"]
+  "files": [],
+  "references": [
+    { "path": "./packages/flux-ui-core" },
+    { "path": "./packages/flux-ui-icons" },
+    { "path": "./packages/flux-ui-native" },
+    { "path": "./packages/flux-ui-tokens" },
+    { "path": "./packages/flux-ui-types" },
+    { "path": "./packages/flux-ui-web" },
+    { "path": "./apps/test-app" },
+    { "path": "./apps/native-playground" },
+    { "path": "./apps/storybook" }
+  ],
 }

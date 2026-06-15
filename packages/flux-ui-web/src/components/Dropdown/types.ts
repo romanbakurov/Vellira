@@ -1,6 +1,5 @@
-import type { ReactNode } from 'react';
-
 import type { Placement } from '@floating-ui/react';
+import type { ReactNode } from 'react';
 
 export interface DropdownMenuItem {
   type?: 'item';

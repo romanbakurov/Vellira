@@ -1,3 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import BellIcon from '@assets/icons/Alarm.svg?react';
 import FolderIcon from '@assets/icons/Folder.svg?react';
 import HomeIcon from '@assets/icons/Home.svg?react';
@@ -5,8 +7,6 @@ import ImageIcon from '@assets/icons/Image.svg?react';
 import MusicIcon from '@assets/icons/Music.svg?react';
 import UserIcon from '@assets/icons/Profile.svg?react';
 import SettingsIcon from '@assets/icons/Settings.svg?react';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Tabs } from '../Tabs';
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { RadioGroup } from '../RadioGroup';
-
 import { fn } from 'storybook/test';
+
+import { RadioGroup } from '../RadioGroup';
 
 const meta = {
   title: 'Components/RadioGroup',

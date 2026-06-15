@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
+
 import type { KeyboardEvent } from 'react';
 
-type NavigableItem = {
+interface NavigableItem {
   disabled?: boolean;
-};
+}
 
-type Params = {
+interface Params {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   items: NavigableItem[];
@@ -13,7 +14,7 @@ type Params = {
   onOpen: () => void;
   onSelect?: () => void;
   onClose?: () => void;
-};
+}
 
 //ArrowUp / ArrowDown / Enter / Escape logic
 

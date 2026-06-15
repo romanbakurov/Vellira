@@ -6,10 +6,11 @@ import { useOutsideClick } from '@hooks/useOutsideClick';
 import { useControllableState } from '@romanbakurov/flux-ui-core';
 import { cn } from '@utils/cn';
 
-import styles from './Select.module.scss';
 import { SelectDropdown } from './SelectDropdown/SelectDropdown';
 import { SelectTrigger } from './SelectTrigger/SelectTrigger';
 import type { SelectProps } from './types';
+
+import styles from './Select.module.scss';
 
 export const Select = ({
   label,

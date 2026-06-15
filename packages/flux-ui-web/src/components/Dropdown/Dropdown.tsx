@@ -6,13 +6,14 @@ import { useOutsideClick } from '@hooks/useOutsideClick';
 import { cn } from '@utils/cn';
 
 import { DropdownContent } from './Content/DropdownContent';
-import styles from './Dropdown.module.scss';
 import { DropdownGroup } from './Group/DropdownGroup';
 import { DropdownItem } from './Item/DropdownItem';
 import { DropdownSeparator } from './Separator/DropdownSeparator';
 import { DropdownTrigger } from './Trigger/DropdownTrigger';
 import type { DropdownProps } from './types';
 import { isGroup, isMenuItem, isSeparator } from './types';
+
+import styles from './Dropdown.module.scss';
 
 export const Dropdown = ({
   label,

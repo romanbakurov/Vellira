@@ -1,6 +1,6 @@
 import type { CSSProperties, MutableRefObject } from 'react';
 
-export type SelectDropdownProps = {
+export interface SelectDropdownProps {
   isOpen: boolean;
   listboxId: string;
   labelId: string;
@@ -13,4 +13,4 @@ export type SelectDropdownProps = {
   floatingRef: (node: HTMLUListElement | null) => void;
   onSelect: (value: string) => void;
   onMouseEnter: (index: number) => void;
-};
+}

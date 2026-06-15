@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
 import { Select } from '../Select';
-import type { SelectProps } from './types';
 
-import { expect, fn, screen, userEvent, within } from 'storybook/test';
+import type { SelectProps } from './types';
 
 const meta = {
   title: 'Components/Select',

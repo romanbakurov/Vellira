@@ -1,11 +1,12 @@
 import { type CSSProperties, forwardRef } from 'react';
 
-import DefaultArrowIcon from '@assets/icons/ChevronDown.svg?react';
-
 import { cn } from '@utils/cn';
 
-import styles from './DropdownTrigger.module.scss';
+import DefaultArrowIcon from '@assets/icons/ChevronDown.svg?react';
+
 import type { DropdownTriggerProps } from './types';
+
+import styles from './DropdownTrigger.module.scss';
 
 export const DropdownTrigger = forwardRef<
   HTMLButtonElement,

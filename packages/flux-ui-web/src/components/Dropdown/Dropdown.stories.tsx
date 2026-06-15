@@ -1,3 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import DefaultArrowIcon from '@assets/icons/ChevronDown.svg?react';
 import CopyIcon from '@assets/icons/Copy.svg?react';
 import Delete from '@assets/icons/Delete.svg?react';
@@ -9,8 +11,6 @@ import PlusIcon from '@assets/icons/Plus.svg?react';
 import UserIcon from '@assets/icons/Profile.svg?react';
 import Restart from '@assets/icons/Restart.svg?react';
 import SettingsIcon from '@assets/icons/Settings.svg?react';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Dropdown } from '../Dropdown';
 

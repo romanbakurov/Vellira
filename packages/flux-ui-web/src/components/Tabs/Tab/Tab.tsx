@@ -3,8 +3,10 @@ import { forwardRef, useCallback } from 'react';
 import { cn } from '@utils/cn';
 
 import { useTabs } from '../TabsContext';
-import styles from './Tab.module.scss';
+
 import type { TabProps } from './types';
+
+import styles from './Tab.module.scss';
 
 export const Tab = forwardRef<HTMLButtonElement, TabProps>(
   (

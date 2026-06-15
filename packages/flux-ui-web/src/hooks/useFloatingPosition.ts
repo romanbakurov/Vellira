@@ -8,15 +8,15 @@ import {
   useFloating,
 } from '@floating-ui/react';
 
-type UseFloatingPositionProps = {
+interface UseFloatingPositionProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   placement?: Placement;
   matchTriggerWidth?: boolean;
   middleware?: Middleware[];
-};
+}
 
-export type UseFloatingPositionReturn = {
+export interface UseFloatingPositionReturn {
   context: ReturnType<typeof useFloating>['context'];
   placement: Placement;
   middlewareData: ReturnType<typeof useFloating>['middlewareData'];
@@ -24,7 +24,7 @@ export type UseFloatingPositionReturn = {
   setRef: ReturnType<typeof useFloating>['refs']['setReference'];
   setFloatingRef: ReturnType<typeof useFloating>['refs']['setFloating'];
   updatePosition: ReturnType<typeof useFloating>['update'];
-};
+}
 
 //Позиционирование dropdown / tooltip / popover
 export const useFloatingPosition = ({

@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
 
-type ModalContextType = {
+interface ModalContextType {
   onClose?: () => void;
   titleId: string;
   descriptionId: string;
-};
+}
 
 const ModalContext = createContext<ModalContextType | null>(null);
 

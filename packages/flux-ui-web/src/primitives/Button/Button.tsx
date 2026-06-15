@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { cn } from '@utils/cn';
 
-import styles from './Button.module.scss';
 import type { ButtonProps } from './types';
+
+import styles from './Button.module.scss';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -43,3 +44,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
+Button.displayName = 'Button';

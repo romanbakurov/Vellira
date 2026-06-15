@@ -1,13 +1,14 @@
 import { forwardRef, useId } from 'react';
+
+import { useControllableState } from '@romanbakurov/flux-ui-core';
+import { cn } from '@utils/cn';
 import type { ChangeEvent } from 'react';
 
 import Check from '@assets/icons/Check.svg?react';
 
-import { useControllableState } from '@romanbakurov/flux-ui-core';
-import { cn } from '@utils/cn';
+import type { CheckboxProps } from './types';
 
 import styles from './Checkbox.module.scss';
-import type { CheckboxProps } from './types';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (

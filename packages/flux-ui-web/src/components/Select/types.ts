@@ -1,11 +1,11 @@
 import type React from 'react';
 import type { RefObject } from 'react';
 
-type SelectOption = {
+interface SelectOption {
   label: string;
   value: string;
   disabled?: boolean;
-};
+}
 
 export interface SelectProps {
   // Accessibility
