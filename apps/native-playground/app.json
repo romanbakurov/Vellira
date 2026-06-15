@@ -14,7 +14,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.native-playground"
+      "bundleIdentifier": "com.anonymous.native-playground",
+      "deploymentTarget": "16.4"
     },
     "android": {
       "adaptiveIcon": {

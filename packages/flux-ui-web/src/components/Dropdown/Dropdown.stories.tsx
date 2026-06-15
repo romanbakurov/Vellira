@@ -1,16 +1,17 @@
+import {
+  ChevronDown,
+  Copy,
+  Delete,
+  DropdownMenu,
+  Edit,
+  Exit,
+  Filter,
+  Plus,
+  Profile,
+  Restart,
+  Settings,
+} from '@romanbakurov/flux-ui-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import DefaultArrowIcon from '@assets/icons/ChevronDown.svg?react';
-import CopyIcon from '@assets/icons/Copy.svg?react';
-import Delete from '@assets/icons/Delete.svg?react';
-import DropdownMenuIcon from '@assets/icons/DropdownMenu.svg?react';
-import Edit from '@assets/icons/Edit.svg?react';
-import LogOutIcon from '@assets/icons/Exit.svg?react';
-import DefaultFilterIcon from '@assets/icons/Filter.svg?react';
-import PlusIcon from '@assets/icons/Plus.svg?react';
-import UserIcon from '@assets/icons/Profile.svg?react';
-import Restart from '@assets/icons/Restart.svg?react';
-import SettingsIcon from '@assets/icons/Settings.svg?react';
 
 import { Dropdown } from '../Dropdown';
 
@@ -58,7 +59,7 @@ const defaultOptions = [
 export const Basic: Story = {
   args: {
     label: 'Active menu',
-    icon: <DropdownMenuIcon style={{ width: 20, height: 20 }} />,
+    icon: <DropdownMenu style={{ width: 20, height: 20 }} />,
     items: defaultOptions,
   },
 };
@@ -67,7 +68,7 @@ export const TextOnly: Story = {
   args: {
     label: 'Text menu',
     trigger: 'Actions',
-    arrowIcon: <DefaultArrowIcon />,
+    arrowIcon: <ChevronDown />,
     items: [
       { label: 'Edit', value: 'edit' },
       { label: 'Copy', value: 'copy' },
@@ -79,7 +80,7 @@ export const TextOnly: Story = {
 export const IconAndText: Story = {
   args: {
     label: 'Actions',
-    icon: <DefaultFilterIcon style={{ width: 16, height: 16 }} />,
+    icon: <Filter style={{ width: 16, height: 16 }} />,
     trigger: 'Menu',
     items: defaultOptions,
   },
@@ -90,17 +91,17 @@ export const IconSizes: Story = {
     <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
       <Dropdown
         label='Small'
-        icon={<SettingsIcon style={{ width: 16, height: 16 }} />}
+        icon={<Settings style={{ width: 16, height: 16 }} />}
         items={defaultOptions}
       />
       <Dropdown
         label='Medium'
-        icon={<SettingsIcon style={{ width: 20, height: 20 }} />}
+        icon={<Settings style={{ width: 20, height: 20 }} />}
         items={defaultOptions}
       />
       <Dropdown
         label='Large'
-        icon={<SettingsIcon style={{ width: 24, height: 24 }} />}
+        icon={<Settings style={{ width: 24, height: 24 }} />}
         items={defaultOptions}
       />
     </div>
@@ -191,18 +192,18 @@ export const DifferentTriggers: Story = {
     <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
       <Dropdown
         label='Menu'
-        icon={<DropdownMenuIcon style={{ width: 20, height: 20 }} />}
+        icon={<DropdownMenu style={{ width: 20, height: 20 }} />}
         items={defaultOptions}
       />
       <Dropdown
         label='Settings'
-        icon={<SettingsIcon style={{ width: 20, height: 20 }} />}
+        icon={<Settings style={{ width: 20, height: 20 }} />}
         items={defaultOptions}
         rotateAngle={360}
       />
       <Dropdown
         label='User'
-        icon={<UserIcon style={{ width: 20, height: 20 }} />}
+        icon={<Profile style={{ width: 20, height: 20 }} />}
         rotateAngle={0}
         items={[
           { label: 'Profile', value: 'profile' },
@@ -212,7 +213,7 @@ export const DifferentTriggers: Story = {
       />
       <Dropdown
         label='Add'
-        icon={<PlusIcon style={{ width: 20, height: 20 }} />}
+        icon={<Plus style={{ width: 20, height: 20 }} />}
         items={[
           { label: 'Add file', value: 'file' },
           { label: 'Add folder', value: 'folder' },
@@ -251,10 +252,10 @@ export const TableActions: Story = {
                 <Dropdown
                   placement='left-start'
                   label='Row actions'
-                  icon={<DropdownMenuIcon style={{ width: 20, height: 20 }} />}
+                  icon={<DropdownMenu style={{ width: 20, height: 20 }} />}
                   items={[
                     { label: 'Edit', value: 'edit', icon: <Edit /> },
-                    { label: 'Copy', value: 'copy', icon: <CopyIcon /> },
+                    { label: 'Copy', value: 'copy', icon: <Copy /> },
                     {
                       label: 'Delete',
                       value: 'delete',
@@ -290,7 +291,7 @@ export const CustomTrigger: Story = {
           fontSize: '14px',
         }}
       >
-        <SettingsIcon style={{ width: 16, height: 16 }} />
+        <Settings style={{ width: 16, height: 16 }} />
         Custom Button
       </div>
     ),
@@ -320,11 +321,11 @@ export const WithGroups: Story = {
       { label: 'Document 2', value: 'doc2' },
       { type: 'separator' },
       { label: 'Actions', type: 'group' },
-      { label: 'New document', value: 'new', icon: <PlusIcon /> },
+      { label: 'New document', value: 'new', icon: <Plus /> },
       {
         label: 'Settings',
         value: 'settings',
-        icon: <SettingsIcon />,
+        icon: <Settings />,
         danger: true,
       },
     ],
@@ -480,17 +481,17 @@ export const WithIconsAndLongText: Story = {
       {
         label: 'Very long user profile name that needs truncation',
         value: 'profile',
-        icon: <UserIcon size={16} />,
+        icon: <Profile size={16} />,
       },
       {
         label: 'Very long settings menu option with description',
         value: 'settings',
-        icon: <SettingsIcon size={16} />,
+        icon: <Settings size={16} />,
       },
       {
         label: 'Log out from the system',
         value: 'logout',
-        icon: <LogOutIcon size={16} />,
+        icon: <Exit size={16} />,
         danger: true,
       },
     ],

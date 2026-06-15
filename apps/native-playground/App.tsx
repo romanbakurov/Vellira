@@ -1,6 +1,7 @@
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Alert } from 'react-native';
+import { Check } from '@romanbakurov/flux-ui-icons';
 
 import { Button, Checkbox } from '@romanbakurov/flux-ui-native';
 
@@ -24,7 +25,9 @@ export default function App() {
       >
         Click me
       </Button>
-      <Checkbox></Checkbox>
+      <Checkbox>
+        <Check />
+      </Checkbox>
       <StatusBar style='auto' />
     </View>
   );

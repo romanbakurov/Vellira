@@ -3,9 +3,9 @@ import type React from 'react';
 export interface SelectTriggerProps {
   id?: string;
   errorId?: string;
-  name?: string;
   isOpen: boolean;
   disabled?: boolean;
+  required?: boolean;
   hasLabel: boolean;
   labelId: string;
   listboxId: string;

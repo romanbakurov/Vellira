@@ -1,12 +1,13 @@
+import {
+  Alarm,
+  Folder,
+  Home,
+  Image,
+  Music,
+  Profile,
+  Settings,
+} from '@romanbakurov/flux-ui-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import BellIcon from '@assets/icons/Alarm.svg?react';
-import FolderIcon from '@assets/icons/Folder.svg?react';
-import HomeIcon from '@assets/icons/Home.svg?react';
-import ImageIcon from '@assets/icons/Image.svg?react';
-import MusicIcon from '@assets/icons/Music.svg?react';
-import UserIcon from '@assets/icons/Profile.svg?react';
-import SettingsIcon from '@assets/icons/Settings.svg?react';
 
 import { Tabs } from '../Tabs';
 
@@ -68,25 +69,25 @@ const TextTabs = () => (
 
 const IconTabs = () => (
   <>
-    <Tabs.Tab index={0} icon={<HomeIcon />} aria-label='Home' />
-    <Tabs.Tab index={1} icon={<UserIcon />} aria-label='Profile' />
-    <Tabs.Tab index={2} icon={<SettingsIcon />} aria-label='Settings' />
-    <Tabs.Tab index={3} icon={<BellIcon />} aria-label='Notifications' />
+    <Tabs.Tab index={0} icon={<Home />} aria-label='Home' />
+    <Tabs.Tab index={1} icon={<Profile />} aria-label='Profile' />
+    <Tabs.Tab index={2} icon={<Settings />} aria-label='Settings' />
+    <Tabs.Tab index={3} icon={<Alarm />} aria-label='Notifications' />
   </>
 );
 
 const TextIconTabs = () => (
   <>
-    <Tabs.Tab index={0} icon={<HomeIcon />}>
+    <Tabs.Tab index={0} icon={<Home />}>
       Home
     </Tabs.Tab>
-    <Tabs.Tab index={1} icon={<UserIcon />}>
+    <Tabs.Tab index={1} icon={<Profile />}>
       Profile
     </Tabs.Tab>
-    <Tabs.Tab index={2} icon={<SettingsIcon />}>
+    <Tabs.Tab index={2} icon={<Settings />}>
       Settings
     </Tabs.Tab>
-    <Tabs.Tab index={3} icon={<BellIcon />}>
+    <Tabs.Tab index={3} icon={<Profile />}>
       Notifications
     </Tabs.Tab>
   </>
@@ -94,16 +95,16 @@ const TextIconTabs = () => (
 
 const DisabledTabs = () => (
   <>
-    <Tabs.Tab index={0} icon={<HomeIcon />}>
+    <Tabs.Tab index={0} icon={<Home />}>
       Home
     </Tabs.Tab>
-    <Tabs.Tab index={1} icon={<UserIcon />}>
+    <Tabs.Tab index={1} icon={<Profile />}>
       Profile
     </Tabs.Tab>
-    <Tabs.Tab index={2} disabled icon={<SettingsIcon />}>
+    <Tabs.Tab index={2} disabled icon={<Settings />}>
       Settings
     </Tabs.Tab>
-    <Tabs.Tab index={3} icon={<BellIcon />}>
+    <Tabs.Tab index={3} icon={<Profile />}>
       Notifications
     </Tabs.Tab>
   </>
@@ -155,13 +156,13 @@ const FilePanels = () => (
 
 const FileTabs = () => (
   <>
-    <Tabs.Tab index={0} icon={<FolderIcon />}>
+    <Tabs.Tab index={0} icon={<Folder />}>
       Files
     </Tabs.Tab>
-    <Tabs.Tab index={1} icon={<ImageIcon />}>
+    <Tabs.Tab index={1} icon={<Image />}>
       Images
     </Tabs.Tab>
-    <Tabs.Tab index={2} icon={<MusicIcon />}>
+    <Tabs.Tab index={2} icon={<Music />}>
       Music
     </Tabs.Tab>
   </>

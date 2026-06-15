@@ -12,6 +12,7 @@
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
     "build": "pnpm -r build",
+    "test": "pnpm --filter @romanbakurov/flux-ui-web test",
     "prepare": "husky"
   },
   "devDependencies": {

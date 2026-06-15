@@ -1,10 +1,9 @@
 import { forwardRef, useId } from 'react';
 
 import { useControllableState } from '@romanbakurov/flux-ui-core';
+import { Check } from '@romanbakurov/flux-ui-icons';
 import { cn } from '@utils/cn';
 import type { ChangeEvent } from 'react';
-
-import Check from '@assets/icons/Check.svg?react';
 
 import type { CheckboxProps } from './types';
 

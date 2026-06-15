@@ -17,7 +17,9 @@ export const Modal = ({
   isOpen,
   children,
   onClose,
-  closeOnClick = true,
+  closeOnBackdrop,
+  closeOnClick,
+  closeOnEsc = true,
 }: ModalProps) => {
   const titleId = useId();
   const descriptionId = useId();
@@ -29,7 +31,8 @@ export const Modal = ({
       <ModalOverlay
         isOpen={isOpen}
         onClose={onClose}
-        closeOnClick={closeOnClick}
+        closeOnClick={closeOnBackdrop ?? closeOnClick ?? true}
+        closeOnEsc={closeOnEsc}
       >
         <ModalContent>{children}</ModalContent>
       </ModalOverlay>

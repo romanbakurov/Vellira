@@ -4,7 +4,7 @@ import { fn } from 'storybook/test';
 import { Checkbox } from './index';
 
 const meta = {
-  title: 'Components/Checkbox',
+  title: 'Primitives/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   args: {

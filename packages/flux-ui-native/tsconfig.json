@@ -5,6 +5,7 @@
     "module": "ESNext",
     "jsx": "react-jsx",
     "declaration": true,
+    "rootDir": "src",
     "outDir": "dist",
     "composite": true,
     "strict": true,

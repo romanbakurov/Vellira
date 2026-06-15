@@ -4,7 +4,7 @@ import { Checkbox } from '../../primitives/Checkbox';
 import { FormField } from '../FormField';
 
 const meta = {
-  title: 'Components/FormField',
+  title: 'Patterns/FormField',
   component: FormField,
   tags: ['autodocs'],
 } satisfies Meta<typeof FormField>;

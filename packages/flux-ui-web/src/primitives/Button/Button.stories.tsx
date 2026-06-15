@@ -12,7 +12,7 @@ import { fn } from 'storybook/test';
 import { Button } from '../Button';
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Primitives/Button',
   component: Button,
   tags: ['autodocs'],
   args: {

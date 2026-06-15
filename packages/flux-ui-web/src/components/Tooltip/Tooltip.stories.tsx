@@ -1,7 +1,6 @@
+import { Search } from '@romanbakurov/flux-ui-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-
-import SearchIcon from '@assets/icons/Search.svg?react';
 
 import { Button } from '../../primitives/Button';
 import { Tabs } from '../Tabs';
@@ -329,7 +328,7 @@ export const DifferentTriggers: Story = {
       </Tooltip>
 
       <Tooltip content='Icon only'>
-        <Button leftIcon={<SearchIcon />} />
+        <Button leftIcon={<Search />} />
       </Tooltip>
     </div>
   ),

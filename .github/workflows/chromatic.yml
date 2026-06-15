@@ -34,6 +34,9 @@ jobs:
       - name: Run linters
         run: pnpm lint
 
+      - name: Run tests
+        run: pnpm test
+
       - name: Publish to Chromatic
         uses: chromaui/action@latest
         with:

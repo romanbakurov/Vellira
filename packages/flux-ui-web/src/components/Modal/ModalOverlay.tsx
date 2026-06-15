@@ -10,6 +10,9 @@ import type { ModalOverlayProps } from './types';
 
 import styles from './ModalOverlay.module.scss';
 
+let openModalCount = 0;
+let originalBodyOverflow = '';
+
 export const ModalOverlay = ({
   children,
   onClose,
@@ -39,12 +42,17 @@ export const ModalOverlay = ({
   useEffect(() => {
     if (!isOpen) return;
 
-    const originalOverflow = document.body.style.overflow;
-
+    if (openModalCount === 0) {
+      originalBodyOverflow = document.body.style.overflow;
+    }
+    openModalCount += 1;
     document.body.style.overflow = 'hidden';
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      openModalCount = Math.max(0, openModalCount - 1);
+      if (openModalCount === 0) {
+        document.body.style.overflow = originalBodyOverflow;
+      }
     };
   }, [isOpen]);
 

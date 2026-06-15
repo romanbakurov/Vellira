@@ -37,7 +37,8 @@ export const Select = ({
 
   const labelId = useId();
   const listboxId = useId();
-  const errorId = `${id || listboxId}-error`;
+  const triggerId = id ?? `${listboxId}-trigger`;
+  const errorId = `${triggerId}-error`;
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -56,8 +57,11 @@ export const Select = ({
     setIsOpen((prev) => {
       const next = !prev;
       if (next) {
-        const index = options.findIndex((opt) => opt.value === selectedValue);
-        setActiveIndex(index >= 0 ? index : 0);
+        const selectedIndex = options.findIndex(
+          (opt) => opt.value === selectedValue && !opt.disabled
+        );
+        const firstEnabledIndex = options.findIndex((opt) => !opt.disabled);
+        setActiveIndex(selectedIndex >= 0 ? selectedIndex : firstEnabledIndex);
       }
       return next;
     });
@@ -100,17 +104,18 @@ export const Select = ({
   return (
     <div className={cn(styles.wrapper, className)}>
       {label && (
-        <label id={labelId} className={styles.label}>
+        <label id={labelId} htmlFor={triggerId} className={styles.label}>
           {label}
           {required && <span className={styles.required}>*</span>}
         </label>
       )}
 
       <SelectTrigger
-        id={id}
-        name={name}
+        id={triggerId}
+        errorId={typeof error === 'string' ? errorId : undefined}
         isOpen={isOpen}
         disabled={disabled}
+        required={required}
         hasLabel={!!label}
         labelId={labelId}
         listboxId={listboxId}
@@ -122,6 +127,14 @@ export const Select = ({
         onClick={toggleOpen}
         onKeyDown={onKeyDown}
       />
+      {name && (
+        <input
+          type='hidden'
+          name={name}
+          value={selectedValue}
+          disabled={disabled}
+        />
+      )}
       <SelectDropdown
         isOpen={isOpen}
         listboxId={listboxId}
@@ -138,11 +151,7 @@ export const Select = ({
       />
 
       {error && typeof error === 'string' && (
-        <span
-          id={error ? errorId : undefined}
-          className={styles.errorText}
-          role='alert'
-        >
+        <span id={errorId} className={styles.errorText} role='alert'>
           {error}
         </span>
       )}

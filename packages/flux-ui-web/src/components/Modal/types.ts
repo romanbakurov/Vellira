@@ -7,7 +7,8 @@ export interface ModalProps {
 
   closeOnBackdrop?: boolean;
   closeOnEsc?: boolean;
-  closeOnClick: boolean;
+  /** @deprecated Use closeOnBackdrop instead. */
+  closeOnClick?: boolean;
 }
 
 export interface ModalOverlayProps {
