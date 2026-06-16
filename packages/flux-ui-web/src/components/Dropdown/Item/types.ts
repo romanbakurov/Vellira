@@ -1,13 +1,7 @@
+import type { BaseDropdownItemProps } from '@romanbakurov/flux-ui-types';
 import type { ReactNode } from 'react';
 
-import type { DropdownMenuItem } from '../types';
-
-export type DropdownItemProps = DropdownMenuItem & {
+export interface DropdownItemProps extends BaseDropdownItemProps {
   children: ReactNode;
-  active: boolean;
-  onClick: () => void;
-  onMouseEnter: () => void;
-  shortcut?: string;
-  textWrap?: 'nowrap' | 'wrap' | 'truncate';
-  className?: string;
-};
+  icon?: ReactNode;
+}

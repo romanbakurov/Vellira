@@ -1,24 +1,17 @@
+import type {
+  BaseTooltipContentProps,
+  BaseTooltipProps,
+} from '@romanbakurov/flux-ui-types';
 import type React from 'react';
 import type { ReactNode, RefObject } from 'react';
 
-export interface TooltipProps {
+export interface TooltipProps extends BaseTooltipProps {
   content: ReactNode;
   children: ReactNode;
-  placement?: 'top' | 'bottom' | 'left' | 'right';
-  disabled?: boolean;
-  delay?: { open: number; close: number };
-  maxWidth?: number | string;
-  className: string;
 }
 
-export interface TooltipContentProps {
+export interface TooltipContentProps extends BaseTooltipContentProps {
   content: ReactNode;
-  placement: string;
   arrowRef: RefObject<HTMLDivElement | null>;
-  arrowX?: number | null;
-  arrowY?: number | null;
-  className?: string;
   style?: React.CSSProperties;
-  id?: string;
-  role?: string;
 }

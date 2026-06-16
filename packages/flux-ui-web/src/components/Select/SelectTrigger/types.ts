@@ -1,19 +1,9 @@
+import type { BaseSelectTriggerProps } from '@romanbakurov/flux-ui-types';
 import type React from 'react';
+import type { ReactNode } from 'react';
 
-export interface SelectTriggerProps {
-  id?: string;
-  errorId?: string;
-  isOpen: boolean;
-  disabled?: boolean;
-  required?: boolean;
-  hasLabel: boolean;
-  labelId: string;
-  listboxId: string;
-  activeIndex: number;
-  ariaLabel?: string;
-  error?: boolean | string;
-  displayText: string;
+export interface SelectTriggerProps extends BaseSelectTriggerProps {
+  displayText: ReactNode;
   buttonRef: React.Ref<HTMLButtonElement>;
-  onClick: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
 }

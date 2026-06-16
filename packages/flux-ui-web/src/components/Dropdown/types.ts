@@ -1,40 +1,25 @@
 import type { Placement } from '@floating-ui/react';
+import type {
+  BaseDropdownGroup,
+  BaseDropdownMenuItem,
+  BaseDropdownProps,
+  BaseDropdownSeparator,
+} from '@romanbakurov/flux-ui-types';
 import type { ReactNode } from 'react';
 
-export interface DropdownMenuItem {
-  type?: 'item';
-
-  label: string;
-  value: string;
+export interface DropdownMenuItem extends BaseDropdownMenuItem {
   icon?: ReactNode;
-  danger?: boolean;
-  disabled?: boolean;
-  textWrap?: 'nowrap' | 'wrap' | 'truncate';
 }
 
-export interface DropdownGroup {
-  type: 'group';
-  label: string;
-}
-
-export interface DropdownSeparator {
-  type: 'separator';
-}
-
+export type DropdownGroup = BaseDropdownGroup;
+export type DropdownSeparator = BaseDropdownSeparator;
 export type DropdownItem = DropdownMenuItem | DropdownGroup | DropdownSeparator;
 
-export interface DropdownProps {
-  label?: string;
+export interface DropdownProps extends Omit<BaseDropdownProps, 'items'> {
   trigger?: ReactNode;
   icon?: ReactNode;
   items: DropdownItem[];
-  onSelect?: (value: string) => void;
-  className?: string;
-  disabled?: boolean;
-  rotateAngle?: number;
-  matchTriggerWidth?: boolean;
   placement?: Placement;
-  textWrap?: 'nowrap' | 'wrap' | 'truncate';
 }
 
 export const isMenuItem = (item: DropdownItem): item is DropdownMenuItem =>

@@ -1,23 +1,13 @@
+import type {
+  BaseModalOverlayProps,
+  BaseModalProps,
+} from '@romanbakurov/flux-ui-types';
 import type { ReactNode } from 'react';
 
-export interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+export interface ModalOverlayProps extends BaseModalOverlayProps {
   children: ReactNode;
-
-  closeOnBackdrop?: boolean;
-  closeOnEsc?: boolean;
-  /** @deprecated Use closeOnBackdrop instead. */
-  closeOnClick?: boolean;
 }
 
-export interface ModalOverlayProps {
+export interface ModalProps extends BaseModalProps {
   children: ReactNode;
-  isOpen: boolean;
-  onClose?: () => void;
-  closeOnClick?: boolean;
-  className?: string;
-  closeOnEsc?: boolean;
-  zIndex?: number;
-  animated?: boolean;
 }
