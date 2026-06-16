@@ -1,55 +1,39 @@
 # Flux UI
 
-Modern cross-platform Design System for React and React Native.
+TypeScript-first design system monorepo for React and React Native.
 
-Flux UI is a TypeScript-first component library built around shared architecture, design tokens, reusable primitives, and platform-specific rendering for Web and Native applications.
+Flux UI is built around shared design tokens, shared state logic, platform-agnostic base types, and platform-specific component implementations for Web and Native.
 
-![React](https://img.shields.io/badge/React-19-blue)
-![React Native](https://img.shields.io/badge/React%20Native-0.81-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
-![Storybook](https://img.shields.io/badge/Storybook-Live-ff4785)
+![React](https://img.shields.io/badge/React-19.2.3-blue)
+![React Native](https://img.shields.io/badge/React%20Native-0.85.3-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x%20%2F%206.x-blue)
+![Storybook](https://img.shields.io/badge/Storybook-10.4-ff4785)
 ![License](https://img.shields.io/github/license/romanbakurov/Flux-UI)
 
 ## Links
 
-[Storybook Demo](https://main--6a07269cf7126a71ef2f62ca.chromatic.com)
-
-[Chromatic Library](https://www.chromatic.com/library?appId=6a07269cf7126a71ef2f62ca&branch=main)
-
-[GitHub Repository](https://github.com/romanbakurov/Flux-UI)
-
----
-
-## Features
-
-* React 19
-* React Native 0.81+
-* TypeScript First
-* Shared Design Tokens
-* Shared Core Logic
-* Shared Type System
-* Cross-platform Icon System
-* Storybook Web
-* Storybook Native
-* Accessibility Focused
-* Semantic Release
-* GitHub Actions CI/CD
-* pnpm Monorepo
-
----
+- [Storybook Demo](https://main--6a07269cf7126a71ef2f62ca.chromatic.com)
+- [Chromatic Library](https://www.chromatic.com/library?appId=6a07269cf7126a71ef2f62ca&branch=main)
+- [GitHub Repository](https://github.com/romanbakurov/Flux-UI)
 
 ## Packages
 
-| Package                        | Description                |
-| ------------------------------ | -------------------------- |
-| `@romanbakurov/flux-ui-web`    | React Web Components       |
-| `@romanbakurov/flux-ui-native` | React Native Components    |
-| `@romanbakurov/flux-ui-core`   | Shared Hooks & State Logic |
-| `@romanbakurov/flux-ui-types`  | Shared Type Definitions    |
-| `@romanbakurov/flux-ui-icons`  | Cross-platform Icon System |
-| `@romanbakurov/flux-ui-tokens` | Design Tokens              |
+| Package                        | Purpose                                    |
+| ------------------------------ | ------------------------------------------ |
+| `@romanbakurov/flux-ui-web`    | React web components                       |
+| `@romanbakurov/flux-ui-native` | React Native components                    |
+| `@romanbakurov/flux-ui-core`   | Shared hooks and interaction logic         |
+| `@romanbakurov/flux-ui-types`  | Platform-agnostic base types               |
+| `@romanbakurov/flux-ui-icons`  | Shared icon package for web and native     |
+| `@romanbakurov/flux-ui-tokens` | Colors, typography, spacing, radius, theme |
 
----
+## Apps
+
+| App                      | Purpose                        |
+| ------------------------ | ------------------------------ |
+| `apps/storybook`         | Web Storybook                  |
+| `apps/native-playground` | Expo app and native Storybook  |
+| `apps/test-app`          | Vite app for local web testing |
 
 ## Architecture
 
@@ -68,63 +52,67 @@ packages/
 └── flux-ui-tokens
 ```
 
----
+The packages are intentionally split by responsibility:
 
-## Philosophy
+- `tokens` are the source of truth for colors, typography, spacing, radius, shadows, and z-index.
+- `types` contains base contracts that avoid React, DOM, CSS, and React Native-specific props.
+- `core` contains reusable state and keyboard-navigation hooks.
+- `web` and `native` extend the shared base with platform-specific props and rendering.
 
-Flux UI is built around a few core principles:
+## Component Support
 
-* Shared logic across platforms
-* Shared design tokens
-* Platform-specific rendering
-* Accessibility by default
-* Predictable APIs
-* Type-safe development experience
+| Component  | Web | Native |
+| ---------- | --- | ------ |
+| Button     | Yes | Yes    |
+| Checkbox   | Yes | Yes    |
+| Input      | Yes | Yes    |
+| FormField  | Yes | Yes    |
+| RadioGroup | Yes | Yes    |
+| Select     | Yes | Yes    |
+| Dropdown   | Yes | Yes    |
+| Tabs       | Yes | Yes    |
+| Tooltip    | Yes | Yes    |
+| Modal      | Yes | Yes    |
 
----
+Native components use iOS-inspired `StyleSheet` styles and consume shared tokens from `@romanbakurov/flux-ui-tokens`.
 
 ## Installation
 
-### Web
+Packages are published under the `@romanbakurov` scope. If you consume them from GitHub Packages, configure the registry first:
+
+```bash
+@romanbakurov:registry=https://npm.pkg.github.com
+```
+
+Install the package you need:
 
 ```bash
 pnpm add @romanbakurov/flux-ui-web
-```
-
-### React Native
-
-```bash
 pnpm add @romanbakurov/flux-ui-native
-```
-
-### Design Tokens
-
-```bash
 pnpm add @romanbakurov/flux-ui-tokens
 ```
-
----
 
 ## Web Example
 
 ```tsx
-import {
-  Button,
-  Checkbox,
-  Input,
-} from '@romanbakurov/flux-ui-web';
+import { Button, Checkbox, Input } from '@romanbakurov/flux-ui-web';
+import { useState } from 'react';
 
 export function App() {
+  const [email, setEmail] = useState('');
+
   return (
     <>
-      <Input label="Email" />
-
-      <Checkbox
-        label="Accept terms"
-        defaultChecked
+      <Input
+        label='Email'
+        value={email}
+        onChange={setEmail}
+        placeholder='name@example.com'
       />
 
-      <Button>
+      <Checkbox label='Accept terms' defaultChecked />
+
+      <Button variant='primary' size='md'>
         Submit
       </Button>
     </>
@@ -132,77 +120,60 @@ export function App() {
 }
 ```
 
----
-
 ## React Native Example
 
 ```tsx
-import {
-  Button,
-  Checkbox,
-} from '@romanbakurov/flux-ui-native';
+import { Button, Checkbox, Input } from '@romanbakurov/flux-ui-native';
+import { useState } from 'react';
+import { View } from 'react-native';
 
 export default function App() {
+  const [email, setEmail] = useState('');
+
   return (
-    <>
-      <Checkbox
-        label="Accept terms"
+    <View style={{ gap: 16, padding: 24 }}>
+      <Input
+        label='Email'
+        value={email}
+        onChange={setEmail}
+        placeholder='name@example.com'
       />
 
-      <Button>
+      <Checkbox label='Accept terms' />
+
+      <Button variant='primary' size='md'>
         Continue
       </Button>
-    </>
+    </View>
   );
 }
 ```
 
----
-
 ## Design Tokens
 
-Single source of truth for:
+`@romanbakurov/flux-ui-tokens` exposes the shared `theme` object:
 
-* Colors
-* Typography
-* Spacing
-* Radius
-* Shadows
-* Z-Index
+```ts
+import { theme } from '@romanbakurov/flux-ui-tokens';
 
-Tokens are distributed as:
+theme.colors.primary;
+theme.typography.family.regular;
+theme.spacing[4];
+theme.radius.md;
+```
 
-* TypeScript objects
-* CSS Variables
-* React Native theme objects
+Tokens are available as:
 
----
+- TypeScript objects for web and native
+- generated CSS variables for web styles
 
-## Component Support
+## Shared Core
 
-| Component  | Web | Native |
-| ---------- | --- | ------ |
-| Button     | ✅   | ✅      |
-| Checkbox   | ✅   | ✅      |
-| Input      | ✅   | 🚧     |
-| Dropdown   | ✅   | 🚧     |
-| Modal      | ✅   | 🚧     |
-| RadioGroup | ✅   | 🚧     |
-| Select     | ✅   | 🚧     |
-| Tabs       | ✅   | 🚧     |
-| Tooltip    | ✅   | 🚧     |
-| FormField  | ✅   | 🚧     |
+`@romanbakurov/flux-ui-core` currently exports:
 
----
-
-## Core Hooks
-
-* useControllableState
-* useDropdown
-* useModal
-* useTabs
-
----
+- `useControllableState`
+- `useKeyboardNavigation`
+- `useTabsKeyboard`
 
 ## Development
 
@@ -212,80 +183,62 @@ Install dependencies:
 pnpm install
 ```
 
-Run Storybook:
+Run web Storybook:
 
 ```bash
 pnpm --filter @flux-ui/storybook dev
 ```
 
-Run Native Playground:
+Run native playground:
 
 ```bash
 pnpm --filter native-playground start
 ```
 
-Run Tests:
+Run native Storybook:
 
 ```bash
-pnpm test
+pnpm --filter native-playground storybook:ios
+pnpm --filter native-playground storybook:android
 ```
 
-Run Lint:
+Run the web test app:
+
+```bash
+pnpm --filter test-app dev
+```
+
+Run checks:
 
 ```bash
 pnpm lint
+pnpm test
+pnpm build
 ```
 
-Build Everything:
+Build a single package:
 
 ```bash
-pnpm -r build
+pnpm --filter @romanbakurov/flux-ui-web build
+pnpm --filter @romanbakurov/flux-ui-native build
+pnpm --filter @romanbakurov/flux-ui-tokens build
 ```
-
----
 
 ## Quality
 
-Current project checks:
+The project uses:
 
-* ESLint
-* TypeScript
-* Vitest
-* Storybook
-* GitHub Actions
-* Semantic Release
-* Package Validation
+- ESLint and Prettier
+- TypeScript strict mode
+- Vitest for web component tests
+- Storybook and Chromatic for visual review
+- Husky and lint-staged for pre-commit checks
+- Semantic Release for automated package publishing
 
----
+## Principles
 
-## Roadmap
-
-### Completed
-
-* Web Design System
-* Native Design System Foundation
-* Design Tokens
-* Shared Core Hooks
-* Shared Types
-* Cross-platform Icons
-* Storybook Web
-* Storybook Native
-* Automated Releases
-
-### Planned
-
-* Dark Theme
-* Theme Switching
-* Data Display Components
-* Toast System
-* Date Components
-* Full Accessibility Audit
-* Documentation Website
-* Visual Regression Coverage
-* Expanded Native Component Set
-
----
-
-## License
-
-MIT © Roman Bakurov
+- Keep shared tokens and behavior platform-neutral.
+- Keep DOM, CSS, React Native, and renderer-specific props in platform packages.
+- Prefer predictable controlled/uncontrolled APIs.
+- Use TypeScript types as public API documentation.
+- Build web and native components from the same design language, not the same rendering code.

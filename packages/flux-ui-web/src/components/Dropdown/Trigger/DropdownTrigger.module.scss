@@ -7,11 +7,11 @@
   gap: var(--space-2);
   min-width: 32px;
   min-height: 32px;
-  padding: var(--space-xs);
+  padding: var(--space-2);
   color: var(--color-primary);
   background: transparent;
   border: none;
-  border-radius: var(--radius-ful, 9999px);
+  border-radius: var(--radius-full);
   cursor: pointer;
 
   @include smooth-transition((color, background-color));

@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: 16,
+    fontFamily: theme.typography.family.regular,
+    fontSize: theme.typography.size.md,
     color: theme.colors.gray[900],
   },
   labelDisabled: {

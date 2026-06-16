@@ -316,15 +316,15 @@ export const DifferentTriggers: Story = {
       }}
     >
       <Tooltip content='Small button'>
-        <Button size='small'>Small</Button>
+        <Button size='sm'>Small</Button>
       </Tooltip>
 
       <Tooltip content='Medium button'>
-        <Button size='medium'>Medium</Button>
+        <Button size='md'>Medium</Button>
       </Tooltip>
 
       <Tooltip content='Large button'>
-        <Button size='large'>Large</Button>
+        <Button size='lg'>Large</Button>
       </Tooltip>
 
       <Tooltip content='Icon only'>

@@ -5,7 +5,7 @@
   padding: 8px 16px;
   color: var(--color-gray-600);
   font-size: var(--font-size-md);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-regular);
   background: transparent;
   border: none;
   transition:
@@ -124,7 +124,7 @@
   }
 
   &[aria-selected='true'] {
-    background-color: var(--color-primary-50);
+    background-color: var(--color-gray-blue-50);
   }
 }
 

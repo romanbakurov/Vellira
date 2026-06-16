@@ -1,25 +1,25 @@
 @mixin text-xl {
   font-size: var(--font-size-xxl);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-xl);
+  line-height: var(--line-height-xl);
 }
 
 @mixin text-lg {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-medium);
-  line-height: var(--font-line-height-md);
+  line-height: var(--line-height-md);
 }
 
 @mixin text-md {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
-  line-height: var(--font-line-height-md);
+  line-height: var(--line-height-md);
 }
 
 @mixin text-sm {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-sm);
+  line-height: var(--line-height-sm);
 }
 
 @mixin focus-ring {
