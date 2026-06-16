@@ -1,6 +1,6 @@
 {
   "name": "@romanbakurov/flux-ui-web",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "private": false,
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
