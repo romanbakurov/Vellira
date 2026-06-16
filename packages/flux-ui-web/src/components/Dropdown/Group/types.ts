@@ -1,1 +1,5 @@
-export type { BaseDropdownGroupProps as DropdownGroupProps } from '@romanbakurov/flux-ui-types';
+import type { BaseDropdownGroupProps } from '@romanbakurov/flux-ui-types';
+
+export interface DropdownGroupProps extends BaseDropdownGroupProps {
+  label: string;
+}

@@ -4,22 +4,34 @@ import type {
   BaseDropdownMenuItem,
   BaseDropdownProps,
   BaseDropdownSeparator,
+  TextWrap,
 } from '@romanbakurov/flux-ui-types';
 import type { ReactNode } from 'react';
 
 export interface DropdownMenuItem extends BaseDropdownMenuItem {
+  label: string;
   icon?: ReactNode;
+  danger?: boolean;
+  textWrap?: TextWrap;
 }
 
-export type DropdownGroup = BaseDropdownGroup;
+export interface DropdownGroup extends BaseDropdownGroup {
+  label: string;
+}
+
 export type DropdownSeparator = BaseDropdownSeparator;
 export type DropdownItem = DropdownMenuItem | DropdownGroup | DropdownSeparator;
 
 export interface DropdownProps extends Omit<BaseDropdownProps, 'items'> {
+  label?: string;
   trigger?: ReactNode;
   icon?: ReactNode;
   items: DropdownItem[];
   placement?: Placement;
+  className?: string;
+  rotateAngle?: number;
+  matchTriggerWidth?: boolean;
+  textWrap?: TextWrap;
 }
 
 export const isMenuItem = (item: DropdownItem): item is DropdownMenuItem =>

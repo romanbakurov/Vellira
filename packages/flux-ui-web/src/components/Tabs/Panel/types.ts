@@ -3,4 +3,5 @@ import type { ReactNode } from 'react';
 
 export interface TabsPanelProps extends BaseTabsPanelProps {
   children?: ReactNode;
+  className?: string;
 }

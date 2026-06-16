@@ -5,4 +5,6 @@ export interface DropdownTriggerProps
   extends BaseDropdownTriggerProps, ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   arrowIcon?: ReactNode;
+  rotateAngle?: number;
+  label?: string;
 }

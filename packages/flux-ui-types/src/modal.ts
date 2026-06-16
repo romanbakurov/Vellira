@@ -11,10 +11,7 @@ export interface BaseModalOverlayProps {
   isOpen: boolean;
   onClose?: () => void;
   closeOnClick?: boolean;
-  className?: string;
   closeOnEsc?: boolean;
-  zIndex?: number;
-  animated?: boolean;
 }
 
 export type BaseModalBodyProps = Record<never, never>;
