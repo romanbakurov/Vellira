@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { useTabsKeyboard } from '@hooks/useTabsKeyboard';
+import { useTabsKeyboard } from '@romanbakurov/flux-ui-core';
 import { cn } from '@utils/cn';
 
 import type { TabsContextValue } from './TabsContext';

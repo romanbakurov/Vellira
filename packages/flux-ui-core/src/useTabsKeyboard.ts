@@ -1,22 +1,31 @@
 import { useCallback } from 'react';
 
-import type { KeyboardEvent } from 'react';
+import type { MutableRefObject } from 'react';
 
-interface TabsParams {
+export interface TabsKeyboardEvent {
+  key: string;
+  preventDefault: () => void;
+}
+
+export interface TabKeyboardItem {
+  disabled?: boolean;
+}
+
+export interface UseTabsKeyboardParams<TItem extends TabKeyboardItem> {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
-  tabRefs: React.MutableRefObject<(HTMLButtonElement | null)[]>;
+  tabRefs: MutableRefObject<(TItem | null)[]>;
   orientation: 'horizontal' | 'vertical';
 }
 
-export const useTabsKeyboard = ({
+export const useTabsKeyboard = <TItem extends TabKeyboardItem>({
   activeIndex,
   setActiveIndex,
   tabRefs,
   orientation = 'horizontal',
-}: TabsParams) => {
+}: UseTabsKeyboardParams<TItem>) => {
   const onKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
+    (event: TabsKeyboardEvent) => {
       const getNextEnabledIndex = (current: number, direction: 1 | -1) => {
         const total = tabRefs.current.length;
         if (!total) return current;
@@ -53,45 +62,42 @@ export const useTabsKeyboard = ({
 
       let nextIndex = activeIndex;
 
-      switch (e.key) {
-        // Горизонтальная навигация
+      switch (event.key) {
         case 'ArrowLeft':
           if (orientation === 'horizontal') {
-            e.preventDefault();
+            event.preventDefault();
             nextIndex = getNextEnabledIndex(activeIndex, -1);
           }
           break;
 
         case 'ArrowRight':
           if (orientation === 'horizontal') {
-            e.preventDefault();
+            event.preventDefault();
             nextIndex = getNextEnabledIndex(activeIndex, 1);
           }
           break;
 
-        // Vertical navigation
         case 'ArrowUp':
           if (orientation === 'vertical') {
-            e.preventDefault();
+            event.preventDefault();
             nextIndex = getNextEnabledIndex(activeIndex, -1);
           }
           break;
 
         case 'ArrowDown':
           if (orientation === 'vertical') {
-            e.preventDefault();
+            event.preventDefault();
             nextIndex = getNextEnabledIndex(activeIndex, 1);
           }
           break;
 
-        // Home / End
         case 'Home':
-          e.preventDefault();
+          event.preventDefault();
           nextIndex = getFirstEnabledIndex();
           break;
 
         case 'End':
-          e.preventDefault();
+          event.preventDefault();
           nextIndex = getLastEnabledIndex();
           break;
 

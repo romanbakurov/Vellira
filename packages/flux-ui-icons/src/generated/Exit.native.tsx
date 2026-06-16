@@ -1,5 +1,5 @@
+import Svg, { G, Path, Defs, ClipPath, Rect } from 'react-native-svg';
 import type { SvgProps } from 'react-native-svg';
-import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
 type IconProps = SvgProps & {
   size?: number | string;

@@ -1,24 +1,25 @@
 import { useCallback } from 'react';
 
-import type { KeyboardEvent } from 'react';
-
-interface NavigableItem {
+export interface NavigableItem {
   disabled?: boolean;
 }
 
-interface Params {
+export interface KeyboardNavigationEvent {
+  key: string;
+  preventDefault: () => void;
+}
+
+export interface UseKeyboardNavigationParams<TItem extends NavigableItem> {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
-  items: NavigableItem[];
+  items: TItem[];
   isOpen: boolean;
   onOpen: () => void;
   onSelect?: () => void;
   onClose?: () => void;
 }
 
-//ArrowUp / ArrowDown / Enter / Escape logic
-
-export const useKeyboardNavigation = ({
+export const useKeyboardNavigation = <TItem extends NavigableItem>({
   activeIndex,
   setActiveIndex,
   items,
@@ -26,7 +27,7 @@ export const useKeyboardNavigation = ({
   onOpen,
   onSelect,
   onClose,
-}: Params) => {
+}: UseKeyboardNavigationParams<TItem>) => {
   const getNextEnabledIndex = useCallback(
     (current: number, direction: 1 | -1) => {
       if (!items.length) return current;
@@ -47,50 +48,49 @@ export const useKeyboardNavigation = ({
   );
 
   const onKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
+    (event: KeyboardNavigationEvent) => {
       if (!isOpen) {
         if (
-          e.key === ' ' ||
-          e.key === 'Enter' ||
-          e.key === 'ArrowDown' ||
-          e.key === 'ArrowUp'
+          event.key === ' ' ||
+          event.key === 'Enter' ||
+          event.key === 'ArrowDown' ||
+          event.key === 'ArrowUp'
         ) {
-          e.preventDefault();
+          event.preventDefault();
           onOpen();
         }
         return;
       }
 
-      //when open
-      switch (e.key) {
+      switch (event.key) {
         case 'ArrowDown':
-          e.preventDefault();
+          event.preventDefault();
           setActiveIndex(getNextEnabledIndex(activeIndex, 1));
           break;
 
         case 'ArrowUp':
-          e.preventDefault();
+          event.preventDefault();
           setActiveIndex(getNextEnabledIndex(activeIndex, -1));
           break;
 
         case 'Enter':
         case ' ':
-          e.preventDefault();
+          event.preventDefault();
           onSelect?.();
           break;
 
         case 'Escape':
-          e.preventDefault();
+          event.preventDefault();
           onClose?.();
           break;
 
         case 'Home':
-          e.preventDefault();
+          event.preventDefault();
           setActiveIndex(items.findIndex((item) => !item.disabled));
           break;
 
         case 'End':
-          e.preventDefault();
+          event.preventDefault();
           for (let i = items.length - 1; i >= 0; i--) {
             if (!items[i].disabled) {
               setActiveIndex(i);
@@ -115,5 +115,6 @@ export const useKeyboardNavigation = ({
       getNextEnabledIndex,
     ]
   );
+
   return { onKeyDown };
 };
