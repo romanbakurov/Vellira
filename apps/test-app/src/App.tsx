@@ -1,4 +1,4 @@
-import { Button } from '@romanbakurov/flux-ui-web';
+import { Button } from '@romanbakurov/virelia-web';
 
 export default function App() {
   return (

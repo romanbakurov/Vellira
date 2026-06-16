@@ -138,12 +138,12 @@ importers:
       '@react-native-community/slider':
         specifier: ^5.2.0
         version: 5.2.0
-      '@romanbakurov/flux-ui-icons':
+      '@romanbakurov/virelia-icons':
         specifier: workspace:*
-        version: link:../../packages/flux-ui-icons
-      '@romanbakurov/flux-ui-native':
+        version: link:../../packages/virelia-icons
+      '@romanbakurov/virelia-native':
         specifier: workspace:*
-        version: link:../../packages/flux-ui-native
+        version: link:../../packages/virelia-native
       '@storybook/addon-ondevice-actions':
         specifier: ^10.4.5
         version: 10.4.5(react-native@0.85.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
@@ -202,12 +202,12 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.19
         version: 0.27.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@romanbakurov/flux-ui-tokens':
+      '@romanbakurov/virelia-tokens':
         specifier: workspace:*
-        version: link:../../packages/flux-ui-tokens
-      '@romanbakurov/flux-ui-web':
+        version: link:../../packages/virelia-tokens
+      '@romanbakurov/virelia-web':
         specifier: workspace:*
-        version: link:../../packages/flux-ui-web
+        version: link:../../packages/virelia-web
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -224,9 +224,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^5.2.1
         version: 5.2.1(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
-      '@romanbakurov/flux-ui-icons':
+      '@romanbakurov/virelia-icons':
         specifier: workspace:*
-        version: link:../../packages/flux-ui-icons
+        version: link:../../packages/virelia-icons
       '@storybook/addon-a11y':
         specifier: ^10.4.0
         version: 10.4.4(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@3.8.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
@@ -290,9 +290,9 @@ importers:
 
   apps/test-app:
     dependencies:
-      '@romanbakurov/flux-ui-web':
+      '@romanbakurov/virelia-web':
         specifier: workspace:^
-        version: link:../../packages/flux-ui-web
+        version: link:../../packages/virelia-web
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -328,7 +328,7 @@ importers:
         specifier: ^8.0.12
         version: 8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(jiti@2.6.1)(less@4.6.6)(sass@1.101.0)(stylus@0.62.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
 
-  packages/flux-ui-core:
+  packages/virelia-core:
     devDependencies:
       '@types/react':
         specifier: ^19.2.3
@@ -337,7 +337,7 @@ importers:
         specifier: 19.2.3
         version: 19.2.3
 
-  packages/flux-ui-icons:
+  packages/virelia-icons:
     dependencies:
       react:
         specifier: '>=18'
@@ -368,20 +368,20 @@ importers:
         specifier: ^6
         version: 6.0.3
 
-  packages/flux-ui-native:
+  packages/virelia-native:
     dependencies:
-      '@romanbakurov/flux-ui-core':
+      '@romanbakurov/virelia-core':
         specifier: workspace:*
-        version: link:../flux-ui-core
-      '@romanbakurov/flux-ui-icons':
+        version: link:../virelia-core
+      '@romanbakurov/virelia-icons':
         specifier: workspace:*
-        version: link:../flux-ui-icons
-      '@romanbakurov/flux-ui-tokens':
+        version: link:../virelia-icons
+      '@romanbakurov/virelia-tokens':
         specifier: workspace:*
-        version: link:../flux-ui-tokens
-      '@romanbakurov/flux-ui-types':
+        version: link:../virelia-tokens
+      '@romanbakurov/virelia-types':
         specifier: workspace:*
-        version: link:../flux-ui-types
+        version: link:../virelia-types
       react:
         specifier: ^19.1.0
         version: 19.2.3
@@ -393,27 +393,27 @@ importers:
         specifier: ^19.2.3
         version: 19.2.17
 
-  packages/flux-ui-tokens: {}
+  packages/virelia-tokens: {}
 
-  packages/flux-ui-types: {}
+  packages/virelia-types: {}
 
-  packages/flux-ui-web:
+  packages/virelia-web:
     dependencies:
       '@floating-ui/react':
         specifier: ^0.27.19
         version: 0.27.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@romanbakurov/flux-ui-core':
+      '@romanbakurov/virelia-core':
         specifier: workspace:*
-        version: link:../flux-ui-core
-      '@romanbakurov/flux-ui-icons':
+        version: link:../virelia-core
+      '@romanbakurov/virelia-icons':
         specifier: workspace:*
-        version: link:../flux-ui-icons
-      '@romanbakurov/flux-ui-tokens':
+        version: link:../virelia-icons
+      '@romanbakurov/virelia-tokens':
         specifier: workspace:*
-        version: link:../flux-ui-tokens
-      '@romanbakurov/flux-ui-types':
+        version: link:../virelia-tokens
+      '@romanbakurov/virelia-types':
         specifier: workspace:*
-        version: link:../flux-ui-types
+        version: link:../virelia-types
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

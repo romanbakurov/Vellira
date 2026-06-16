@@ -1,4 +1,4 @@
-# Contributing to Flux UI
+# Contributing to Virelia
 
 ## Branch naming
 
@@ -11,6 +11,7 @@
 ## Commit messages
 
 Use [Conventional Commits](https://www.conventionalcommits.org/):
+
 - feat: add Button component
 - fix: resolve Select keyboard navigation
 - chore: update dependencies
@@ -28,6 +29,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 ## Release
 
 Uses semantic-release. Version bumps:
+
 - `fix:` → patch (0.0.1)
 - `feat:` → minor (0.1.0)
 - `feat!:` or `BREAKING CHANGE:` → major (1.0.0)

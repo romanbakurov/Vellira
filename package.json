@@ -1,8 +1,8 @@
 {
-  "name": "@romanbakurov/flux-ui",
+  "name": "@romanbakurov/virelia",
   "private": true,
   "version": "2.4.0",
-  "description": "Flux UI Design System monorepo",
+  "description": "Virelia Design System monorepo",
   "type": "module",
   "author": "Roman Bakurov",
   "license": "ISC",
@@ -12,7 +12,7 @@
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
     "build": "pnpm -r build",
-    "test": "pnpm --filter @romanbakurov/flux-ui-web test",
+    "test": "pnpm --filter @romanbakurov/virelia-web test",
     "prepare": "husky"
   },
   "devDependencies": {

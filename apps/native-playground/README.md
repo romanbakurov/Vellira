@@ -1,6 +1,6 @@
 # Native Playground
 
-Expo app for developing and testing `@romanbakurov/flux-ui-native`.
+Expo app for developing and testing `@romanbakurov/virelia-native`.
 
 The app can run as a normal Expo playground or with React Native Storybook enabled.
 
@@ -29,4 +29,4 @@ pnpm --filter native-playground storybook:android
 
 - Built with Expo `56`.
 - Uses React Native `0.85`.
-- Consumes `@romanbakurov/flux-ui-native` from the workspace.
+- Consumes `@romanbakurov/virelia-native` from the workspace.

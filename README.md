@@ -1,31 +1,31 @@
-# Flux UI
+# Virelia
 
 TypeScript-first design system monorepo for React and React Native.
 
-Flux UI is built around shared design tokens, shared state logic, platform-agnostic base types, and platform-specific component implementations for Web and Native.
+Virelia is built around shared design tokens, shared state logic, platform-agnostic base types, and platform-specific component implementations for Web and Native.
 
 ![React](https://img.shields.io/badge/React-19.2.3-blue)
 ![React Native](https://img.shields.io/badge/React%20Native-0.85.3-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x%20%2F%206.x-blue)
 ![Storybook](https://img.shields.io/badge/Storybook-10.4-ff4785)
-![License](https://img.shields.io/github/license/romanbakurov/Flux-UI)
+![License](https://img.shields.io/github/license/romanbakurov/Virelia)
 
 ## Links
 
 - [Storybook Demo](https://main--6a07269cf7126a71ef2f62ca.chromatic.com)
 - [Chromatic Library](https://www.chromatic.com/library?appId=6a07269cf7126a71ef2f62ca&branch=main)
-- [GitHub Repository](https://github.com/romanbakurov/Flux-UI)
+- [GitHub Repository](https://github.com/romanbakurov/Virelia)
 
 ## Packages
 
 | Package                        | Purpose                                    |
 | ------------------------------ | ------------------------------------------ |
-| `@romanbakurov/flux-ui-web`    | React web components                       |
-| `@romanbakurov/flux-ui-native` | React Native components                    |
-| `@romanbakurov/flux-ui-core`   | Shared hooks and interaction logic         |
-| `@romanbakurov/flux-ui-types`  | Platform-agnostic base types               |
-| `@romanbakurov/flux-ui-icons`  | Shared icon package for web and native     |
-| `@romanbakurov/flux-ui-tokens` | Colors, typography, spacing, radius, theme |
+| `@romanbakurov/virelia-web`    | React web components                       |
+| `@romanbakurov/virelia-native` | React Native components                    |
+| `@romanbakurov/virelia-core`   | Shared hooks and interaction logic         |
+| `@romanbakurov/virelia-types`  | Platform-agnostic base types               |
+| `@romanbakurov/virelia-icons`  | Shared icon package for web and native     |
+| `@romanbakurov/virelia-tokens` | Colors, typography, spacing, radius, theme |
 
 ## Apps
 
@@ -44,12 +44,12 @@ apps/
 └── test-app
 
 packages/
-├── flux-ui-web
-├── flux-ui-native
-├── flux-ui-core
-├── flux-ui-types
-├── flux-ui-icons
-└── flux-ui-tokens
+├── virelia-web
+├── virelia-native
+├── virelia-core
+├── virelia-types
+├── virelia-icons
+└── virelia-tokens
 ```
 
 The packages are intentionally split by responsibility:
@@ -74,7 +74,7 @@ The packages are intentionally split by responsibility:
 | Tooltip    | Yes | Yes    |
 | Modal      | Yes | Yes    |
 
-Native components use iOS-inspired `StyleSheet` styles and consume shared tokens from `@romanbakurov/flux-ui-tokens`.
+Native components use iOS-inspired `StyleSheet` styles and consume shared tokens from `@romanbakurov/virelia-tokens`.
 
 ## Installation
 
@@ -87,15 +87,15 @@ Packages are published under the `@romanbakurov` scope. If you consume them from
 Install the package you need:
 
 ```bash
-pnpm add @romanbakurov/flux-ui-web
-pnpm add @romanbakurov/flux-ui-native
-pnpm add @romanbakurov/flux-ui-tokens
+pnpm add @romanbakurov/virelia-web
+pnpm add @romanbakurov/virelia-native
+pnpm add @romanbakurov/virelia-tokens
 ```
 
 ## Web Example
 
 ```tsx
-import { Button, Checkbox, Input } from '@romanbakurov/flux-ui-web';
+import { Button, Checkbox, Input } from '@romanbakurov/virelia-web';
 import { useState } from 'react';
 
 export function App() {
@@ -123,7 +123,7 @@ export function App() {
 ## React Native Example
 
 ```tsx
-import { Button, Checkbox, Input } from '@romanbakurov/flux-ui-native';
+import { Button, Checkbox, Input } from '@romanbakurov/virelia-native';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -151,10 +151,10 @@ export default function App() {
 
 ## Design Tokens
 
-`@romanbakurov/flux-ui-tokens` exposes the shared `theme` object:
+`@romanbakurov/virelia-tokens` exposes the shared `theme` object:
 
 ```ts
-import { theme } from '@romanbakurov/flux-ui-tokens';
+import { theme } from '@romanbakurov/virelia-tokens';
 
 theme.colors.primary;
 theme.typography.family.regular;
@@ -169,7 +169,7 @@ Tokens are available as:
 
 ## Shared Core
 
-`@romanbakurov/flux-ui-core` currently exports:
+`@romanbakurov/virelia-core` currently exports:
 
 - `useControllableState`
 - `useKeyboardNavigation`
@@ -186,7 +186,7 @@ pnpm install
 Run web Storybook:
 
 ```bash
-pnpm --filter @flux-ui/storybook dev
+pnpm --filter @virelia/storybook dev
 ```
 
 Run native playground:
@@ -219,9 +219,9 @@ pnpm build
 Build a single package:
 
 ```bash
-pnpm --filter @romanbakurov/flux-ui-web build
-pnpm --filter @romanbakurov/flux-ui-native build
-pnpm --filter @romanbakurov/flux-ui-tokens build
+pnpm --filter @romanbakurov/virelia-web build
+pnpm --filter @romanbakurov/virelia-native build
+pnpm --filter @romanbakurov/virelia-tokens build
 ```
 
 ## Quality

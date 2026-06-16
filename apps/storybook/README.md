@@ -1,6 +1,6 @@
-# Flux UI Storybook
+# Virelia Storybook
 
-Web Storybook app for `@romanbakurov/flux-ui-web`.
+Web Storybook app for `@romanbakurov/virelia-web`.
 
 Use this app to develop, document, and visually review web components.
 
@@ -9,7 +9,7 @@ Use this app to develop, document, and visually review web components.
 From the workspace root:
 
 ```bash
-pnpm --filter @flux-ui/storybook dev
+pnpm --filter @virelia/storybook dev
 ```
 
 Storybook runs on port `6006`.
@@ -17,7 +17,7 @@ Storybook runs on port `6006`.
 ## Build
 
 ```bash
-pnpm --filter @flux-ui/storybook build-storybook
+pnpm --filter @virelia/storybook build-storybook
 ```
 
 ## Notes

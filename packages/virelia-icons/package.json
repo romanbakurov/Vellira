@@ -1,0 +1,33 @@
+{
+  "name": "@romanbakurov/virelia-icons",
+  "version": "0.0.1",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "main": "./src/web.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/native.ts",
+      "import": "./src/web.ts",
+      "default": "./src/web.ts"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf src/generated/*.jsx",
+    "generate": "pnpm clean && tsx scripts/generate-icons.ts && pnpm --workspace-root exec prettier 'packages/virelia-icons/src/**/*.{ts,tsx}' --write",
+    "build": "pnpm generate"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": "*",
+    "react-native-svg": "*"
+  },
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@types/react": "^19.2.17",
+    "fast-glob": "^3.3.3",
+    "tsx": "^4",
+    "typescript": "^6"
+  }
+}

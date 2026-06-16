@@ -3,11 +3,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const publicPackages = [
-  '@romanbakurov/flux-ui-core',
-  '@romanbakurov/flux-ui-tokens',
-  '@romanbakurov/flux-ui-types',
-  '@romanbakurov/flux-ui-web',
-  '@romanbakurov/flux-ui-native',
+  '@romanbakurov/virelia-core',
+  '@romanbakurov/virelia-tokens',
+  '@romanbakurov/virelia-types',
+  '@romanbakurov/virelia-web',
+  '@romanbakurov/virelia-native',
 ];
 
 function updateVersion(packagePath, version) {

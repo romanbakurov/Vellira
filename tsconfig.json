@@ -1,14 +1,14 @@
 {
   "files": [],
   "references": [
-    { "path": "./packages/flux-ui-core" },
-    { "path": "./packages/flux-ui-icons" },
-    { "path": "./packages/flux-ui-native" },
-    { "path": "./packages/flux-ui-tokens" },
-    { "path": "./packages/flux-ui-types" },
-    { "path": "./packages/flux-ui-web" },
+    { "path": "./packages/virelia-core" },
+    { "path": "./packages/virelia-icons" },
+    { "path": "./packages/virelia-native" },
+    { "path": "./packages/virelia-tokens" },
+    { "path": "./packages/virelia-types" },
+    { "path": "./packages/virelia-web" },
     { "path": "./apps/test-app" },
     { "path": "./apps/native-playground" },
     { "path": "./apps/storybook" }
-  ],
+  ]
 }

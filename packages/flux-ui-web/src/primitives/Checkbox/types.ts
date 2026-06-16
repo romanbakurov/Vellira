@@ -1,6 +1,0 @@
-import type { BaseCheckboxProps } from '@romanbakurov/flux-ui-types';
-
-export interface CheckboxProps extends BaseCheckboxProps {
-  label?: string;
-  className?: string;
-}
