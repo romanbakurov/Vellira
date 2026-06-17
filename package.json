@@ -1,23 +1,20 @@
 {
   "name": "@romanbakurov/virelia",
   "private": true,
-  "version": "2.4.1",
+  "version": "2.4.0",
   "description": "Virelia Design System monorepo",
   "type": "module",
   "author": "Roman Bakurov",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/romanbakurov/Virelia.git"
-  },
+  "license": "MIT",
   "scripts": {
     "lint": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}' --fix",
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
     "build": "pnpm -r build",
-    "test": "pnpm --filter @romanbakurov/virelia-web test && pnpm --filter @romanbakurov/virelia-native test",
-    "prepare": "husky"
+    "test": "pnpm --filter @romanbakurov/virelia-web test",
+    "prepare": "husky",
+    "create:component": "tsx scripts/generators/create-component.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",

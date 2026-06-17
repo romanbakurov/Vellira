@@ -1,6 +1,7 @@
 {
   "name": "@romanbakurov/virelia-icons",
   "version": "0.0.1",
+  "license": "MIT",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -12,6 +13,11 @@
       "default": "./src/web.ts"
     }
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "clean": "rm -rf src/generated/*.jsx",
     "generate": "pnpm clean && tsx scripts/generate-icons.ts && pnpm --workspace-root exec prettier 'packages/virelia-icons/src/**/*.{ts,tsx}' --write",

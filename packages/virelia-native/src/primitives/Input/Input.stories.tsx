@@ -5,41 +5,6 @@ import { Input } from './Input';
 const meta: Meta<typeof Input> = {
   title: 'Primitives/Input',
   component: Input,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### Input Component
-
-Native text input for short form values.
-
-**Features**
-- Label and placeholder support
-- Value display
-- Required state
-- Disabled state
-- Validation error message
-- Input type variants
-- Size variants
-
-### Usage
-
-Use Input for names, emails, passwords, phone numbers, and other single-line native form values.
-
-Correct usage:
-
-\`\`\`tsx
-<Input
-  label='Email'
-  placeholder='name@company.com'
-  value={email}
-/>
-\`\`\`
-`,
-      },
-    },
-  },
   args: {
     label: 'Email',
     placeholder: 'name@company.com',

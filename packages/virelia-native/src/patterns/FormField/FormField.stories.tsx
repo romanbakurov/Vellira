@@ -8,37 +8,6 @@ import { FormField } from './FormField';
 const meta: Meta<typeof FormField> = {
   title: 'Patterns/FormField',
   component: FormField,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### FormField Pattern
-
-Native layout wrapper for field labels, errors, and custom content.
-
-**Features**
-- Label rendering
-- Required marker
-- Error message
-- Disabled state
-- Works with custom children such as \`Input\`
-
-### Usage
-
-Use FormField when you need consistent form layout around a composed or custom native control.
-
-Correct usage:
-
-\`\`\`tsx
-<FormField label='Email' required error='Enter a valid email'>
-  <Input label='' placeholder='name@company.com' />
-</FormField>
-\`\`\`
-`,
-      },
-    },
-  },
   args: {
     label: 'Label',
     children: <Text>Field content</Text>,

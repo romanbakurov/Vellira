@@ -1,6 +1,7 @@
 {
   "name": "@romanbakurov/virelia-types",
   "version": "2.4.1",
+  "license": "MIT",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -12,7 +13,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsc"

@@ -232,6 +232,16 @@ pnpm --filter @romanbakurov/virelia-native build
 pnpm --filter @romanbakurov/virelia-tokens build
 ```
 
+## Development Tooling
+
+Create a new component:
+
+```bash
+pnpm create:component Button web primitives
+pnpm create:component Switch native primitives
+pnpm create:component Badge both primitives
+```
+
 ## Quality
 
 The project uses:

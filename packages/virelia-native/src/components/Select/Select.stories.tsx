@@ -11,40 +11,6 @@ const options = [
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
   component: Select,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### Select Component
-
-Native select-like field for choosing one value from a list.
-
-**Features**
-- Label and placeholder support
-- Default selected value
-- Required state
-- Disabled state
-- Disabled options
-- Validation error message
-
-### Usage
-
-Use Select for compact option picking on mobile when the available options are known in advance.
-
-Correct usage:
-
-\`\`\`tsx
-<Select
-  label='Country'
-  placeholder='Select country...'
-  options={countries}
-/>
-\`\`\`
-`,
-      },
-    },
-  },
   args: {
     label: 'Country',
     placeholder: 'Select country...',

@@ -11,40 +11,6 @@ const options = [
 const meta: Meta<typeof RadioGroup> = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### RadioGroup Component
-
-Native group of mutually exclusive options.
-
-**Features**
-- Default selected value
-- Horizontal and vertical orientation
-- Required state
-- Disabled group state
-- Disabled individual options
-- Validation error message
-
-### Usage
-
-Use RadioGroup when a small set of options should remain visible and only one option can be selected.
-
-Correct usage:
-
-\`\`\`tsx
-<RadioGroup
-  label='Plan'
-  defaultValue='pro'
-  options={plans}
-/>
-\`\`\`
-`,
-      },
-    },
-  },
   args: {
     label: 'Plan',
     defaultValue: 'pro',

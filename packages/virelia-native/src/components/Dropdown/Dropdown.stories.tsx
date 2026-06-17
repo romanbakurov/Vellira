@@ -14,43 +14,6 @@ const items = [
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
   component: Dropdown,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### Dropdown Component
-
-Native contextual action menu opened from a trigger.
-
-**Features**
-- Label trigger
-- Custom trigger content
-- Group labels
-- Separators
-- Disabled items
-- Danger items
-- Wrapped long labels
-
-### Usage
-
-Use Dropdown for mobile action menus such as account actions, project actions, or destructive secondary actions.
-
-Correct usage:
-
-\`\`\`tsx
-<Dropdown
-  label='Open menu'
-  items={[
-    { label: 'Edit profile', value: 'edit' },
-    { label: 'Delete account', value: 'delete', danger: true },
-  ]}
-/>
-\`\`\`
-`,
-      },
-    },
-  },
   args: {
     label: 'Open menu',
     items,

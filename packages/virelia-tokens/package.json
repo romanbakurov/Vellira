@@ -1,6 +1,7 @@
 {
   "name": "@romanbakurov/virelia-tokens",
   "version": "2.4.1",
+  "license": "MIT",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -13,7 +14,9 @@
     "./css": "./dist/css/tokens.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "pnpm build:tokens && tsc",

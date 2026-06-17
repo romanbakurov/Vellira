@@ -48,46 +48,6 @@ function ModalDemo({
 const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### Modal Component
-
-Native dialog displayed above the current screen.
-
-**Features**
-- Header, body, and footer composition
-- Optional root title prop
-- Default open state for previews
-- Backdrop close behavior can be disabled
-- Works with text content and action buttons
-
-### Usage
-
-Use Modal for confirmations and focused flows that should interrupt the current screen until the user responds.
-
-Correct usage:
-
-\`\`\`tsx
-<Modal isOpen={isOpen} onClose={handleClose}>
-  <Modal.Header>Delete file</Modal.Header>
-
-  <Modal.Body>
-    <Text>Are you sure you want to continue?</Text>
-  </Modal.Body>
-
-  <Modal.Footer>
-    <Button variant='secondary' onPress={handleClose}>Cancel</Button>
-    <Button variant='danger' onPress={handleDelete}>Delete</Button>
-  </Modal.Footer>
-</Modal>
-\`\`\`
-`,
-      },
-    },
-  },
 };
 
 export default meta;
@@ -101,15 +61,15 @@ export const Open: Story = {
   render: () => <ModalDemo defaultOpen />,
 };
 
-export const WithTitleProp: Story = {
-  render: () => (
-    <Modal isOpen onClose={() => undefined} title='Native modal'>
-      <Modal.Body>
-        <Text>Modal can render a title through the root title prop.</Text>
-      </Modal.Body>
-    </Modal>
-  ),
-};
+// export const WithTitleProp: Story = {
+//   render: () => (
+//     <Modal isOpen onClose={() => undefined} title='Native modal'>
+//       <Modal.Body>
+//         <Text>Modal can render a title through the root title prop.</Text>
+//       </Modal.Body>
+//     </Modal>
+//   ),
+// };
 
 export const WithoutBackdropClose: Story = {
   render: () => <ModalDemo closeOnBackdrop={false} title='Important notice' />,

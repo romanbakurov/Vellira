@@ -1,6 +1,7 @@
 {
   "name": "@romanbakurov/virelia-native",
   "version": "2.4.1",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,8 +16,10 @@
   },
   "files": [
     "dist",
+    "README.md",
     "src",
-    "!src/**/*.stories.*"
+    "!src/**/*.stories.*",
+    "LICENSE"
   ],
   "scripts": {
     "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
