@@ -11,6 +11,15 @@ const options = [
 const meta: Meta<typeof RadioGroup> = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'RadioGroup is a native selection component for choosing one option from a set. It supports horizontal or vertical layouts, required and disabled states, disabled options, and validation feedback.',
+      },
+    },
+  },
   args: {
     label: 'Plan',
     defaultValue: 'pro',

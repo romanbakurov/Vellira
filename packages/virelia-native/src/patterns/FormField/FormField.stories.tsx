@@ -8,6 +8,15 @@ import { FormField } from './FormField';
 const meta: Meta<typeof FormField> = {
   title: 'Patterns/FormField',
   component: FormField,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'FormField is a native layout pattern for composing labels, required markers, errors, disabled state, and custom field content with consistent spacing across app forms.',
+      },
+    },
+  },
   args: {
     label: 'Label',
     children: <Text>Field content</Text>,

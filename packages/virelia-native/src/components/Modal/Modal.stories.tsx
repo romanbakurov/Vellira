@@ -48,6 +48,15 @@ function ModalDemo({
 const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Modal is a native dialog pattern for focused actions and confirmations. It provides header, body, and footer composition, optional root title, backdrop closing control, and token-based spacing and colors.',
+      },
+    },
+  },
 };
 
 export default meta;

@@ -7,6 +7,14 @@ const meta = {
   title: 'Primitives/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Checkbox is a web form primitive for boolean choices. It renders a labeled control with checked, unchecked, and disabled states and exposes change events for controlled form flows.',
+      },
+    },
+  },
   args: {
     onCheckedChange: fn(),
   },

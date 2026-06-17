@@ -16,43 +16,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `
-### Modal Component
-
-Fully accessible modal dialog with keyboard support.
-
-**Features**
-- Closes on ESC key
-- Closes on backdrop click (configurable)
-- Focus management
-- Scroll lock when open
-- Animated enter/exit
-
-### Accessibility
-
-For proper accessibility, **Modal.Header is required**.
-
-The modal uses:
-
-- \`aria-labelledby\` → references \`Modal.Header\`
-- \`aria-describedby\` → references \`Modal.Body\`
-
-Correct usage:
-
-\`\`\`tsx
-<Modal isOpen onClose={handleClose}>
-  <Modal.Header>Delete file</Modal.Header>
-
-  <Modal.Body>
-    Are you sure you want to delete this file?
-  </Modal.Body>
-
-  <Modal.Footer>
-    ...
-  </Modal.Footer>
-</Modal>
-\`\`\`
-`,
+        component:
+          'Modal is an accessible web dialog for blocking flows and focused decisions. It provides header, body, and footer subcomponents, supports configurable backdrop closing, ESC handling, size and position variants, focus management, and scroll locking while open.',
       },
     },
   },

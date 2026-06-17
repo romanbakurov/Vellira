@@ -22,17 +22,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `
-### Dropdown Component
-
-Fully accessible dropdown menu with comprehensive keyboard support.
-
-**Keyboard Navigation:**
-- \`Enter/Space\` - open/close menu
-- \`ArrowUp/ArrowDown\` - navigate through items
-- \`Escape\` - close menu
-- \`Home/End\` - go to first/last item
-        `,
+        component:
+          'Dropdown is an accessible web menu for grouped actions and contextual commands. It supports text or icon triggers, disabled and danger items, separators, long menus, and keyboard navigation for opening, moving through items, and closing the menu.',
       },
     },
   },

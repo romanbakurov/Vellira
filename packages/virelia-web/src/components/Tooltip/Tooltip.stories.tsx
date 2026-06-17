@@ -13,19 +13,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `
-### Tooltip Component
-
-A fully accessible tooltip that appears on hover or focus.
-
-**Features:**
-- Multiple placements (top, bottom, left, right)
-- Keyboard support (focus)
-- Customizable delay
-- Arrow pointer
-- Smooth animations
-- Support for rich content
-        `,
+        component:
+          'Tooltip is a web overlay for short contextual help. It appears on hover or focus, supports top, bottom, left, and right placement, configurable open and close delays, disabled state, max width, and rich content.',
       },
     },
   },

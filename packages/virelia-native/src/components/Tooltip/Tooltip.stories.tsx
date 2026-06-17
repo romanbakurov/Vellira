@@ -8,6 +8,15 @@ import { Tooltip } from './Tooltip';
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
   component: Tooltip,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Tooltip is a native helper overlay for short contextual guidance. It supports plain text or custom content, disabled state, maximum width, and touch-friendly trigger composition.',
+      },
+    },
+  },
   args: {
     content: 'Helpful native tooltip content',
     children: <Button>Press and hold</Button>,

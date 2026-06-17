@@ -10,6 +10,14 @@ const meta = {
   title: 'Primitives/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Input is a labeled web text-field primitive. It supports controlled values, required and disabled states, validation errors, placeholders, and size variants for compact or spacious form layouts.',
+      },
+    },
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;

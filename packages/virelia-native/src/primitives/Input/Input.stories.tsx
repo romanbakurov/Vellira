@@ -5,6 +5,15 @@ import { Input } from './Input';
 const meta: Meta<typeof Input> = {
   title: 'Primitives/Input',
   component: Input,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Input is a native text-field primitive with shared typography and color tokens. It supports labels, placeholders, values, required and disabled states, validation errors, input types, and size variants.',
+      },
+    },
+  },
   args: {
     label: 'Email',
     placeholder: 'name@company.com',

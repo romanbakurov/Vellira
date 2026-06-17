@@ -15,6 +15,14 @@ const meta = {
   title: 'Primitives/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Button is the primary action primitive for web surfaces. It supports semantic variants, three sizes, disabled and full-width states, optional leading and trailing icons, and accessible labels for icon-only actions.',
+      },
+    },
+  },
   args: {
     onClick: fn(),
   },

@@ -11,6 +11,15 @@ const options = [
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
   component: Select,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Select is a native choice component for picking one option from a compact list. It supports labels, placeholders, default values, required and disabled states, disabled options, and validation errors.',
+      },
+    },
+  },
   args: {
     label: 'Country',
     placeholder: 'Select country...',

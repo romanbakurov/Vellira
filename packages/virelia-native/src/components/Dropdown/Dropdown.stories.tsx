@@ -14,6 +14,15 @@ const items = [
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
   component: Dropdown,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Dropdown is a native contextual action menu. It supports text or custom triggers, grouped items, separators, disabled actions, danger actions, and wrapped labels for longer mobile menu content.',
+      },
+    },
+  },
   args: {
     label: 'Open menu',
     items,

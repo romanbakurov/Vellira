@@ -7,6 +7,12 @@ const meta: Meta<typeof Button> = {
   component: Button,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Button is the primary action primitive for native screens. It uses shared Virelia tokens for color and typography while exposing native press handling, semantic variants, and platform-friendly touch targets.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

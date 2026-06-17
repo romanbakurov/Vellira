@@ -6,6 +6,15 @@ import { Tabs } from './Tabs';
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
   component: Tabs,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Tabs is a native navigation component for switching between related panels. It supports pills and underline appearances, horizontal and vertical orientation, disabled tabs, and token-based active states.',
+      },
+    },
+  },
   argTypes: {
     appearance: {
       control: 'select',
