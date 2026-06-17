@@ -7,6 +7,37 @@ const meta = {
   title: 'Primitives/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Checkbox Component
+
+Boolean form control for turning a single option on or off.
+
+**Features**
+- Controlled checked state
+- Optional label
+- Disabled checked and unchecked states
+- Change callback for form integration
+
+### Usage
+
+Use Checkbox for independent choices such as accepting terms, enabling settings, or selecting optional preferences.
+
+Correct usage:
+
+\`\`\`tsx
+<Checkbox
+  label='Accept terms'
+  checked={accepted}
+  onCheckedChange={setAccepted}
+/>
+\`\`\`
+`,
+      },
+    },
+  },
   args: {
     onCheckedChange: fn(),
   },

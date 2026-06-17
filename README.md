@@ -2,7 +2,7 @@
 
 TypeScript-first design system monorepo for React and React Native.
 
-Virelia is built around shared design tokens, shared state logic, platform-agnostic base types, and platform-specific component implementations for Web and Native.
+Virelia is built around shared design tokens, shared interaction logic, renderer-neutral base types, and platform-specific component implementations for Web and Native.
 
 ![React](https://img.shields.io/badge/React-19.2.3-blue)
 ![React Native](https://img.shields.io/badge/React%20Native-0.85.3-blue)
@@ -29,11 +29,11 @@ Virelia is built around shared design tokens, shared state logic, platform-agnos
 
 ## Apps
 
-| App                      | Purpose                        |
-| ------------------------ | ------------------------------ |
-| `apps/storybook`         | Web Storybook                  |
-| `apps/native-playground` | Expo app and native Storybook  |
-| `apps/test-app`          | Vite app for local web testing |
+| App                      | Purpose                                       |
+| ------------------------ | --------------------------------------------- |
+| `apps/storybook`         | Web Storybook for `virelia-web` components    |
+| `apps/native-playground` | Expo app and React Native on-device Storybook |
+| `apps/test-app`          | Vite app for local web package smoke testing  |
 
 ## Architecture
 
@@ -57,22 +57,22 @@ The packages are intentionally split by responsibility:
 - `tokens` are the source of truth for colors, typography, spacing, radius, shadows, and z-index.
 - `types` contains base contracts that avoid React, DOM, CSS, and React Native-specific props.
 - `core` contains reusable state and keyboard-navigation hooks.
-- `web` and `native` extend the shared base with platform-specific props and rendering.
+- `web` and `native` extend the shared base contracts with platform-specific props and rendering.
 
 ## Component Support
 
-| Component  | Web | Native |
-| ---------- | --- | ------ |
-| Button     | Yes | Yes    |
-| Checkbox   | Yes | Yes    |
-| Input      | Yes | Yes    |
-| FormField  | Yes | Yes    |
-| RadioGroup | Yes | Yes    |
-| Select     | Yes | Yes    |
-| Dropdown   | Yes | Yes    |
-| Tabs       | Yes | Yes    |
-| Tooltip    | Yes | Yes    |
-| Modal      | Yes | Yes    |
+| Component  | Web | Native | Web tests | Native tests | Web stories | Native stories |
+| ---------- | --- | ------ | --------- | ------------ | ----------- | -------------- |
+| Button     | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Checkbox   | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Input      | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| FormField  | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| RadioGroup | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Select     | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Dropdown   | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Tabs       | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Tooltip    | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
+| Modal      | Yes | Yes    | Yes       | Yes          | Yes         | Yes            |
 
 Native components use iOS-inspired `StyleSheet` styles and consume shared tokens from `@romanbakurov/virelia-tokens`.
 
@@ -95,6 +95,7 @@ pnpm add @romanbakurov/virelia-tokens
 ## Web Example
 
 ```tsx
+import '@romanbakurov/virelia-web/styles';
 import { Button, Checkbox, Input } from '@romanbakurov/virelia-web';
 import { useState } from 'react';
 
@@ -216,6 +217,13 @@ pnpm test
 pnpm build
 ```
 
+Run package-specific tests:
+
+```bash
+pnpm --filter @romanbakurov/virelia-web test
+pnpm --filter @romanbakurov/virelia-native test
+```
+
 Build a single package:
 
 ```bash
@@ -240,8 +248,10 @@ The project uses:
 
 - ESLint and Prettier
 - TypeScript strict mode
-- Vitest for web component tests
-- Storybook and Chromatic for visual review
+- Vitest for web and native unit tests
+- React Native unit tests through a lightweight `react-native` Vitest mock
+- Web Storybook and React Native on-device Storybook for component review
+- Chromatic for hosted web visual review
 - Husky and lint-staged for pre-commit checks
 - Semantic Release for automated package publishing
 

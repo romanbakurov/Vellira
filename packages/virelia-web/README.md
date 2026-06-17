@@ -2,7 +2,7 @@
 
 React component package for Virelia.
 
-This package contains the web implementation of the design system. It extends shared contracts from `@romanbakurov/virelia-types`, uses shared tokens from `@romanbakurov/virelia-tokens`, and keeps DOM/CSS-specific behavior inside the web layer.
+This package contains the web implementation of the design system. It extends shared contracts from `@romanbakurov/virelia-types`, uses shared tokens from `@romanbakurov/virelia-tokens`, and keeps DOM, CSS, accessibility ids, and browser events inside the web layer.
 
 ## Components
 
@@ -16,6 +16,8 @@ This package contains the web implementation of the design system. It extends sh
 - Tabs
 - Tooltip
 - Modal
+
+Each public component has Storybook coverage and Vitest unit coverage.
 
 ## Installation
 
@@ -31,32 +33,59 @@ If consuming from GitHub Packages, configure the scope registry:
 
 ## Usage
 
+Import the stylesheet once in your app entry point:
+
 ```tsx
 import '@romanbakurov/virelia-web/styles';
-import { Button, Input } from '@romanbakurov/virelia-web';
+```
+
+Then use the components:
+
+```tsx
+import { Button, Checkbox, Input } from '@romanbakurov/virelia-web';
 import { useState } from 'react';
 
 export function Example() {
   const [email, setEmail] = useState('');
 
   return (
-    <>
-      <Input label='Email' value={email} onChange={setEmail} />
+    <form>
+      <Input
+        label='Email'
+        value={email}
+        onChange={setEmail}
+        placeholder='name@example.com'
+      />
+      <Checkbox label='Accept terms' />
       <Button variant='primary'>Submit</Button>
-    </>
+    </form>
   );
 }
 ```
+
+## Testing
+
+Run only web tests:
+
+```bash
+pnpm --filter @romanbakurov/virelia-web test
+```
+
+The web package uses Vitest with `jsdom`. Tests live next to components as `*.test.tsx` and use a small local render helper based on `react-dom/client`.
+
+## Storybook
+
+Run web Storybook from the workspace root:
+
+```bash
+pnpm --filter @virelia/storybook dev
+```
+
+Stories live next to components as `*.stories.tsx` and are also used for Chromatic visual review.
 
 ## Development
 
 ```bash
 pnpm --filter @romanbakurov/virelia-web build
 pnpm --filter @romanbakurov/virelia-web test
-```
-
-Run web Storybook from the workspace root:
-
-```bash
-pnpm --filter @virelia/storybook dev
 ```

@@ -10,6 +10,40 @@ const meta = {
   title: 'Primitives/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Input Component
+
+Labeled text input primitive for short form values.
+
+**Features**
+- Controlled value
+- Label and placeholder support
+- Required and disabled states
+- Validation error message
+- Size variants: sm, md, and lg
+
+### Usage
+
+Use Input for single-line values such as names, emails, phone numbers, and search text.
+
+Correct usage:
+
+\`\`\`tsx
+<Input
+  id='email'
+  label='Email'
+  value={email}
+  onChange={setEmail}
+  placeholder='name@company.com'
+/>
+\`\`\`
+`,
+      },
+    },
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;

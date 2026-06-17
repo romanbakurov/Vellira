@@ -1,6 +1,6 @@
 {
   "name": "@romanbakurov/virelia-native",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
-    "build": "pnpm clean && tsc -p tsconfig.json"
+    "build": "pnpm clean && tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts"
   },
   "peerDependencies": {
     "react": "^19.1.0",
@@ -33,7 +34,9 @@
     "@romanbakurov/virelia-icons": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^19.2.3"
+    "@types/react": "^19.2.3",
+    "jsdom": "^28.1.0",
+    "vitest": "^4.1.8"
   },
   "publishConfig": {
     "access": "public",

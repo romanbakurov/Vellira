@@ -25,15 +25,51 @@ const meta = {
         component: `
 ### Dropdown Component
 
-Fully accessible dropdown menu with comprehensive keyboard support.
+Contextual action menu opened from a trigger.
 
-**Keyboard Navigation:**
-- \`Enter/Space\` - open/close menu
-- \`ArrowUp/ArrowDown\` - navigate through items
-- \`Escape\` - close menu
-- \`Home/End\` - go to first/last item
-        `,
+**Features**
+- Text and icon triggers
+- Custom trigger content
+- Disabled items
+- Danger items
+- Long menus
+- Different trigger styles
+
+### Usage
+
+Use Dropdown for secondary actions that should not be visible all the time, such as edit, duplicate, delete, or account actions.
+
+Correct usage:
+
+\`\`\`tsx
+<Dropdown
+  label='Actions'
+  trigger='Menu'
+  items={[
+    { label: 'Edit', value: 'edit' },
+    { label: 'Delete', value: 'delete', danger: true },
+  ]}
+/>
+\`\`\`
+`,
       },
+    },
+  },
+  argTypes: {
+    icon: {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    arrowIcon: {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    items: {
+      control: false,
     },
   },
 } satisfies Meta<typeof Dropdown>;

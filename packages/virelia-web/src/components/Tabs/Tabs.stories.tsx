@@ -21,17 +21,33 @@ const meta = {
         component: `
 ### Tabs Component
 
-A fully accessible tabs component for switching between content panels.
+Navigation component for switching between related content panels.
 
-**Features:**
-- Keyboard navigation (Arrow keys for navigation, Tab for focus)
-- ARIA attributes for accessibility (role="tablist", role="tab", role="tabpanel")
-- Support for horizontal and vertical orientation
-- Different visual appearances (default, pills, underlined)
-- Active tab styling with smooth animations
-- Fully responsive design
-- Support for disabled tabs
-        `,
+**Features**
+- Text, icon, and text-with-icon tabs
+- Default, underline, and pills appearances
+- Horizontal and vertical orientation
+- Disabled tabs
+- Panel composition through \`Tabs.Panel\`
+
+### Accessibility
+
+Tabs render tablist, tab, and panel semantics so keyboard and screen reader users can understand the relationship between controls and content.
+
+Correct usage:
+
+\`\`\`tsx
+<Tabs defaultActiveIndex={0}>
+  <Tabs.List>
+    <Tabs.Tab index={0}>Overview</Tabs.Tab>
+    <Tabs.Tab index={1}>Settings</Tabs.Tab>
+  </Tabs.List>
+
+  <Tabs.Panel index={0}>Overview content</Tabs.Panel>
+  <Tabs.Panel index={1}>Settings content</Tabs.Panel>
+</Tabs>
+\`\`\`
+`,
       },
     },
   },

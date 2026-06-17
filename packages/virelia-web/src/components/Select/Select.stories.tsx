@@ -11,6 +11,41 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Select Component
+
+Single-value select control for choosing from a predefined list.
+
+**Features**
+- Label and placeholder support
+- Controlled selected value
+- Disabled state
+- Disabled options
+- Validation error message
+- Keyboard close with Escape
+
+### Accessibility
+
+The trigger exposes combobox semantics and updates its expanded state when the list opens or closes.
+
+Correct usage:
+
+\`\`\`tsx
+<Select
+  label='Country'
+  value={country}
+  onChange={setCountry}
+  placeholder='Select country...'
+  options={countries}
+/>
+\`\`\`
+`,
+      },
+    },
+  },
   args: {
     onChange: fn(),
   },

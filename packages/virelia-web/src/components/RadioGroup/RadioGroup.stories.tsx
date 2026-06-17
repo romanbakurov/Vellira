@@ -1,13 +1,51 @@
 import { useState } from 'react';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { RadioGroup } from '../RadioGroup';
+
+import type { RadioGroupProps } from './types';
 
 const meta = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### RadioGroup Component
+
+Grouped radio control for selecting exactly one option.
+
+**Features**
+- Controlled selected value
+- Vertical and horizontal orientation
+- Required state
+- Disabled group state
+- Disabled individual options
+- Validation error message
+
+### Usage
+
+Use RadioGroup when users need to compare a small set of mutually exclusive choices.
+
+Correct usage:
+
+\`\`\`tsx
+<RadioGroup
+  name='plan'
+  label='Plan'
+  value={plan}
+  onChange={setPlan}
+  options={plans}
+/>
+\`\`\`
+`,
+      },
+    },
+  },
   args: {
     onChange: fn(),
   },

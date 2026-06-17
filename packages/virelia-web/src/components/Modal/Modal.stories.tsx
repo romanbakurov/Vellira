@@ -19,28 +19,25 @@ const meta = {
         component: `
 ### Modal Component
 
-Fully accessible modal dialog with keyboard support.
+Accessible dialog displayed above the page content.
 
 **Features**
+- Header, body, and footer composition
 - Closes on ESC key
-- Closes on backdrop click (configurable)
+- Closes on backdrop click when enabled
+- Size variants
+- Position variants
 - Focus management
-- Scroll lock when open
-- Animated enter/exit
+- Scroll lock while open
 
 ### Accessibility
 
-For proper accessibility, **Modal.Header is required**.
-
-The modal uses:
-
-- \`aria-labelledby\` → references \`Modal.Header\`
-- \`aria-describedby\` → references \`Modal.Body\`
+For proper accessibility, include a clear title in \`Modal.Header\`. The modal uses the header and body content to describe the dialog to assistive technologies.
 
 Correct usage:
 
 \`\`\`tsx
-<Modal isOpen onClose={handleClose}>
+<Modal isOpen={isOpen} onClose={handleClose}>
   <Modal.Header>Delete file</Modal.Header>
 
   <Modal.Body>
@@ -48,7 +45,8 @@ Correct usage:
   </Modal.Body>
 
   <Modal.Footer>
-    ...
+    <Button onClick={handleClose}>Cancel</Button>
+    <Button variant='danger' onClick={handleDelete}>Delete</Button>
   </Modal.Footer>
 </Modal>
 \`\`\`

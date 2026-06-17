@@ -16,16 +16,28 @@ const meta = {
         component: `
 ### Tooltip Component
 
-A fully accessible tooltip that appears on hover or focus.
+Short helper overlay attached to a trigger element.
 
-**Features:**
-- Multiple placements (top, bottom, left, right)
-- Keyboard support (focus)
-- Customizable delay
-- Arrow pointer
-- Smooth animations
-- Support for rich content
-        `,
+**Features**
+- Placement: top, bottom, left, and right
+- Opens on hover or focus
+- Disabled state
+- Custom open and close delay
+- Maximum width control
+- Rich content support
+
+### Usage
+
+Use Tooltip for brief explanations. Keep content short and avoid putting required information only inside a tooltip.
+
+Correct usage:
+
+\`\`\`tsx
+<Tooltip content='Search all projects' placement='top'>
+  <Button ariaLabel='Search' leftIcon={<Search />} />
+</Tooltip>
+\`\`\`
+`,
       },
     },
   },

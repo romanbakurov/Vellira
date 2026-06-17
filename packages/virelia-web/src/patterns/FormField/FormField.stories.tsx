@@ -7,6 +7,36 @@ const meta = {
   title: 'Patterns/FormField',
   component: FormField,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### FormField Pattern
+
+Layout wrapper for composing labels, validation text, and custom form controls.
+
+**Features**
+- Label rendering
+- Required marker
+- Error message area
+- Disabled state styling
+- Works with native inputs or custom Virelia controls
+
+### Usage
+
+Use FormField when a control needs consistent spacing and validation presentation but the control itself is custom.
+
+Correct usage:
+
+\`\`\`tsx
+<FormField label='Email' required error={emailError}>
+  <input value={email} onChange={handleEmailChange} />
+</FormField>
+\`\`\`
+`,
+      },
+    },
+  },
 } satisfies Meta<typeof FormField>;
 
 export default meta;

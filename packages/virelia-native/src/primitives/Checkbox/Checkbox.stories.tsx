@@ -4,6 +4,35 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Checkbox> = {
   title: 'Primitives/Checkbox',
   component: Checkbox,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Checkbox Component
+
+Native boolean control with an optional label.
+
+**Features**
+- Default checked state
+- Disabled checked and unchecked states
+- Optional label
+- Long label wrapping
+- Unlabeled usage when surrounding copy provides context
+
+### Usage
+
+Use Checkbox for a single on/off choice in native forms or settings screens.
+
+Correct usage:
+
+\`\`\`tsx
+<Checkbox label='Accept terms' defaultChecked />
+\`\`\`
+`,
+      },
+    },
+  },
 };
 
 export default meta;
