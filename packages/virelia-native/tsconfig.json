@@ -14,5 +14,12 @@
     "esModuleInterop": true
   },
   "include": ["src"],
-  "exclude": ["**/*.stories.*", "dist", "node_modules"]
+  "exclude": [
+    "**/*.stories.*",
+    "**/*.test.*",
+    "src/test-utils",
+    "test",
+    "dist",
+    "node_modules"
+  ]
 }
