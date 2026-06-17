@@ -1,13 +1,24 @@
 import { useState } from 'react';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { RadioGroup } from '../RadioGroup';
+
+import type { RadioGroupProps } from './types';
 
 const meta = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'RadioGroup is a web form component for selecting exactly one option from a group. It supports vertical and horizontal layouts, required and disabled states, disabled options, and validation errors.',
+      },
+    },
+  },
   args: {
     onChange: fn(),
   },

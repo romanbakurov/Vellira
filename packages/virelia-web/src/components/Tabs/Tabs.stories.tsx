@@ -18,20 +18,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `
-### Tabs Component
-
-A fully accessible tabs component for switching between content panels.
-
-**Features:**
-- Keyboard navigation (Arrow keys for navigation, Tab for focus)
-- ARIA attributes for accessibility (role="tablist", role="tab", role="tabpanel")
-- Support for horizontal and vertical orientation
-- Different visual appearances (default, pills, underlined)
-- Active tab styling with smooth animations
-- Fully responsive design
-- Support for disabled tabs
-        `,
+        component:
+          'Tabs is an accessible web component for switching between related content panels. It supports horizontal and vertical orientation, multiple visual appearances, icon-only or text tabs, disabled tabs, and ARIA roles for tablists, tabs, and panels.',
       },
     },
   },

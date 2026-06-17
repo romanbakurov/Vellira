@@ -11,6 +11,14 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Select is an accessible web listbox-style control for choosing one option from a predefined set. It supports labels, placeholders, disabled options, validation errors, keyboard closing, and controlled value changes.',
+      },
+    },
+  },
   args: {
     onChange: fn(),
   },

@@ -7,6 +7,14 @@ const meta = {
   title: 'Patterns/FormField',
   component: FormField,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'FormField is a layout pattern for pairing a label, required marker, helper or error text, and an arbitrary form control. Use it when a custom input needs consistent spacing and validation presentation.',
+      },
+    },
+  },
 } satisfies Meta<typeof FormField>;
 
 export default meta;
