@@ -6,6 +6,10 @@
   "type": "module",
   "author": "Roman Bakurov",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanbakurov/Virelia.git"
+  },
   "scripts": {
     "lint": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}' --fix",
