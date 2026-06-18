@@ -38,6 +38,7 @@ jobs:
         run: pnpm test
 
       - name: Publish to Chromatic
+        if: github.actor != 'dependabot[bot]'
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
