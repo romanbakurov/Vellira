@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 
-import '@romanbakurov/virelia-web/styles';
+import '@romanbakurov/vellira-web/styles';
 import '../public/src/fonts.scss';
 
 const preview: Preview = {};

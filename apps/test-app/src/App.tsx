@@ -1,4 +1,4 @@
-import { Button } from '@romanbakurov/virelia-web';
+import { Button } from '@romanbakurov/vellira-web';
 
 export default function App() {
   return (

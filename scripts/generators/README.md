@@ -1,6 +1,6 @@
-# Virelia Component Generator
+# Vellira Component Generator
 
-Internal scaffolding tool used to generate components for Virelia Web and Native packages.
+Internal scaffolding tool used to generate components for Vellira Web and Native packages.
 
 ## Usage
 
@@ -22,8 +22,8 @@ pnpm create:component Badge both primitives
 
 | Platform | Description                            |
 | -------- | -------------------------------------- |
-| web      | Generate component in `virelia-web`    |
-| native   | Generate component in `virelia-native` |
+| web      | Generate component in `vellira-web`    |
+| native   | Generate component in `vellira-native` |
 | both     | Generate component in both packages    |
 
 ## Layers
@@ -84,27 +84,27 @@ scripts/
 
 The generator automatically:
 
-* Creates component directories
-* Generates platform-specific component implementations
-* Generates Storybook stories
-* Generates component tests
-* Generates style templates
-* Generates type definitions
-* Creates component barrel exports
-* Updates layer barrel exports
-* Supports Web and Native packages
-* Supports multi-platform generation (`both`)
+- Creates component directories
+- Generates platform-specific component implementations
+- Generates Storybook stories
+- Generates component tests
+- Generates style templates
+- Generates type definitions
+- Creates component barrel exports
+- Updates layer barrel exports
+- Supports Web and Native packages
+- Supports multi-platform generation (`both`)
 
 ## Supported Targets
 
 ```txt
 packages/
-├── virelia-web
-└── virelia-native
+├── vellira-web
+└── vellira-native
 ```
 
 ## Notes
 
-The generator assumes the standard Virelia package structure and updates exports automatically after component creation.
+The generator assumes the standard Vellira package structure and updates exports automatically after component creation.
 
 All generated files are intended as starting points and may require manual refinement depending on component complexity.

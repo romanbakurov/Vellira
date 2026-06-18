@@ -1,0 +1,81 @@
+import { type CSSProperties, forwardRef } from 'react';
+
+import { ChevronDown } from '@romanbakurov/vellira-icons';
+import { cn } from '@utils/cn';
+
+import type { DropdownTriggerProps } from './types';
+
+import styles from './DropdownTrigger.module.scss';
+
+export const DropdownTrigger = forwardRef<
+  HTMLButtonElement,
+  DropdownTriggerProps
+>(
+  (
+    {
+      children,
+      isOpen,
+      icon,
+      arrowIcon,
+      rotateAngle = 90,
+      label,
+      className,
+      ...buttonProps
+    },
+    ref
+  ) => {
+    // const hasText = typeof children === 'string' && children.trim().length > 0;
+    const hasIcon = Boolean(icon);
+    const hasContent = Boolean(children);
+
+    const isOnlyIcon = hasIcon && !hasContent;
+    const showArrow = hasContent;
+    const arrow = arrowIcon ?? <ChevronDown />;
+    const ariaLabel = isOnlyIcon ? (label ?? 'Open menu') : undefined;
+
+    return (
+      <button
+        {...buttonProps}
+        ref={ref}
+        type='button'
+        className={cn(
+          styles.button,
+          {
+            [styles.disabled]: buttonProps.disabled,
+            [styles.iconOnly]: isOnlyIcon,
+          },
+          className
+        )}
+        aria-label={ariaLabel}
+        aria-expanded={isOpen}
+        aria-haspopup='menu'
+        style={
+          {
+            '--dropdown-rotate-angle': `${rotateAngle}deg`,
+          } as CSSProperties
+        }
+      >
+        {hasIcon && (
+          <span aria-hidden='true' className={styles.iconLeft}>
+            {icon}
+          </span>
+        )}
+
+        {children}
+
+        {showArrow && (
+          <span
+            aria-hidden='true'
+            className={cn(styles.arrow, {
+              [styles.open]: isOpen,
+            })}
+          >
+            {arrow}
+          </span>
+        )}
+      </button>
+    );
+  }
+);
+
+DropdownTrigger.displayName = 'DropdownTrigger';

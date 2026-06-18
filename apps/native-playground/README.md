@@ -1,8 +1,8 @@
 # Native Playground
 
-Expo app for developing and testing `@romanbakurov/virelia-native`.
+Expo app for developing and testing `@romanbakurov/vellira-native`.
 
-The app can run as a normal Expo playground or with React Native Storybook enabled. Native Storybook reads stories from `packages/virelia-native/src/**/*.stories.@(ts|tsx)`, so package-level stories appear here automatically after running the Storybook generation step.
+The app can run as a normal Expo playground or with React Native Storybook enabled. Native Storybook reads stories from `packages/vellira-native/src/**/*.stories.@(ts|tsx)`, so package-level stories appear here automatically after running the Storybook generation step.
 
 ## Start
 
@@ -36,7 +36,7 @@ pnpm --filter native-playground exec sb-rn-get-stories
 Native package unit tests run outside the simulator:
 
 ```bash
-pnpm --filter @romanbakurov/virelia-native test
+pnpm --filter @romanbakurov/vellira-native test
 ```
 
 The playground itself is mainly for manual Expo and on-device Storybook checks.
@@ -45,5 +45,5 @@ The playground itself is mainly for manual Expo and on-device Storybook checks.
 
 - Built with Expo `56`.
 - Uses React Native `0.85`.
-- Consumes `@romanbakurov/virelia-native` from the workspace.
+- Consumes `@romanbakurov/vellira-native` from the workspace.
 - Native stories cover Button, Checkbox, Input, FormField, RadioGroup, Select, Dropdown, Tabs, Tooltip, and Modal.

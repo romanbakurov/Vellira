@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Security updates are provided for the latest released version of Virelia.
+Security updates are provided for the latest released version of Vellira.
 
 ## Reporting a Vulnerability
 

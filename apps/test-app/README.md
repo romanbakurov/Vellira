@@ -1,6 +1,6 @@
 # Test App
 
-Vite app for local testing of `@romanbakurov/virelia-web`.
+Vite app for local testing of `@romanbakurov/vellira-web`.
 
 This app is intentionally small. Use it to verify package consumption outside Storybook and to catch app-level integration issues.
 

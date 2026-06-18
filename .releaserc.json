@@ -1,6 +1,6 @@
 {
   "branches": ["main"],
-  "repositoryUrl": "https://github.com/romanbakurov/Virelia.git",
+  "repositoryUrl": "https://github.com/romanbakurov/Vellira.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",

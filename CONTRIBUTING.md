@@ -1,4 +1,4 @@
-# Contributing to Virelia
+# Contributing to Vellira
 
 ## Branch naming
 

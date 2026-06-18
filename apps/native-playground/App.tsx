@@ -1,9 +1,9 @@
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Alert } from 'react-native';
-import { Check } from '@romanbakurov/virelia-icons';
+import { Check } from '@romanbakurov/vellira-icons';
 
-import { Button, Checkbox } from '@romanbakurov/virelia-native';
+import { Button, Checkbox } from '@romanbakurov/vellira-native';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -21,7 +21,7 @@ export default function App() {
       <Button
         variant='primary'
         size='md'
-        onPress={() => Alert.alert('Virelia!')}
+        onPress={() => Alert.alert('Vellira!')}
       >
         Click me
       </Button>

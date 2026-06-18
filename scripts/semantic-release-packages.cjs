@@ -3,11 +3,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const publicPackages = [
-  '@romanbakurov/virelia-core',
-  '@romanbakurov/virelia-tokens',
-  '@romanbakurov/virelia-types',
-  '@romanbakurov/virelia-web',
-  '@romanbakurov/virelia-native',
+  '@romanbakurov/vellira-core',
+  '@romanbakurov/vellira-tokens',
+  '@romanbakurov/vellira-types',
+  '@romanbakurov/vellira-web',
+  '@romanbakurov/vellira-native',
 ];
 
 function updateVersion(packagePath, version) {

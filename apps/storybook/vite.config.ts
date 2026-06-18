@@ -7,32 +7,32 @@ export default defineConfig({
   plugins: [react(), svgr()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '../../packages/virelia-web/src'),
+      '@': path.resolve(__dirname, '../../packages/vellira-web/src'),
       '@components': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/components'
+        '../../packages/vellira-web/src/components'
       ),
-      '@hooks': path.resolve(__dirname, '../../packages/virelia-web/src/hooks'),
+      '@hooks': path.resolve(__dirname, '../../packages/vellira-web/src/hooks'),
       '@overlay': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/overlay'
+        '../../packages/vellira-web/src/overlay'
       ),
       '@patterns': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/patterns'
+        '../../packages/vellira-web/src/patterns'
       ),
       '@primitives': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/primitives'
+        '../../packages/vellira-web/src/primitives'
       ),
       '@styles': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/styles'
+        '../../packages/vellira-web/src/styles'
       ),
-      '@utils': path.resolve(__dirname, '../../packages/virelia-web/src/utils'),
+      '@utils': path.resolve(__dirname, '../../packages/vellira-web/src/utils'),
       '@assets': path.resolve(
         __dirname,
-        '../../packages/virelia-web/src/assets'
+        '../../packages/vellira-web/src/assets'
       ),
     },
   },

@@ -33,7 +33,7 @@ jobs:
         run: pnpm build
 
       - name: Install Playwright browsers
-        run: pnpm --filter @virelia/storybook run playwright:install
+        run: pnpm --filter @vellira/storybook run playwright:install
 
       - name: Run linters
         run: pnpm lint

@@ -1,8 +1,8 @@
 {
-  "name": "@romanbakurov/virelia",
+  "name": "@romanbakurov/vellira",
   "private": true,
   "version": "2.4.0",
-  "description": "Virelia Design System monorepo",
+  "description": "Vellira Design System monorepo",
   "type": "module",
   "author": "Roman Bakurov",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
     "build": "pnpm -r build",
-    "test": "pnpm --filter @romanbakurov/virelia-web test",
+    "test": "pnpm --filter @romanbakurov/vellira-web test",
     "prepare": "husky",
     "create:component": "tsx scripts/generators/create-component.ts"
   },

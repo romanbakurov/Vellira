@@ -29,11 +29,11 @@ if (!componentName || !platform || !layer) {
 function getTargetPackages(platform: Platform): string[] {
   switch (platform) {
     case 'web':
-      return ['virelia-web'];
+      return ['vellira-web'];
     case 'native':
-      return ['virelia-native'];
+      return ['vellira-native'];
     case 'both':
-      return ['virelia-web', 'virelia-native'];
+      return ['vellira-web', 'vellira-native'];
   }
 }
 
@@ -43,7 +43,7 @@ function createComponent(params: {
   layer: Layer;
 }) {
   const { packageName, componentName, layer } = params;
-  const isNative = packageName === 'virelia-native';
+  const isNative = packageName === 'vellira-native';
 
   const componentDir = path.join(
     process.cwd(),

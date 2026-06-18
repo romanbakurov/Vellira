@@ -6,7 +6,7 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  stories: ['../../../packages/virelia-web/src/**/*.stories.@(ts|tsx|mdx)'],
+  stories: ['../../../packages/vellira-web/src/**/*.stories.@(ts|tsx|mdx)'],
 
   addons: [
     '@storybook/addon-docs',
