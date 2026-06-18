@@ -5,7 +5,7 @@ export interface BaseRadioOption {
 
 export interface BaseRadioGroupProps {
   value?: string;
-  defaultValue: string;
+  defaultValue?: string;
   onChange?: (value: string) => void;
   options: BaseRadioOption[];
   required?: boolean;

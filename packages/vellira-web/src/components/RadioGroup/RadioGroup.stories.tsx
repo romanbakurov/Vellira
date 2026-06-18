@@ -50,9 +50,82 @@ Correct usage:
     onChange: fn(),
   },
   argTypes: {
-    error: {
+    label: {
+      description: 'Text label displayed above the RadioGroup.',
       control: 'text',
-      description: 'Error message (string)',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    name: {
+      description: 'Radio group name shared by all radio options.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    value: {
+      description: 'Current selected value for controlled usage.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    defaultValue: {
+      description: 'Initial selected value for uncontrolled usage.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    options: {
+      description: 'List of radio options.',
+      control: 'object',
+      table: {
+        type: {
+          summary:
+            'Array<{ label: string; value: string; disabled?: boolean }>',
+        },
+      },
+    },
+    orientation: {
+      description: 'Layout direction of the radio options.',
+      control: 'radio',
+      options: ['vertical', 'horizontal'],
+      table: {
+        type: { summary: `'vertical' | 'horizontal'` },
+        defaultValue: { summary: 'vertical' },
+      },
+    },
+    required: {
+      description: 'Marks the radio group as required.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    disabled: {
+      description: 'Disables all radio options in the group.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    error: {
+      description: 'Validation error message displayed below the group.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    onChange: {
+      description: 'Called when the selected value changes.',
+      action: 'changed',
+      table: {
+        type: { summary: '(value: string) => void' },
+      },
     },
   },
 } satisfies Meta<typeof RadioGroup>;
@@ -67,7 +140,8 @@ const defaultOptions = [
 ];
 
 const RadioGroupWithState = (args: RadioGroupProps) => {
-  const [value, setValue] = useState(args.defaultValue || '');
+  const [value, setValue] = useState(args.defaultValue ?? '');
+
   return <RadioGroup {...args} value={value} onChange={setValue} />;
 };
 
@@ -84,8 +158,10 @@ export const Basic: Story = {
 
 export const Required: Story = {
   args: {
+    name: 'country',
     label: 'Country',
     required: true,
+    defaultValue: 'fr',
     options: defaultOptions,
     orientation: 'vertical',
   },
@@ -94,7 +170,10 @@ export const Required: Story = {
 
 export const WithError: Story = {
   args: {
+    name: 'country',
     label: 'Country',
+    required: false,
+    defaultValue: 'fr',
     error: 'Please select a country',
     options: defaultOptions,
     orientation: 'vertical',
@@ -104,18 +183,24 @@ export const WithError: Story = {
 
 export const Disabled: Story = {
   args: {
+    name: 'country',
     label: 'Country',
     disabled: true,
     defaultValue: 'fr',
+    required: false,
     options: defaultOptions,
     orientation: 'vertical',
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };
 
 export const DisabledOption: Story = {
   args: {
+    name: 'country',
     label: 'Country',
     defaultValue: 'fr',
+    required: false,
+    orientation: 'vertical',
     options: [
       { label: 'France', value: 'fr' },
       { label: 'Spain', value: 'es', disabled: true },
@@ -127,8 +212,10 @@ export const DisabledOption: Story = {
 
 export const Horizontal: Story = {
   args: {
+    name: 'country',
     label: 'Country',
     defaultValue: 'fr',
+    required: false,
     options: defaultOptions,
     orientation: 'horizontal',
   },
