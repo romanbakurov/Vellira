@@ -14,6 +14,8 @@ Virelia is built around shared design tokens, shared interaction logic, renderer
 
 - [Storybook Demo](https://main--6a07269cf7126a71ef2f62ca.chromatic.com)
 - [Chromatic Library](https://www.chromatic.com/library?appId=6a07269cf7126a71ef2f62ca&branch=main)
+- [Web Component API](./packages/virelia-web/API.md)
+- [Native Component API](./packages/virelia-native/API.md)
 - [GitHub Repository](https://github.com/romanbakurov/Virelia)
 
 ## Packages

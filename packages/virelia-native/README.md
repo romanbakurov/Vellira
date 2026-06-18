@@ -19,6 +19,9 @@ This package contains iOS-inspired native components built with React Native `St
 
 Each public native component has React Native Storybook coverage and Vitest unit coverage.
 
+For detailed props, shared types, examples, and compound component APIs, see
+[Native Component API](./API.md).
+
 ## Installation
 
 ```bash

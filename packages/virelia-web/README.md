@@ -19,6 +19,9 @@ This package contains the web implementation of the design system. It extends sh
 
 Each public component has Storybook coverage and Vitest unit coverage.
 
+For detailed props, shared types, examples, and compound component APIs, see
+[Web Component API](./API.md).
+
 ## Installation
 
 ```bash
