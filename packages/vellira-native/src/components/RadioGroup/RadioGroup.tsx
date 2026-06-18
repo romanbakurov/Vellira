@@ -9,11 +9,11 @@ import type { RadioGroupProps } from './types';
 export function RadioGroup({
   label,
   value,
-  defaultValue,
+  defaultValue = '',
   onChange,
   options,
   required,
-  disabled,
+  disabled = false,
   error,
   orientation = 'vertical',
   style,
@@ -22,7 +22,7 @@ export function RadioGroup({
 }: RadioGroupProps) {
   const [selectedValue, setSelectedValue] = useControllableState({
     value,
-    defaultValue,
+    defaultValue: defaultValue ?? '',
     onChange,
   });
 
