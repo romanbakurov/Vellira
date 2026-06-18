@@ -26,7 +26,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/browser-playwright": "^4.1.6",
-    "@vitest/coverage-v8": "^4.1.6",
+    "@vitest/coverage-v8": "^4.1.9",
     "chromatic": "^16.10.0",
     "eslint-plugin-storybook": "^10.4.3",
     "playwright": "^1.60.0",
