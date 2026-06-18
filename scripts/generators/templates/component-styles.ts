@@ -1,4 +1,4 @@
-import type { ComponentTemplateParams } from './types';
+import type { ComponentTemplateParams } from './component-types';
 
 export function renderStylesTemplate({
   componentName,

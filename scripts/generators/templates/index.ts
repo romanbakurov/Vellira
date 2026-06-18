@@ -1,11 +1,11 @@
-export * from './types';
-export * from './story';
-export * from './native-component';
-export * from './web-component';
-export * from './styles';
-export * from './test';
+export * from './component-types';
+export * from './component-story';
+export * from './component-native';
+export * from './component-web';
+export * from './component-styles';
+export * from './component-test';
 
-import type { ComponentTemplateParams } from './types';
+import type { ComponentTemplateParams } from './component-types';
 
 export function renderIndexTemplate({
   componentName,
