@@ -14,9 +14,12 @@
     }
   },
   "files": [
-    "dist",
+    "src",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "!src/**/*.stories.*",
+    "!src/**/*.test.*",
+    "!src/test-utils"
   ],
   "scripts": {
     "clean": "rm -rf src/generated/*.jsx",
