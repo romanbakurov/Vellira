@@ -3,7 +3,6 @@ import {
   Download,
   Filter,
   Profile,
-  Save,
   Search,
 } from '@romanbakurov/virelia-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -52,24 +51,78 @@ Correct usage:
   },
   argTypes: {
     variant: {
+      description: 'Visual style of the button.',
       control: 'select',
       options: ['primary', 'secondary', 'danger'],
+      table: {
+        type: { summary: `'primary' | 'secondary' | 'danger'` },
+        defaultValue: { summary: 'primary' },
+      },
     },
     size: {
+      description: 'Button size.',
       control: 'radio',
       options: ['sm', 'md', 'lg'],
+      table: {
+        type: { summary: `'sm' | 'md' | 'lg'` },
+        defaultValue: { summary: 'md' },
+      },
+    },
+    disabled: {
+      description: 'Disables user interaction and applies disabled styling.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    fullWidth: {
+      description: 'Makes the button fill the width of its parent container.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    ariaLabel: {
+      description: 'Accessible label for icon-only or non-text buttons.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    children: {
+      description: 'Visible button content.',
+      control: 'text',
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    onClick: {
+      description: 'Click event handler.',
+      action: 'clicked',
+      table: {
+        type: { summary: 'MouseEventHandler<HTMLButtonElement>' },
+      },
     },
     leftIcon: {
+      description: 'Icon rendered before the button content.',
       control: false,
-      table: { disable: true },
+      table: {
+        type: { summary: 'ReactNode' },
+      },
     },
     rightIcon: {
+      description: 'Icon rendered after the button content.',
       control: false,
-      table: { disable: true },
+      table: {
+        type: { summary: 'ReactNode' },
+      },
     },
     iconPosition: {
       control: 'radio',
       options: ['none', 'left', 'right', 'both'],
+      table: { disable: true },
     },
   },
 } satisfies Meta<typeof Button>;
@@ -91,7 +144,6 @@ export const Basic: Story = {
 
     return (
       <Button
-        ariaLabel='Download'
         {...args}
         leftIcon={
           iconPosition === 'left' || iconPosition === 'both' ? icon : undefined
@@ -181,13 +233,13 @@ export const Sizes: Story = {
           alignItems: 'flex-start',
         }}
       >
-        <Button {...args} ariaLabel={false} size='sm'>
+        <Button {...args} size='sm'>
           Small
         </Button>
-        <Button {...args} ariaLabel={false} size='md'>
+        <Button {...args} size='md'>
           Medium
         </Button>
-        <Button {...args} ariaLabel={false} size='lg'>
+        <Button {...args} size='lg'>
           Large
         </Button>
       </div>
@@ -202,13 +254,11 @@ export const WidthComparison: Story = {
     >
       <div style={{ border: '1px dashed #ccc', padding: 16 }}>
         <p>Default (inline)</p>
-        <Button {...args} ariaLabel={false}>
-          Normal Width
-        </Button>
+        <Button {...args}>Normal Width</Button>
       </div>
       <div style={{ border: '1px dashed #ccc', padding: 16 }}>
         <p>Full Width</p>
-        <Button {...args} ariaLabel={false} fullWidth>
+        <Button {...args} fullWidth>
           Full Width
         </Button>
       </div>
@@ -220,22 +270,7 @@ export const WithoutIcons: Story = {
   args: {
     children: 'Save',
     variant: 'primary',
-  },
-  render: ({ iconPosition, ...args }) => {
-    const icon = <Save />;
-
-    return (
-      <Button
-        ariaLabel='Save'
-        {...args}
-        leftIcon={
-          iconPosition === 'left' || iconPosition === 'both' ? icon : undefined
-        }
-        rightIcon={
-          iconPosition === 'right' || iconPosition === 'both' ? icon : undefined
-        }
-      />
-    );
+    size: 'md',
   },
 };
 
@@ -250,7 +285,7 @@ export const OnlyIcon: Story = {
     ariaLabel: 'Filter',
   },
   render: (args) => {
-    return <Button {...args} ariaLabel='Filter' leftIcon={<Filter />} />;
+    return <Button {...args} leftIcon={<Filter />} />;
   },
 };
 
