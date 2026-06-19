@@ -92,6 +92,7 @@ Install the package you need:
 pnpm add @romanbakurov/vellira-web
 pnpm add @romanbakurov/vellira-native
 pnpm add @romanbakurov/vellira-tokens
+pnpm add @romanbakurov/vellira-icons
 ```
 
 ## Web Example

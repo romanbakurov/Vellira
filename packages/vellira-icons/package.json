@@ -2,7 +2,7 @@
   "name": "@romanbakurov/vellira-icons",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "sideEffects": false,
   "type": "module",
   "main": "./src/web.ts",
@@ -38,5 +38,9 @@
     "fast-glob": "^3.3.3",
     "tsx": "^4",
     "typescript": "^6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   }
 }
