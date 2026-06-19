@@ -10,9 +10,6 @@ const meta = {
   title: 'Components/Modal',
   component: Modal,
   tags: ['autodocs'],
-  args: {
-    onClose: fn(),
-  },
   parameters: {
     docs: {
       description: {
@@ -54,43 +51,110 @@ Correct usage:
       },
     },
   },
+  args: {
+    onClose: fn(),
+  },
+  argTypes: {
+    children: {
+      description: 'Modal content.',
+      control: false,
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    zIndex: {
+      description: 'CSS z-index applied to the modal overlay.',
+      control: 'number',
+      table: {
+        type: { summary: 'number' },
+      },
+    },
+    animated: {
+      description: 'Enables opening and closing animations.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    size: {
+      description: 'Modal size.',
+      control: 'radio',
+      options: ['sm', 'md', 'lg'],
+      table: {
+        type: { summary: `'sm' | 'md' | 'lg'` },
+        defaultValue: { summary: 'md' },
+      },
+    },
+    position: {
+      description: 'Modal position inside the viewport.',
+      control: 'radio',
+      options: ['top', 'center', 'bottom'],
+      table: {
+        type: { summary: `'top' | 'center' | 'bottom'` },
+        defaultValue: { summary: 'center' },
+      },
+    },
+    isOpen: {
+      description: 'Controls whether the modal is open.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    onClose: {
+      description: 'Called when the modal requests to close.',
+      action: 'closed',
+      table: {
+        type: { summary: '() => void' },
+      },
+    },
+    closeOnEsc: {
+      description: 'Allows closing the modal with the Escape key.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    closeOnClick: {
+      description: 'Allows closing the modal by clicking the backdrop.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const ModalDemo = ({
-  children,
-  defaultOpen = false,
-  onClose: externalOnClose,
-  position,
-  ...props
-}: {
-  children?: React.ReactNode;
-  defaultOpen?: boolean;
-  closeOnClick?: boolean;
-  position?: 'top' | 'bottom' | 'center';
-  onClose?: () => void;
-}) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+const BasicModalDemo = ({ onClose }: { onClose?: () => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => {
     setIsOpen(false);
-    externalOnClose?.();
+    onClose?.();
   };
 
   return (
     <>
-      {!defaultOpen && (
-        <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      )}
-      <Modal
-        isOpen={isOpen}
-        onClose={handleClose}
-        position={position}
-        {...props}
-      >
-        {children}
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+
+      <Modal isOpen={isOpen} onClose={handleClose}>
+        <Modal.Header>Delete file</Modal.Header>
+        <Modal.Body>Are you sure you want to delete this file?</Modal.Body>
+        <Modal.Footer>
+          <Button variant='primary' onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant='danger' onClick={handleClose}>
+            Delete
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
@@ -197,22 +261,33 @@ const LongContentDemo = () => {
   );
 };
 
+const CustomPositionDemo = ({ onClose }: { onClose?: () => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Top Modal</Button>
+
+      <Modal isOpen={isOpen} position='top' onClose={handleClose}>
+        <Modal.Header>Top Positioned Modal</Modal.Header>
+        <Modal.Body>This modal appears at the top of the screen.</Modal.Body>
+        <Modal.Footer>
+          <Button variant='primary' onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
+
 export const Basic: Story = {
-  args: {},
-  render: (args) => (
-    <ModalDemo onClose={args.onClose}>
-      <Modal.Header>Delete file</Modal.Header>
-      <Modal.Body>Are you sure you want to delete this file?</Modal.Body>
-      <Modal.Footer>
-        <Button variant='primary' onClick={args.onClose}>
-          Cancel
-        </Button>
-        <Button variant='danger' onClick={args.onClose}>
-          Delete
-        </Button>
-      </Modal.Footer>
-    </ModalDemo>
-  ),
+  render: (args) => <BasicModalDemo onClose={args.onClose} />,
 };
 
 export const WithoutBackdropClose: Story = {
@@ -228,16 +303,5 @@ export const LongContent: Story = {
 };
 
 export const CustomPosition: Story = {
-  args: {},
-  render: (args) => (
-    <ModalDemo defaultOpen={false} position='top' onClose={args.onClose}>
-      <Modal.Header>Top Positioned Modal</Modal.Header>
-      <Modal.Body>This modal appears at the top of the screen.</Modal.Body>
-      <Modal.Footer>
-        <Button variant='primary' onClick={args.onClose}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </ModalDemo>
-  ),
+  render: (args) => <CustomPositionDemo onClose={args.onClose} />,
 };
