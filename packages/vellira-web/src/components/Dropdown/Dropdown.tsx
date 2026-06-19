@@ -27,6 +27,8 @@ export const Dropdown = ({
   placement,
   matchTriggerWidth,
   textWrap,
+  showArrow = true,
+  arrowIcon,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -100,6 +102,8 @@ export const Dropdown = ({
         disabled={disabled}
         icon={icon}
         label={label}
+        showArrow={showArrow}
+        arrowIcon={arrowIcon}
         rotateAngle={rotateAngle}
         onClick={toggleOpen}
         onKeyDown={onKeyDown}

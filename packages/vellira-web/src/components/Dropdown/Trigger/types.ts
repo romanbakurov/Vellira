@@ -7,4 +7,5 @@ export interface DropdownTriggerProps
   arrowIcon?: ReactNode;
   rotateAngle?: number;
   label?: string;
+  showArrow?: boolean;
 }

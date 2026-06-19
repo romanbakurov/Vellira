@@ -17,6 +17,7 @@ export const DropdownTrigger = forwardRef<
       isOpen,
       icon,
       arrowIcon,
+      showArrow = true,
       rotateAngle = 90,
       label,
       className,
@@ -29,7 +30,7 @@ export const DropdownTrigger = forwardRef<
     const hasContent = Boolean(children);
 
     const isOnlyIcon = hasIcon && !hasContent;
-    const showArrow = hasContent;
+    const shouldShowArrow = showArrow && hasContent;
     const arrow = arrowIcon ?? <ChevronDown />;
     const ariaLabel = isOnlyIcon ? (label ?? 'Open menu') : undefined;
 
@@ -63,7 +64,7 @@ export const DropdownTrigger = forwardRef<
 
         {children}
 
-        {showArrow && (
+        {shouldShowArrow && (
           <span
             aria-hidden='true'
             className={cn(styles.arrow, {
