@@ -11,12 +11,31 @@ import styles from './Tabs.module.scss';
 
 export const Tabs = ({
   children,
+  activeIndex: controlledActiveIndex,
   defaultActiveIndex = 0,
+  onChange,
   orientation = 'horizontal',
   appearance = 'default',
   className = '',
 }: TabsProps) => {
-  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+  const [uncontrolledActiveIndex, setUncontrolledActiveIndex] =
+    useState(defaultActiveIndex);
+  const isControlled = controlledActiveIndex !== undefined;
+  const activeIndex = isControlled
+    ? controlledActiveIndex
+    : uncontrolledActiveIndex;
+
+  const setActiveIndex = useCallback(
+    (nextIndex: number) => {
+      if (!isControlled) {
+        setUncontrolledActiveIndex(nextIndex);
+      }
+
+      onChange?.(nextIndex);
+    },
+    [isControlled, onChange]
+  );
+
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const registerTab = useCallback(
