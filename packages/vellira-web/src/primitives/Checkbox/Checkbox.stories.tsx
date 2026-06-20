@@ -22,6 +22,7 @@ Boolean form control for turning a single option on or off.
 - Controlled checked state
 - Optional label
 - Disabled checked and unchecked states
+- Validation error message
 - Change callback for form integration
 
 ### Usage
@@ -68,15 +69,6 @@ Correct usage:
         defaultValue: { summary: 'false' },
       },
     },
-    size: {
-      description: 'Checkbox size.',
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
-      table: {
-        type: { summary: `'sm' | 'md' | 'lg'` },
-        defaultValue: { summary: 'md' },
-      },
-    },
     disabled: {
       description: 'Disables user interaction.',
       control: 'boolean',
@@ -93,11 +85,10 @@ Correct usage:
       },
     },
     error: {
-      description: 'Displays error styling for invalid state.',
-      control: 'boolean',
+      description: 'Validation error message displayed under the checkbox.',
+      control: 'text',
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        type: { summary: 'string' },
       },
     },
   },

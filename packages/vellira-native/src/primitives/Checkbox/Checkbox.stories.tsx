@@ -19,7 +19,6 @@ Native boolean control with an optional label.
 - Optional label
 - Error state
 - Disabled state
-- Multiple sizes
 - Accessible checkbox semantics
 
 ### Usage
@@ -71,16 +70,6 @@ Use Checkbox for a single on/off choice in forms, preferences, and settings scre
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      },
-    },
-
-    size: {
-      description: 'Checkbox size.',
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
-      table: {
-        type: { summary: `'sm' | 'md' | 'lg'` },
-        defaultValue: { summary: 'md' },
       },
     },
 
