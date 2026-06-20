@@ -68,6 +68,15 @@ Correct usage:
         defaultValue: { summary: 'false' },
       },
     },
+    size: {
+      description: 'Checkbox size.',
+      control: 'radio',
+      options: ['sm', 'md', 'lg'],
+      table: {
+        type: { summary: `'sm' | 'md' | 'lg'` },
+        defaultValue: { summary: 'md' },
+      },
+    },
     disabled: {
       description: 'Disables user interaction.',
       control: 'boolean',
@@ -81,6 +90,14 @@ Correct usage:
       action: 'changed',
       table: {
         type: { summary: '(checked: boolean) => void' },
+      },
+    },
+    error: {
+      description: 'Displays error styling for invalid state.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
   },
@@ -135,4 +152,22 @@ export const Interactive: Story = {
   render: (args) => {
     return <InteractiveCheckbox {...args} />;
   },
+};
+
+export const Error: Story = {
+  args: {
+    label: 'Accept the terms',
+    error: 'You must accept the terms',
+    checked: false,
+  },
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Checkbox label='Small' size='sm' />
+      <Checkbox label='Medium' size='md' />
+      <Checkbox label='Large' size='lg' />
+    </div>
+  ),
 };

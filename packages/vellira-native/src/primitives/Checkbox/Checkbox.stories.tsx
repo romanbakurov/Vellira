@@ -1,5 +1,6 @@
 import { Checkbox } from '@romanbakurov/vellira-native';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { fn } from 'storybook/test';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Primitives/Checkbox',
@@ -14,22 +15,88 @@ const meta: Meta<typeof Checkbox> = {
 Native boolean control with an optional label.
 
 **Features**
-- Default checked state
-- Disabled checked and unchecked states
+- Controlled and uncontrolled state
 - Optional label
-- Long label wrapping
-- Unlabeled usage when surrounding copy provides context
+- Error state
+- Disabled state
+- Multiple sizes
+- Accessible checkbox semantics
 
 ### Usage
 
-Use Checkbox for a single on/off choice in native forms or settings screens.
-
-Correct usage:
+Use Checkbox for a single on/off choice in forms, preferences, and settings screens.
 
 \`\`\`tsx
-<Checkbox label='Accept terms' defaultChecked />
+<Checkbox
+  label="Accept terms"
+  onCheckedChange={setAccepted}
+/>
 \`\`\`
 `,
+      },
+    },
+  },
+  args: {
+    onCheckedChange: fn(),
+  },
+  argTypes: {
+    label: {
+      description: 'Checkbox label.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+
+    checked: {
+      description: 'Controlled checked state.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
+
+    defaultChecked: {
+      description: 'Initial checked state.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+
+    disabled: {
+      description: 'Disables interaction.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+
+    size: {
+      description: 'Checkbox size.',
+      control: 'radio',
+      options: ['sm', 'md', 'lg'],
+      table: {
+        type: { summary: `'sm' | 'md' | 'lg'` },
+        defaultValue: { summary: 'md' },
+      },
+    },
+
+    error: {
+      description: 'Validation error message.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+
+    onCheckedChange: {
+      description: 'Called when checked state changes.',
+      action: 'changed',
+      table: {
+        type: { summary: '(checked: boolean) => void' },
       },
     },
   },
@@ -67,12 +134,9 @@ export const DisabledChecked: Story = {
   },
 };
 
-export const WithoutLabel: Story = {
-  args: {},
-};
-
-export const LongLabel: Story = {
+export const Error: Story = {
   args: {
-    label: 'I agree to the Terms of Service and Privacy Policy of Vellira',
+    label: 'Accept terms',
+    error: 'You must accept the terms',
   },
 };

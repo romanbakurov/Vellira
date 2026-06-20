@@ -39,4 +39,17 @@ export const styles = StyleSheet.create({
   labelDisabled: {
     color: theme.colors.gray[500],
   },
+
+  container: {
+    gap: 4,
+  },
+
+  boxError: {
+    borderColor: theme.colors.error,
+  },
+
+  errorText: {
+    color: theme.colors.error,
+    fontSize: theme.typography.size.sm,
+  },
 });

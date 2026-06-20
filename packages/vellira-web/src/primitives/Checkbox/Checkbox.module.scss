@@ -12,6 +12,11 @@
   pointer-events: none;
 }
 
+.input:focus-visible + .customCheckbox {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .customCheckbox {
   display: flex;
   justify-content: center;
@@ -20,7 +25,10 @@
   height: 22px;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .checkmark {
@@ -31,13 +39,21 @@
   height: 100%;
   opacity: 0;
   transform: scale(0.5);
-  transition: all 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 
   svg {
     width: 12px;
     height: 12px;
     fill: currentcolor;
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .label {
@@ -51,6 +67,12 @@
 .errorText {
   color: var(--color-error);
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  margin-left: calc(22px + var(--space-3));
+}
+
+.input:checked + .customCheckbox.error {
+  border-color: var(--color-error);
 }
 
 .wrapper:hover .input:not(:disabled) + .customCheckbox {
@@ -88,13 +110,35 @@
 }
 
 .sm {
-  transform: scale(0.9);
+  width: 18px;
+  height: 18px;
 }
 
 .md {
-  transform: scale(1);
+  width: 22px;
+  height: 22px;
 }
 
 .lg {
-  transform: scale(1.2);
+  width: 26px;
+  height: 26px;
+}
+
+.sm .checkmark svg {
+  width: 10px;
+  height: 10px;
+}
+
+.md .checkmark svg {
+  width: 12px;
+  height: 12px;
+}
+
+.lg .checkmark svg {
+  width: 14px;
+  height: 14px;
+}
+
+.disabled {
+  cursor: not-allowed;
 }
