@@ -1,7 +1,7 @@
 {
   "name": "@romanbakurov/vellira",
   "private": true,
-  "version": "2.4.0",
+  "version": "2.7.0",
   "description": "Vellira Design System monorepo",
   "type": "module",
   "author": "Roman Bakurov",
@@ -25,6 +25,7 @@
     "@commitlint/config-conventional": "^20.5.3",
     "@eslint/js": "^9.39.4",
     "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.6",
     "@semantic-release/npm": "^12.0.2",
@@ -47,6 +48,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "semantic-release": "^24.2.9",
     "standard-version": "^9.5.0",
     "stylelint": "^17.11.0",
@@ -61,9 +64,5 @@
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
-  "packageManager": "pnpm@11.6.0+sha512.9a36518224080c6fe5165afdcfe79bfa118c29be703f3f462b1e32efe1e98e47e8750b148e08286250aad4113cc7993ca413c4e2cd447752708c2ee5751bc95f",
-  "dependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  }
+  "packageManager": "pnpm@11.6.0+sha512.9a36518224080c6fe5165afdcfe79bfa118c29be703f3f462b1e32efe1e98e47e8750b148e08286250aad4113cc7993ca413c4e2cd447752708c2ee5751bc95f"
 }
