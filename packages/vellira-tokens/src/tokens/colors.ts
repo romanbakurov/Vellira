@@ -1,7 +1,7 @@
 export const colors = {
   primary: '#4338ca',
   'primary-accent': '#3730a3',
-  'primary-hover-light': '#5f7cf1',
+  'primary-soft': '#5f7cf1',
   secondary: '#07c',
   'secondary-accent': '#0066b3',
   tertiary: '#444189',

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Alarm,
   Folder,
@@ -8,6 +10,7 @@ import {
   Settings,
 } from '@romanbakurov/vellira-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import { Tabs } from '../Tabs';
 
@@ -51,23 +54,57 @@ Correct usage:
       },
     },
   },
+  args: {
+    onChange: fn(),
+  },
   argTypes: {
+    children: {
+      description:
+        'Tabs content composed from Tabs.List, Tabs.Tab, and Tabs.Panel.',
+      control: false,
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
     orientation: {
+      description: 'Layout direction of the tab list.',
       control: 'select',
       options: ['horizontal', 'vertical'],
-      description: 'Tab orientation',
-      defaultValue: 'horizontal',
+      table: {
+        type: { summary: `'horizontal' | 'vertical'` },
+        defaultValue: { summary: 'horizontal' },
+      },
     },
     appearance: {
+      description: 'Visual style of the tabs.',
       control: 'select',
       options: ['default', 'pills', 'underline'],
-      description: 'Visual variant of tabs',
-      defaultValue: 'default',
+      table: {
+        type: { summary: `'default' | 'pills' | 'underline'` },
+        defaultValue: { summary: 'default' },
+      },
     },
     defaultActiveIndex: {
-      control: 'number',
       description: 'Index of initially active tab',
-      defaultValue: 0,
+      control: 'number',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
+    },
+    activeIndex: {
+      description: 'Controlled active tab index.',
+      control: 'number',
+      table: {
+        type: { summary: 'number' },
+      },
+    },
+    onChange: {
+      description: 'Called when the active tab changes.',
+      action: 'changed',
+      table: {
+        type: { summary: '(index: number) => void' },
+      },
     },
   },
 } satisfies Meta<typeof Tabs>;
@@ -92,23 +129,6 @@ const IconTabs = () => (
   </>
 );
 
-const TextIconTabs = () => (
-  <>
-    <Tabs.Tab index={0} icon={<Home />}>
-      Home
-    </Tabs.Tab>
-    <Tabs.Tab index={1} icon={<Profile />}>
-      Profile
-    </Tabs.Tab>
-    <Tabs.Tab index={2} icon={<Settings />}>
-      Settings
-    </Tabs.Tab>
-    <Tabs.Tab index={3} icon={<Profile />}>
-      Notifications
-    </Tabs.Tab>
-  </>
-);
-
 const DisabledTabs = () => (
   <>
     <Tabs.Tab index={0} icon={<Home />}>
@@ -120,7 +140,7 @@ const DisabledTabs = () => (
     <Tabs.Tab index={2} disabled icon={<Settings />}>
       Settings
     </Tabs.Tab>
-    <Tabs.Tab index={3} icon={<Profile />}>
+    <Tabs.Tab index={3} icon={<Alarm />}>
       Notifications
     </Tabs.Tab>
   </>
@@ -184,6 +204,19 @@ const FileTabs = () => (
   </>
 );
 
+const ControlledDemo = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <Tabs activeIndex={activeIndex} onChange={setActiveIndex}>
+      <Tabs.List>
+        <TextTabs />
+      </Tabs.List>
+      <DefaultPanels />
+    </Tabs>
+  );
+};
+
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
@@ -209,30 +242,6 @@ export const Underline: Story = {
   ),
 };
 
-export const UnderlineWithIcons: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} appearance='underline'>
-      <Tabs.List>
-        <TextIconTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
-export const IconOnly: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} appearance='pills'>
-      <Tabs.List>
-        <IconTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
 export const Pills: Story = {
   render: () => (
     <Tabs defaultActiveIndex={0} appearance='pills'>
@@ -245,11 +254,11 @@ export const Pills: Story = {
   ),
 };
 
-export const PillsWithIcons: Story = {
+export const IconOnly: Story = {
   render: () => (
     <Tabs defaultActiveIndex={0} appearance='pills'>
       <Tabs.List>
-        <TextIconTabs />
+        <IconTabs />
       </Tabs.List>
 
       <DefaultPanels />
@@ -293,42 +302,6 @@ export const VerticalBasic: Story = {
   ),
 };
 
-export const VerticalUnderline: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical' appearance='underline'>
-      <Tabs.List>
-        <TextTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
-export const VerticalUnderlineWithIcons: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical' appearance='underline'>
-      <Tabs.List>
-        <TextIconTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
-export const VerticalIconOnly: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical' appearance='pills'>
-      <Tabs.List>
-        <IconTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
 export const VerticalPills: Story = {
   render: () => (
     <Tabs defaultActiveIndex={0} orientation='vertical' appearance='pills'>
@@ -341,38 +314,6 @@ export const VerticalPills: Story = {
   ),
 };
 
-export const VerticalPillsWithIcons: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical' appearance='pills'>
-      <Tabs.List>
-        <TextIconTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
-export const VerticalDisabledState: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical'>
-      <Tabs.List>
-        <DisabledTabs />
-      </Tabs.List>
-
-      <DefaultPanels />
-    </Tabs>
-  ),
-};
-
-export const VerticalCustomContent: Story = {
-  render: () => (
-    <Tabs defaultActiveIndex={0} orientation='vertical'>
-      <Tabs.List>
-        <FileTabs />
-      </Tabs.List>
-
-      <FilePanels />
-    </Tabs>
-  ),
+export const Controlled: Story = {
+  render: () => <ControlledDemo />,
 };
