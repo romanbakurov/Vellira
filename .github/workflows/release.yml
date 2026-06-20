@@ -36,8 +36,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Lint
+        run: pnpm lint
+
       - name: Build
-        run: pnpm -r build
+        run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm --filter @vellira/storybook run playwright:install
+
+      - name: Test
+        run: pnpm test
 
       - name: Release
         env:

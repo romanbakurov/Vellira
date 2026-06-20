@@ -1,4 +1,4 @@
-name: Chromatic Publish
+name: CI
 
 on:
   push:
@@ -8,16 +8,14 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
 
 jobs:
-  chromatic:
+  quality:
+    name: Lint, build, test
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
 
@@ -29,18 +27,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Lint
+        run: pnpm lint
+
       - name: Build packages
         run: pnpm build
 
       - name: Install Playwright browsers
         run: pnpm --filter @vellira/storybook run playwright:install
 
-      - name: Publish to Chromatic
-        if: github.actor != 'dependabot[bot]'
-        uses: chromaui/action@v13
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          workingDir: apps/storybook
-          autoAcceptChanges: 'main'
-          exitOnceUploaded: true
+      - name: Test
+        run: pnpm test
+
+      - name: Build Storybook
+        run: pnpm --filter @vellira/storybook build
