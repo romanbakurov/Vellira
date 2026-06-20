@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "build": "pnpm build:tokens && tsc",
-    "build:tokens": "tsx scripts/generate-css.ts"
+    "build:tokens": "tsx scripts/generate-css.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "publishConfig": {
     "access": "public",

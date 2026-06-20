@@ -18,7 +18,8 @@
     "test:web": "pnpm --filter @romanbakurov/vellira-web test",
     "test:native": "pnpm --filter @romanbakurov/vellira-native test",
     "test:storybook": "pnpm --filter @vellira/storybook test",
-    "test:unit": "pnpm test:web && pnpm test:native"
+    "test:unit": "pnpm test:web && pnpm test:native",
+    "typecheck": "pnpm -r --if-present typecheck"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
