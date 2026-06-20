@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
+    "build-storybook": "storybook build",
     "playwright:install": "playwright install --with-deps chromium",
     "test": "vitest run --config vitest.config.ts"
   },
