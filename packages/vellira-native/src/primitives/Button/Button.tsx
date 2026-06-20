@@ -1,11 +1,10 @@
 import { cloneElement, isValidElement } from 'react';
 
 import { theme } from '@romanbakurov/vellira-tokens';
-import type { ReactNode } from 'react';
 import { Pressable, Text } from 'react-native';
 
 import { styles } from './Button.styles';
-import type { ButtonProps } from './types';
+import type { ButtonIconElement, ButtonProps } from './types';
 
 const sizeMap: Record<
   NonNullable<ButtonProps['size']>,
@@ -63,7 +62,7 @@ export function Button({
   const contentColor = theme.colors.gray[0];
   const resolvedIconSize = iconSize ?? config.iconSize;
 
-  const renderIcon = (icon: ReactNode) => {
+  const renderIcon = (icon: ButtonIconElement) => {
     if (!isValidElement(icon)) return icon;
 
     return cloneElement(icon, {
