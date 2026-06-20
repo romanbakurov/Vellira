@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement } from 'react';
 
 import { theme } from '@romanbakurov/vellira-tokens';
 import { Pressable, Text } from 'react-native';
@@ -37,10 +37,18 @@ const sizeMap: Record<
   },
 };
 
-const variantMap: Record<NonNullable<ButtonProps['variant']>, string> = {
+const backgroundMap: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: theme.colors.primary,
   secondary: theme.colors.secondary,
   danger: theme.colors.error,
+  ghost: 'transparent',
+};
+
+const contentColorMap: Record<NonNullable<ButtonProps['variant']>, string> = {
+  primary: theme.colors.gray[0],
+  secondary: theme.colors.gray[0],
+  danger: theme.colors.gray[0],
+  ghost: theme.colors.primary,
 };
 
 export function Button({
@@ -59,12 +67,10 @@ export function Button({
   const config = sizeMap[size];
 
   const iconOnly = !children && (leftIcon || rightIcon);
-  const contentColor = theme.colors.gray[0];
+  const contentColor = contentColorMap[variant];
   const resolvedIconSize = iconSize ?? config.iconSize;
 
   const renderIcon = (icon: ButtonIconElement) => {
-    if (!isValidElement(icon)) return icon;
-
     return cloneElement(icon, {
       color: contentColor,
       size: resolvedIconSize,
@@ -84,7 +90,7 @@ export function Button({
       style={({ pressed }) => [
         styles.button,
         {
-          backgroundColor: variantMap[variant],
+          backgroundColor: backgroundMap[variant],
           paddingHorizontal: iconOnly ? config.py : config.px,
           paddingVertical: config.py,
         },
@@ -101,6 +107,7 @@ export function Button({
             styles.text,
             {
               fontSize: config.fontSize,
+              color: contentColor,
             },
           ]}
         >

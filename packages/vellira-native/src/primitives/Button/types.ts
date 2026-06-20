@@ -9,8 +9,6 @@ export type ButtonIconElement = ReactElement<{
 
 export interface ButtonProps extends BaseButtonProps {
   children?: ReactNode;
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
   leftIcon?: ButtonIconElement;
   rightIcon?: ButtonIconElement;
   fullWidth?: boolean;
