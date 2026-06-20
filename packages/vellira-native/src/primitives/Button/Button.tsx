@@ -41,14 +41,12 @@ const backgroundMap: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: theme.colors.primary,
   secondary: theme.colors.secondary,
   danger: theme.colors.error,
-  ghost: 'transparent',
 };
 
 const contentColorMap: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: theme.colors.gray[0],
   secondary: theme.colors.gray[0],
   danger: theme.colors.gray[0],
-  ghost: theme.colors.primary,
 };
 
 export function Button({
