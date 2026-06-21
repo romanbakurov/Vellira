@@ -152,14 +152,16 @@ import { FormField, Input } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.FormFieldProps.FormField -->
 
-| Prop       | Type        | Required | Description                                    |
-| ---------- | ----------- | -------- | ---------------------------------------------- |
-| `id`       | `string`    | No       | Id used to connect the label with the control. |
-| `label`    | `string`    | No       | Field label.                                   |
-| `error`    | `string`    | No       | Error message.                                 |
-| `children` | `ReactNode` | Yes      | Field control or custom content.               |
-| `required` | `boolean`   | No       | Marks the field as required.                   |
-| `disabled` | `boolean`   | No       | Renders the disabled field state.              |
+| Prop          | Type        | Required | Description                                    |
+| ------------- | ----------- | -------- | ---------------------------------------------- |
+| `id`          | `string`    | No       | Id used to connect the label with the control. |
+| `label`       | `string`    | No       | Field label.                                   |
+| `error`       | `string`    | No       | Error message.                                 |
+| `children`    | `ReactNode` | Yes      | Field control or custom content.               |
+| `required`    | `boolean`   | No       | Marks the field as required.                   |
+| `disabled`    | `boolean`   | No       | Renders the disabled field state.              |
+| `description` | `string`    | No       | —                                              |
+| `className`   | `string`    | No       | —                                              |
 
 <!-- api-docgen:end web.FormFieldProps.FormField -->
 

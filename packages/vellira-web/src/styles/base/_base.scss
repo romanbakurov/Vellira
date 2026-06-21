@@ -1,6 +1,21 @@
-body {
+html {
   font-family: var(--font-family-base);
+}
+
+body {
+  color: var(--color-gray-900);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  background: var(--color-gray-0);
   transition:
-    background 0.3s,
-    color 0.3s;
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

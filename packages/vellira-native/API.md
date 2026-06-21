@@ -149,16 +149,19 @@ import { FormField, Input } from '@romanbakurov/vellira-native';
 
 <!-- api-docgen:start native.FormFieldProps.FormField -->
 
-| Prop         | Type                   | Required | Description                       |
-| ------------ | ---------------------- | -------- | --------------------------------- |
-| `label`      | `string`               | No       | Field label.                      |
-| `error`      | `string`               | No       | Error message.                    |
-| `children`   | `ReactNode`            | Yes      | Field control or custom content.  |
-| `style`      | `StyleProp<ViewStyle>` | No       | Extra container style.            |
-| `labelStyle` | `StyleProp<TextStyle>` | No       | Extra label text style.           |
-| `errorStyle` | `StyleProp<TextStyle>` | No       | Extra error text style.           |
-| `required`   | `boolean`              | No       | Marks the field as required.      |
-| `disabled`   | `boolean`              | No       | Renders the disabled field state. |
+| Prop               | Type                   | Required | Description                       |
+| ------------------ | ---------------------- | -------- | --------------------------------- |
+| `label`            | `string`               | No       | Field label.                      |
+| `error`            | `string`               | No       | Error message.                    |
+| `children`         | `ReactNode`            | Yes      | Field control or custom content.  |
+| `style`            | `StyleProp<ViewStyle>` | No       | Extra container style.            |
+| `labelStyle`       | `StyleProp<TextStyle>` | No       | Extra label text style.           |
+| `errorStyle`       | `StyleProp<TextStyle>` | No       | Extra error text style.           |
+| `required`         | `boolean`              | No       | Marks the field as required.      |
+| `disabled`         | `boolean`              | No       | Renders the disabled field state. |
+| `description`      | `string`               | No       | —                                 |
+| `controlStyle`     | `StyleProp<ViewStyle>` | No       | —                                 |
+| `descriptionStyle` | `StyleProp<TextStyle>` | No       | —                                 |
 
 <!-- api-docgen:end native.FormFieldProps.FormField -->
 

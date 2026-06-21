@@ -1,7 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { CSSProperties } from 'react';
 
 import { Checkbox } from '../../primitives/Checkbox';
 import { FormField } from '../FormField';
+
+const inputStyle = {
+  width: '100%',
+  padding: 'var(--space-3) var(--space-4)',
+  color: 'var(--color-gray-900)',
+  font: 'inherit',
+  backgroundColor: 'var(--color-gray-0)',
+  border: '1px solid var(--color-gray-200)',
+  borderRadius: 'var(--radius-md)',
+  outline: 'none',
+} satisfies CSSProperties;
+
+const errorInputStyle = {
+  ...inputStyle,
+  borderColor: 'var(--color-error)',
+} satisfies React.CSSProperties;
+
+const disabledInputStyle = {
+  ...inputStyle,
+  color: 'var(--color-gray-500)',
+  backgroundColor: 'var(--color-gray-100)',
+  cursor: 'not-allowed',
+  opacity: 0.6,
+} satisfies React.CSSProperties;
 
 const meta = {
   title: 'Patterns/FormField',
@@ -13,10 +38,11 @@ const meta = {
         component: `
 ### FormField Pattern
 
-Layout wrapper for composing labels, validation text, and custom form controls.
+Layout wrapper for composing labels, descriptions, validation text, and custom form controls.
 
 **Features**
 - Label rendering
+- Optional description text
 - Required marker
 - Error message area
 - Disabled state styling
@@ -29,10 +55,16 @@ Use FormField when a control needs consistent spacing and validation presentatio
 Correct usage:
 
 \`\`\`tsx
-<FormField label='Email' required error={emailError}>
-  <input value={email} onChange={handleEmailChange} />
+<FormField id='email' label='Email' required error={emailError}>
+  <input
+    id='email'
+    value={email}
+    onChange={handleEmailChange}
+  />
 </FormField>
 \`\`\`
+
+Important: FormField does not automatically inject ids into children. Pass the same id to FormField and the control.
 `,
       },
     },
@@ -47,6 +79,13 @@ Correct usage:
     },
     label: {
       description: 'Field label displayed above the control.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    description: {
+      description: 'Optional helper text displayed between label and control.',
       control: 'text',
       table: {
         type: { summary: 'string' },
@@ -68,7 +107,7 @@ Correct usage:
       },
     },
     disabled: {
-      description: 'Applies disabled styling to the field.',
+      description: 'Applies disabled styling to the field wrapper.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
@@ -82,46 +121,47 @@ Correct usage:
         type: { summary: 'string' },
       },
     },
+    className: {
+      description: 'Additional class name for the field wrapper.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
   },
 } satisfies Meta<typeof FormField>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const WithInput: Story = {
   args: {
+    id: 'email',
     label: 'Email',
     children: (
       <input
-        type='text'
-        placeholder='Enter email'
-        style={{
-          padding: '10px 16px',
-          border: '1px solid #d8d8d8',
-          borderRadius: '6px',
-          fontSize: '14px',
-          width: '100%',
-        }}
+        id='email'
+        type='email'
+        placeholder='name@company.com'
+        style={inputStyle}
       />
     ),
   },
 };
 
-export const WithError: Story = {
+export const WithDescription: Story = {
   args: {
-    label: 'Password',
-    error: 'Password must be at least 8 characters',
+    id: 'username',
+    label: 'Username',
+    description:
+      'Use 3–20 characters. Letters, numbers, and underscores are allowed.',
     children: (
       <input
+        id='username'
         type='text'
-        placeholder='Enter password'
-        style={{
-          padding: '10px 16px',
-          border: '1px solid #cf2333',
-          borderRadius: '6px',
-          fontSize: '14px',
-          width: '100%',
-        }}
+        placeholder='roman_bakurov'
+        style={inputStyle}
       />
     ),
   },
@@ -129,19 +169,33 @@ export const WithError: Story = {
 
 export const Required: Story = {
   args: {
-    label: 'Username',
+    id: 'full-name',
+    label: 'Full name',
     required: true,
     children: (
       <input
+        id='full-name'
         type='text'
-        placeholder='Enter username'
-        style={{
-          padding: '10px 16px',
-          border: '1px solid #d8d8d8',
-          borderRadius: '6px',
-          fontSize: '14px',
-          width: '100%',
-        }}
+        placeholder='Roman Bakurov'
+        style={inputStyle}
+      />
+    ),
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    id: 'password',
+    label: 'Password',
+    error: 'Password must be at least 8 characters',
+    children: (
+      <input
+        id='password'
+        type='password'
+        placeholder='Enter password'
+        aria-invalid='true'
+        aria-describedby='password-error'
+        style={errorInputStyle}
       />
     ),
   },
@@ -149,20 +203,16 @@ export const Required: Story = {
 
 export const Disabled: Story = {
   args: {
+    id: 'disabled-email',
     label: 'Email',
     disabled: true,
     children: (
       <input
+        id='disabled-email'
         disabled
-        type='text'
-        placeholder='Enter email'
-        style={{
-          padding: '10px 16px',
-          border: '1px solid #d8d8d8',
-          borderRadius: '6px',
-          fontSize: '14px',
-          width: '100%',
-        }}
+        type='email'
+        placeholder='name@company.com'
+        style={disabledInputStyle}
       />
     ),
   },
@@ -170,27 +220,28 @@ export const Disabled: Story = {
 
 export const WithCheckbox: Story = {
   args: {
+    id: 'agreement',
     label: 'Agreement',
-    children: <Checkbox label='Accept terms' />,
+    description: 'This example shows FormField with a custom Vellira control.',
+    children: <Checkbox label='Accept terms and conditions' />,
   },
 };
 
 export const CompleteExample: Story = {
   args: {
+    id: 'complete-email',
     label: 'Email',
+    description: 'We will use this email for account notifications.',
     required: true,
     error: 'Email is required',
     children: (
       <input
+        id='complete-email'
         type='email'
-        placeholder='Enter email'
-        style={{
-          padding: '10px 16px',
-          border: '1px solid #cf2333',
-          borderRadius: '6px',
-          fontSize: '14px',
-          width: '100%',
-        }}
+        placeholder='name@company.com'
+        aria-invalid='true'
+        aria-describedby='complete-email-error'
+        style={errorInputStyle}
       />
     ),
   },

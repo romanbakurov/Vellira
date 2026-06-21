@@ -4,10 +4,10 @@ export const colors = {
   'primary-soft': '#6366f1',
   'primary-bg': '#eef2ff',
 
-  secondary: '#0284c7',
-  'secondary-accent': '#0369a1',
-  'secondary-soft': '#38bdf8',
-  'secondary-bg': '#f0f9ff',
+  secondary: '#2563eb',
+  'secondary-accent': '#1d4ed8',
+  'secondary-soft': '#60a5fa',
+  'secondary-bg': '#eff6ff',
 
   tertiary: '#7c3aed',
   'tertiary-accent': '#6d28d9',
@@ -18,17 +18,19 @@ export const colors = {
   'info-accent': '#0284c7',
   'info-bg': '#f0f9ff',
 
-  success: '#059669',
-  'success-accent': '#047857',
+  success: '#008f6a',
+  'success-accent': '#00785a',
+  'success-soft': '#00b956',
   'success-bg': '#ecfdf5',
 
   error: '#e11d48',
   'error-accent': '#be123c',
   'error-bg': '#fff1f2',
 
-  warning: '#d97706',
-  'warning-accent': '#b45309',
-  'warning-bg': '#fffbeb',
+  warning: '#c05621',
+  'warning-accent': '#a74308',
+  'warning-soft': '#ffa717',
+  'warning-bg': '#fff7ed',
 
   gray: {
     950: '#030712',
@@ -48,8 +50,16 @@ export const colors = {
   },
 
   'gray-blue': {
-    200: '#bfdbfe',
-    100: '#dbeafe',
-    50: '#eff6ff',
+    950: '#0b1120',
+    900: '#111c2e',
+    800: '#1e2a44',
+    700: '#33435f',
+    600: '#4b5f7a',
+    500: '#6b7f99',
+    400: '#98a8bd',
+    300: '#c4d0dd',
+    200: '#d8e4f2',
+    100: '#edf5ff',
+    50: '#f7fbff',
   },
 } as const;
