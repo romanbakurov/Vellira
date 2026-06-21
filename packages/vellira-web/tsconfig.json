@@ -1,12 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "declaration": true,
-    "emitDeclarationOnly": false,
+    "rootDir": "src",
+    "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
+    "skipLibCheck": true,
 
     "paths": {
       "@/*": ["*"],
@@ -22,6 +21,8 @@
   },
   "include": ["src", "src/**/*.d.ts"],
   "exclude": [
+    "node_modules",
+    "dist",
     "**/*.stories.ts",
     "**/*.stories.tsx",
     "**/*.test.ts",

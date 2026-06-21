@@ -2,6 +2,7 @@
   "name": "native-playground",
   "version": "1.0.0",
   "main": "index.ts",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
@@ -38,6 +39,5 @@
   "devDependencies": {
     "@types/react": "~19.2.3",
     "typescript": "~6.0.3"
-  },
-  "private": true
+  }
 }

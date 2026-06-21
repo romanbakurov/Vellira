@@ -9,23 +9,29 @@
   "scripts": {
     "lint": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}' --fix",
+
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
+
+    "typecheck": "pnpm -r --if-present typecheck",
+
     "build": "pnpm build:packages",
     "build:packages": "pnpm build:base && pnpm build:renderers",
     "build:base": "pnpm --filter @romanbakurov/vellira-types build && pnpm --filter @romanbakurov/vellira-core build && pnpm --filter @romanbakurov/vellira-icons build && pnpm --filter @romanbakurov/vellira-tokens build",
     "build:renderers": "pnpm --filter @romanbakurov/vellira-web build && pnpm --filter @romanbakurov/vellira-native build",
     "build:storybook": "pnpm --filter @vellira/storybook build",
+
     "test": "pnpm test:unit && pnpm test:storybook",
-    "prepare": "husky",
-    "create:component": "tsx scripts/generators/create-component.ts",
+    "test:unit": "pnpm test:web && pnpm test:native",
     "test:web": "pnpm --filter @romanbakurov/vellira-web test",
     "test:native": "pnpm --filter @romanbakurov/vellira-native test",
     "test:storybook": "pnpm --filter @vellira/storybook test",
-    "test:unit": "pnpm test:web && pnpm test:native",
-    "typecheck": "pnpm -r --if-present typecheck",
+
     "docs:api": "tsx scripts/generate-api-docs.ts",
-    "docs:api:check": "tsx scripts/generate-api-docs.ts --check"
+    "docs:api:check": "tsx scripts/generate-api-docs.ts --check",
+
+    "create:component": "tsx scripts/generators/create-component.ts",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
@@ -58,7 +64,6 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "semantic-release": "^24.2.9",
-    "standard-version": "^9.5.0",
     "stylelint": "^17.11.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",

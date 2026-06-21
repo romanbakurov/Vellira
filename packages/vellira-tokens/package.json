@@ -1,11 +1,18 @@
 {
   "name": "@romanbakurov/vellira-tokens",
   "version": "2.7.0",
+  "description": "Design tokens for Vellira Design System",
+  "author": "Roman Bakurov",
   "license": "MIT",
   "private": false,
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -13,19 +20,21 @@
     },
     "./css": "./dist/css/tokens.css"
   },
+
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
+
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
     "build:tokens": "tsx scripts/generate-css.ts",
     "build": "pnpm run clean && pnpm run build:tokens && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
+
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }

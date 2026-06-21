@@ -1,25 +1,21 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "declaration": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "composite": true,
-    "strict": true,
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true,
-    "esModuleInterop": true
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
-    "**/*.stories.*",
-    "**/*.test.*",
-    "src/test-utils",
-    "test",
+    "node_modules",
     "dist",
-    "node_modules"
+    "scripts",
+    "src/**/*.stories.ts",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test-utils",
+    "src/test-utils/**/*"
   ]
 }

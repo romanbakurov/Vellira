@@ -1,6 +1,8 @@
 {
   "name": "@romanbakurov/vellira-core",
   "version": "2.7.0",
+  "description": "Shared logic and hooks for Vellira Design System",
+  "author": "Roman Bakurov",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -19,19 +21,18 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
+    "build": "pnpm run clean && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "19.2.3",
-    "@types/react": "^19.2.3"
+    "@types/react": "^19.2.3",
+    "react": "19.2.3"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }

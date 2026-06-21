@@ -12,6 +12,23 @@ const dirname =
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
+const external = [
+  'react',
+  'react-dom',
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+
+  '@romanbakurov/vellira-core',
+  '@romanbakurov/vellira-icons',
+  '@romanbakurov/vellira-tokens',
+  '@romanbakurov/vellira-types',
+
+  '@floating-ui/react',
+  'clsx',
+  'focus-trap',
+  'focus-trap-react',
+];
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -52,27 +69,13 @@ export default defineConfig({
         styles: 'src/styles.ts',
       },
       name: 'Vellira',
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
+      fileName: (format, entryName) =>
+        format === 'cjs' ? `${entryName}.cjs` : `${entryName}.js`,
       formats: ['es', 'cjs'],
     },
 
-    rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'react/jsx-dev-runtime',
-
-        '@romanbakurov/vellira-core',
-        '@romanbakurov/vellira-icons',
-        '@romanbakurov/vellira-tokens',
-        '@romanbakurov/vellira-types',
-
-        '@floating-ui/react',
-        'focus-trap',
-        'focus-trap-react',
-        'clsx',
-      ],
+    rolldownOptions: {
+      external,
     },
   },
 });

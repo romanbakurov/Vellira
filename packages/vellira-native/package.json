@@ -1,51 +1,58 @@
 {
   "name": "@romanbakurov/vellira-native",
   "version": "2.7.0",
+  "description": "React Native components for Vellira Design System",
+  "author": "Roman Bakurov",
   "license": "MIT",
+  "private": false,
   "type": "module",
+  "sideEffects": false,
+
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "react-native": "./src/index.ts",
+  "react-native": "./dist/index.js",
+
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "react-native": "./src/index.ts",
+      "react-native": "./dist/index.js",
       "import": "./dist/index.js",
-      "default": "./dist/index.js",
-      "typecheck": "tsc -p tsconfig.json --noEmit"
+      "default": "./dist/index.js"
     }
   },
+
   "files": [
     "dist",
     "README.md",
-    "src",
-    "LICENSE",
-    "!src/**/*.stories.*",
-    "!src/**/*.test.*",
-    "!src/test-utils"
+    "LICENSE"
   ],
+
   "scripts": {
     "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
-    "build": "pnpm clean && tsc -p tsconfig.json",
+    "build": "pnpm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --config vitest.config.ts"
   },
+
   "peerDependencies": {
-    "react": "^19.1.0",
+    "react": ">=18",
     "react-native": ">=0.81"
   },
+
   "dependencies": {
-    "@romanbakurov/vellira-tokens": "workspace:*",
-    "@romanbakurov/vellira-types": "workspace:*",
     "@romanbakurov/vellira-core": "workspace:*",
-    "@romanbakurov/vellira-icons": "workspace:*"
+    "@romanbakurov/vellira-icons": "workspace:*",
+    "@romanbakurov/vellira-tokens": "workspace:*",
+    "@romanbakurov/vellira-types": "workspace:*"
   },
+
   "devDependencies": {
     "@types/react": "^19.2.3",
     "jsdom": "^28.1.0",
     "vitest": "^4.1.8"
   },
+
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
