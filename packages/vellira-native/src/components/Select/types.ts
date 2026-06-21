@@ -10,11 +10,12 @@ export interface SelectOption extends BaseSelectOption {
 
 export interface SelectProps extends Omit<BaseSelectProps, 'options'> {
   label?: string;
+  description?: string;
   options: SelectOption[];
   placeholder?: string;
   error?: string;
   style?: StyleProp<ViewStyle>;
   triggerStyle?: StyleProp<ViewStyle>;
-  optionStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  pickerStyle?: StyleProp<TextStyle>;
 }

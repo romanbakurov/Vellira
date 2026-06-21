@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { ChevronDown } from '@romanbakurov/vellira-icons';
 import { cn } from '@utils/cn';
 
 import type { SelectTriggerProps } from './types';
 
-import styles from './SelectedTigger.module.scss';
+import styles from './SelectTrigger.module.scss';
 
 export const SelectTrigger = ({
   id,
@@ -13,13 +11,12 @@ export const SelectTrigger = ({
   isOpen,
   disabled,
   required,
-  hasLabel,
-  labelId,
   listboxId,
   activeIndex,
   ariaLabel,
   error,
   displayText,
+  isPlaceholder,
   buttonRef,
   onClick,
   onKeyDown,
@@ -31,13 +28,12 @@ export const SelectTrigger = ({
       type='button'
       role='combobox'
       disabled={disabled}
-      aria-disabled={disabled}
-      aria-required={required}
+      aria-disabled={disabled || undefined}
+      aria-required={required || undefined}
       aria-expanded={isOpen}
       aria-haspopup='listbox'
-      aria-labelledby={hasLabel ? labelId : undefined}
       aria-label={ariaLabel}
-      aria-controls={listboxId}
+      aria-controls={isOpen ? listboxId : undefined}
       aria-describedby={errorId}
       aria-activedescendant={
         isOpen && activeIndex >= 0
@@ -51,14 +47,24 @@ export const SelectTrigger = ({
       onClick={onClick}
       onKeyDown={onKeyDown}
     >
-      <span>{displayText}</span>
+      <span
+        className={cn(styles.value, {
+          [styles.placeholder]: isPlaceholder,
+        })}
+      >
+        {displayText}
+      </span>
+
       <span
         className={cn(styles.arrow, {
           [styles.open]: isOpen,
         })}
+        aria-hidden='true'
       >
         <ChevronDown />
       </span>
     </button>
   );
 };
+
+SelectTrigger.displayName = 'SelectTrigger';

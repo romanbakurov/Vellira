@@ -13,9 +13,10 @@ describe('Select', () => {
   it('submits its selected value and connects error text', () => {
     const form = document.createElement('form');
     document.body.append(form);
+
     const root = createRoot(form);
 
-    act(() =>
+    act(() => {
       root.render(
         <Select
           id='country'
@@ -25,8 +26,8 @@ describe('Select', () => {
           error='Choose a valid country'
           options={[{ label: 'France', value: 'fr' }]}
         />
-      )
-    );
+      );
+    });
 
     const trigger = form.querySelector('[role="combobox"]');
     const errorId = trigger?.getAttribute('aria-describedby');
@@ -36,6 +37,9 @@ describe('Select', () => {
     expect(document.getElementById(errorId ?? '')?.textContent).toBe(
       'Choose a valid country'
     );
-    act(() => root.unmount());
+
+    act(() => {
+      root.unmount();
+    });
   });
 });

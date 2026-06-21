@@ -1,4 +1,4 @@
-import type { Middleware, Placement } from '@floating-ui/react';
+import type { Middleware, Placement, Strategy } from '@floating-ui/react';
 import {
   autoUpdate,
   flip,
@@ -12,6 +12,7 @@ interface UseFloatingPositionProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   placement?: Placement;
+  strategy?: Strategy;
   matchTriggerWidth?: boolean;
   middleware?: Middleware[];
 }
@@ -26,32 +27,29 @@ export interface UseFloatingPositionReturn {
   updatePosition: ReturnType<typeof useFloating>['update'];
 }
 
-//Позиционирование dropdown / tooltip / popover
 export const useFloatingPosition = ({
   open,
   onOpenChange,
   placement: initialPlacement = 'bottom-start',
+  strategy = 'fixed',
   matchTriggerWidth = false,
   middleware: customMiddleware = [],
 }: UseFloatingPositionProps = {}): UseFloatingPositionReturn => {
   const middleware: Middleware[] = [
-    offset(8),
+    offset(6),
     flip(),
+    size({
+      apply({ rects, elements }) {
+        if (!matchTriggerWidth) return;
+
+        Object.assign(elements.floating.style, {
+          width: `${rects.reference.width}px`,
+        });
+      },
+    }),
     shift({ padding: 8 }),
     ...customMiddleware,
   ];
-
-  if (matchTriggerWidth) {
-    middleware.push(
-      size({
-        apply({ rects, elements }) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-          });
-        },
-      })
-    );
-  }
 
   const {
     refs,
@@ -64,6 +62,8 @@ export const useFloatingPosition = ({
     open,
     onOpenChange,
     placement: initialPlacement,
+    strategy,
+    transform: false,
     middleware,
     whileElementsMounted: autoUpdate,
   });

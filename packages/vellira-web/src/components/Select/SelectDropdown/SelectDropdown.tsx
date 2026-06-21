@@ -4,34 +4,27 @@ import { SelectOption } from '../SelectOption/SelectOption';
 
 import type { SelectDropdownProps } from './types';
 
-import styles from './SelectedDropdown.module.scss';
+import styles from './SelectDropdown.module.scss';
 
 export const SelectDropdown = ({
   isOpen,
   listboxId,
-  labelId,
-  floatingRef,
-  hasLabel,
+  setDropdownRef,
   style,
   options,
   selectedValue,
   activeIndex,
-  listRef,
   onSelect,
   onMouseEnter,
 }: SelectDropdownProps) => {
   if (!isOpen) return null;
-  const dropdownRef = (node: HTMLUListElement | null) => {
-    listRef.current = node;
-    floatingRef(node);
-  };
+
   return (
     <Portal>
       <ul
-        ref={dropdownRef}
+        ref={setDropdownRef}
         id={listboxId}
         role='listbox'
-        aria-labelledby={hasLabel ? labelId : undefined}
         className={styles.dropdown}
         style={style}
       >
@@ -50,3 +43,5 @@ export const SelectDropdown = ({
     </Portal>
   );
 };
+
+SelectDropdown.displayName = 'SelectDropdown';

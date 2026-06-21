@@ -3,9 +3,20 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { Select } from '../Select';
-
+import { Select } from './Select';
 import type { SelectProps } from './types';
+
+const defaultOptions = [
+  { label: 'France', value: 'fr' },
+  { label: 'Spain', value: 'es' },
+  { label: 'Germany', value: 'de' },
+];
+
+const optionsWithDisabled = [
+  { label: 'France', value: 'fr' },
+  { label: 'Spain', value: 'es', disabled: true },
+  { label: 'Germany', value: 'de' },
+];
 
 const meta = {
   title: 'Components/Select',
@@ -20,22 +31,26 @@ const meta = {
 Single-value select control for choosing from a predefined list.
 
 **Features**
-- Label and placeholder support
-- Controlled selected value
+- Label, description, and placeholder support
+- Controlled and uncontrolled value support
+- Native form submission through hidden input
 - Disabled state
 - Disabled options
 - Validation error message
-- Keyboard close with Escape
+- Keyboard navigation and Escape close behavior
+- Floating dropdown with trigger-width matching
 
 ### Accessibility
 
 The trigger exposes combobox semantics and updates its expanded state when the list opens or closes.
+Error text is connected to the trigger through \`aria-describedby\`.
 
 Correct usage:
 
 \`\`\`tsx
 <Select
   label='Country'
+  description='Choose your country of residence.'
   value={country}
   onChange={setCountry}
   placeholder='Select country...'
@@ -47,12 +62,15 @@ Correct usage:
     },
   },
   args: {
+    label: 'Country',
+    placeholder: 'Select country...',
+    options: defaultOptions,
     onChange: fn(),
   },
   argTypes: {
     id: {
       description:
-        'Unique select id used to connect the label with the select.',
+        'Unique select id used to connect the label, error text, and trigger.',
       control: 'text',
       table: {
         type: { summary: 'string' },
@@ -65,8 +83,15 @@ Correct usage:
         type: { summary: 'string' },
       },
     },
+    description: {
+      description: 'Helper text displayed below the label.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
     name: {
-      description: 'Select name shared by all select options.',
+      description: 'Hidden input name used for native HTML form submission.',
       control: 'text',
       table: {
         type: { summary: 'string' },
@@ -126,6 +151,13 @@ Correct usage:
         type: { summary: 'string' },
       },
     },
+    className: {
+      description: 'Additional class name for the Select root field wrapper.',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
     onChange: {
       description: 'Called when the selected value changes.',
       action: 'changed',
@@ -137,19 +169,8 @@ Correct usage:
 } satisfies Meta<typeof Select>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
-
-const defaultOptions = [
-  { label: 'France', value: 'fr' },
-  { label: 'Spain', value: 'es' },
-  { label: 'Germany', value: 'de' },
-];
-
-const optionsWithDisabled = [
-  { label: 'France', value: 'fr' },
-  { label: 'Spain', value: 'es', disabled: true },
-  { label: 'Germany', value: 'de' },
-];
 
 const SelectWithState = (args: SelectProps) => {
   const [value, setValue] = useState(args.value ?? args.defaultValue ?? '');
@@ -168,40 +189,31 @@ const SelectWithState = (args: SelectProps) => {
 
 export const Basic: Story = {
   args: {
-    label: 'Country',
     value: '',
-    placeholder: 'Select country...',
-    options: defaultOptions,
   },
   render: (args) => <SelectWithState {...args} />,
 };
 
-export const CloseOnEscape: Story = {
+export const WithDescription: Story = {
   args: {
-    label: 'Country',
     value: '',
-    placeholder: 'Select country...',
-    options: defaultOptions,
+    description: 'Choose your country of residence.',
   },
   render: (args) => <SelectWithState {...args} />,
 };
 
 export const WithValue: Story = {
   args: {
-    label: 'Country',
     value: 'fr',
-    placeholder: 'Select country...',
-    options: defaultOptions,
   },
   render: (args) => <SelectWithState {...args} />,
 };
 
 export const WithError: Story = {
   args: {
-    label: 'Country',
+    id: 'country-error-example',
     value: '',
-    placeholder: 'Select country...',
-    options: defaultOptions,
+    required: true,
     error: 'This field is required',
   },
   render: (args) => <SelectWithState {...args} />,
@@ -209,9 +221,7 @@ export const WithError: Story = {
 
 export const OptionWithDisabled: Story = {
   args: {
-    label: 'Country',
     value: '',
-    placeholder: 'Select country...',
     options: optionsWithDisabled,
   },
   render: (args) => <SelectWithState {...args} />,
@@ -219,28 +229,60 @@ export const OptionWithDisabled: Story = {
 
 export const Disabled: Story = {
   args: {
-    label: 'Country',
     value: 'fr',
-    placeholder: 'Select country...',
-    options: defaultOptions,
     disabled: true,
+  },
+  render: (args) => <SelectWithState {...args} />,
+};
+
+export const WithFormName: Story = {
+  args: {
+    id: 'country',
+    name: 'country',
+    value: 'fr',
+    description: 'This value is submitted through a hidden input.',
   },
   render: (args) => <SelectWithState {...args} />,
 };
 
 export const Selection: Story = {
   args: {
-    label: 'Country',
     value: '',
-    placeholder: 'Select country...',
-    options: defaultOptions,
   },
   render: (args) => <SelectWithState {...args} />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    const body = within(document.body);
+
     const combobox = canvas.getByRole('combobox');
 
     await userEvent.click(combobox);
+
     await expect(combobox).toHaveAttribute('aria-expanded', 'true');
+
+    await userEvent.click(body.getByRole('option', { name: 'France' }));
+
+    await expect(combobox).toHaveTextContent('France');
+    await expect(combobox).toHaveAttribute('aria-expanded', 'false');
+  },
+};
+
+export const CloseOnEscape: Story = {
+  args: {
+    value: '',
+  },
+  render: (args) => <SelectWithState {...args} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const combobox = canvas.getByRole('combobox');
+
+    await userEvent.click(combobox);
+
+    await expect(combobox).toHaveAttribute('aria-expanded', 'true');
+
+    await userEvent.keyboard('{Escape}');
+
+    await expect(combobox).toHaveAttribute('aria-expanded', 'false');
   },
 };

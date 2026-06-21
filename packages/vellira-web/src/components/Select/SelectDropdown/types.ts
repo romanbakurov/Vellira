@@ -1,5 +1,5 @@
 import type { BaseSelectDropdownProps } from '@romanbakurov/vellira-types';
-import type { CSSProperties, MutableRefObject } from 'react';
+import type { CSSProperties } from 'react';
 
 import type { SelectOption } from '../types';
 
@@ -8,11 +8,8 @@ export interface SelectDropdownProps extends Omit<
   'options'
 > {
   listboxId: string;
-  labelId: string;
-  hasLabel: boolean;
   options: SelectOption[];
   onMouseEnter: (index: number) => void;
   style: CSSProperties;
-  listRef: MutableRefObject<HTMLUListElement | null>;
-  floatingRef: (node: HTMLUListElement | null) => void;
+  setDropdownRef: (node: HTMLUListElement | null) => void;
 }

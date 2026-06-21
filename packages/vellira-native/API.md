@@ -247,13 +247,14 @@ import { Select } from '@romanbakurov/vellira-native';
 | `error`        | `string`                  | No       | Error message.                                 |
 | `style`        | `StyleProp<ViewStyle>`    | No       | Extra container style.                         |
 | `triggerStyle` | `StyleProp<ViewStyle>`    | No       | Extra trigger style.                           |
-| `optionStyle`  | `StyleProp<ViewStyle>`    | No       | Extra option style.                            |
 | `textStyle`    | `StyleProp<TextStyle>`    | No       | Extra text style.                              |
 | `value`        | `string`                  | No       | Controlled selected value.                     |
 | `defaultValue` | `string`                  | No       | Initial selected value for uncontrolled usage. |
 | `onChange`     | `(value: string) => void` | No       | Called when the user selects an option.        |
 | `required`     | `boolean`                 | No       | Marks the field as required.                   |
 | `disabled`     | `boolean`                 | No       | Disables interaction.                          |
+| `description`  | `string`                  | No       | —                                              |
+| `pickerStyle`  | `StyleProp<TextStyle>`    | No       | —                                              |
 
 <!-- api-docgen:end native.SelectProps.SelectProps -->
 

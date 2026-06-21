@@ -2,20 +2,19 @@ import { useCallback, useId, useMemo, useRef, useState } from 'react';
 
 import { useFloatingPosition } from '@hooks/useFloatingPosition';
 import { useOutsideClick } from '@hooks/useOutsideClick';
+import { FormField } from '@patterns/FormField';
 import {
   useControllableState,
   useKeyboardNavigation,
 } from '@romanbakurov/vellira-core';
-import { cn } from '@utils/cn';
 
 import { SelectDropdown } from './SelectDropdown/SelectDropdown';
 import { SelectTrigger } from './SelectTrigger/SelectTrigger';
 import type { SelectProps } from './types';
 
-import styles from './Select.module.scss';
-
 export const Select = ({
   label,
+  description,
   id,
   name,
   value: controlledValue,
@@ -23,11 +22,19 @@ export const Select = ({
   onChange,
   options,
   placeholder = 'Select...',
-  required,
-  disabled,
+  required = false,
+  disabled = false,
   error,
   className,
 }: SelectProps) => {
+  const generatedId = useId();
+  const triggerId = id ?? generatedId;
+  const listboxId = `${triggerId}-listbox`;
+  const errorId = error ? `${triggerId}-error` : undefined;
+
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
+
   const [selectedValue, setSelectedValue] = useControllableState({
     value: controlledValue,
     defaultValue: defaultValue ?? '',
@@ -37,98 +44,120 @@ export const Select = ({
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  const labelId = useId();
-  const listboxId = useId();
-  const triggerId = id ?? `${listboxId}-trigger`;
-  const errorId = `${triggerId}-error`;
-
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const listRef = useRef<HTMLUListElement | null>(null);
-
   const selectedOption = useMemo(
     () => options.find((option) => option.value === selectedValue),
     [options, selectedValue]
   );
 
+  const hasSelectedOption = !!selectedOption;
+
   const { floatingStyles, setRef, setFloatingRef } = useFloatingPosition({
+    open: isOpen,
     matchTriggerWidth: true,
   });
 
-  const toggleOpen = () => {
-    if (disabled) return;
-    setIsOpen((prev) => {
-      const next = !prev;
-      if (next) {
-        const selectedIndex = options.findIndex(
-          (opt) => opt.value === selectedValue && !opt.disabled
-        );
-        const firstEnabledIndex = options.findIndex((opt) => !opt.disabled);
-        setActiveIndex(selectedIndex >= 0 ? selectedIndex : firstEnabledIndex);
-      }
-      return next;
-    });
-  };
+  const getInitialActiveIndex = useCallback(() => {
+    const selectedIndex = options.findIndex(
+      (option) => option.value === selectedValue && !option.disabled
+    );
 
-  const handleSelect = (value: string) => {
-    setSelectedValue(value);
+    if (selectedIndex >= 0) return selectedIndex;
+
+    return options.findIndex((option) => !option.disabled);
+  }, [options, selectedValue]);
+
+  const openDropdown = useCallback(() => {
+    if (disabled) return;
+
+    setActiveIndex(getInitialActiveIndex());
+    setIsOpen(true);
+  }, [disabled, getInitialActiveIndex]);
+
+  const closeDropdown = useCallback(() => {
     setIsOpen(false);
-    buttonRef.current?.focus();
-  };
+  }, []);
+
+  const toggleDropdown = useCallback(() => {
+    if (disabled) return;
+
+    if (isOpen) {
+      closeDropdown();
+      return;
+    }
+
+    openDropdown();
+  }, [closeDropdown, disabled, isOpen, openDropdown]);
+
+  const handleSelect = useCallback(
+    (value: string) => {
+      setSelectedValue(value);
+      closeDropdown();
+      buttonRef.current?.focus();
+    },
+    [closeDropdown, setSelectedValue]
+  );
 
   const { onKeyDown } = useKeyboardNavigation({
     activeIndex,
     setActiveIndex,
     items: options,
     isOpen,
-    onOpen: toggleOpen,
+    onOpen: openDropdown,
+    onClose: closeDropdown,
     onSelect: () => {
-      if (
-        activeIndex >= 0 &&
-        options[activeIndex] &&
-        !options[activeIndex].disabled
-      ) {
-        handleSelect(options[activeIndex].value);
-      }
+      const activeOption = options[activeIndex];
+
+      if (!activeOption || activeOption.disabled) return;
+
+      handleSelect(activeOption.value);
     },
-    onClose: () => setIsOpen(false),
   });
 
-  useOutsideClick([buttonRef, listRef], () => setIsOpen(false), isOpen);
+  useOutsideClick([buttonRef, listRef], closeDropdown, isOpen);
 
-  const triggerRef = useCallback(
+  const setTriggerRef = useCallback(
     (node: HTMLButtonElement | null) => {
-      setRef(node);
       buttonRef.current = node;
+      setRef(node);
     },
     [setRef]
   );
 
-  return (
-    <div className={cn(styles.wrapper, className)}>
-      {label && (
-        <label id={labelId} htmlFor={triggerId} className={styles.label}>
-          {label}
-          {required && <span className={styles.required}>*</span>}
-        </label>
-      )}
+  const setDropdownRef = useCallback(
+    (node: HTMLUListElement | null) => {
+      listRef.current = node;
+      setFloatingRef(node);
+    },
+    [setFloatingRef]
+  );
 
+  return (
+    <FormField
+      id={triggerId}
+      label={label}
+      description={description}
+      error={error}
+      required={required}
+      disabled={disabled}
+      className={className}
+    >
       <SelectTrigger
         id={triggerId}
-        errorId={typeof error === 'string' ? errorId : undefined}
+        errorId={errorId}
         isOpen={isOpen}
         disabled={disabled}
         required={required}
-        hasLabel={!!label}
-        labelId={labelId}
         listboxId={listboxId}
         activeIndex={activeIndex}
         ariaLabel={!label ? selectedOption?.label || placeholder : undefined}
         error={error}
         displayText={selectedOption?.label ?? placeholder}
-        buttonRef={triggerRef}
-        onClick={toggleOpen}
+        isPlaceholder={!hasSelectedOption}
+        buttonRef={setTriggerRef}
+        onClick={toggleDropdown}
         onKeyDown={onKeyDown}
       />
+
       {name && (
         <input
           type='hidden'
@@ -137,26 +166,20 @@ export const Select = ({
           disabled={disabled}
         />
       )}
+
       <SelectDropdown
         isOpen={isOpen}
         listboxId={listboxId}
-        labelId={labelId}
-        hasLabel={!!label}
         style={floatingStyles}
         options={options}
         selectedValue={selectedValue}
         activeIndex={activeIndex}
-        listRef={listRef}
-        floatingRef={setFloatingRef}
+        setDropdownRef={setDropdownRef}
         onSelect={handleSelect}
         onMouseEnter={setActiveIndex}
       />
-
-      {error && typeof error === 'string' && (
-        <span id={errorId} className={styles.errorText} role='alert'>
-          {error}
-        </span>
-      )}
-    </div>
+    </FormField>
   );
 };
+
+Select.displayName = 'Select';

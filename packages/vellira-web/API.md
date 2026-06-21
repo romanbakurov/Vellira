@@ -253,6 +253,7 @@ import { Select } from '@romanbakurov/vellira-web';
 | `onChange`     | `(value: string) => void` | No       | Called when the user selects an option.        |
 | `required`     | `boolean`                 | No       | Marks the field as required.                   |
 | `disabled`     | `boolean`                 | No       | Disables interaction.                          |
+| `description`  | `string`                  | No       | —                                              |
 
 <!-- api-docgen:end web.SelectProps.SelectProps -->
 

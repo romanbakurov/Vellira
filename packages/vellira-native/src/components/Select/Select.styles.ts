@@ -2,63 +2,52 @@ import { theme } from '@romanbakurov/vellira-tokens';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  root: {
-    gap: theme.spacing[2],
+  modalRoot: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  trigger: {
-    alignItems: 'center',
+
+  backdrop: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgb(0 0 0 / 25%)',
+  },
+
+  sheet: {
     backgroundColor: theme.colors.gray[0],
-    borderColor: theme.colors.gray[200],
-    borderRadius: theme.radius.lg,
-    borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    minHeight: 46,
-    paddingHorizontal: theme.spacing[4],
-    paddingVertical: theme.spacing[3],
-  },
-  triggerOpen: {
-    borderColor: theme.colors.primary,
-  },
-  triggerError: {
-    borderColor: theme.colors.error,
-  },
-  disabled: {
-    backgroundColor: theme.colors.gray[55],
-    opacity: 0.6,
-  },
-  text: {
-    color: theme.colors.gray[900],
-    fontFamily: theme.typography.family.regular,
-    fontSize: theme.typography.size.md,
-  },
-  placeholder: {
-    color: theme.colors.gray[500],
-  },
-  chevron: {
-    color: theme.colors.gray[600],
-    fontSize: theme.typography.size.sm,
-  },
-  dropdown: {
-    backgroundColor: theme.colors.gray[0],
-    borderColor: theme.colors.gray[150],
-    borderRadius: theme.radius.lg,
-    borderWidth: 1,
+    borderTopLeftRadius: theme.radius.xl,
+    borderTopRightRadius: theme.radius.xl,
     overflow: 'hidden',
   },
-  option: {
+
+  toolbar: {
+    minHeight: 48,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     paddingHorizontal: theme.spacing[4],
-    paddingVertical: theme.spacing[3],
+    borderBottomColor: theme.colors.gray[150],
+    borderBottomWidth: 1,
   },
-  optionActive: {
-    backgroundColor: theme.colors['gray-blue'][50],
-  },
-  optionDisabled: {
-    opacity: 0.45,
-  },
-  optionText: {
+
+  title: {
     color: theme.colors.gray[900],
-    fontFamily: theme.typography.family.regular,
+    fontFamily: theme.typography.family.medium,
     fontSize: theme.typography.size.md,
+  },
+
+  cancelText: {
+    color: theme.colors.gray[600],
+    fontFamily: theme.typography.family.medium,
+    fontSize: theme.typography.size.md,
+  },
+
+  doneText: {
+    color: theme.colors.primary,
+    fontFamily: theme.typography.family.medium,
+    fontSize: theme.typography.size.md,
+  },
+
+  picker: {
+    width: '100%',
   },
 });

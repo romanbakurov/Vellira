@@ -1,18 +1,16 @@
 import type { BaseSelectTriggerProps } from '@romanbakurov/vellira-types';
-import type React from 'react';
-import type { ReactNode } from 'react';
+import type { KeyboardEvent, ReactNode, Ref } from 'react';
 
 export interface SelectTriggerProps extends BaseSelectTriggerProps {
   displayText: ReactNode;
+  isPlaceholder: boolean;
   id?: string;
   errorId?: string;
-  labelId: string;
   listboxId: string;
-  hasLabel: boolean;
   activeIndex: number;
   ariaLabel?: string;
   error?: boolean | string;
   onClick: () => void;
-  buttonRef: React.Ref<HTMLButtonElement>;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  buttonRef: Ref<HTMLButtonElement>;
+  onKeyDown?: (event: KeyboardEvent<HTMLButtonElement>) => void;
 }
