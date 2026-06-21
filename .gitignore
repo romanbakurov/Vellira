@@ -29,3 +29,6 @@ dist-ssr
 storybook-static
 .idea
 package-lock.json
+
+coverage/
+**/coverage/

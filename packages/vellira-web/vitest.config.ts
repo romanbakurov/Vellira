@@ -19,6 +19,24 @@ export default mergeConfig(
     test: {
       environment: 'jsdom',
       setupFiles: ['./vitest.setup.ts'],
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'html'],
+        exclude: [
+          '**/*.module.scss',
+          '**/*.stories.*',
+          '**/*.test.*',
+          '**/index.ts',
+          '**/types.ts',
+          '**/test-utils/**',
+        ],
+        thresholds: {
+          statements: 70,
+          branches: 55,
+          functions: 65,
+          lines: 70,
+        },
+      },
     },
   })
 );

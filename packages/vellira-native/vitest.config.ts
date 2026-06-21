@@ -23,5 +23,24 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      exclude: [
+        '**/*.styles.ts',
+        '**/*.stories.*',
+        '**/*.test.*',
+        '**/index.ts',
+        '**/types.ts',
+        '**/test-utils/**',
+        '**/test/**',
+      ],
+      thresholds: {
+        statements: 85,
+        branches: 70,
+        functions: 80,
+        lines: 85,
+      },
+    },
   },
 });
