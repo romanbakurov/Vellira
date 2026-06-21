@@ -4,10 +4,10 @@ export const colors = {
   'primary-soft': '#6366f1',
   'primary-bg': '#eef2ff',
 
-  secondary: '#0284c7',
-  'secondary-accent': '#0369a1',
-  'secondary-soft': '#38bdf8',
-  'secondary-bg': '#f0f9ff',
+  secondary: '#2563eb',
+  'secondary-accent': '#1d4ed8',
+  'secondary-soft': '#60a5fa',
+  'secondary-bg': '#eff6ff',
 
   tertiary: '#7c3aed',
   'tertiary-accent': '#6d28d9',
