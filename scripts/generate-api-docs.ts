@@ -573,7 +573,7 @@ function splitMarkdownRow(row: string) {
 }
 
 function escapeTableCell(value: string) {
-  return value.replace(/\|/g, '\\|');
+  return value.replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
 }
 
 function normalizePath(filePath: string) {
