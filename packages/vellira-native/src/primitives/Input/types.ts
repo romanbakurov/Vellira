@@ -3,19 +3,35 @@ import type {
   InputSize,
   InputType,
 } from '@romanbakurov/vellira-types';
-import type { TextInputProps, TextStyle, ViewStyle } from 'react-native';
+import type {
+  StyleProp,
+  TextInputProps,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
+
+export type { InputSize, InputType } from '@romanbakurov/vellira-types';
 
 export type NativeInputKeyboardType = TextInputProps['keyboardType'];
 
 export interface InputProps
   extends
     BaseInputProps,
-    Omit<TextInputProps, 'value' | 'onChange' | 'onChangeText' | 'editable'> {
+    Omit<
+      TextInputProps,
+      | 'value'
+      | 'defaultValue'
+      | 'onChange'
+      | 'onChangeText'
+      | 'editable'
+      | 'style'
+      | 'placeholder'
+    > {
   label: string;
   placeholder?: string;
   size?: InputSize;
   error?: string;
   type?: InputType;
-  containerStyle?: ViewStyle;
-  inputStyle?: TextStyle;
+  containerStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
 }

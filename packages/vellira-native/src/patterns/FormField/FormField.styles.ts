@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   root: {
+    width: '100%',
+    alignSelf: 'stretch',
     gap: theme.spacing[2],
   },
   label: {

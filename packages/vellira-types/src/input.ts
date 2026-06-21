@@ -5,7 +5,8 @@ export type InputType =
   | 'password'
   | 'number'
   | 'tel'
-  | 'url';
+  | 'url'
+  | 'search';
 
 export interface BaseInputProps {
   value: string;

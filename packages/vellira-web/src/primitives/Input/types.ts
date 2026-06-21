@@ -15,4 +15,5 @@ export interface InputProps extends BaseInputProps {
   id?: string;
   className?: string;
   autoComplete?: string;
+  showOverflowTooltip?: boolean;
 }

@@ -25,6 +25,7 @@ Labeled text input primitive for short form values.
 - Required and disabled states
 - Validation error message
 - Size variants: sm, md, and lg
+- Optional overflow tooltip for long values
 
 ### Usage
 
@@ -86,6 +87,17 @@ Correct usage:
         defaultValue: { summary: 'md' },
       },
     },
+    type: {
+      description: 'Native input type.',
+      control: 'select',
+      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+      table: {
+        type: {
+          summary: `'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'`,
+        },
+        defaultValue: { summary: 'text' },
+      },
+    },
     required: {
       description: 'Marks the input as required.',
       control: 'boolean',
@@ -116,6 +128,15 @@ Correct usage:
         type: { summary: 'string' },
       },
     },
+    showOverflowTooltip: {
+      description:
+        'Shows a tooltip with the full value when the input text overflows.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     onChange: {
       description: 'Called when the input value changes.',
       action: 'changed',
@@ -130,14 +151,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Компонент-обертка для базовой демонстрации
 const ControlledInputDemo = (args: InputProps) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(args.value ?? '');
 
-  return <Input {...args} value={value} onChange={setValue} />;
+  const handleChange = (nextValue: string) => {
+    setValue(nextValue);
+    args.onChange?.(nextValue);
+  };
+
+  return <Input {...args} value={value} onChange={handleChange} />;
 };
 
-// Компонент-обертка для демонстрации разных размеров
 const InputSizesDemo = () => {
   const [smallValue, setSmallValue] = useState('');
   const [mediumValue, setMediumValue] = useState('');
@@ -179,6 +203,7 @@ export const Basic: Story = {
     required: false,
     value: '',
     size: 'md',
+    type: 'email',
   },
   render: (args) => <ControlledInputDemo {...args} />,
 };
@@ -191,6 +216,7 @@ export const Error: Story = {
     value: '',
     error: 'This field is required',
     size: 'md',
+    type: 'email',
   },
   render: (args) => <ControlledInputDemo {...args} />,
 };
@@ -202,7 +228,26 @@ export const Disabled: Story = {
     value: '123456',
     disabled: true,
     size: 'md',
+    type: 'tel',
   },
+  render: (args) => <ControlledInputDemo {...args} />,
+};
+
+export const WithOverflowTooltip: Story = {
+  args: {
+    label: 'Company name',
+    value:
+      'Very long company name that does not fit into the input field and should be shown inside tooltip',
+    size: 'md',
+    showOverflowTooltip: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 260 }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: (args) => <ControlledInputDemo {...args} />,
 };
 

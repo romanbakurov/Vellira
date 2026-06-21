@@ -9,6 +9,7 @@ import {
 
 import { FormField } from '@patterns/FormField';
 import { cn } from '@utils/cn';
+import type { ChangeEvent } from 'react';
 
 import type { InputProps } from './types';
 
@@ -17,40 +18,58 @@ import styles from './Input.module.scss';
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      id: prodId,
+      id: providedId,
       label,
       placeholder,
       value,
       onChange,
       size = 'md',
       error,
-      disabled,
-      required,
+      disabled = false,
+      required = false,
       className,
       autoComplete,
       type = 'text',
+      showOverflowTooltip = false,
     },
     ref
   ) => {
-    const [showTooltip, setShowTooltip] = useState(false);
-    const [isOverflowing, setIsOverflowing] = useState(false);
+    const generatedId = useId();
+    const id = providedId ?? generatedId;
+
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const generatedId = useId();
-    const id = prodId ?? generatedId;
+    const [isOverflowing, setIsOverflowing] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    const hasValue = value !== undefined && value !== null && value !== '';
 
     const checkOverflow = useCallback(() => {
-      if (inputRef.current) {
-        const isOverflowing =
-          inputRef.current.scrollWidth > inputRef.current.clientWidth;
-        setIsOverflowing(isOverflowing);
+      const input = inputRef.current;
+
+      if (!input) {
+        setIsOverflowing(false);
+        return;
       }
+
+      setIsOverflowing(input.scrollWidth > input.clientWidth);
     }, []);
 
     useEffect(() => {
+      if (!showOverflowTooltip) return;
+
       checkOverflow();
 
+      if (typeof ResizeObserver === 'undefined') {
+        window.addEventListener('resize', checkOverflow);
+
+        return () => {
+          window.removeEventListener('resize', checkOverflow);
+        };
+      }
+
       const resizeObserver = new ResizeObserver(checkOverflow);
+
       if (inputRef.current) {
         resizeObserver.observe(inputRef.current);
       }
@@ -61,18 +80,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         resizeObserver.disconnect();
         window.removeEventListener('resize', checkOverflow);
       };
-    }, [checkOverflow]);
+    }, [checkOverflow, showOverflowTooltip]);
 
     useEffect(() => {
+      if (!showOverflowTooltip) return;
+
       checkOverflow();
-    }, [value, checkOverflow]);
+    }, [value, checkOverflow, showOverflowTooltip]);
 
     const setRefs = useCallback(
       (element: HTMLInputElement | null) => {
         inputRef.current = element;
+
         if (typeof ref === 'function') {
           ref(element);
-        } else if (ref) {
+          return;
+        }
+
+        if (ref) {
           ref.current = element;
         }
       },
@@ -80,17 +105,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value);
+      (event: ChangeEvent<HTMLInputElement>) => {
+        onChange?.(event.target.value);
       },
       [onChange]
     );
 
     const handleMouseEnter = useCallback(() => {
-      if (isOverflowing && value) {
+      if (!showOverflowTooltip) return;
+
+      if (isOverflowing && hasValue) {
         setShowTooltip(true);
       }
-    }, [isOverflowing, value]);
+    }, [hasValue, isOverflowing, showOverflowTooltip]);
 
     const handleMouseLeave = useCallback(() => {
       setShowTooltip(false);
@@ -115,7 +142,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               styles[size],
               {
                 [styles.error]: !!error,
-                [styles.withEllipsis]: true,
+                [styles.withEllipsis]: showOverflowTooltip,
               },
               className
             )}
@@ -123,17 +150,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={handleChange}
             placeholder={placeholder}
             disabled={disabled}
+            required={required}
             aria-invalid={!!error}
             aria-describedby={error ? `${id}-error` : undefined}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           />
-          {showTooltip && isOverflowing && value && (
-            <div
-              className={styles.tooltip}
-              role='tooltip'
-              aria-hidden={!showTooltip}
-            >
+
+          {showOverflowTooltip && showTooltip && isOverflowing && hasValue && (
+            <div className={styles.tooltip} role='tooltip'>
               {value}
             </div>
           )}
