@@ -126,8 +126,8 @@ import { Input } from '@romanbakurov/vellira-native';
 | `size`           | `InputSize`               | No       | Input size.                                |
 | `error`          | `string`                  | No       | Error message rendered under the input.    |
 | `type`           | `InputType`               | No       | Semantic input type used by the component. |
-| `containerStyle` | `ViewStyle`               | No       | Extra style for the field container.       |
-| `inputStyle`     | `TextStyle`               | No       | Extra style for the input element.         |
+| `containerStyle` | `StyleProp<ViewStyle>`    | No       | Extra style for the field container.       |
+| `inputStyle`     | `StyleProp<TextStyle>`    | No       | Extra style for the input element.         |
 | `value`          | `string`                  | Yes      | Controlled value.                          |
 | `onChange`       | `(value: string) => void` | Yes      | Called with the next value.                |
 | `disabled`       | `boolean`                 | No       | Disables the input.                        |

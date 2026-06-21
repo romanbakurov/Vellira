@@ -120,20 +120,21 @@ import { Input } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.InputProps.Input -->
 
-| Prop           | Type                      | Required | Description                                  |
-| -------------- | ------------------------- | -------- | -------------------------------------------- |
-| `label`        | `string`                  | Yes      | Visible label.                               |
-| `placeholder`  | `string`                  | No       | Placeholder text.                            |
-| `size`         | `InputSize`               | No       | Input size.                                  |
-| `error`        | `string`                  | No       | Error message rendered under the input.      |
-| `type`         | `InputType`               | No       | HTML input type.                             |
-| `id`           | `string`                  | No       | Input id. Generated internally when omitted. |
-| `className`    | `string`                  | No       | Extra CSS class for the root element.        |
-| `autoComplete` | `string`                  | No       | HTML autocomplete value.                     |
-| `value`        | `string`                  | Yes      | Controlled value.                            |
-| `onChange`     | `(value: string) => void` | Yes      | Called with the next value.                  |
-| `disabled`     | `boolean`                 | No       | Disables the input.                          |
-| `required`     | `boolean`                 | No       | Marks the field as required.                 |
+| Prop                  | Type                      | Required | Description                                  |
+| --------------------- | ------------------------- | -------- | -------------------------------------------- |
+| `label`               | `string`                  | Yes      | Visible label.                               |
+| `placeholder`         | `string`                  | No       | Placeholder text.                            |
+| `size`                | `InputSize`               | No       | Input size.                                  |
+| `error`               | `string`                  | No       | Error message rendered under the input.      |
+| `type`                | `InputType`               | No       | HTML input type.                             |
+| `id`                  | `string`                  | No       | Input id. Generated internally when omitted. |
+| `className`           | `string`                  | No       | Extra CSS class for the root element.        |
+| `autoComplete`        | `string`                  | No       | HTML autocomplete value.                     |
+| `value`               | `string`                  | Yes      | Controlled value.                            |
+| `onChange`            | `(value: string) => void` | Yes      | Called with the next value.                  |
+| `disabled`            | `boolean`                 | No       | Disables the input.                          |
+| `required`            | `boolean`                 | No       | Marks the field as required.                 |
+| `showOverflowTooltip` | `boolean`                 | No       | —                                            |
 
 <!-- api-docgen:end web.InputProps.Input -->
 
