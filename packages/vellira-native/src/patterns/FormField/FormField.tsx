@@ -5,16 +5,24 @@ import type { FormFieldProps } from './types';
 
 export function FormField({
   label,
+  description,
   error,
-  required,
-  disabled,
+  required = false,
+  disabled = false,
   children,
   style,
+  controlStyle,
   labelStyle,
+  descriptionStyle,
   errorStyle,
 }: FormFieldProps) {
   return (
-    <View style={[styles.root, style]}>
+    <View
+      style={[styles.root, style]}
+      accessibilityState={{
+        disabled,
+      }}
+    >
       {label && (
         <Text
           style={[styles.label, disabled && styles.labelDisabled, labelStyle]}
@@ -24,9 +32,29 @@ export function FormField({
         </Text>
       )}
 
-      {children}
+      {description && (
+        <Text
+          style={[
+            styles.description,
+            disabled && styles.descriptionDisabled,
+            descriptionStyle,
+          ]}
+        >
+          {description}
+        </Text>
+      )}
 
-      {error && <Text style={[styles.error, errorStyle]}>{error}</Text>}
+      <View style={[styles.control, controlStyle]}>{children}</View>
+
+      {error && (
+        <Text
+          style={[styles.error, errorStyle]}
+          accessibilityRole='alert'
+          accessibilityLiveRegion='polite'
+        >
+          {error}
+        </Text>
+      )}
     </View>
   );
 }
