@@ -10,9 +10,10 @@ export interface RadioOption extends BaseRadioOption {
 
 export interface RadioGroupProps extends Omit<BaseRadioGroupProps, 'options'> {
   label?: string;
+  description?: string;
   name: string;
   options: RadioOption[];
   error?: string;
-  orientation: Orientation;
+  orientation?: Orientation;
   className?: string;
 }

@@ -201,6 +201,7 @@ import { RadioGroup } from '@romanbakurov/vellira-native';
 | `onChange`     | `(value: string) => void` | No       | Called when selection changes.        |
 | `required`     | `boolean`                 | No       | Marks the group as required.          |
 | `disabled`     | `boolean`                 | No       | Disables the whole group.             |
+| `description`  | `string`                  | No       | —                                     |
 
 <!-- api-docgen:end native.RadioGroupProps.RadioGroupProps -->
 

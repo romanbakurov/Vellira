@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { RadioGroup } from './RadioGroup';
+import type { RadioGroupProps } from './types';
 
 const options = [
   { label: 'Starter', value: 'starter' },
@@ -8,31 +11,101 @@ const options = [
   { label: 'Enterprise', value: 'enterprise' },
 ];
 
-const meta: Meta<typeof RadioGroup> = {
+const optionsWithDisabled = [
+  { label: 'Starter', value: 'starter' },
+  { label: 'Pro', value: 'pro', disabled: true },
+  { label: 'Enterprise', value: 'enterprise' },
+];
+
+const meta = {
   title: 'Components/RadioGroup',
   component: RadioGroup,
   args: {
     label: 'Plan',
     defaultValue: 'pro',
     options,
+    orientation: 'vertical',
   },
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Text label displayed above the RadioGroup.',
+    },
+    description: {
+      control: 'text',
+      description: 'Helper text displayed below the label.',
+    },
+    defaultValue: {
+      control: 'text',
+      description: 'Initial selected value for uncontrolled usage.',
+    },
+    value: {
+      control: 'text',
+      description: 'Current selected value for controlled usage.',
+    },
+    options: {
+      control: 'object',
+      description: 'List of radio options.',
+    },
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
+      description: 'Layout direction of the radio options.',
+    },
+    required: {
+      control: 'boolean',
+      description: 'Marks the radio group as required.',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables all radio options in the group.',
+    },
+    error: {
+      control: 'text',
+      description: 'Validation error message displayed below the group.',
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Called when the selected value changes.',
     },
   },
-};
+} satisfies Meta<typeof RadioGroup>;
 
 export default meta;
-type Story = StoryObj<typeof RadioGroup>;
 
-export const Default: Story = {};
+type Story = StoryObj<typeof meta>;
+
+const RadioGroupWithState = (args: RadioGroupProps) => {
+  const [value, setValue] = useState(args.value ?? args.defaultValue ?? '');
+
+  return (
+    <RadioGroup
+      {...args}
+      value={value}
+      onChange={(nextValue) => {
+        setValue(nextValue);
+        args.onChange?.(nextValue);
+      }}
+    />
+  );
+};
+
+export const Default: Story = {
+  render: (args) => <RadioGroupWithState {...args} />,
+};
+
+export const WithDescription: Story = {
+  args: {
+    description: 'Choose the plan that fits your current needs.',
+  },
+  render: (args) => <RadioGroupWithState {...args} />,
+};
 
 export const Horizontal: Story = {
   args: {
     orientation: 'horizontal',
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };
 
 export const Required: Story = {
@@ -40,27 +113,27 @@ export const Required: Story = {
     required: true,
     label: 'Required plan',
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };
 
 export const WithError: Story = {
   args: {
     error: 'Select a plan to continue',
-    defaultValue: undefined,
+    defaultValue: '',
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };
 
 export const WithDisabledOption: Story = {
   args: {
-    options: [
-      { label: 'Starter', value: 'starter' },
-      { label: 'Pro', value: 'pro', disabled: true },
-      { label: 'Enterprise', value: 'enterprise' },
-    ],
+    options: optionsWithDisabled,
   },
+  render: (args) => <RadioGroupWithState {...args} />,
 };

@@ -8,11 +8,12 @@ import type { RadioGroupProps } from './types';
 
 export function RadioGroup({
   label,
+  description,
   value,
   defaultValue = '',
   onChange,
   options,
-  required,
+  required = false,
   disabled = false,
   error,
   orientation = 'vertical',
@@ -22,19 +23,21 @@ export function RadioGroup({
 }: RadioGroupProps) {
   const [selectedValue, setSelectedValue] = useControllableState({
     value,
-    defaultValue: defaultValue ?? '',
+    defaultValue,
     onChange,
   });
 
   return (
     <FormField
       label={label}
+      description={description}
       error={error}
       required={required}
       disabled={disabled}
     >
       <View
         accessibilityRole='radiogroup'
+        accessibilityState={{ disabled }}
         style={[
           styles.group,
           orientation === 'horizontal' && styles.horizontal,
@@ -43,25 +46,52 @@ export function RadioGroup({
       >
         {options.map((option) => {
           const isSelected = selectedValue === option.value;
-          const isDisabled = disabled || option.disabled;
+          const isDisabled = disabled || !!option.disabled;
 
           return (
             <Pressable
               key={option.value}
               disabled={isDisabled}
               accessibilityRole='radio'
-              accessibilityState={{ checked: isSelected, disabled: isDisabled }}
-              onPress={() => setSelectedValue(option.value)}
+              accessibilityLabel={option.label}
+              accessibilityState={{
+                checked: isSelected,
+                disabled: isDisabled,
+              }}
+              onPress={() => {
+                if (isDisabled) return;
+
+                setSelectedValue(option.value);
+              }}
               style={[
                 styles.option,
                 isDisabled && styles.optionDisabled,
                 optionStyle,
               ]}
             >
-              <View style={[styles.radio, isDisabled && styles.radioDisabled]}>
-                {isSelected && <View style={styles.dot} />}
+              <View
+                style={[
+                  styles.radio,
+                  isSelected && styles.radioSelected,
+                  isDisabled && styles.radioDisabled,
+                ]}
+              >
+                {isSelected && (
+                  <View
+                    style={[styles.dot, isDisabled && styles.dotDisabled]}
+                  />
+                )}
               </View>
-              <Text style={[styles.label, labelStyle]}>{option.label}</Text>
+
+              <Text
+                style={[
+                  styles.label,
+                  isDisabled && styles.labelDisabled,
+                  labelStyle,
+                ]}
+              >
+                {option.label}
+              </Text>
             </Pressable>
           );
         })}
@@ -69,3 +99,5 @@ export function RadioGroup({
     </FormField>
   );
 }
+
+RadioGroup.displayName = 'RadioGroup';

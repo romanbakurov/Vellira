@@ -1,6 +1,6 @@
 .group {
   display: flex;
-  flex-direction: column;
+  width: 100%;
   gap: var(--space-2);
 }
 
@@ -9,8 +9,8 @@
 }
 
 .horizontal {
-  flex-direction: row;
-  gap: var(--space-6);
+  flex-flow: row wrap;
+  gap: var(--space-4) var(--space-6);
 }
 
 .option {
@@ -18,9 +18,19 @@
   align-items: center;
   color: var(--color-gray-700);
   font-size: var(--font-size-md);
+  transition: color 0.15s ease;
   cursor: pointer;
+  min-width: 0;
   gap: var(--space-2);
   user-select: none;
+
+  &:hover:not(.disabled) {
+    color: var(--color-primary-accent);
+
+    .customRadio {
+      border-color: var(--color-primary-accent);
+    }
+  }
 }
 
 .input {
@@ -31,44 +41,51 @@
 
 .customRadio {
   position: relative;
+  flex: 0 0 auto;
   width: 16px;
   height: 16px;
+  background-color: var(--color-gray-0);
   border: 2px solid var(--color-gray-200);
   border-radius: 50%;
   transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-  flex-shrink: 0;
-}
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
 
-.input:checked + .customRadio::after {
-  position: absolute;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  content: '';
-  inset: 3px;
-}
-
-.input:focus-visible + .customRadio {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
-  color: var(--color-primary);
+  &::after {
+    position: absolute;
+    inset: 3px;
+    content: '';
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
 }
 
 .input:checked + .customRadio {
   border-color: var(--color-primary);
 }
 
+.input:checked + .customRadio::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.input:focus-visible + .customRadio {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-bg);
+}
+
 .option:has(.input:checked) {
   color: var(--color-primary);
 }
 
-.option:hover .customRadio {
-  border-color: var(--color-primary-accent);
-}
-
-.option:hover {
-  color: var(--color-primary-accent);
+.label {
+  min-width: 0;
 }
 
 .disabled {

@@ -10,42 +10,58 @@ import styles from './RadioGroup.module.scss';
 
 export const RadioGroup = ({
   label,
+  description,
   value,
   defaultValue,
   onChange,
   options,
   name,
-  required,
-  disabled,
+  required = false,
+  disabled = false,
   error,
   className,
   orientation = 'vertical',
 }: RadioGroupProps) => {
-  const id = useId();
+  const generatedId = useId();
+  const groupId = `${generatedId}-group`;
+  const errorId = error ? `${generatedId}-error` : undefined;
+  const descriptionId = description ? `${generatedId}-description` : undefined;
 
-  const [selectValue, setSelectValue] = useControllableState({
+  const [selectedValue, setSelectedValue] = useControllableState({
     value,
     defaultValue: defaultValue ?? '',
     onChange,
   });
 
   return (
-    <FormField label={label} id={id} required={required} error={error}>
+    <FormField
+      id={generatedId}
+      label={label}
+      description={description}
+      required={required}
+      disabled={disabled}
+      error={error}
+    >
       <div
+        id={groupId}
         className={cn(styles.group, styles[orientation], className)}
         role='radiogroup'
-        aria-required={required}
-        aria-invalid={!!error}
+        aria-required={required || undefined}
+        aria-invalid={!!error || undefined}
+        aria-describedby={
+          [descriptionId, errorId].filter(Boolean).join(' ') || undefined
+        }
       >
         {options.map((option) => {
-          const optionId = `${id}-${option.value}`;
+          const optionId = `${generatedId}-${option.value}`;
+          const isDisabled = disabled || option.disabled;
 
           return (
             <label
-              htmlFor={optionId}
               key={option.value}
+              htmlFor={optionId}
               className={cn(styles.option, {
-                [styles.disabled]: disabled || option.disabled,
+                [styles.disabled]: isDisabled,
               })}
             >
               <input
@@ -53,13 +69,19 @@ export const RadioGroup = ({
                 type='radio'
                 name={name}
                 value={option.value}
-                checked={selectValue === option.value}
-                disabled={disabled || option.disabled}
-                onChange={() => setSelectValue(option.value)}
+                checked={selectedValue === option.value}
+                required={required}
+                disabled={isDisabled}
+                onChange={() => {
+                  if (isDisabled) return;
+
+                  setSelectedValue(option.value);
+                }}
                 className={styles.input}
               />
-              <span className={styles.customRadio} />
-              <span>{option.label}</span>
+
+              <span className={styles.customRadio} aria-hidden='true' />
+              <span className={styles.label}>{option.label}</span>
             </label>
           );
         })}
@@ -67,3 +89,5 @@ export const RadioGroup = ({
     </FormField>
   );
 };
+
+RadioGroup.displayName = 'RadioGroup';

@@ -194,13 +194,14 @@ import { RadioGroup } from '@romanbakurov/vellira-web';
 | `name`         | `string`                  | Yes      | Radio input name.                     |
 | `options`      | `RadioOption[]`           | Yes      | Options rendered by the group.        |
 | `error`        | `string`                  | No       | Error message.                        |
-| `orientation`  | `Orientation`             | Yes      | Layout direction.                     |
+| `orientation`  | `Orientation`             | No       | Layout direction.                     |
 | `className`    | `string`                  | No       | Extra CSS class for the root element. |
 | `value`        | `string`                  | No       | Controlled selected value.            |
 | `defaultValue` | `string`                  | No       | Initial value for uncontrolled usage. |
 | `onChange`     | `(value: string) => void` | No       | Called when selection changes.        |
 | `required`     | `boolean`                 | No       | Marks the group as required.          |
 | `disabled`     | `boolean`                 | No       | Disables the whole group.             |
+| `description`  | `string`                  | No       | —                                     |
 
 <!-- api-docgen:end web.RadioGroupProps.RadioGroupProps -->
 
