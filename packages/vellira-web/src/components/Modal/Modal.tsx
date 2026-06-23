@@ -31,7 +31,7 @@ export const Modal = ({
       <ModalOverlay
         isOpen={isOpen}
         onClose={onClose}
-        closeOnClick={closeOnBackdrop ?? closeOnClick ?? true}
+        closeOnBackdrop={closeOnBackdrop ?? closeOnClick}
         closeOnEsc={closeOnEsc}
       >
         <ModalContent>{children}</ModalContent>
@@ -39,3 +39,5 @@ export const Modal = ({
     </ModalContext.Provider>
   );
 };
+
+Modal.displayName = 'Modal';

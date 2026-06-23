@@ -22,7 +22,7 @@ export const ModalHeader = ({ children }: ModalHeaderProps) => {
           onClick={onClose}
           aria-label='Close modal'
         >
-          <Close />
+          <Close size={16} />
         </button>
       )}
     </div>

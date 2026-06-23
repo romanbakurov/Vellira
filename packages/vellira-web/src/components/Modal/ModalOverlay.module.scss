@@ -7,7 +7,8 @@
   background-color: rgb(0 0 0 / 50%);
   opacity: 0;
   inset: 0;
-  backdrop-filter: blur(4px); // Современный эффект
+  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   visibility: hidden;
 
   &--open {
@@ -16,18 +17,14 @@
   }
 
   &--animated {
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2 ease;
+    transition: opacity 200ms ease;
   }
 }
 
 .modal {
-  background: white;
-  border-radius: 12px;
+  width: fit-content;
   max-width: 90vw;
   max-height: 90vh;
-  overflow: auto;
   outline: none;
 }
 

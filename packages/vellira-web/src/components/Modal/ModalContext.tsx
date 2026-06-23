@@ -6,12 +6,12 @@ interface ModalContextType {
   descriptionId: string;
 }
 
-const ModalContext = createContext<ModalContextType | null>(null);
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const useModalContext = () => {
   const context = useContext(ModalContext);
 
-  if (!context) {
+  if (context === undefined) {
     throw new Error('Modal compound components must be used inside Modal');
   }
 
@@ -19,3 +19,4 @@ export const useModalContext = () => {
 };
 
 export default ModalContext;
+ModalContext.displayName = 'ModalContext';

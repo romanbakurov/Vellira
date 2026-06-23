@@ -4,6 +4,10 @@ import { ModalFooter } from './Footer/ModalFooter';
 import { ModalHeader } from './Header/ModalHeader';
 import { Modal as BaseModal } from './Modal';
 
+export type { ModalBodyProps } from './Body/types';
+export type { ModalContentProps } from './Content/types';
+export type { ModalFooterProps } from './Footer/types';
+export type { ModalHeaderProps } from './Header/types';
 export type { ModalProps } from './types';
 
 export const Modal = Object.assign(BaseModal, {

@@ -18,23 +18,25 @@ export const ModalOverlay = ({
   onClose,
   isOpen,
   className,
-  closeOnClick = true,
+  closeOnBackdrop,
+  closeOnClick,
   closeOnEsc = true,
   zIndex = 1000,
   animated = true,
 }: ModalOverlayProps) => {
+  const shouldCloseOnBackdrop = closeOnBackdrop ?? closeOnClick ?? true;
   const modalRef = useRef<HTMLDivElement>(null);
   const { titleId, descriptionId } = useModalContext();
 
   const handleOverlayClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!closeOnClick) return;
+      if (!shouldCloseOnBackdrop) return;
 
       if (e.target === e.currentTarget) {
         onClose?.();
       }
     },
-    [closeOnClick, onClose]
+    [shouldCloseOnBackdrop, onClose]
   );
 
   useModalKeyboard({ isOpen, onClose: closeOnEsc ? onClose : undefined });

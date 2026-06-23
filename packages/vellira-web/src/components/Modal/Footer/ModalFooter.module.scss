@@ -3,13 +3,4 @@
   justify-content: flex-end;
   gap: var(--space-3);
   padding-top: var(--space-4);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-
-  &--center {
-    justify-content: center;
-  }
-
-  &--space-between {
-    justify-content: space-between;
-  }
 }

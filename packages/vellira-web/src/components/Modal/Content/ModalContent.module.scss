@@ -1,8 +1,11 @@
 .content {
-  width: 100%;
+  width: fit-content;
+  min-width: 320px;
   max-width: 600px;
-  padding: 16px;
-  background: var(--color-gray-0);
+  max-height: 90vh;
+  overflow: hidden auto;
+  padding: var(--space-4);
+  background-color: var(--color-gray-0);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px rgb(0 0 0 / 20%);
+  box-shadow: var(--shadow-lg);
 }

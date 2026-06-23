@@ -4,29 +4,35 @@
   align-items: center;
   padding-bottom: var(--space-4);
   background-color: var(--color-gray-0);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 
   &Title {
     margin: 0;
     color: var(--color-gray-900);
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
+    text-transform: none;
   }
 
   &CloseButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     color: var(--color-gray-500);
     background: transparent;
     border: none;
     border-radius: var(--radius-full);
-    transition: all 0.2s ease;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
     cursor: pointer;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
 
     &:hover {
       color: var(--color-gray-700);

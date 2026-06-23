@@ -1,19 +1,4 @@
 .modalBody {
   flex: 1;
   padding-bottom: var(--space-4);
-
-  // Sizes
-  &--sm {
-    padding: var(--space-3);
-  }
-
-  &--lg {
-    padding: var(--space-5);
-  }
-
-  // Scroll for a long content
-  &--scrollable {
-    overflow-y: auto;
-    max-height: 60vh;
-  }
 }

@@ -13,3 +13,5 @@ export const ModalBody = ({ children }: ModalBodyProps) => {
     </div>
   );
 };
+
+ModalBody.displayName = 'ModalBody';

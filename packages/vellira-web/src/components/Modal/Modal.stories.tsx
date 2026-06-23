@@ -20,16 +20,17 @@ Accessible dialog displayed above the page content.
 
 **Features**
 - Header, body, and footer composition
-- Closes on ESC key
+- Closes on Escape key when enabled
 - Closes on backdrop click when enabled
-- Size variants
-- Position variants
 - Focus management
 - Scroll lock while open
+- Portal rendering
 
 ### Accessibility
 
-For proper accessibility, include a clear title in \`Modal.Header\`. The modal uses the header and body content to describe the dialog to assistive technologies.
+For proper accessibility, include a clear title in \`Modal.Header\`.
+The modal uses \`Modal.Header\` and \`Modal.Body\` to connect
+\`aria-labelledby\` and \`aria-describedby\`.
 
 Correct usage:
 
@@ -43,7 +44,7 @@ Correct usage:
 
   <Modal.Footer>
     <Button onClick={handleClose}>Cancel</Button>
-    <Button variant='danger' onClick={handleDelete}>Delete</Button>
+    <Button variant="danger" onClick={handleDelete}>Delete</Button>
   </Modal.Footer>
 </Modal>
 \`\`\`
@@ -60,39 +61,6 @@ Correct usage:
       control: false,
       table: {
         type: { summary: 'ReactNode' },
-      },
-    },
-    zIndex: {
-      description: 'CSS z-index applied to the modal overlay.',
-      control: 'number',
-      table: {
-        type: { summary: 'number' },
-      },
-    },
-    animated: {
-      description: 'Enables opening and closing animations.',
-      control: 'boolean',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    size: {
-      description: 'Modal size.',
-      control: 'radio',
-      options: ['sm', 'md', 'lg'],
-      table: {
-        type: { summary: `'sm' | 'md' | 'lg'` },
-        defaultValue: { summary: 'md' },
-      },
-    },
-    position: {
-      description: 'Modal position inside the viewport.',
-      control: 'radio',
-      options: ['top', 'center', 'bottom'],
-      table: {
-        type: { summary: `'top' | 'center' | 'bottom'` },
-        defaultValue: { summary: 'center' },
       },
     },
     isOpen: {
@@ -118,8 +86,17 @@ Correct usage:
         defaultValue: { summary: 'true' },
       },
     },
-    closeOnClick: {
+    closeOnBackdrop: {
       description: 'Allows closing the modal by clicking the backdrop.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    closeOnClick: {
+      description:
+        'Deprecated. Use closeOnBackdrop instead. Allows closing the modal by clicking the backdrop.',
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
@@ -168,7 +145,7 @@ const WithoutBackdropCloseDemo = () => {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        closeOnClick={false}
+        closeOnBackdrop={false}
       >
         <Modal.Header>Important Notice</Modal.Header>
         <Modal.Body>
@@ -177,53 +154,6 @@ const WithoutBackdropCloseDemo = () => {
         <Modal.Footer>
           <Button variant='primary' onClick={() => setIsOpen(false)}>
             Got it
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-};
-
-const SizesDemo = () => {
-  const [size, setSize] = useState<'sm' | 'md' | 'lg'>('md');
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-        <Button
-          onClick={() => {
-            setSize('sm');
-            setIsOpen(true);
-          }}
-        >
-          Small
-        </Button>
-        <Button
-          onClick={() => {
-            setSize('md');
-            setIsOpen(true);
-          }}
-        >
-          Medium
-        </Button>
-        <Button
-          onClick={() => {
-            setSize('lg');
-            setIsOpen(true);
-          }}
-        >
-          Large
-        </Button>
-      </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size={size}>
-        <Modal.Header>{size.toUpperCase()} Modal</Modal.Header>
-        <Modal.Body>
-          This modal has <strong>{size}</strong> size variant.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='primary' onClick={() => setIsOpen(false)}>
-            Close
           </Button>
         </Modal.Footer>
       </Modal>
@@ -260,31 +190,6 @@ const LongContentDemo = () => {
   );
 };
 
-const CustomPositionDemo = ({ onClose }: { onClose?: () => void }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onClose?.();
-  };
-
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>Open Top Modal</Button>
-
-      <Modal isOpen={isOpen} position='top' onClose={handleClose}>
-        <Modal.Header>Top Positioned Modal</Modal.Header>
-        <Modal.Body>This modal appears at the top of the screen.</Modal.Body>
-        <Modal.Footer>
-          <Button variant='primary' onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-};
-
 export const Basic: Story = {
   render: (args) => <BasicModalDemo onClose={args.onClose} />,
 };
@@ -293,14 +198,6 @@ export const WithoutBackdropClose: Story = {
   render: () => <WithoutBackdropCloseDemo />,
 };
 
-export const Sizes: Story = {
-  render: () => <SizesDemo />,
-};
-
 export const LongContent: Story = {
   render: () => <LongContentDemo />,
-};
-
-export const CustomPosition: Story = {
-  render: (args) => <CustomPositionDemo onClose={args.onClose} />,
 };
