@@ -293,17 +293,20 @@ import { Dropdown } from '@romanbakurov/vellira-native';
 
 <!-- api-docgen:start native.DropdownProps.DropdownProps -->
 
-| Prop           | Type                      | Required | Description                          |
-| -------------- | ------------------------- | -------- | ------------------------------------ |
-| `label`        | `string`                  | No       | Default trigger label.               |
-| `trigger`      | `ReactNode`               | No       | Custom trigger content.              |
-| `items`        | `DropdownItem[]`          | Yes      | Menu model.                          |
-| `style`        | `StyleProp<ViewStyle>`    | No       | Extra root style.                    |
-| `triggerStyle` | `StyleProp<ViewStyle>`    | No       | Extra trigger style.                 |
-| `itemStyle`    | `StyleProp<ViewStyle>`    | No       | Extra item style.                    |
-| `textStyle`    | `StyleProp<TextStyle>`    | No       | Extra text style.                    |
-| `disabled`     | `boolean`                 | No       | Disables the trigger.                |
-| `onSelect`     | `(value: string) => void` | No       | Called when a menu item is selected. |
+| Prop           | Type                      | Required | Description                                     |
+| -------------- | ------------------------- | -------- | ----------------------------------------------- |
+| `label`        | `string`                  | No       | Default trigger label.                          |
+| `trigger`      | `ReactNode`               | No       | Custom trigger content.                         |
+| `items`        | `DropdownItem[]`          | Yes      | Menu model.                                     |
+| `style`        | `StyleProp<ViewStyle>`    | No       | Extra root style.                               |
+| `triggerStyle` | `StyleProp<ViewStyle>`    | No       | Extra trigger style.                            |
+| `itemStyle`    | `StyleProp<ViewStyle>`    | No       | Extra item style.                               |
+| `textStyle`    | `StyleProp<TextStyle>`    | No       | Extra text style.                               |
+| `disabled`     | `boolean`                 | No       | Disables the trigger.                           |
+| `onSelect`     | `(value: string) => void` | No       | Called when a menu item is selected.            |
+| `icon`         | `ReactNode`               | No       | Icon rendered inside the component.             |
+| `arrowIcon`    | `ReactNode`               | No       | Custom arrow icon rendered in the trigger.      |
+| `showArrow`    | `boolean`                 | No       | Controls whether the trigger arrow is rendered. |
 
 <!-- api-docgen:end native.DropdownProps.DropdownProps -->
 
