@@ -4,18 +4,22 @@ type IconProps = SVGProps<SVGSVGElement> & {
   size?: number | string;
   color?: string;
 };
-const ChevronDown = (props: IconProps) => (
+const ChevronDown = ({
+  size = 16,
+  color = 'currentColor',
+  ...props
+}: IconProps) => (
   <svg
     viewBox='0 0 16 16'
-    fill={props.color ?? 'currentColor'}
+    fill={color}
     xmlns='http://www.w3.org/2000/svg'
-    width={props.size ?? 16}
-    height={props.size ?? 16}
+    width={size}
+    height={size}
     {...props}
   >
     <path
       d='M8 8.4672L3.79254 4.30429C3.38247 3.89857 2.71762 3.89857 2.30755 4.30429C1.89748 4.71002 1.89748 5.36783 2.30755 5.77356L7.29997 10.7131C7.68659 11.0956 8.31341 11.0956 8.70003 10.7131L13.6924 5.77356C14.1025 5.36783 14.1025 4.71002 13.6924 4.30429C13.2824 3.89857 12.6175 3.89857 12.2075 4.30429L8 8.4672Z'
-      fill={props.color ?? 'currentColor'}
+      fill={color}
     />
   </svg>
 );

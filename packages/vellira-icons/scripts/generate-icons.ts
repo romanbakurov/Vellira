@@ -16,32 +16,40 @@ function toName(file: string): string {
 }
 
 function withIconProps(code: string, native: boolean): string {
-  if (native) {
-    return code
-      .replace(/\s+xmlns=['"]http:\/\/www\.w3\.org\/2000\/svg['"]/g, '')
-      .replace(
-        'import type { SvgProps } from "react-native-svg";',
-        `import type { SvgProps } from "react-native-svg";
+  const nextCode = native
+    ? code
+        .replace(/\s+xmlns=['"]http:\/\/www\.w3\.org\/2000\/svg['"]/g, '')
+        .replace(
+          'import type { SvgProps } from "react-native-svg";',
+          `import type { SvgProps } from "react-native-svg";
 
 type IconProps = SvgProps & {
   size?: number | string;
   color?: string;
 };`
-      )
-      .replace(/props: SvgProps/g, 'props: IconProps');
-  }
-
-  return code
-    .replace(
-      'import type { SVGProps } from "react";',
-      `import type { SVGProps } from "react";
+        )
+        .replace(
+          /const (\w+) = \(props: SvgProps\) =>/,
+          `const $1 = ({ size = 16, color = 'currentColor', ...props }: IconProps) =>`
+        )
+    : code
+        .replace(
+          'import type { SVGProps } from "react";',
+          `import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement> & {
   size?: number | string;
   color?: string;
 };`
-    )
-    .replace(/props: SVGProps<SVGSVGElement>/g, 'props: IconProps');
+        )
+        .replace(
+          /const (\w+) = \(props: SVGProps<SVGSVGElement>\) =>/,
+          `const $1 = ({ size = 16, color = 'currentColor', ...props }: IconProps) =>`
+        );
+
+  return nextCode
+    .replace(/props\.size \?\? 16/g, 'size')
+    .replace(/props\.color \?\? ['"]currentColor['"]/g, 'color');
 }
 
 async function compile(
@@ -65,6 +73,7 @@ async function compile(
       },
       replaceAttrValues: {
         '#000': '{props.color ?? "currentColor"}',
+        '#000000': '{props.color ?? "currentColor"}',
         black: '{props.color ?? "currentColor"}',
         currentColor: '{props.color ?? "currentColor"}',
       },
@@ -87,9 +96,16 @@ async function run(): Promise<void> {
     recursive: true,
   });
 
-  const files = await fg('*.svg', {
-    cwd: ASSETS,
-  });
+  const files = (
+    await fg('*.svg', {
+      cwd: ASSETS,
+    })
+  ).sort();
+
+  if (files.length === 0) {
+    console.warn('⚠️ No SVG icons found');
+    return;
+  }
 
   const webExports: string[] = [];
   const nativeExports: string[] = [];

@@ -119,7 +119,6 @@ export const Dropdown = ({
           ref={menuRefCallback}
           floatingStyles={floatingStyles}
           menuId={menuId}
-          role='menu'
         >
           {items.map((item, index) => {
             if (isGroup(item)) {
@@ -149,7 +148,11 @@ export const Dropdown = ({
                       close();
                     }
                   }}
-                  onMouseEnter={() => setActiveIndex(navigableIndex)}
+                  onMouseEnter={() => {
+                    if (navigableIndex < 0 || item.disabled) return;
+
+                    setActiveIndex(navigableIndex);
+                  }}
                 >
                   {item.label}
                 </DropdownItem>

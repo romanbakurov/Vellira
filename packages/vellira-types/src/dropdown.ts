@@ -1,11 +1,13 @@
 export interface BaseDropdownMenuItem {
   type?: 'item';
   value: string;
+  label: string;
   disabled?: boolean;
 }
 
 export interface BaseDropdownGroup {
   type: 'group';
+  label: string;
 }
 
 export interface BaseDropdownSeparator {
@@ -25,10 +27,10 @@ export interface BaseDropdownProps {
 
 export type BaseDropdownContentProps = Record<never, never>;
 
-export type BaseDropdownGroupProps = Record<never, never>;
+export type BaseDropdownGroupProps = BaseDropdownGroup;
 
 export type BaseDropdownItemProps = BaseDropdownMenuItem & {
-  active: boolean;
+  active?: boolean;
 };
 
 export interface BaseDropdownTriggerProps {

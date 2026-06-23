@@ -68,13 +68,13 @@
 
 .arrow {
   margin-left: auto;
-
-  &--open {
-    transform: rotate(180deg);
-  }
 }
 
-.button:hover:not(.disabled) .arrow:not(.arrow--open) {
+.open {
+  transform: rotate(180deg);
+}
+
+.button:hover:not(.disabled) .arrow:not(.open) {
   transform: rotate(-90deg);
 }
 

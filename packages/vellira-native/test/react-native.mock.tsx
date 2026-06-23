@@ -67,6 +67,26 @@ export const View = forwardRef<HTMLDivElement, NativeProps>(
 );
 View.displayName = 'View';
 
+export const Animated = {
+  Value: class {
+    value: number;
+
+    constructor(value: number) {
+      this.value = value;
+    }
+
+    interpolate() {
+      return '0deg';
+    }
+  },
+
+  timing: () => ({
+    start: () => {},
+  }),
+
+  View,
+};
+
 export const Text = forwardRef<HTMLSpanElement, NativeProps>(
   ({ children, style, testID }, ref) => (
     <span ref={ref} data-testid={testID} style={flattenStyle(style)}>
@@ -160,5 +180,13 @@ export const Modal = ({
 export const StyleSheet = {
   create<T extends Record<string, unknown>>(styles: T): T {
     return styles;
+  },
+
+  absoluteFill: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 };

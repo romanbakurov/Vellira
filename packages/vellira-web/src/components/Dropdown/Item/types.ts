@@ -4,8 +4,10 @@ import type {
 } from '@romanbakurov/vellira-types';
 import type { ReactNode } from 'react';
 
-export interface DropdownItemProps extends BaseDropdownItemProps {
-  label: string;
+export interface DropdownItemProps extends Pick<
+  BaseDropdownItemProps,
+  'label' | 'value' | 'disabled' | 'active'
+> {
   children: ReactNode;
   icon?: ReactNode;
   danger?: boolean;

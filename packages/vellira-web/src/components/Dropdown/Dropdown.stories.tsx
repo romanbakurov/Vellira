@@ -10,7 +10,7 @@ import {
   Settings,
 } from '@romanbakurov/vellira-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { Dropdown } from '../Dropdown';
 
@@ -109,7 +109,7 @@ Correct usage:
       ],
       table: {
         type: { summary: 'Placement' },
-        defaultValue: { placement: 'bottom-start' },
+        defaultValue: { summary: 'bottom-start' },
       },
     },
     rotateAngle: {
@@ -122,9 +122,9 @@ Correct usage:
     textWrap: {
       description: 'Default text wrapping behavior for dropdown item labels.',
       control: 'radio',
-      options: ['truncate', 'wrap'],
+      options: ['truncate', 'wrap', 'nowrap'],
       table: {
-        type: { summary: `'truncate' | 'wrap'` },
+        type: { summary: `''truncate', 'wrap', 'nowrap'` },
       },
     },
     onSelect: {
@@ -408,5 +408,31 @@ export const Disabled: Story = {
     trigger: 'Not available',
     disabled: true,
     items: defaultOptions,
+  },
+};
+
+export const Selection: Story = {
+  args: {
+    label: 'Actions',
+    trigger: 'Actions',
+    items: [
+      { label: 'Edit', value: 'edit' },
+      { label: 'Copy', value: 'copy' },
+      { label: 'Delete', value: 'delete', danger: true },
+    ],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const body = within(document.body);
+
+    const trigger = canvas.getByRole('button', { name: 'Actions' });
+
+    await userEvent.click(trigger);
+
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+    await userEvent.click(body.getByRole('menuitem', { name: 'Copy' }));
+
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
   },
 };

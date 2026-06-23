@@ -1,25 +1,25 @@
 import { useState } from 'react';
 
-import { Pressable, Text, View } from 'react-native';
+import { View } from 'react-native';
 
+import { DropdownContent } from './Content/DropdownContent';
+import { DropdownGroup } from './Group/DropdownGroup';
+import { DropdownItem } from './Item/DropdownItem';
+import { DropdownSeparator } from './Separator/DropdownSeparator';
+import { DropdownTrigger } from './Trigger/DropdownTrigger';
 import { styles } from './Dropdown.styles';
-import type { DropdownItem, DropdownProps } from './types';
-
-const isGroup = (
-  item: DropdownItem
-): item is Extract<DropdownItem, { type: 'group' }> => item.type === 'group';
-
-const isSeparator = (
-  item: DropdownItem
-): item is Extract<DropdownItem, { type: 'separator' }> =>
-  item.type === 'separator';
+import type { DropdownProps } from './types';
+import { isGroup, isSeparator } from './types';
 
 export function Dropdown({
   label = 'Menu',
   trigger,
+  icon,
+  arrowIcon,
+  showArrow = true,
   items,
   onSelect,
-  disabled,
+  disabled = false,
   style,
   triggerStyle,
   itemStyle,
@@ -27,73 +27,64 @@ export function Dropdown({
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const close = () => setIsOpen(false);
+
+  const handleSelect = (value: string) => {
+    onSelect?.(value);
+    close();
+  };
+
   return (
     <View style={[styles.root, style]}>
-      <Pressable
+      <DropdownTrigger
+        label={label}
+        trigger={trigger}
+        icon={icon}
+        arrowIcon={arrowIcon}
+        showArrow={showArrow}
         disabled={disabled}
-        accessibilityRole='button'
-        accessibilityState={{ expanded: isOpen, disabled }}
-        onPress={() => setIsOpen((current) => !current)}
-        style={[styles.trigger, disabled && styles.itemDisabled, triggerStyle]}
-      >
-        {trigger ?? <Text style={styles.triggerText}>{label}</Text>}
-        {!trigger && (
-          <Text style={styles.triggerText}>{isOpen ? 'up' : 'down'}</Text>
-        )}
-      </Pressable>
+        isOpen={isOpen}
+        triggerStyle={triggerStyle}
+        onPress={() => {
+          if (disabled) return;
 
-      {isOpen && (
-        <View style={styles.menu}>
-          {items.map((item, index) => {
-            if (isGroup(item)) {
-              return (
-                <Text
-                  key={`group-${item.label}-${index}`}
-                  style={styles.groupLabel}
-                >
-                  {item.label}
-                </Text>
-              );
-            }
+          setIsOpen(true);
+        }}
+      />
 
-            if (isSeparator(item)) {
-              return (
-                <View key={`separator-${index}`} style={styles.separator} />
-              );
-            }
-
+      <DropdownContent isOpen={isOpen} onClose={close}>
+        {items.map((item, index) => {
+          if (isGroup(item)) {
             return (
-              <Pressable
-                key={item.value}
-                disabled={item.disabled}
-                accessibilityRole='button'
-                onPress={() => {
-                  onSelect?.(item.value);
-                  setIsOpen(false);
-                }}
-                style={({ pressed }) => [
-                  styles.item,
-                  pressed && styles.itemPressed,
-                  item.disabled && styles.itemDisabled,
-                  itemStyle,
-                ]}
-              >
-                {item.icon}
-                <Text
-                  numberOfLines={item.textWrap === 'wrap' ? undefined : 1}
-                  style={[
-                    styles.itemText,
-                    item.danger && styles.dangerText,
-                    textStyle,
-                  ]}
-                >
-                  {item.label}
-                </Text>
-              </Pressable>
+              <DropdownGroup
+                key={`group-${item.label}-${index}`}
+                label={item.label}
+              />
             );
-          })}
-        </View>
-      )}
+          }
+
+          if (isSeparator(item)) {
+            return <DropdownSeparator key={`separator-${index}`} />;
+          }
+
+          return (
+            <DropdownItem
+              key={item.value}
+              label={item.label}
+              value={item.value}
+              icon={item.icon}
+              danger={item.danger}
+              disabled={item.disabled}
+              textWrap={item.textWrap}
+              itemStyle={itemStyle}
+              textStyle={textStyle}
+              onSelect={handleSelect}
+            />
+          );
+        })}
+      </DropdownContent>
     </View>
   );
 }
+
+Dropdown.displayName = 'Dropdown';

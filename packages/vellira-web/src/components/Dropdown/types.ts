@@ -9,16 +9,13 @@ import type {
 import type { ReactNode } from 'react';
 
 export interface DropdownMenuItem extends BaseDropdownMenuItem {
-  label: string;
   icon?: ReactNode;
   danger?: boolean;
+  shortcut?: string;
   textWrap?: TextWrap;
 }
 
-export interface DropdownGroup extends BaseDropdownGroup {
-  label: string;
-}
-
+export type DropdownGroup = BaseDropdownGroup;
 export type DropdownSeparator = BaseDropdownSeparator;
 export type DropdownItem = DropdownMenuItem | DropdownGroup | DropdownSeparator;
 

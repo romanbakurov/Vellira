@@ -22,7 +22,10 @@ export const DropdownItem = ({
   return (
     <li
       role='menuitem'
-      aria-disabled={disabled}
+      tabIndex={-1}
+      aria-disabled={disabled || undefined}
+      data-active={active || undefined}
+      data-danger={danger || undefined}
       onClick={disabled ? undefined : onClick}
       onMouseEnter={disabled ? undefined : onMouseEnter}
       className={cn(

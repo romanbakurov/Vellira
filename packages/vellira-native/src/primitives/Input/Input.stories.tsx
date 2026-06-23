@@ -8,6 +8,56 @@ import type { InputProps } from './types';
 const meta = {
   title: 'Primitives/Input',
   component: Input,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Input Component
+
+Text input primitive for collecting user data in forms.
+
+**Features**
+- Controlled and uncontrolled usage
+- Multiple input types
+- Three size variants
+- Required state
+- Disabled state
+- Validation error message
+- Accessible label support
+
+### Usage
+
+Use Input when users need to enter text, email addresses, passwords, numbers, or search queries.
+
+Correct usage:
+
+\`\`\`tsx
+<Input
+  label="Email"
+  placeholder="name@company.com"
+  value={email}
+  onChange={setEmail}
+/>
+\`\`\`
+
+### Accessibility
+
+- Associated form label
+- Required state support
+- Error state support
+- Native keyboard and screen reader support
+
+### Common use cases
+
+- Login and registration forms
+- Search fields
+- Profile settings
+- Contact forms
+- Data entry forms
+`,
+      },
+    },
+  },
   args: {
     label: 'Email',
     placeholder: 'name@company.com',
@@ -16,30 +66,50 @@ const meta = {
   },
   argTypes: {
     label: {
+      description: 'Label displayed above the input.',
       control: 'text',
     },
+
     value: {
+      description: 'Current input value.',
       control: 'text',
     },
+
     placeholder: {
+      description: 'Placeholder text displayed when empty.',
       control: 'text',
     },
+
     size: {
+      description: 'Input size variant.',
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
+
     type: {
+      description: 'Native input type.',
       control: 'select',
       options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
     },
+
     required: {
+      description: 'Marks the input as required.',
       control: 'boolean',
     },
+
     disabled: {
+      description: 'Disables user interaction.',
       control: 'boolean',
     },
+
     error: {
+      description: 'Validation error message.',
       control: 'text',
+    },
+
+    onChange: {
+      description: 'Called when the input value changes.',
+      action: 'changed',
     },
   },
 } satisfies Meta<typeof Input>;

@@ -4,20 +4,20 @@ type IconProps = SVGProps<SVGSVGElement> & {
   size?: number | string;
   color?: string;
 };
-const Check = (props: IconProps) => (
+const Check = ({ size = 16, color = 'currentColor', ...props }: IconProps) => (
   <svg
     viewBox='0 0 16 16'
-    fill={props.color ?? 'currentColor'}
+    fill={color}
     xmlns='http://www.w3.org/2000/svg'
-    width={props.size ?? 16}
-    height={props.size ?? 16}
+    width={size}
+    height={size}
     {...props}
   >
     <path
       fillRule='evenodd'
       clipRule='evenodd'
       d='M14.6242 3.37202C15.1259 3.86746 15.1252 4.67006 14.6227 5.16468L7.03865 12.6295C6.53672 13.1235 5.72382 13.1235 5.22189 12.6295L1.37733 8.84536C0.874813 8.35074 0.874137 7.54814 1.37582 7.05269C1.87751 6.55725 2.69158 6.55659 3.1941 7.05121L6.13027 9.94122L12.8059 3.37053C13.3084 2.87591 14.1225 2.87658 14.6242 3.37202Z'
-      fill={props.color ?? 'currentColor'}
+      fill={color}
     />
   </svg>
 );
