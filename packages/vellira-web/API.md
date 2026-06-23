@@ -404,15 +404,16 @@ import { Tooltip, Button } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.TooltipProps.Tooltip -->
 
-| Prop        | Type                | Required | Description                           |
-| ----------- | ------------------- | -------- | ------------------------------------- |
-| `content`   | `React.ReactNode`   | Yes      | Tooltip content.                      |
-| `children`  | `React.ReactNode`   | Yes      | Trigger element.                      |
-| `maxWidth`  | `string \| number`  | No       | Maximum tooltip width.                |
-| `className` | `string`            | Yes      | Extra CSS class for the tooltip root. |
-| `placement` | `FloatingPlacement` | No       | Preferred tooltip placement.          |
-| `disabled`  | `boolean`           | No       | Prevents the tooltip from opening.    |
-| `delay`     | `TooltipDelay`      | No       | Open and close delay in milliseconds. |
+| Prop           | Type                      | Required | Description                           |
+| -------------- | ------------------------- | -------- | ------------------------------------- |
+| `content`      | `ReactNode`               | Yes      | Tooltip content.                      |
+| `children`     | `ReactNode`               | Yes      | Trigger element.                      |
+| `maxWidth`     | `string \| number`        | No       | Maximum tooltip width.                |
+| `className`    | `string`                  | No       | Extra CSS class for the tooltip root. |
+| `placement`    | `FloatingPlacement`       | No       | Preferred tooltip placement.          |
+| `disabled`     | `boolean`                 | No       | Prevents the tooltip from opening.    |
+| `delay`        | `TooltipDelay`            | No       | Open and close delay in milliseconds. |
+| `onOpenChange` | `(open: boolean) => void` | No       | —                                     |
 
 <!-- api-docgen:end web.TooltipProps.Tooltip -->
 

@@ -5,6 +5,21 @@ import { fn } from 'storybook/test';
 import { Button } from '../../primitives/Button';
 import { Tooltip } from '../Tooltip';
 
+const placements = [
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end',
+] as const;
+
 const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
@@ -57,9 +72,12 @@ Correct usage:
     placement: {
       description: 'Tooltip position relative to the trigger.',
       control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
+      options: placements,
       table: {
-        type: { summary: `'top' | 'bottom' | 'left' | 'right'` },
+        type: {
+          summary:
+            "'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'",
+        },
         defaultValue: { summary: 'top' },
       },
     },
@@ -82,7 +100,7 @@ Correct usage:
       description: 'Maximum tooltip width in pixels.',
       control: 'number',
       table: {
-        type: { summary: 'number' },
+        type: { summary: 'number | string' },
       },
     },
     onOpenChange: {
@@ -116,27 +134,23 @@ export const Placement: Story = {
   render: () => (
     <div
       style={{
-        display: 'flex',
-        gap: '20px',
-        flexWrap: 'wrap',
-        paddingTop: '50px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(120px, 1fr))',
+        gap: '48px',
+        padding: '80px',
+        placeItems: 'center',
       }}
     >
-      <Tooltip content='Top tooltip' placement='top'>
-        <Button>Top</Button>
-      </Tooltip>
-
-      <Tooltip content='Bottom tooltip' placement='bottom'>
-        <Button>Bottom</Button>
-      </Tooltip>
-
-      <Tooltip content='Left tooltip' placement='left'>
-        <Button>Left</Button>
-      </Tooltip>
-
-      <Tooltip content='Right tooltip' placement='right'>
-        <Button>Right</Button>
-      </Tooltip>
+      {placements.map((placement) => (
+        <Tooltip
+          key={placement}
+          content={`${placement} tooltip`}
+          placement={placement}
+          delay={{ open: 0, close: 0 }}
+        >
+          <Button>{placement}</Button>
+        </Tooltip>
+      ))}
     </div>
   ),
 };

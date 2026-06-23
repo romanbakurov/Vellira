@@ -4,7 +4,7 @@ import { cn } from '@utils/cn';
 
 import type { TooltipContentProps } from './types';
 
-import styles from './Tooltip.module.scss';
+import styles from './TooltipContent.module.scss';
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (

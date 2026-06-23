@@ -9,7 +9,7 @@ import {
 } from '@floating-ui/react';
 import { useFloatingPosition } from '@hooks/useFloatingPosition';
 
-import { TooltipContent } from './TooltipContent';
+import { TooltipContent } from './Content/TooltipContent';
 import type { TooltipProps } from './types';
 
 export const Tooltip = ({
@@ -20,6 +20,7 @@ export const Tooltip = ({
   delay = { open: 300, close: 100 },
   maxWidth = 250,
   className,
+  onOpenChange,
 }: TooltipProps) => {
   const [open, setOpen] = useState(false);
   const arrowRef = useRef<HTMLDivElement | null>(null);
@@ -27,6 +28,9 @@ export const Tooltip = ({
 
   const handleOpenChange = (nextOpen: boolean) => {
     if (!disabled) setOpen(nextOpen);
+
+    setOpen(nextOpen);
+    onOpenChange?.(nextOpen);
   };
 
   const {

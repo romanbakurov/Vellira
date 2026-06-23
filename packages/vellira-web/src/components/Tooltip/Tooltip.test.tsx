@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { render } from '../../test-utils/render';
 
-import { TooltipContent } from './TooltipContent';
+import { TooltipContent } from './Content/TooltipContent';
 
 afterEach(() => {
   document.body.innerHTML = '';

@@ -9,6 +9,7 @@ export interface BaseTooltipProps {
   placement?: FloatingPlacement;
   disabled?: boolean;
   delay?: TooltipDelay;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export type BaseTooltipContentProps = Record<never, never>;
