@@ -1,95 +1,59 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-import { Pressable, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { styles } from './Tabs.styles';
-import { TabsProvider, useTabs } from './TabsContext';
-import type {
-  TabProps,
-  TabsListProps,
-  TabsPanelProps,
-  TabsProps,
-} from './types';
+import { TabsProvider } from './TabsContext';
+import type { TabsProps } from './types';
 
-function TabsRoot({
+export const TabsRoot = ({
   children,
+  activeIndex: controlledActiveIndex,
   defaultActiveIndex = 0,
+  onChange,
   orientation = 'horizontal',
   appearance = 'pills',
   style,
-}: TabsProps) {
-  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+}: TabsProps) => {
+  const [uncontrolledActiveIndex, setUncontrolledActiveIndex] =
+    useState(defaultActiveIndex);
+
+  const isControlled = controlledActiveIndex !== undefined;
+  const activeIndex = isControlled
+    ? controlledActiveIndex
+    : uncontrolledActiveIndex;
+
+  const setActiveIndex = useCallback(
+    (nextIndex: number) => {
+      if (!isControlled) {
+        setUncontrolledActiveIndex(nextIndex);
+      }
+
+      onChange?.(nextIndex);
+    },
+    [isControlled, onChange]
+  );
+
   const value = useMemo(
     () => ({ activeIndex, appearance, orientation, setActiveIndex }),
-    [activeIndex, appearance, orientation]
+    [activeIndex, appearance, orientation, setActiveIndex]
   );
 
   return (
     <TabsProvider value={value}>
-      <View style={[styles.root, style]}>{children}</View>
-    </TabsProvider>
-  );
-}
-
-function TabsList({ children, style }: TabsListProps) {
-  const { orientation } = useTabs();
-
-  return (
-    <View
-      accessibilityRole='tablist'
-      style={[
-        styles.list,
-        orientation === 'vertical' && styles.listVertical,
-        style,
-      ]}
-    >
-      {children}
-    </View>
-  );
-}
-
-function Tab({ index, children, icon, disabled, style, textStyle }: TabProps) {
-  const { activeIndex, appearance, setActiveIndex } = useTabs();
-  const isActive = activeIndex === index;
-  const isUnderline = appearance === 'underline';
-
-  return (
-    <Pressable
-      disabled={disabled}
-      accessibilityRole='tab'
-      accessibilityState={{ selected: isActive, disabled }}
-      onPress={() => setActiveIndex(index)}
-      style={[
-        styles.tab,
-        isActive && styles.tabActive,
-        isUnderline && styles.tabUnderline,
-        isUnderline && isActive && styles.tabUnderlineActive,
-        disabled && styles.tabDisabled,
-        style,
-      ]}
-    >
-      {icon}
-      <Text
-        style={[styles.tabText, isActive && styles.tabTextActive, textStyle]}
+      <View
+        style={[
+          styles.root,
+          orientation === 'vertical' && styles.rootVertical,
+          style,
+        ]}
       >
         {children}
-      </Text>
-    </Pressable>
+      </View>
+    </TabsProvider>
   );
-}
+};
 
-function TabsPanel({ index, children, style }: TabsPanelProps) {
-  const { activeIndex } = useTabs();
+TabsRoot.displayName = 'TabsRoot';
 
-  if (activeIndex !== index) return null;
-
-  return <View style={[styles.panel, style]}>{children}</View>;
-}
-
-export const Tabs = Object.assign(TabsRoot, {
-  List: TabsList,
-  Tab,
-  Panel: TabsPanel,
-});
-
-export { Tab, TabsList, TabsPanel };
+export default TabsRoot;

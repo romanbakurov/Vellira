@@ -4,50 +4,31 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   root: {
     gap: theme.spacing[4],
+    width: '100%',
   },
-  list: {
-    backgroundColor: theme.colors.gray[55],
-    borderRadius: theme.radius.lg,
+
+  rootVertical: {
     flexDirection: 'row',
-    padding: theme.spacing[1],
+    alignItems: 'flex-start',
+    gap: theme.spacing[4],
   },
+
   listVertical: {
-    alignSelf: 'flex-start',
     flexDirection: 'column',
+    width: 140,
+    flexShrink: 0,
   },
-  tab: {
-    alignItems: 'center',
-    borderRadius: theme.radius.md,
-    flexDirection: 'row',
-    gap: theme.spacing[2],
-    justifyContent: 'center',
-    minHeight: 38,
-    paddingHorizontal: theme.spacing[3],
-    paddingVertical: theme.spacing[2],
+
+  tabVertical: {
+    flex: 0,
+    width: '100%',
+    justifyContent: 'flex-start',
   },
-  tabActive: {
-    backgroundColor: theme.colors.gray[0],
-  },
-  tabUnderline: {
-    borderBottomColor: 'transparent',
-    borderBottomWidth: 2,
-    borderRadius: 0,
-  },
-  tabUnderlineActive: {
-    borderBottomColor: theme.colors.primary,
-  },
-  tabDisabled: {
-    opacity: 0.45,
-  },
-  tabText: {
-    color: theme.colors.gray[700],
-    fontFamily: theme.typography.family.medium,
-    fontSize: theme.typography.size.sm,
-  },
-  tabTextActive: {
-    color: theme.colors.primary,
-  },
+
   panel: {
     backgroundColor: theme.colors.gray[0],
+    flex: 1,
+    flexShrink: 1,
+    minWidth: 0,
   },
 });

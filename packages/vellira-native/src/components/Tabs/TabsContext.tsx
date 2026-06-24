@@ -6,7 +6,7 @@ const TabsContext = createContext<TabsContextValue | null>(null);
 
 export const TabsProvider = TabsContext.Provider;
 
-export function useTabs() {
+export const useTabs = (): TabsContextValue => {
   const context = useContext(TabsContext);
 
   if (!context) {
@@ -14,4 +14,6 @@ export function useTabs() {
   }
 
   return context;
-}
+};
+
+TabsContext.displayName = 'TabsContext';

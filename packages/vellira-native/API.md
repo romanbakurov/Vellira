@@ -368,7 +368,7 @@ import { Tabs } from '@romanbakurov/vellira-native';
 
 | Prop        | Type                   | Required | Description                                  |
 | ----------- | ---------------------- | -------- | -------------------------------------------- |
-| `children`  | `ReactNode`            | Yes      | Tab label.                                   |
+| `children`  | `ReactNode`            | No       | Tab label.                                   |
 | `icon`      | `ReactNode`            | No       | Icon rendered inside the tab.                |
 | `style`     | `StyleProp<ViewStyle>` | No       | Extra tab style.                             |
 | `textStyle` | `StyleProp<TextStyle>` | No       | Extra label text style.                      |

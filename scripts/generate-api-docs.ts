@@ -183,19 +183,19 @@ const sections: ApiSection[] = [
     'native',
     '### Tabs.List Props',
     'TabsListProps',
-    'src/components/Tabs/types.ts'
+    'src/components/Tabs/List/types.ts'
   ),
   section(
     'native',
     '### Tabs.Tab Props',
     'TabProps',
-    'src/components/Tabs/types.ts'
+    'src/components/Tabs/Tab/types.ts'
   ),
   section(
     'native',
     '### Tabs.Panel Props',
     'TabsPanelProps',
-    'src/components/Tabs/types.ts'
+    'src/components/Tabs/Panel/types.ts'
   ),
   section(
     'native',

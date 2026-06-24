@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { render } from '../../test-utils/render';
 
-import { Tabs } from './Tabs';
+import { Tabs } from '.';
 
 afterEach(() => {
   document.body.innerHTML = '';

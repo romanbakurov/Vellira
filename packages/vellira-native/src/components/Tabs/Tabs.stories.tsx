@@ -1,27 +1,116 @@
+import { useState } from 'react';
+
+import { Home, Profile, Settings } from '@romanbakurov/vellira-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from 'react-native';
 
-import { Tabs } from './Tabs';
+import { Tabs } from '.';
 
-const meta: Meta<typeof Tabs> = {
+const meta = {
   title: 'Components/Tabs',
   component: Tabs,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Tabs Component
+
+Navigation component used to organize related content into multiple views.
+
+**Features**
+- Compound API with Tabs.List, Tabs.Tab, and Tabs.Panel
+- Controlled and uncontrolled state
+- Horizontal and vertical orientation
+- Default, pills, and underline appearances
+- Disabled tabs
+- Icon-only and text tabs
+- Accessibility support
+
+### Usage
+
+Use Tabs to switch between related content without leaving the current screen.
+
+Correct usage:
+
+\`\`\`tsx
+<Tabs defaultActiveIndex={0}>
+  <Tabs.List>
+    <Tabs.Tab index={0}>Overview</Tabs.Tab>
+    <Tabs.Tab index={1}>Usage</Tabs.Tab>
+    <Tabs.Tab index={2}>API</Tabs.Tab>
+  </Tabs.List>
+
+  <Tabs.Panel index={0}>
+    <Text>Overview content</Text>
+  </Tabs.Panel>
+
+  <Tabs.Panel index={1}>
+    <Text>Usage content</Text>
+  </Tabs.Panel>
+
+  <Tabs.Panel index={2}>
+    <Text>API content</Text>
+  </Tabs.Panel>
+</Tabs>
+\`\`\`
+`,
+      },
+    },
+  },
+  args: {
+    defaultActiveIndex: 0,
+    appearance: 'default',
+    orientation: 'horizontal',
+  },
   argTypes: {
     appearance: {
       control: 'select',
-      options: ['pills', 'underline'],
+      options: ['default', 'pills', 'underline'],
     },
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
     },
+    children: {
+      control: false,
+    },
   },
+} satisfies Meta<typeof Tabs>;
+
+const ControlledTabs = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <Tabs activeIndex={activeIndex} onChange={setActiveIndex}>
+      <Tabs.List>
+        <Tabs.Tab index={0}>Overview</Tabs.Tab>
+        <Tabs.Tab index={1}>Usage</Tabs.Tab>
+        <Tabs.Tab index={2}>API</Tabs.Tab>
+      </Tabs.List>
+
+      <Tabs.Panel index={0}>
+        <Text>Overview content</Text>
+      </Tabs.Panel>
+
+      <Tabs.Panel index={1}>
+        <Text>Usage content</Text>
+      </Tabs.Panel>
+
+      <Tabs.Panel index={2}>
+        <Text>API content</Text>
+      </Tabs.Panel>
+    </Tabs>
+  );
 };
 
 export default meta;
-type Story = StoryObj<typeof Tabs>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    appearance: 'default',
+  },
   render: (args) => (
     <Tabs {...args}>
       <Tabs.List>
@@ -46,14 +135,14 @@ export const Underline: Story = {
   args: {
     appearance: 'underline',
   },
-  render: Default.render,
+  render: (args) => <Default.render {...args} />,
 };
 
 export const Vertical: Story = {
   args: {
     orientation: 'vertical',
   },
-  render: Default.render,
+  render: (args) => <Default.render {...args} />,
 };
 
 export const WithDisabledTab: Story = {
@@ -74,6 +163,49 @@ export const WithDisabledTab: Story = {
       </Tabs.Panel>
       <Tabs.Panel index={2}>
         <Text>Settings panel.</Text>
+      </Tabs.Panel>
+    </Tabs>
+  ),
+};
+
+export const Pills: Story = {
+  args: {
+    appearance: 'pills',
+  },
+  render: Default.render,
+};
+
+export const VerticalUnderline: Story = {
+  args: {
+    orientation: 'vertical',
+    appearance: 'underline',
+  },
+  render: Default.render,
+};
+
+export const Controlled: Story = {
+  render: () => <ControlledTabs />,
+};
+
+export const IconOnly: Story = {
+  render: () => (
+    <Tabs appearance='pills'>
+      <Tabs.List>
+        <Tabs.Tab index={0} icon={<Home />} />
+        <Tabs.Tab index={1} icon={<Profile />} />
+        <Tabs.Tab index={2} icon={<Settings />} />
+      </Tabs.List>
+
+      <Tabs.Panel index={0}>
+        <Text>Home content</Text>
+      </Tabs.Panel>
+
+      <Tabs.Panel index={1}>
+        <Text>Profile content</Text>
+      </Tabs.Panel>
+
+      <Tabs.Panel index={2}>
+        <Text>Settings content</Text>
       </Tabs.Panel>
     </Tabs>
   ),
