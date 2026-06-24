@@ -2,7 +2,6 @@ import { act } from 'react';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { Button } from '../../primitives/Button';
 import { render } from '../../test-utils/render';
 
 import { Tooltip } from './Tooltip';
@@ -18,7 +17,7 @@ describe('Native Tooltip', () => {
 
     const { container, unmount } = render(
       <Tooltip content='Helpful text'>
-        <Button>Show help</Button>
+        <span>Show help</span>
       </Tooltip>
     );
 
@@ -37,6 +36,46 @@ describe('Native Tooltip', () => {
     });
 
     expect(document.body.textContent).not.toContain('Helpful text');
+
+    unmount();
+  });
+
+  it('does not show content when disabled', () => {
+    vi.useFakeTimers();
+
+    const { container, unmount } = render(
+      <Tooltip content='Disabled tooltip' disabled>
+        <span>Show help</span>
+      </Tooltip>
+    );
+
+    const trigger = container.querySelector('button');
+
+    act(() => {
+      trigger?.dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
+    });
+
+    expect(document.body.textContent).not.toContain('Disabled tooltip');
+
+    unmount();
+  });
+
+  it('supports bottom placement', () => {
+    vi.useFakeTimers();
+
+    const { container, unmount } = render(
+      <Tooltip content='Bottom tooltip' placement='bottom'>
+        <span>Show help</span>
+      </Tooltip>
+    );
+
+    const trigger = container.querySelector('button');
+
+    act(() => {
+      trigger?.dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
+    });
+
+    expect(document.body.textContent).toContain('Bottom tooltip');
 
     unmount();
   });
