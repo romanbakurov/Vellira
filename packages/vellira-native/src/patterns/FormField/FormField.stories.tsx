@@ -32,6 +32,7 @@ const disabledControlStyle = {
 const meta = {
   title: 'Patterns/FormField',
   component: FormField,
+  tags: ['autodocs'],
   args: {
     label: 'Label',
     children: <Text>Field content</Text>,

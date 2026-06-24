@@ -8,6 +8,7 @@ import type { InputProps } from './types';
 const meta = {
   title: 'Primitives/Input',
   component: Input,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

@@ -30,7 +30,43 @@ const longOptions = [
 
 const meta = {
   title: 'Components/Select',
+  tags: ['autodocs'],
   component: Select,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Select Component
+
+Native single-value select control for choosing from a predefined list.
+
+**Features**
+- Native platform picker behavior
+- Label, description, and placeholder support
+- Controlled and uncontrolled value support
+- Required and disabled states
+- Disabled options
+- Validation error message
+
+### Usage
+
+Use Select for form values such as country, language, currency, or category.
+
+Correct usage:
+
+\`\`\`tsx
+<Select
+  label='Country'
+  value={country}
+  onChange={setCountry}
+  placeholder='Select country...'
+  options={countries}
+/>
+\`\`\`
+`,
+      },
+    },
+  },
   args: {
     label: 'Country',
     placeholder: 'Select country...',
@@ -76,41 +112,6 @@ const meta = {
     onChange: {
       action: 'changed',
       description: 'Called when the selected value changes.',
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: `
-### Select Component
-
-Native single-value select control for choosing from a predefined list.
-
-**Features**
-- Native platform picker behavior
-- Label, description, and placeholder support
-- Controlled and uncontrolled value support
-- Required and disabled states
-- Disabled options
-- Validation error message
-
-### Usage
-
-Use Select for form values such as country, language, currency, or category.
-
-Correct usage:
-
-\`\`\`tsx
-<Select
-  label='Country'
-  value={country}
-  onChange={setCountry}
-  placeholder='Select country...'
-  options={countries}
-/>
-\`\`\`
-`,
-      },
     },
   },
 } satisfies Meta<typeof Select>;
