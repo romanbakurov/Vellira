@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import svgr from 'vite-plugin-svgr';
 
 const dirname =
@@ -37,7 +36,6 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
     }),
-    libInjectCss(),
   ],
 
   resolve: {
@@ -69,6 +67,7 @@ export default defineConfig({
         styles: 'src/styles.ts',
       },
       name: 'Vellira',
+      cssFileName: 'styles',
       fileName: (format, entryName) =>
         format === 'cjs' ? `${entryName}.cjs` : `${entryName}.js`,
       formats: ['es', 'cjs'],

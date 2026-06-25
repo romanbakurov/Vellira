@@ -1,9 +1,9 @@
-import { colors } from './colors';
-import { radius } from './radius';
-import { shadows } from './shadows';
-import { spacing } from './spacing';
-import { typography } from './typography';
-import { zIndex } from './zIndex';
+import { colors } from './colors.js';
+import { radius } from './radius.js';
+import { shadows } from './shadows.js';
+import { spacing } from './spacing.js';
+import { typography } from './typography.js';
+import { zIndex } from './zIndex.js';
 
 export const theme = {
   colors,
