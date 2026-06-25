@@ -1,5 +1,6 @@
 import { act } from 'react';
 
+import { Text } from 'react-native';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { render } from '../../test-utils/render';
@@ -8,6 +9,7 @@ import { Button } from './Button';
 
 afterEach(() => {
   document.body.innerHTML = '';
+  vi.restoreAllMocks();
 });
 
 describe('Native Button', () => {
@@ -37,5 +39,19 @@ describe('Native Button', () => {
     expect(onPress).not.toHaveBeenCalled();
 
     unmount();
+  });
+
+  it('warns when icon-only button has no accessibilityLabel', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    render(<Button leftIcon={<Text>Icon</Text>} />);
+
+    expect(warn).toHaveBeenCalledWith(
+      'Vellira Button: icon-only buttons must provide an accessibilityLabel.'
+    );
+
+    warn.mockRestore();
+    warn.mockRestore();
+    vi.clearAllMocks();
   });
 });

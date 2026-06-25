@@ -64,7 +64,18 @@ export function Button({
 }: ButtonProps) {
   const config = sizeMap[size];
 
-  const iconOnly = !children && (leftIcon || rightIcon);
+  const iconOnly = !children && Boolean(leftIcon || rightIcon);
+
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    iconOnly &&
+    !accessibilityLabel
+  ) {
+    console.warn(
+      'Vellira Button: icon-only buttons must provide an accessibilityLabel.'
+    );
+  }
+
   const contentColor = contentColorMap[variant];
   const resolvedIconSize = iconSize ?? config.iconSize;
 

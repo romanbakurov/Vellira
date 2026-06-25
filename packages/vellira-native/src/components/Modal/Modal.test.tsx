@@ -48,4 +48,31 @@ describe('Native Modal', () => {
 
     unmount();
   });
+
+  it('does not expose backdrop as close button when backdrop close is disabled', () => {
+    const onClose = vi.fn();
+
+    const { container, unmount } = render(
+      <Modal isOpen closeOnBackdrop={false} onClose={onClose}>
+        <Modal.Header>Native modal</Modal.Header>
+        <Modal.Body>Body content</Modal.Body>
+      </Modal>
+    );
+
+    const backdrop = container.querySelector<HTMLButtonElement>(
+      '[data-testid="modal-backdrop"]'
+    );
+
+    expect(backdrop).not.toBeNull();
+    expect(backdrop?.getAttribute('role')).toBeNull();
+    expect(backdrop?.getAttribute('aria-label')).toBeNull();
+
+    act(() => {
+      backdrop?.click();
+    });
+
+    expect(onClose).not.toHaveBeenCalled();
+
+    unmount();
+  });
 });

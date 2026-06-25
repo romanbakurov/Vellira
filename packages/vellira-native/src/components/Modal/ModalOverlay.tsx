@@ -20,8 +20,8 @@ export const ModalOverlay = ({
       <View style={[styles.overlay, overlayStyle]}>
         <Pressable
           testID='modal-backdrop'
-          accessibilityRole='button'
-          accessibilityLabel='Close modal'
+          accessibilityRole={closeOnBackdrop ? 'button' : undefined}
+          accessibilityLabel={closeOnBackdrop ? 'Close modal' : undefined}
           style={styles.backdrop}
           onPress={closeOnBackdrop ? onClose : undefined}
         />
