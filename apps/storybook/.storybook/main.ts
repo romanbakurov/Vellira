@@ -14,6 +14,16 @@ const config: StorybookConfig = {
     '@storybook/addon-vitest',
     '@chromatic-com/storybook',
   ],
+
+  async viteFinal(config) {
+    return {
+      ...config,
+      build: {
+        ...config.build,
+        chunkSizeWarningLimit: 1200,
+      },
+    };
+  },
 };
 
 export default config;
