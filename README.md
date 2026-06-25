@@ -44,24 +44,24 @@ Project documentation:
 
 # Packages
 
-| Package | Purpose |
-|---------|---------|
-| `@romanbakurov/vellira-web` | React web component library |
-| `@romanbakurov/vellira-native` | React Native component library |
-| `@romanbakurov/vellira-core` | Shared hooks and interaction logic |
-| `@romanbakurov/vellira-types` | Renderer-neutral TypeScript contracts |
-| `@romanbakurov/vellira-icons` | Shared icon library |
-| `@romanbakurov/vellira-tokens` | Design tokens and theme |
+| Package                        | Purpose                               |
+| ------------------------------ | ------------------------------------- |
+| `@romanbakurov/vellira-web`    | React web component library           |
+| `@romanbakurov/vellira-native` | React Native component library        |
+| `@romanbakurov/vellira-core`   | Shared hooks and interaction logic    |
+| `@romanbakurov/vellira-types`  | Renderer-neutral TypeScript contracts |
+| `@romanbakurov/vellira-icons`  | Shared icon library                   |
+| `@romanbakurov/vellira-tokens` | Design tokens and theme               |
 
 ---
 
 # Apps
 
-| App | Purpose |
-|------|---------|
-| `apps/storybook` | Web Storybook |
+| App                      | Purpose                                  |
+| ------------------------ | ---------------------------------------- |
+| `apps/storybook`         | Web Storybook                            |
 | `apps/native-playground` | Expo playground with on-device Storybook |
-| `apps/test-app` | Local Vite playground |
+| `apps/test-app`          | Local Vite playground                    |
 
 ---
 
@@ -97,18 +97,18 @@ The architecture intentionally keeps rendering code separate while sharing behav
 
 # Component Support
 
-| Component | Web | Native | Tests | Stories |
-|-----------|-----|--------|-------|---------|
-| Button | ✅ | ✅ | ✅ | ✅ |
-| Checkbox | ✅ | ✅ | ✅ | ✅ |
-| Input | ✅ | ✅ | ✅ | ✅ |
-| FormField | ✅ | ✅ | ✅ | ✅ |
-| RadioGroup | ✅ | ✅ | ✅ | ✅ |
-| Select | ✅ | ✅ | ✅ | ✅ |
-| Dropdown | ✅ | ✅ | ✅ | ✅ |
-| Tabs | ✅ | ✅ | ✅ | ✅ |
-| Tooltip | ✅ | ✅ | ✅ | ✅ |
-| Modal | ✅ | ✅ | ✅ | ✅ |
+| Component  | Web | Native | Tests | Stories |
+| ---------- | --- | ------ | ----- | ------- |
+| Button     | ✅  | ✅     | ✅    | ✅      |
+| Checkbox   | ✅  | ✅     | ✅    | ✅      |
+| Input      | ✅  | ✅     | ✅    | ✅      |
+| FormField  | ✅  | ✅     | ✅    | ✅      |
+| RadioGroup | ✅  | ✅     | ✅    | ✅      |
+| Select     | ✅  | ✅     | ✅    | ✅      |
+| Dropdown   | ✅  | ✅     | ✅    | ✅      |
+| Tabs       | ✅  | ✅     | ✅    | ✅      |
+| Tooltip    | ✅  | ✅     | ✅    | ✅      |
+| Modal      | ✅  | ✅     | ✅    | ✅      |
 
 All components share the same design language while providing platform-specific rendering and behavior.
 
@@ -149,21 +149,15 @@ export default function App() {
   return (
     <>
       <Input
-        label="Email"
+        label='Email'
         value={email}
         onChange={setEmail}
-        placeholder="name@example.com"
+        placeholder='name@example.com'
       />
 
-      <Checkbox
-        label="Accept terms"
-        defaultChecked
-      />
+      <Checkbox label='Accept terms' defaultChecked />
 
-      <Button
-        variant="primary"
-        size="md"
-      >
+      <Button variant='primary' size='md'>
         Submit
       </Button>
     </>
@@ -191,20 +185,15 @@ export default function App() {
       }}
     >
       <Input
-        label="Email"
+        label='Email'
         value={email}
         onChange={setEmail}
-        placeholder="name@example.com"
+        placeholder='name@example.com'
       />
 
-      <Checkbox
-        label="Accept terms"
-      />
+      <Checkbox label='Accept terms' />
 
-      <Button
-        variant="primary"
-        size="md"
-      >
+      <Button variant='primary' size='md'>
         Continue
       </Button>
     </View>
@@ -379,11 +368,11 @@ Additional project conventions:
 
 Vellira follows Semantic Versioning.
 
-| Version | Meaning |
-|---------|---------|
-| Patch (`x.y.Z`) | Bug fixes and internal improvements |
+| Version         | Meaning                               |
+| --------------- | ------------------------------------- |
+| Patch (`x.y.Z`) | Bug fixes and internal improvements   |
 | Minor (`x.Y.z`) | New features without breaking changes |
-| Major (`X.y.z`) | Breaking API changes |
+| Major (`X.y.z`) | Breaking API changes                  |
 
 ---
 

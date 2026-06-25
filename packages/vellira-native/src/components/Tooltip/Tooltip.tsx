@@ -23,7 +23,8 @@ export function Tooltip({
   const triggerRef = useRef<View | null>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const { position, updatePosition } = useNativeFloatingPosition(placement, 8);
+  const { position, updatePosition, onFloatingLayout } =
+    useNativeFloatingPosition(placement, 8);
 
   const hideDelay = delay?.close ?? 2500;
 
@@ -76,6 +77,7 @@ export function Tooltip({
               },
               contentStyle,
             ]}
+            onLayout={onFloatingLayout}
           >
             {typeof content === 'string' ? (
               <Text style={[styles.text, textStyle]}>{content}</Text>

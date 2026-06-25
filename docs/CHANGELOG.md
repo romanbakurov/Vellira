@@ -26,11 +26,11 @@ Breaking changes are introduced **only in major releases**.
 
 Whenever a major version is released, this changelog will include:
 
-* migration instructions
-* replacement APIs
-* deprecated APIs
-* code migration examples
-* additional upgrade notes when required
+- migration instructions
+- replacement APIs
+- deprecated APIs
+- code migration examples
+- additional upgrade notes when required
 
 ---
 
@@ -46,19 +46,19 @@ Deprecated APIs are clearly documented in release notes to provide sufficient ti
 
 Before upgrading between major versions:
 
-* Read the release notes.
-* Review the migration guide.
-* Replace deprecated APIs.
-* Run your project's test suite.
-* Verify application behavior before deployment.
+- Read the release notes.
+- Review the migration guide.
+- Replace deprecated APIs.
+- Run your project's test suite.
+- Verify application behavior before deployment.
 
 ---
 
 ## Support Policy
 
-* Patch releases are always backward compatible.
-* Minor releases do not introduce breaking API changes.
-* Major releases may require code changes.
+- Patch releases are always backward compatible.
+- Minor releases do not introduce breaking API changes.
+- Major releases may require code changes.
 
 ---
 
@@ -68,9 +68,9 @@ Migration guides will be added here as the project evolves.
 
 Examples:
 
-* Migration to Vellira v3
-* Migration to Vellira v4
-* Migration to Vellira v5
+- Migration to Vellira v3
+- Migration to Vellira v4
+- Migration to Vellira v5
 
 ---
 
@@ -78,13 +78,13 @@ Examples:
 
 Each release documents:
 
-* ✨ New features
-* 🐛 Bug fixes
-* ♻️ Refactoring
-* ⚠️ Breaking changes (major releases only)
-* 📖 Documentation updates
-* 🚀 Performance improvements
-* 🔒 Security fixes (when applicable)
+- ✨ New features
+- 🐛 Bug fixes
+- ♻️ Refactoring
+- ⚠️ Breaking changes (major releases only)
+- 📖 Documentation updates
+- 🚀 Performance improvements
+- 🔒 Security fixes (when applicable)
 
 ---
 

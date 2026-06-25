@@ -46,25 +46,25 @@ The package root must expose only public runtime components.
 
 Allowed exports:
 
-* Button
-* Checkbox
-* Dropdown
-* FormField
-* Input
-* Modal
-* RadioGroup
-* Select
-* Tabs
-* Tooltip
+- Button
+- Checkbox
+- Dropdown
+- FormField
+- Input
+- Modal
+- RadioGroup
+- Select
+- Tabs
+- Tooltip
 
 Do **not** export:
 
-* internal hooks
-* contexts
-* utilities
-* styles
-* implementation details
-* helper functions
+- internal hooks
+- contexts
+- utilities
+- styles
+- implementation details
+- helper functions
 
 Internal modules should remain private.
 
@@ -76,10 +76,10 @@ Every component should expose a clean, predictable API.
 
 Prefer:
 
-* controlled mode
-* uncontrolled mode
-* event callbacks
-* composition over configuration
+- controlled mode
+- uncontrolled mode
+- event callbacks
+- composition over configuration
 
 Example:
 
@@ -101,25 +101,25 @@ Whenever appropriate, support both modes.
 Examples:
 
 ```tsx
-value / defaultValue
+value / defaultValue;
 
-checked / defaultChecked
+checked / defaultChecked;
 
-open / defaultOpen
+open / defaultOpen;
 
-activeIndex / defaultActiveIndex
+activeIndex / defaultActiveIndex;
 ```
 
 Callbacks:
 
 ```tsx
-onChange
+onChange;
 
-onCheckedChange
+onCheckedChange;
 
-onOpenChange
+onOpenChange;
 
-onValueChange
+onValueChange;
 ```
 
 ---
@@ -190,20 +190,20 @@ Every interactive component must be accessible.
 
 Required:
 
-* semantic HTML
-* keyboard navigation
-* focus management
-* ARIA roles
-* ARIA attributes
+- semantic HTML
+- keyboard navigation
+- focus management
+- ARIA roles
+- ARIA attributes
 
 ## Native
 
 Required:
 
-* accessibilityRole
-* accessibilityState
-* accessibilityLabel (when appropriate)
-* accessibilityHint (when appropriate)
+- accessibilityRole
+- accessibilityState
+- accessibilityLabel (when appropriate)
+- accessibilityHint (when appropriate)
 
 Accessibility is considered part of the component API.
 
@@ -233,10 +233,10 @@ Prefer reusable hooks from:
 
 Examples:
 
-* useControllableState
-* useModal
-* useDropdown
-* useTabs
+- useControllableState
+- useModal
+- useDropdown
+- useTabs
 
 Avoid duplicating logic between components.
 
@@ -265,11 +265,11 @@ Every public component must include Storybook stories.
 
 Minimum stories:
 
-* Default
-* Disabled
-* Variants
-* Controlled example (if applicable)
-* Real-world example
+- Default
+- Disabled
+- Variants
+- Controlled example (if applicable)
+- Real-world example
 
 Stories should demonstrate real usage rather than implementation details.
 
@@ -279,12 +279,12 @@ Stories should demonstrate real usage rather than implementation details.
 
 Every component should include tests for:
 
-* rendering
-* user interaction
-* disabled state
-* controlled mode
-* uncontrolled mode
-* accessibility (where applicable)
+- rendering
+- user interaction
+- disabled state
+- controlled mode
+- uncontrolled mode
+- accessibility (where applicable)
 
 New features should include corresponding tests.
 
@@ -294,10 +294,10 @@ New features should include corresponding tests.
 
 Every public component must provide:
 
-* Storybook documentation
-* generated API documentation
-* examples
-* prop descriptions
+- Storybook documentation
+- generated API documentation
+- examples
+- prop descriptions
 
 Documentation should stay synchronized with implementation.
 
@@ -326,13 +326,13 @@ All checks must pass before merging.
 
 Follow these principles throughout the project:
 
-* Keep components small and focused.
-* Prefer composition over configuration.
-* Avoid unnecessary abstractions.
-* Keep APIs stable.
-* Keep runtime exports minimal.
-* Favor readability over cleverness.
-* Use design tokens consistently.
-* Write tests alongside features.
-* Treat accessibility as a first-class feature.
-* Preserve backward compatibility whenever possible.
+- Keep components small and focused.
+- Prefer composition over configuration.
+- Avoid unnecessary abstractions.
+- Keep APIs stable.
+- Keep runtime exports minimal.
+- Favor readability over cleverness.
+- Use design tokens consistently.
+- Write tests alongside features.
+- Treat accessibility as a first-class feature.
+- Preserve backward compatibility whenever possible.

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 
 type PressableState = { pressed: boolean };
 
@@ -20,6 +20,9 @@ type NativeProps = {
   secureTextEntry?: boolean;
   keyboardType?: string;
   testID?: string;
+  onLayout?: (event: {
+    nativeEvent: { layout: { width: number; height: number } };
+  }) => void;
 };
 
 const flattenStyle = (style: unknown): React.CSSProperties | undefined => {
@@ -53,17 +56,47 @@ const stateProps = (state?: Record<string, unknown>) => ({
 });
 
 export const View = forwardRef<HTMLDivElement, NativeProps>(
-  ({ children, style, accessibilityRole, accessibilityState, testID }, ref) => (
-    <div
-      ref={ref}
-      data-testid={testID}
-      role={roleFromAccessibility(accessibilityRole)}
-      style={flattenStyle(style)}
-      {...stateProps(accessibilityState)}
-    >
-      {children}
-    </div>
-  )
+  (
+    {
+      children,
+      style,
+      accessibilityRole,
+      accessibilityState,
+      testID,
+      onLayout,
+    },
+    ref
+  ) => {
+    const resolvedStyle = flattenStyle(style);
+    const onLayoutRef = useRef(onLayout);
+
+    useEffect(() => {
+      onLayoutRef.current = onLayout;
+    }, [onLayout]);
+
+    useEffect(() => {
+      onLayoutRef.current?.({
+        nativeEvent: {
+          layout: {
+            width: Number(resolvedStyle?.width ?? resolvedStyle?.maxWidth ?? 0),
+            height: Number(resolvedStyle?.height ?? 0),
+          },
+        },
+      });
+    }, [resolvedStyle?.height, resolvedStyle?.maxWidth, resolvedStyle?.width]);
+
+    return (
+      <div
+        ref={ref}
+        data-testid={testID}
+        role={roleFromAccessibility(accessibilityRole)}
+        style={resolvedStyle}
+        {...stateProps(accessibilityState)}
+      >
+        {children}
+      </div>
+    );
+  }
 );
 View.displayName = 'View';
 
@@ -188,5 +221,11 @@ export const StyleSheet = {
     right: 0,
     bottom: 0,
     left: 0,
+  },
+};
+
+export const Dimensions = {
+  get() {
+    return { width: 1024, height: 768 };
   },
 };

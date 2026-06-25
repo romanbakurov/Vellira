@@ -71,9 +71,9 @@ Avoid unnecessary dependencies.
 
 Prefer:
 
-* peerDependencies for frameworks
-* dependencies for runtime requirements
-* devDependencies for tooling
+- peerDependencies for frameworks
+- dependencies for runtime requirements
+- devDependencies for tooling
 
 ---
 
@@ -99,11 +99,11 @@ icons          types
 
 Rules:
 
-* web must not depend on native
-* native must not depend on web
-* tokens must remain independent
-* types must not import runtime code
-* core must not import renderer-specific code
+- web must not depend on native
+- native must not depend on web
+- tokens must remain independent
+- types must not import runtime code
+- core must not import renderer-specific code
 
 ---
 
@@ -113,11 +113,11 @@ Only expose supported public APIs.
 
 Do not expose:
 
-* internal utilities
-* implementation details
-* internal contexts
-* internal styles
-* internal hooks unless intentionally public
+- internal utilities
+- implementation details
+- internal contexts
+- internal styles
+- internal hooks unless intentionally public
 
 Every public export becomes part of the package contract.
 
@@ -148,9 +148,9 @@ Every package must build independently.
 
 Packages should produce:
 
-* JavaScript
-* TypeScript declarations
-* assets when applicable
+- JavaScript
+- TypeScript declarations
+- assets when applicable
 
 Generated output belongs only inside:
 
@@ -172,8 +172,8 @@ No TypeScript errors are allowed.
 
 Avoid using:
 
-* any
-* ts-ignore
+- any
+- ts-ignore
 
 unless absolutely necessary.
 
@@ -185,10 +185,10 @@ Every public package should contain automated tests.
 
 Tests should verify:
 
-* runtime behavior
-* public API
-* edge cases
-* accessibility when applicable
+- runtime behavior
+- public API
+- edge cases
+- accessibility when applicable
 
 Packages should maintain healthy coverage.
 
@@ -200,11 +200,11 @@ Renderer packages should include Storybook stories.
 
 Stories demonstrate:
 
-* default usage
-* variants
-* disabled states
-* controlled examples
-* real-world examples
+- default usage
+- variants
+- disabled states
+- controlled examples
+- real-world examples
 
 ---
 
@@ -212,10 +212,10 @@ Stories demonstrate:
 
 Each public package should include:
 
-* README
-* API documentation
-* usage examples
-* installation instructions (if necessary)
+- README
+- API documentation
+- usage examples
+- installation instructions (if necessary)
 
 Documentation should stay synchronized with implementation.
 
@@ -254,10 +254,10 @@ Every published package must pass package smoke tests.
 
 Smoke tests verify:
 
-* installation from packed tarballs
-* runtime imports
-* public exports
-* cross-package compatibility
+- installation from packed tarballs
+- runtime imports
+- public exports
+- cross-package compatibility
 
 Smoke tests should simulate real consumer usage.
 
@@ -269,9 +269,9 @@ Public APIs should remain stable.
 
 Breaking changes require:
 
-* a major version
-* updated documentation
-* migration notes when appropriate
+- a major version
+- updated documentation
+- migration notes when appropriate
 
 Avoid unnecessary breaking changes.
 
@@ -281,14 +281,14 @@ Avoid unnecessary breaking changes.
 
 Every package should follow these principles:
 
-* Single responsibility
-* Minimal public API
-* Explicit exports
-* Stable contracts
-* Strong typing
-* Consistent structure
-* Comprehensive tests
-* Clear documentation
-* Predictable releases
+- Single responsibility
+- Minimal public API
+- Explicit exports
+- Stable contracts
+- Strong typing
+- Consistent structure
+- Comprehensive tests
+- Clear documentation
+- Predictable releases
 
 Keep packages focused, reusable, and easy to maintain.

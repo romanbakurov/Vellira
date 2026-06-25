@@ -6,11 +6,11 @@ This package is the single source of truth for colors, typography, spacing, radi
 
 ## Features
 
-* Shared design tokens
-* Semantic color system
-* Renderer-neutral theme object
-* Generated CSS variables
-* TypeScript-first API
+- Shared design tokens
+- Semantic color system
+- Renderer-neutral theme object
+- Generated CSS variables
+- TypeScript-first API
 
 ---
 
@@ -37,16 +37,16 @@ The package provides semantic color groups in addition to the base palette.
 
 Current semantic groups include:
 
-* `surface`
-* `text`
-* `border`
-* `interactive`
-* `status`
-* `focus`
-* `overlay`
-* `divider`
-* `selection`
-* `skeleton`
+- `surface`
+- `text`
+- `border`
+- `interactive`
+- `status`
+- `focus`
+- `overlay`
+- `divider`
+- `selection`
+- `skeleton`
 
 Example:
 
@@ -100,9 +100,9 @@ pnpm --filter @romanbakurov/vellira-tokens build
 
 The build generates:
 
-* TypeScript declarations
-* CSS variables
-* distributable artifacts
+- TypeScript declarations
+- CSS variables
+- distributable artifacts
 
 ---
 
@@ -110,8 +110,8 @@ The build generates:
 
 The token system follows a few core principles:
 
-* Semantic tokens over hardcoded colors
-* Shared across Web and React Native
-* Stable public API
-* Predictable naming
-* Easy future support for multiple themes
+- Semantic tokens over hardcoded colors
+- Shared across Web and React Native
+- Stable public API
+- Predictable naming
+- Easy future support for multiple themes

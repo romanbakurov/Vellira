@@ -108,11 +108,11 @@ Do not open a Pull Request if any of these checks fail.
 
 Pull Requests should:
 
-* focus on a single change
-* use Conventional Commits
-* pass all CI checks
-* include tests when behavior changes
-* update documentation when public APIs change
+- focus on a single change
+- use Conventional Commits
+- pass all CI checks
+- include tests when behavior changes
+- update documentation when public APIs change
 
 Keep Pull Requests as small as reasonably possible.
 
@@ -128,13 +128,13 @@ docs/COMPONENT_CONVENTIONS.md
 
 This includes:
 
-* directory structure
-* public API
-* accessibility
-* styling
-* Storybook
-* testing
-* documentation
+- directory structure
+- public API
+- accessibility
+- styling
+- Storybook
+- testing
+- documentation
 
 ---
 
@@ -144,10 +144,10 @@ Public package exports are considered part of the stable API.
 
 Do not:
 
-* expose internal hooks
-* expose contexts
-* expose utilities
-* expose implementation details
+- expose internal hooks
+- expose contexts
+- expose utilities
+- expose implementation details
 
 Every public API change must pass:
 
@@ -161,9 +161,9 @@ pnpm check:public-api
 
 Whenever a public component changes:
 
-* update Storybook examples
-* update generated API documentation
-* update README when necessary
+- update Storybook examples
+- update generated API documentation
+- update README when necessary
 
 Documentation is expected to evolve together with the implementation.
 
@@ -194,14 +194,14 @@ Package versions are managed automatically during the release process.
 
 General principles:
 
-* Keep components focused.
-* Prefer composition over configuration.
-* Keep APIs predictable.
-* Reuse shared logic from `@romanbakurov/vellira-core`.
-* Reuse shared types from `@romanbakurov/vellira-types`.
-* Use design tokens instead of hardcoded values.
-* Treat accessibility as a first-class feature.
-* Preserve backward compatibility whenever possible.
+- Keep components focused.
+- Prefer composition over configuration.
+- Keep APIs predictable.
+- Reuse shared logic from `@romanbakurov/vellira-core`.
+- Reuse shared types from `@romanbakurov/vellira-types`.
+- Use design tokens instead of hardcoded values.
+- Treat accessibility as a first-class feature.
+- Preserve backward compatibility whenever possible.
 
 ---
 
