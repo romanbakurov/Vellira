@@ -7,7 +7,9 @@
       "@/*": ["*"],
       "@romanbakurov/vellira-core": ["../../vellira-core/src/index.ts"],
       "@romanbakurov/vellira-icons": ["../../vellira-icons/src/web.ts"],
-      "@romanbakurov/vellira-icons/native": ["../../vellira-icons/src/native.ts"],
+      "@romanbakurov/vellira-icons/native": [
+        "../../vellira-icons/src/native.ts"
+      ],
       "@romanbakurov/vellira-icons/web": ["../../vellira-icons/src/web.ts"],
       "@romanbakurov/vellira-native": ["../../vellira-native/src/index.ts"],
       "@romanbakurov/vellira-tokens": ["../../vellira-tokens/src/index.ts"],
