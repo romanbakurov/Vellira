@@ -79,7 +79,7 @@ export const WithDescription: Story = {
       'Use 3–20 characters. Letters, numbers, and underscores are allowed.',
     children: (
       <TextInput
-        placeholder='roman_bakurov'
+        placeholder='alex_johnson'
         placeholderTextColor={theme.colors.gray[400]}
         style={controlStyle}
       />
@@ -93,7 +93,7 @@ export const Required: Story = {
     required: true,
     children: (
       <TextInput
-        placeholder='Roman Bakurov'
+        placeholder='Alex Johnson'
         placeholderTextColor={theme.colors.gray[400]}
         style={controlStyle}
       />

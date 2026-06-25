@@ -18,4 +18,5 @@ export interface SelectProps extends Omit<BaseSelectProps, 'options'> {
   triggerStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   pickerStyle?: StyleProp<TextStyle>;
+  accessibilityLabel?: string;
 }

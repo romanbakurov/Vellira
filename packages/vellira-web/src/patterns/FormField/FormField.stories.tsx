@@ -160,7 +160,7 @@ export const WithDescription: Story = {
       <input
         id='username'
         type='text'
-        placeholder='roman_bakurov'
+        placeholder='alex_johnson'
         style={inputStyle}
       />
     ),
@@ -176,7 +176,7 @@ export const Required: Story = {
       <input
         id='full-name'
         type='text'
-        placeholder='Roman Bakurov'
+        placeholder='Alex Johnson'
         style={inputStyle}
       />
     ),

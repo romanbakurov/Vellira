@@ -145,7 +145,7 @@ export const Required: Story = {
   args: {
     required: true,
     label: 'Full name',
-    placeholder: 'Roman Bakurov',
+    placeholder: 'Alex Johnson',
     type: 'text',
   },
   render: (args) => <ControlledInputDemo {...args} />,

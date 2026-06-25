@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { Picker } from '@react-native-picker/picker';
 import { useControllableState } from '@romanbakurov/vellira-core';
@@ -26,6 +26,7 @@ export function Select({
   triggerStyle,
   textStyle,
   pickerStyle,
+  accessibilityLabel,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,10 +38,14 @@ export function Select({
 
   const [draftValue, setDraftValue] = useState(selectedValue);
 
-  const selectedOption = useMemo(
-    () => options.find((option) => option.value === selectedValue),
-    [options, selectedValue]
-  );
+  const selectedOption = options.find((o) => o.value === selectedValue);
+
+  const resolvedLabel =
+    accessibilityLabel ??
+    label ??
+    selectedOption?.label ??
+    placeholder ??
+    'Select';
 
   const openPicker = () => {
     if (disabled) return;
@@ -83,7 +88,7 @@ export function Select({
         isOpen={isOpen}
         disabled={disabled}
         hasError={!!error}
-        accessibilityLabel={label}
+        accessibilityLabel={resolvedLabel}
         triggerStyle={triggerStyle}
         textStyle={textStyle}
         onPress={openPicker}
@@ -104,7 +109,7 @@ export function Select({
                 <Text style={styles.cancelText}>Cancel</Text>
               </Pressable>
 
-              <Text style={styles.title}>{label}</Text>
+              <Text style={styles.title}>{resolvedLabel}</Text>
 
               <Pressable onPress={confirmPicker} hitSlop={8}>
                 <Text style={styles.doneText}>Done</Text>
