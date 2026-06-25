@@ -167,6 +167,27 @@ function isComponentExport(value) {
   );
 }
 
+const expectedNativeApi = [
+  'Button',
+  'Checkbox',
+  'Dropdown',
+  'FormField',
+  'Input',
+  'Modal',
+  'RadioGroup',
+  'Select',
+  'Tabs',
+  'Tooltip',
+];
+
+const actualNativeApi = Object.keys(native).sort();
+
+if (JSON.stringify(actualNativeApi) !== JSON.stringify(expectedNativeApi)) {
+  throw new Error(
+    \`vellira-native public API mismatch. Expected \${expectedNativeApi.join(', ')}, got \${actualNativeApi.join(', ')}\`
+  );
+}
+
 if (!isComponentExport(native.Button)) {
   throw new Error('vellira-native Button export invalid');
 }
@@ -200,9 +221,13 @@ console.log('Native package smoke test passed');
 );
 
 run('pnpm', ['install'], { cwd: tempDir });
-run('node', ['--conditions=react-native', '--loader', './native-loader.mjs', 'smoke.mjs'], {
-  cwd: tempDir,
-});
+run(
+  'node',
+  ['--conditions=react-native', '--loader', './native-loader.mjs', 'smoke.mjs'],
+  {
+    cwd: tempDir,
+  }
+);
 
 if (!existsSync(path.join(tempDir, 'node_modules'))) {
   throw new Error('Smoke install failed');

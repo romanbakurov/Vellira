@@ -45,5 +45,14 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Coverage
+        run: pnpm test:coverage
+
+      - name: Smoke packages
+        run: pnpm smoke:packages
+
+      - name: Public API check
+        run: pnpm check:public-api
+
       - name: Build Storybook
         run: pnpm --filter @vellira/storybook build
