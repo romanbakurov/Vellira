@@ -8,6 +8,7 @@ export interface SelectDropdownProps extends Omit<
   'options'
 > {
   listboxId: string;
+  labelledById: string;
   options: SelectOption[];
   onMouseEnter: (index: number) => void;
   style: CSSProperties;

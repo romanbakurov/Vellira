@@ -5,6 +5,7 @@ import type { DropdownItemProps } from './types';
 import styles from './DropdownItem.module.scss';
 
 export const DropdownItem = ({
+  id,
   children,
   label,
   icon,
@@ -21,6 +22,7 @@ export const DropdownItem = ({
 
   return (
     <li
+      id={id}
       role='menuitem'
       tabIndex={-1}
       aria-disabled={disabled || undefined}

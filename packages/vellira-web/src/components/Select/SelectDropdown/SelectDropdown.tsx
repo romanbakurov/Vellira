@@ -9,6 +9,7 @@ import styles from './SelectDropdown.module.scss';
 export const SelectDropdown = ({
   isOpen,
   listboxId,
+  labelledById,
   setDropdownRef,
   style,
   options,
@@ -25,6 +26,7 @@ export const SelectDropdown = ({
         ref={setDropdownRef}
         id={listboxId}
         role='listbox'
+        aria-labelledby={labelledById}
         className={styles.dropdown}
         style={style}
       >

@@ -69,14 +69,26 @@ describe('Dropdown', () => {
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
     expect(trigger?.getAttribute('aria-controls')).toBe(menu?.id);
+    expect(menu?.getAttribute('aria-labelledby')).toBe(trigger?.id);
+    expect(document.activeElement).toBe(menu);
+    expect(menu?.getAttribute('aria-activedescendant')).toBe(
+      `${menu?.id}-item-0`
+    );
+    expect(document.getElementById(`${menu?.id}-item-0`)).not.toBeNull();
     expect(menuItems[1]?.getAttribute('aria-disabled')).toBe('true');
 
-    pressKey(trigger!, 'ArrowDown');
-    pressKey(trigger!, 'Enter');
+    pressKey(menu!, 'ArrowDown');
+
+    expect(menu?.getAttribute('aria-activedescendant')).toBe(
+      `${menu?.id}-item-2`
+    );
+
+    pressKey(menu!, 'Enter');
 
     expect(onSelect).toHaveBeenCalledWith('delete');
     expect(trigger?.getAttribute('aria-expanded')).toBe('false');
     expect(document.querySelector('[role="menu"]')).toBeNull();
+    expect(document.activeElement).toBe(trigger);
 
     unmount();
   });
@@ -97,10 +109,14 @@ describe('Dropdown', () => {
     pressKey(trigger!, ' ');
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
 
-    pressKey(trigger!, 'Escape');
+    const menu = document.querySelector('[role="menu"]');
+    expect(document.activeElement).toBe(menu);
+
+    pressKey(menu!, 'Escape');
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('false');
     expect(document.querySelector('[role="menu"]')).toBeNull();
+    expect(document.activeElement).toBe(trigger);
     expect(onSelect).not.toHaveBeenCalled();
 
     unmount();
@@ -187,7 +203,10 @@ describe('Dropdown', () => {
     ).not.toBeNull();
 
     act(() => trigger?.click());
-    expect(document.querySelector('[role="menu"]')).not.toBeNull();
+
+    const menu = document.querySelector('[role="menu"]');
+    expect(menu).not.toBeNull();
+    expect(menu?.getAttribute('aria-label')).toBe('More actions');
 
     act(() => {
       document.body.dispatchEvent(

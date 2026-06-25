@@ -85,6 +85,7 @@ describe('Select', () => {
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
     expect(trigger?.getAttribute('aria-controls')).toBe('country-listbox');
     expect(listbox?.id).toBe('country-listbox');
+    expect(listbox?.getAttribute('aria-labelledby')).toBe('country');
     expect(trigger?.getAttribute('aria-activedescendant')).toBe(
       'country-listbox-option-1'
     );

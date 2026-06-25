@@ -170,6 +170,7 @@ export const Select = ({
       <SelectDropdown
         isOpen={isOpen}
         listboxId={listboxId}
+        labelledById={triggerId}
         style={floatingStyles}
         options={options}
         selectedValue={selectedValue}

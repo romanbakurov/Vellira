@@ -36,6 +36,7 @@ export const Dropdown = ({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const menuId = useId();
+  const triggerId = `${menuId}-trigger`;
 
   const { floatingStyles, setRef, setFloatingRef } = useFloatingPosition({
     placement,
@@ -43,6 +44,8 @@ export const Dropdown = ({
   });
 
   const navigableItems = items.filter(isMenuItem);
+  const activeDescendantId =
+    isOpen && activeIndex >= 0 ? `${menuId}-item-${activeIndex}` : undefined;
 
   const getFirstEnabledIndex = () =>
     navigableItems.findIndex((item) => !item.disabled);
@@ -66,6 +69,11 @@ export const Dropdown = ({
     setActiveIndex(-1);
   };
 
+  const closeAndRestoreFocus = () => {
+    close();
+    buttonRef.current?.focus();
+  };
+
   const { onKeyDown } = useKeyboardNavigation({
     activeIndex,
     setActiveIndex,
@@ -77,9 +85,9 @@ export const Dropdown = ({
       if (!item || item.disabled) return;
 
       onSelect?.(item.value);
-      close();
+      closeAndRestoreFocus();
     },
-    onClose: close,
+    onClose: closeAndRestoreFocus,
   });
 
   useOutsideClick([buttonRef, menuRef], () => close(), isOpen);
@@ -92,12 +100,14 @@ export const Dropdown = ({
   const menuRefCallback = (el: HTMLUListElement | null) => {
     menuRef.current = el;
     setFloatingRef(el);
+    el?.focus();
   };
 
   return (
     <div className={cn(styles.wrapper, className)}>
       <DropdownTrigger
         ref={triggerRef}
+        id={triggerId}
         isOpen={isOpen}
         disabled={disabled}
         icon={icon}
@@ -119,6 +129,10 @@ export const Dropdown = ({
           ref={menuRefCallback}
           floatingStyles={floatingStyles}
           menuId={menuId}
+          labelledById={trigger ? triggerId : undefined}
+          label={!trigger ? label : undefined}
+          activeDescendantId={activeDescendantId}
+          onKeyDown={onKeyDown}
         >
           {items.map((item, index) => {
             if (isGroup(item)) {
@@ -139,13 +153,14 @@ export const Dropdown = ({
               return (
                 <DropdownItem
                   key={item.value}
+                  id={`${menuId}-item-${navigableIndex}`}
                   {...item}
                   active={activeIndex === navigableIndex}
                   textWrap={item.textWrap || textWrap}
                   onClick={() => {
                     if (!item.disabled) {
                       onSelect?.(item.value);
-                      close();
+                      closeAndRestoreFocus();
                     }
                   }}
                   onMouseEnter={() => {

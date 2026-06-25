@@ -8,6 +8,7 @@ export interface DropdownItemProps extends Pick<
   BaseDropdownItemProps,
   'label' | 'value' | 'disabled' | 'active'
 > {
+  id?: string;
   children: ReactNode;
   icon?: ReactNode;
   danger?: boolean;
