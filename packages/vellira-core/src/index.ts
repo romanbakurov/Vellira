@@ -1,3 +1,3 @@
-export * from './useControllableState';
-export * from './useKeyboardNavigation';
-export * from './useTabsKeyboard';
+export * from './useControllableState.js';
+export * from './useKeyboardNavigation.js';
+export * from './useTabsKeyboard.js';

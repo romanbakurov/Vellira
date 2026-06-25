@@ -1,5 +1,3 @@
-import './styles';
-
 export * from './components';
 export * from './hooks';
 export * from './overlay';

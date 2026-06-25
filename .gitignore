@@ -32,3 +32,6 @@ package-lock.json
 
 coverage/
 **/coverage/
+.tmp-package-smoke/
+.tmp-package-smoke-web/
+.tmp-package-smoke-native/
