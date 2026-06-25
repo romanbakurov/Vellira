@@ -77,6 +77,27 @@ function isComponentExport(value) {
   );
 }
 
+const expectedWebApi = [
+  'Button',
+  'Checkbox',
+  'Dropdown',
+  'FormField',
+  'Input',
+  'Modal',
+  'RadioGroup',
+  'Select',
+  'Tabs',
+  'Tooltip',
+];
+
+const actualWebApi = Object.keys(web).sort();
+
+if (JSON.stringify(actualWebApi) !== JSON.stringify(expectedWebApi)) {
+  throw new Error(
+    \`vellira-web public API mismatch. Expected \${expectedWebApi.join(', ')}, got \${actualWebApi.join(', ')}\`
+  );
+}
+
 if (!isComponentExport(web.Button)) {
   throw new Error('vellira-web Button export invalid');
 }

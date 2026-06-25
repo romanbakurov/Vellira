@@ -48,6 +48,15 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Coverage
+        run: pnpm test:coverage
+
+      - name: Smoke packages
+        run: pnpm smoke:packages
+
+      - name: Public API check
+        run: pnpm check:public-api
+
       - name: Check API docs
         run: pnpm docs:api:check
 
