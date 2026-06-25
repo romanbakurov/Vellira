@@ -1,0 +1,30 @@
+{
+  "name": "@romanbakurov/vellira-assets",
+  "version": "2.8.0",
+  "description": "Shared static assets for Vellira Design System",
+  "author": "Roman Bakurov",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    "./styles": "./styles/fonts.scss",
+    "./styles/*": "./styles/*",
+    "./fonts/*": "./fonts/*"
+  },
+  "files": [
+    "fonts",
+    "styles",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
