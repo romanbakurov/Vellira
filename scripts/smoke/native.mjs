@@ -216,6 +216,64 @@ if (typeof tokens.theme !== 'object' || tokens.theme === null) {
   throw new Error('vellira-tokens theme export invalid');
 }
 
+const { colors } = tokens.theme;
+
+if (!colors.surface) {
+  throw new Error('surface semantic tokens missing');
+}
+
+if (!colors.text) {
+  throw new Error('text semantic tokens missing');
+}
+
+if (!colors.border) {
+  throw new Error('border semantic tokens missing');
+}
+
+if (!colors.interactive) {
+  throw new Error('interactive semantic tokens missing');
+}
+
+if (!colors.status) {
+  throw new Error('status semantic tokens missing');
+}
+
+if (!colors.focus) {
+  throw new Error('focus semantic tokens missing');
+}
+
+if (!colors.overlay) {
+  throw new Error('overlay semantic tokens missing');
+}
+
+if (!colors.divider) {
+  throw new Error('divider semantic tokens missing');
+}
+
+if (!colors.selection) {
+  throw new Error('selection semantic tokens missing');
+}
+
+if (!colors.skeleton) {
+  throw new Error('skeleton semantic tokens missing');
+}
+
+if (colors.surface.default !== '#ffffff') {
+  throw new Error('surface.default token invalid');
+}
+
+if (colors.text.primary !== '#111827') {
+  throw new Error('text.primary token invalid');
+}
+
+if (colors.interactive.primary !== '#4f46e5') {
+  throw new Error('interactive.primary token invalid');
+}
+
+if (colors.status.success !== '#008f6a') {
+  throw new Error('status.success token invalid');
+}
+
 console.log('Native package smoke test passed');
 `
 );

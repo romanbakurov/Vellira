@@ -62,4 +62,98 @@ export const colors = {
     100: '#edf5ff',
     50: '#f7fbff',
   },
+
+  surface: {
+    default: '#ffffff',
+    muted: '#f8fafc',
+    subtle: '#f3f4f6',
+    elevated: '#ffffff',
+    inverse: '#111827',
+  },
+
+  text: {
+    primary: '#111827',
+    secondary: '#4b5563',
+    muted: '#6b7280',
+    inverse: '#ffffff',
+    disabled: '#9ca3af',
+    brand: '#4f46e5',
+    danger: '#e11d48',
+    success: '#008f6a',
+    warning: '#c05621',
+    info: '#0ea5e9',
+  },
+
+  border: {
+    default: '#e5e7eb',
+    muted: '#eceff3',
+    strong: '#d1d5db',
+    focus: '#4f46e5',
+    danger: '#e11d48',
+    success: '#008f6a',
+    warning: '#c05621',
+    info: '#0ea5e9',
+  },
+
+  interactive: {
+    primary: '#4f46e5',
+    primaryHover: '#4338ca',
+    primaryPressed: '#3730a3',
+    primaryMuted: '#eef2ff',
+
+    secondary: '#2563eb',
+    secondaryHover: '#1d4ed8',
+    secondaryPressed: '#1e40af',
+    secondaryMuted: '#eff6ff',
+
+    neutral: '#f3f4f6',
+    neutralHover: '#e5e7eb',
+    neutralPressed: '#d1d5db',
+
+    disabled: '#e5e7eb',
+    disabledForeground: '#9ca3af',
+  },
+
+  status: {
+    success: '#008f6a',
+    successHover: '#00785a',
+    successMuted: '#ecfdf5',
+
+    error: '#e11d48',
+    errorHover: '#be123c',
+    errorMuted: '#fff1f2',
+
+    warning: '#c05621',
+    warningHover: '#a74308',
+    warningMuted: '#fff7ed',
+
+    info: '#0ea5e9',
+    infoHover: '#0284c7',
+    infoMuted: '#f0f9ff',
+  },
+
+  focus: {
+    ring: '#4f46e5',
+    ringOffset: '#ffffff',
+  },
+
+  overlay: {
+    backdrop: 'rgba(17, 24, 39, 0.45)',
+    inverseBackdrop: 'rgba(255, 255, 255, 0.72)',
+  },
+
+  divider: {
+    default: '#e5e7eb',
+    muted: '#eceff3',
+  },
+
+  skeleton: {
+    base: '#e5e7eb',
+    highlight: '#f3f4f6',
+  },
+
+  selection: {
+    background: '#eef2ff',
+    foreground: '#4338ca',
+  },
 } as const;
