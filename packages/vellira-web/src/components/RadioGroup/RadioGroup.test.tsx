@@ -2,6 +2,7 @@ import { act } from 'react';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { expectNoA11yViolations } from '../../test-utils/a11y';
 import { render } from '../../test-utils/render';
 
 import { RadioGroup } from './RadioGroup';
@@ -62,7 +63,7 @@ describe('RadioGroup', () => {
     unmount();
   });
 
-  it('connects description and error text through aria-describedby', () => {
+  it('connects description and error text through aria-describedby', async () => {
     const { container, unmount } = render(
       <RadioGroup
         label='Plan'
@@ -73,6 +74,8 @@ describe('RadioGroup', () => {
         defaultValue='starter'
       />
     );
+
+    await expectNoA11yViolations(container);
 
     const group = container.querySelector<HTMLElement>('[role="radiogroup"]');
     const describedBy = group?.getAttribute('aria-describedby');

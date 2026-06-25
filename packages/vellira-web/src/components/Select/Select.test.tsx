@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { expectNoA11yViolations } from '../../test-utils/a11y';
+
 import { Select } from './Select';
 
 const options = [
@@ -55,7 +57,7 @@ describe('Select', () => {
     });
   });
 
-  it('opens from keyboard, exposes active option, and selects with Enter', () => {
+  it('opens from keyboard, exposes active option, and selects with Enter', async () => {
     const onChange = vi.fn();
     const form = document.createElement('form');
     document.body.append(form);
@@ -81,6 +83,8 @@ describe('Select', () => {
     pressKey(trigger!, 'ArrowDown');
 
     const listbox = document.querySelector('[role="listbox"]');
+
+    await expectNoA11yViolations(document.body);
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
     expect(trigger?.getAttribute('aria-controls')).toBe('country-listbox');

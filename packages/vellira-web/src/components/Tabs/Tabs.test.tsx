@@ -2,6 +2,7 @@ import { act } from 'react';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { expectNoA11yViolations } from '../../test-utils/a11y';
 import { render } from '../../test-utils/render';
 
 import { TabsList } from './List/TabsList';
@@ -69,10 +70,12 @@ describe('Tabs', () => {
     unmount();
   });
 
-  it('connects tabs and panels with accessible ids', () => {
+  it('connects tabs and panels with accessible ids', async () => {
     const { container, unmount } = render(<TabsExample />);
     const tab = container.querySelector<HTMLButtonElement>('#tab-0');
     const panel = container.querySelector<HTMLElement>('#tab-panel-0');
+
+    await expectNoA11yViolations(container);
 
     expect(
       container

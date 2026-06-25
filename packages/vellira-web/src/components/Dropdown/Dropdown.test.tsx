@@ -2,6 +2,7 @@ import { act } from 'react';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { expectNoA11yViolations } from '../../test-utils/a11y';
 import { render } from '../../test-utils/render';
 
 import { Dropdown } from './Dropdown';
@@ -49,7 +50,7 @@ describe('Dropdown', () => {
     unmount();
   });
 
-  it('opens and selects the active item from keyboard', () => {
+  it('opens and selects the active item from keyboard', async () => {
     const onSelect = vi.fn();
     const { container, unmount } = render(
       <Dropdown
@@ -66,6 +67,8 @@ describe('Dropdown', () => {
 
     const menu = document.querySelector('[role="menu"]');
     const menuItems = document.querySelectorAll('[role="menuitem"]');
+
+    await expectNoA11yViolations(document.body);
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
     expect(trigger?.getAttribute('aria-controls')).toBe(menu?.id);

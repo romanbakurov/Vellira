@@ -3,6 +3,7 @@ import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { Button } from '../../primitives/Button';
+import { expectNoA11yViolations } from '../../test-utils/a11y';
 import { render } from '../../test-utils/render';
 
 import { ModalBody } from './Body/ModalBody';
@@ -52,13 +53,15 @@ describe('Modal', () => {
     unmount();
   });
 
-  it('connects the dialog to header and body for accessibility', () => {
+  it('connects the dialog to header and body for accessibility', async () => {
     const { unmount } = render(
       <Modal isOpen onClose={() => undefined}>
         <ModalHeader>Delete file</ModalHeader>
         <ModalBody>Are you sure?</ModalBody>
       </Modal>
     );
+
+    await expectNoA11yViolations(document.body);
 
     const dialog = document.querySelector('[role="dialog"]');
     const titleId = dialog?.getAttribute('aria-labelledby');
