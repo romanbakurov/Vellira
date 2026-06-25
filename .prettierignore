@@ -1,3 +1,29 @@
- build
-    dist
-    storybook-static
+# Dependencies
+node_modules
+
+# Package manager
+pnpm-lock.yaml
+
+# Build outputs
+dist
+build
+coverage
+storybook-static
+
+# Expo
+.expo
+.expo-shared
+
+# Android
+**/android/.gradle
+**/android/.cxx
+**/android/build
+**/android/app/build
+
+# iOS
+**/ios/Pods
+**/ios/build
+
+# Generated files
+*.generated.*
+*.gen.*
