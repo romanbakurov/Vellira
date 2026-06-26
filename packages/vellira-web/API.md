@@ -11,8 +11,36 @@ import '@romanbakurov/vellira-web/styles';
 Then import public components from the package root:
 
 ```tsx
-import { Button, Input, Modal, Select } from '@romanbakurov/vellira-web';
+import {
+    Button,
+    Checkbox,
+    Dropdown,
+    FormField,
+    Input,
+    Modal,
+    RadioGroup,
+    Select,
+    Tabs,
+    ThemeProvider,
+    Tooltip,
+    useTheme,
+} from '@romanbakurov/vellira-web';
 ```
+
+## Contents
+
+- Button
+- Checkbox
+- Input
+- FormField
+- RadioGroup
+- Select
+- Dropdown
+- Tabs
+- Tooltip
+- Modal
+- ThemeProvider
+- useTheme
 
 ## API Conventions
 
@@ -26,7 +54,7 @@ import { Button, Input, Modal, Select } from '@romanbakurov/vellira-web';
 ## Shared Types
 
 | Type                | Values                                                                      |
-| ------------------- | --------------------------------------------------------------------------- |
+|---------------------| --------------------------------------------------------------------------- |
 | `ButtonColor`       | `'primary'`, `'secondary'`, `'danger'`                                      |
 | `ButtonSize`        | `'sm'`, `'md'`, `'lg'`                                                      |
 | `InputSize`         | `'sm'`, `'md'`, `'lg'`                                                      |
@@ -35,14 +63,16 @@ import { Button, Input, Modal, Select } from '@romanbakurov/vellira-web';
 | `TextWrap`          | `'nowrap'`, `'wrap'`, `'truncate'`                                          |
 | `TabsAppearance`    | `'default'`, `'underline'`, `'pills'`                                       |
 | `FloatingPlacement` | `'top'`, `'bottom'`, `'left'`, `'right'`                                    |
+| `ThemeName`         | `'light'`, `'dark'`, `'high-contrast'`                                         |
 
-`TooltipDelay` uses this shape:
+
+### TooltipDelay
 
 ```ts
 type TooltipDelay = {
-  open?: number;
-  close?: number;
-};
+    open?: number
+    close?: number
+}
 ```
 
 ## Button
@@ -146,7 +176,7 @@ Layout helper for labels, errors, and custom field controls.
 import { FormField, Input } from '@romanbakurov/vellira-web';
 
 <FormField label='Email' error={error}>
-  <Input label='Email' value={email} onChange={setEmail} />
+  <Input />
 </FormField>;
 ```
 
@@ -463,3 +493,109 @@ import { Button, Modal } from '@romanbakurov/vellira-web';
 ### Modal Accessibility
 
 Use `Modal.Header` for a visible title and `Modal.Body` for descriptive content. The web implementation wires dialog semantics and keyboard behavior inside the component, while the consuming app remains responsible for meaningful text and focusable actions.
+
+## ThemeProvider
+
+Provides theme context for all Vellira components.
+
+```tsx
+import '@romanbakurov/vellira-tokens/css';
+import { ThemeProvider } from '@romanbakurov/vellira-web';
+
+<ThemeProvider defaultTheme='dark'>
+    <App />
+</ThemeProvider>;
+```
+
+### ThemeProvider Props
+
+<!-- api-docgen:start web.ThemeProviderProps.ThemeProvider -->
+
+| Prop              | Type                         | Required | Description                                      |
+| ----------------- |------------------------------| -------- | ------------------------------------------------ |
+| `children`        | `ReactNode`                  | Yes      | Content wrapped by the provider.                 |
+| `theme`           | `ThemeName`                  | No       | Controlled theme value.                          |
+| `defaultTheme`    | `ThemeName`                  | No       | Initial theme for uncontrolled usage.            |
+| `onThemeChange`   | `(theme: ThemeName) => void` | No       | Called whenever the active theme changes.        |
+
+<!-- api-docgen:end web.ThemeProviderProps.ThemeProvider -->
+
+### Supported Themes
+
+| Theme           | Description          |
+|-----------------|----------------------|
+| `light`         | Default light theme. |
+| `dark`          | Dark theme.          |
+| `high-contrast` | High contrast theme. |
+
+### Controlled
+
+```tsx
+import { useState } from 'react';
+
+const [theme, setTheme] = useState('light');
+
+<ThemeProvider
+  theme={theme}
+  onThemeChange={setTheme}
+>
+  <App />
+</ThemeProvider>;
+```
+
+### Uncontrolled
+
+```tsx
+<ThemeProvider defaultTheme='light'>
+  <App />
+</ThemeProvider>;
+```
+
+The provider renders:
+
+```html
+<div data-vellira-theme="dark">
+```
+
+## useTheme
+
+Returns the current theme and a function to update it.
+
+### Usage
+
+```tsx
+import { useTheme } from '@romanbakurov/vellira-web';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <button
+      type="button"
+      onClick={() =>
+        setTheme(theme === 'dark' ? 'light' : 'dark')
+      }
+    >
+      Toggle theme
+    </button>
+  );
+}
+```
+
+### Returns
+
+| Property   | Type                         | Description               |
+|------------|------------------------------|---------------------------|
+| `theme`    | `ThemeName`                  | Current active theme.     |
+| `setTheme` | `(theme: ThemeName) => void` | Updates the active theme. |
+
+> `useTheme` must be used inside `ThemeProvider`.
+
+## Accessibility
+
+All interactive components support:
+
+- keyboard navigation
+- focus management
+- screen readers
+- WAI-ARIA attributes where applicable

@@ -14,7 +14,17 @@ describe('public API', () => {
       'RadioGroup',
       'Select',
       'Tabs',
+      'ThemeProvider',
       'Tooltip',
+      'useTheme',
     ]);
+  });
+
+  it('exports runtime components and hooks', () => {
+    expect(api.ThemeProvider).toBeDefined();
+    expect(api.useTheme).toBeDefined();
+
+    expect(typeof api.useTheme).toBe('function');
+    expect(typeof api.ThemeProvider).toBe('function');
   });
 });
