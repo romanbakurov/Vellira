@@ -12,18 +12,18 @@ Then import public components from the package root:
 
 ```tsx
 import {
-    Button,
-    Checkbox,
-    Dropdown,
-    FormField,
-    Input,
-    Modal,
-    RadioGroup,
-    Select,
-    Tabs,
-    ThemeProvider,
-    Tooltip,
-    useTheme,
+  Button,
+  Checkbox,
+  Dropdown,
+  FormField,
+  Input,
+  Modal,
+  RadioGroup,
+  Select,
+  Tabs,
+  ThemeProvider,
+  Tooltip,
+  useTheme,
 } from '@romanbakurov/vellira-web';
 ```
 
@@ -54,7 +54,7 @@ import {
 ## Shared Types
 
 | Type                | Values                                                                      |
-|---------------------| --------------------------------------------------------------------------- |
+| ------------------- | --------------------------------------------------------------------------- |
 | `ButtonColor`       | `'primary'`, `'secondary'`, `'danger'`                                      |
 | `ButtonSize`        | `'sm'`, `'md'`, `'lg'`                                                      |
 | `InputSize`         | `'sm'`, `'md'`, `'lg'`                                                      |
@@ -63,16 +63,15 @@ import {
 | `TextWrap`          | `'nowrap'`, `'wrap'`, `'truncate'`                                          |
 | `TabsAppearance`    | `'default'`, `'underline'`, `'pills'`                                       |
 | `FloatingPlacement` | `'top'`, `'bottom'`, `'left'`, `'right'`                                    |
-| `ThemeName`         | `'light'`, `'dark'`, `'high-contrast'`                                         |
-
+| `ThemeName`         | `'light'`, `'dark'`, `'high-contrast'`                                      |
 
 ### TooltipDelay
 
 ```ts
 type TooltipDelay = {
-    open?: number
-    close?: number
-}
+  open?: number;
+  close?: number;
+};
 ```
 
 ## Button
@@ -190,8 +189,8 @@ import { FormField, Input } from '@romanbakurov/vellira-web';
 | `children`    | `ReactNode` | Yes      | Field control or custom content.               |
 | `required`    | `boolean`   | No       | Marks the field as required.                   |
 | `disabled`    | `boolean`   | No       | Renders the disabled field state.              |
-| `description` | `string`    | No       | —                                              |
-| `className`   | `string`    | No       | —                                              |
+| `description` | `string`    | No       | Additional descriptive text.                   |
+| `className`   | `string`    | No       | Extra CSS class for the root element.          |
 
 <!-- api-docgen:end web.FormFieldProps.FormField -->
 
@@ -231,7 +230,7 @@ import { RadioGroup } from '@romanbakurov/vellira-web';
 | `onChange`     | `(value: string) => void` | No       | Called when selection changes.        |
 | `required`     | `boolean`                 | No       | Marks the group as required.          |
 | `disabled`     | `boolean`                 | No       | Disables the whole group.             |
-| `description`  | `string`                  | No       | —                                     |
+| `description`  | `string`                  | No       | Additional descriptive text.          |
 
 <!-- api-docgen:end web.RadioGroupProps.RadioGroupProps -->
 
@@ -284,7 +283,7 @@ import { Select } from '@romanbakurov/vellira-web';
 | `onChange`     | `(value: string) => void` | No       | Called when the user selects an option.        |
 | `required`     | `boolean`                 | No       | Marks the field as required.                   |
 | `disabled`     | `boolean`                 | No       | Disables interaction.                          |
-| `description`  | `string`                  | No       | —                                              |
+| `description`  | `string`                  | No       | Additional descriptive text.                   |
 
 <!-- api-docgen:end web.SelectProps.SelectProps -->
 
@@ -433,16 +432,16 @@ import { Tooltip, Button } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.TooltipProps.Tooltip -->
 
-| Prop           | Type                      | Required | Description                           |
-| -------------- | ------------------------- | -------- | ------------------------------------- |
-| `content`      | `ReactNode`               | Yes      | Tooltip content.                      |
-| `children`     | `ReactNode`               | Yes      | Trigger element.                      |
-| `maxWidth`     | `string \| number`        | No       | Maximum tooltip width.                |
-| `className`    | `string`                  | No       | Extra CSS class for the tooltip root. |
-| `placement`    | `FloatingPlacement`       | No       | Preferred tooltip placement.          |
-| `disabled`     | `boolean`                 | No       | Prevents the tooltip from opening.    |
-| `delay`        | `TooltipDelay`            | No       | Open and close delay in milliseconds. |
-| `onOpenChange` | `(open: boolean) => void` | No       | —                                     |
+| Prop           | Type                      | Required | Description                            |
+| -------------- | ------------------------- | -------- | -------------------------------------- |
+| `content`      | `ReactNode`               | Yes      | —                                      |
+| `children`     | `ReactNode`               | Yes      | Content rendered inside the component. |
+| `maxWidth`     | `string \| number`        | No       | —                                      |
+| `className`    | `string`                  | No       | Extra CSS class for the root element.  |
+| `placement`    | `FloatingPlacement`       | No       | —                                      |
+| `disabled`     | `boolean`                 | No       | Disables interaction.                  |
+| `delay`        | `TooltipDelay`            | No       | —                                      |
+| `onOpenChange` | `(open: boolean) => void` | No       | —                                      |
 
 <!-- api-docgen:end web.TooltipProps.Tooltip -->
 
@@ -503,7 +502,7 @@ import '@romanbakurov/vellira-tokens/css';
 import { ThemeProvider } from '@romanbakurov/vellira-web';
 
 <ThemeProvider defaultTheme='dark'>
-    <App />
+  <App />
 </ThemeProvider>;
 ```
 
@@ -511,19 +510,22 @@ import { ThemeProvider } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.ThemeProviderProps.ThemeProvider -->
 
-| Prop              | Type                         | Required | Description                                      |
-| ----------------- |------------------------------| -------- | ------------------------------------------------ |
-| `children`        | `ReactNode`                  | Yes      | Content wrapped by the provider.                 |
-| `theme`           | `ThemeName`                  | No       | Controlled theme value.                          |
-| `defaultTheme`    | `ThemeName`                  | No       | Initial theme for uncontrolled usage.            |
-| `onThemeChange`   | `(theme: ThemeName) => void` | No       | Called whenever the active theme changes.        |
+<!-- api-docgen:start web.ThemeProviderProps.ThemeProviderProps -->
 
+| Prop            | Type                                                                                                                                           | Required | Description                               |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------- |
+| `children`      | `import("/Users/romanbakurov/dev/buisenes-project/Vellira/node_modules/.pnpm/@types+react@19.2.17/node_modules/@types/react/index").ReactNode` | Yes      | Content wrapped by the provider.          |
+| `theme`         | `ThemeName`                                                                                                                                    | No       | Controlled theme value.                   |
+| `defaultTheme`  | `ThemeName`                                                                                                                                    | No       | Initial theme for uncontrolled usage.     |
+| `onThemeChange` | `(theme: ThemeName) => void`                                                                                                                   | No       | Called whenever the active theme changes. |
+
+<!-- api-docgen:end web.ThemeProviderProps.ThemeProviderProps -->
 <!-- api-docgen:end web.ThemeProviderProps.ThemeProvider -->
 
 ### Supported Themes
 
 | Theme           | Description          |
-|-----------------|----------------------|
+| --------------- | -------------------- |
 | `light`         | Default light theme. |
 | `dark`          | Dark theme.          |
 | `high-contrast` | High contrast theme. |
@@ -535,10 +537,7 @@ import { useState } from 'react';
 
 const [theme, setTheme] = useState('light');
 
-<ThemeProvider
-  theme={theme}
-  onThemeChange={setTheme}
->
+<ThemeProvider theme={theme} onThemeChange={setTheme}>
   <App />
 </ThemeProvider>;
 ```
@@ -548,13 +547,13 @@ const [theme, setTheme] = useState('light');
 ```tsx
 <ThemeProvider defaultTheme='light'>
   <App />
-</ThemeProvider>;
+</ThemeProvider>
 ```
 
 The provider renders:
 
 ```html
-<div data-vellira-theme="dark">
+<div data-vellira-theme="dark"></div>
 ```
 
 ## useTheme
@@ -571,10 +570,8 @@ function ThemeToggle() {
 
   return (
     <button
-      type="button"
-      onClick={() =>
-        setTheme(theme === 'dark' ? 'light' : 'dark')
-      }
+      type='button'
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       Toggle theme
     </button>
@@ -585,7 +582,7 @@ function ThemeToggle() {
 ### Returns
 
 | Property   | Type                         | Description               |
-|------------|------------------------------|---------------------------|
+| ---------- | ---------------------------- | ------------------------- |
 | `theme`    | `ThemeName`                  | Current active theme.     |
 | `setTheme` | `(theme: ThemeName) => void` | Updates the active theme. |
 

@@ -159,7 +159,7 @@ import { FormField, Input } from '@romanbakurov/vellira-native';
 | `errorStyle`       | `StyleProp<TextStyle>` | No       | Extra error text style.           |
 | `required`         | `boolean`              | No       | Marks the field as required.      |
 | `disabled`         | `boolean`              | No       | Renders the disabled field state. |
-| `description`      | `string`               | No       | —                                 |
+| `description`      | `string`               | No       | Additional descriptive text.      |
 | `controlStyle`     | `StyleProp<ViewStyle>` | No       | —                                 |
 | `descriptionStyle` | `StyleProp<TextStyle>` | No       | —                                 |
 
@@ -201,7 +201,7 @@ import { RadioGroup } from '@romanbakurov/vellira-native';
 | `onChange`     | `(value: string) => void` | No       | Called when selection changes.        |
 | `required`     | `boolean`                 | No       | Marks the group as required.          |
 | `disabled`     | `boolean`                 | No       | Disables the whole group.             |
-| `description`  | `string`                  | No       | —                                     |
+| `description`  | `string`                  | No       | Additional descriptive text.          |
 
 <!-- api-docgen:end native.RadioGroupProps.RadioGroupProps -->
 
@@ -254,7 +254,7 @@ import { Select } from '@romanbakurov/vellira-native';
 | `onChange`           | `(value: string) => void` | No       | Called when the user selects an option.        |
 | `required`           | `boolean`                 | No       | Marks the field as required.                   |
 | `disabled`           | `boolean`                 | No       | Disables interaction.                          |
-| `description`        | `string`                  | No       | —                                              |
+| `description`        | `string`                  | No       | Additional descriptive text.                   |
 | `pickerStyle`        | `StyleProp<TextStyle>`    | No       | —                                              |
 | `accessibilityLabel` | `string`                  | No       | Accessible label for screen readers.           |
 
