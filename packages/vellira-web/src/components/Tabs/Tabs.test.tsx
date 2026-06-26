@@ -19,7 +19,7 @@ function pressKey(target: EventTarget, key: string) {
 function TabsExample({ onChange }: { onChange?: (index: number) => void }) {
   return (
     <Tabs onChange={onChange}>
-      <TabsList>
+      <TabsList aria-label='Documentation sections'>
         <Tab index={0}>Overview</Tab>
         <Tab index={1} disabled>
           Disabled
@@ -85,6 +85,43 @@ describe('Tabs', () => {
     expect(tab?.getAttribute('aria-controls')).toBe('tab-panel-0');
     expect(panel?.getAttribute('aria-labelledby')).toBe('tab-0');
     expect(tab?.tabIndex).toBe(0);
+
+    unmount();
+  });
+
+  it('exposes strict screen-reader names, states, and roving tab stops', () => {
+    const { container, unmount } = render(<TabsExample />);
+    const tablist = container.querySelector<HTMLElement>('[role="tablist"]');
+    const tabs = container.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+    const panels = container.querySelectorAll<HTMLElement>('[role="tabpanel"]');
+
+    expect(tablist?.getAttribute('aria-label')).toBe('Documentation sections');
+    expect(tabs).toHaveLength(3);
+    expect(tabs[0].textContent).toBe('Overview');
+    expect(tabs[0].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[0].tabIndex).toBe(0);
+    expect(tabs[1].textContent).toBe('Disabled');
+    expect(tabs[1].disabled).toBe(true);
+    expect(tabs[1].getAttribute('aria-selected')).toBe('false');
+    expect(tabs[1].tabIndex).toBe(-1);
+    expect(tabs[2].textContent).toBe('Usage');
+    expect(tabs[2].getAttribute('aria-selected')).toBe('false');
+    expect(tabs[2].tabIndex).toBe(-1);
+
+    expect(panels[0].getAttribute('aria-labelledby')).toBe(tabs[0].id);
+    expect(panels[0].tabIndex).toBe(0);
+    expect(panels[0].hidden).toBe(false);
+    expect(panels[1].hidden).toBe(true);
+    expect(panels[2].hidden).toBe(true);
+
+    act(() => tabs[2].click());
+
+    expect(tabs[0].getAttribute('aria-selected')).toBe('false');
+    expect(tabs[0].tabIndex).toBe(-1);
+    expect(tabs[2].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[2].tabIndex).toBe(0);
+    expect(panels[0].hidden).toBe(true);
+    expect(panels[2].hidden).toBe(false);
 
     unmount();
   });

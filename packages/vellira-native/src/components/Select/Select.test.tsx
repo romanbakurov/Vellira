@@ -12,6 +12,16 @@ const options = [
   { label: 'Spain', value: 'es' },
 ];
 
+const getButtonByText = (text: string) =>
+  Array.from(document.body.querySelectorAll<HTMLButtonElement>('button')).find(
+    (button) => button.textContent === text
+  );
+
+const getPickerBackdrop = () =>
+  document.body.querySelector<HTMLButtonElement>(
+    '[data-testid="native-modal"] button'
+  );
+
 afterEach(() => {
   document.body.innerHTML = '';
 });
@@ -33,9 +43,7 @@ describe('Native Select', () => {
 
     expect(trigger?.getAttribute('aria-expanded')).toBe('true');
 
-    const option = Array.from(document.body.querySelectorAll('button')).find(
-      (button) => button.textContent === 'France'
-    );
+    const option = getButtonByText('France');
 
     expect(option).toBeTruthy();
 
@@ -45,9 +53,7 @@ describe('Native Select', () => {
 
     expect(onChange).not.toHaveBeenCalled();
 
-    const doneButton = Array.from(
-      document.body.querySelectorAll('button')
-    ).find((button) => button.textContent === 'Done');
+    const doneButton = getButtonByText('Done');
 
     expect(doneButton).toBeTruthy();
 
@@ -81,12 +87,8 @@ describe('Native Select', () => {
       trigger?.click();
     });
 
-    const disabledOption = Array.from(
-      document.body.querySelectorAll('button')
-    ).find((button) => button.textContent === 'Germany - unavailable');
-    const cancelButton = Array.from(
-      document.body.querySelectorAll('button')
-    ).find((button) => button.textContent === 'Cancel');
+    const disabledOption = getButtonByText('Germany - unavailable');
+    const cancelButton = getButtonByText('Cancel');
 
     expect(disabledOption?.disabled).toBe(true);
 
@@ -97,6 +99,96 @@ describe('Native Select', () => {
 
     expect(onChange).not.toHaveBeenCalled();
     expect(container.textContent).toContain('Spain');
+    expect(trigger?.getAttribute('aria-expanded')).toBe('false');
+
+    unmount();
+  });
+
+  it('closes from the backdrop without committing a draft value', () => {
+    const onChange = vi.fn();
+
+    const { container, unmount } = render(
+      <Select
+        label='Country'
+        options={options}
+        defaultValue='es'
+        onChange={onChange}
+      />
+    );
+
+    const trigger =
+      container.querySelector<HTMLButtonElement>('[role="button"]');
+
+    act(() => {
+      trigger?.click();
+    });
+
+    act(() => {
+      getButtonByText('France')?.click();
+    });
+
+    expect(onChange).not.toHaveBeenCalled();
+
+    act(() => {
+      getPickerBackdrop()?.click();
+    });
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(container.textContent).toContain('Spain');
+    expect(trigger?.getAttribute('aria-expanded')).toBe('false');
+    expect(document.body.textContent).not.toContain('Done');
+
+    unmount();
+  });
+
+  it('resets the picker draft to the latest controlled value when reopened', () => {
+    const onChange = vi.fn();
+
+    const { container, rerender, unmount } = render(
+      <Select
+        label='Country'
+        options={options}
+        value='fr'
+        onChange={onChange}
+      />
+    );
+
+    expect(container.textContent).toContain('France');
+
+    const trigger =
+      container.querySelector<HTMLButtonElement>('[role="button"]');
+
+    act(() => {
+      trigger?.click();
+    });
+
+    rerender(
+      <Select
+        label='Country'
+        options={options}
+        value='es'
+        onChange={onChange}
+      />
+    );
+
+    expect(container.textContent).toContain('Spain');
+
+    act(() => {
+      getButtonByText('Cancel')?.click();
+    });
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(trigger?.getAttribute('aria-expanded')).toBe('false');
+
+    act(() => {
+      trigger?.click();
+    });
+
+    act(() => {
+      getButtonByText('Done')?.click();
+    });
+
+    expect(onChange).toHaveBeenCalledWith('es');
     expect(trigger?.getAttribute('aria-expanded')).toBe('false');
 
     unmount();

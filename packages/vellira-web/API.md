@@ -355,10 +355,9 @@ import { Tabs } from '@romanbakurov/vellira-web';
 
 <!-- api-docgen:start web.TabsListProps.TabsListProps -->
 
-| Prop        | Type        | Required | Description      |
-| ----------- | ----------- | -------- | ---------------- |
-| `children`  | `ReactNode` | Yes      | Tab buttons.     |
-| `className` | `string`    | No       | Extra CSS class. |
+| Prop       | Type        | Required | Description  |
+| ---------- | ----------- | -------- | ------------ |
+| `children` | `ReactNode` | Yes      | Tab buttons. |
 
 <!-- api-docgen:end web.TabsListProps.TabsListProps -->
 
