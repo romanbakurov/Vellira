@@ -27,4 +27,67 @@ describe('Native Checkbox', () => {
 
     unmount();
   });
+
+  it('uses the label as the accessible name', () => {
+    const { container, unmount } = render(<Checkbox label='Accept terms' />);
+
+    const checkbox =
+      container.querySelector<HTMLButtonElement>('[role="checkbox"]');
+
+    expect(checkbox?.getAttribute('aria-label')).toBe('Accept terms');
+
+    unmount();
+  });
+
+  it('keeps controlled value until checked changes', () => {
+    const onCheckedChange = vi.fn();
+    const { container, rerender, unmount } = render(
+      <Checkbox
+        label='Accept'
+        checked={false}
+        onCheckedChange={onCheckedChange}
+      />
+    );
+
+    const checkbox =
+      container.querySelector<HTMLButtonElement>('[role="checkbox"]');
+
+    act(() => checkbox?.click());
+
+    expect(onCheckedChange).toHaveBeenCalledWith(true);
+    expect(checkbox?.getAttribute('aria-checked')).toBe('false');
+
+    rerender(
+      <Checkbox label='Accept' checked onCheckedChange={onCheckedChange} />
+    );
+
+    expect(checkbox?.getAttribute('aria-checked')).toBe('true');
+
+    unmount();
+  });
+
+  it('marks disabled state and ignores presses', () => {
+    const onCheckedChange = vi.fn();
+    const { container, unmount } = render(
+      <Checkbox
+        label='Accept'
+        disabled
+        defaultChecked
+        onCheckedChange={onCheckedChange}
+      />
+    );
+
+    const checkbox =
+      container.querySelector<HTMLButtonElement>('[role="checkbox"]');
+
+    expect(checkbox?.getAttribute('aria-disabled')).toBe('true');
+    expect(checkbox?.getAttribute('aria-checked')).toBe('true');
+
+    act(() => checkbox?.click());
+
+    expect(onCheckedChange).not.toHaveBeenCalled();
+    expect(checkbox?.getAttribute('aria-checked')).toBe('true');
+
+    unmount();
+  });
 });
