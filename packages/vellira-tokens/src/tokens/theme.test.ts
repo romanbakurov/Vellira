@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { theme } from '../theme';
+import { theme } from './theme';
 
 describe('theme', () => {
   it('exposes base token groups', () => {

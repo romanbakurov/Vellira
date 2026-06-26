@@ -66,11 +66,7 @@ export function Button({
 
   const iconOnly = !children && Boolean(leftIcon || rightIcon);
 
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    iconOnly &&
-    !accessibilityLabel
-  ) {
+  if (iconOnly && !accessibilityLabel) {
     console.warn(
       'Vellira Button: icon-only buttons must provide an accessibilityLabel.'
     );
