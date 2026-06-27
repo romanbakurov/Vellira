@@ -37,9 +37,9 @@
 
 @media (width <= 640px) {
   .dropdown {
-    position: fixed !important;
-    inset: auto 0 0 !important;
-    width: 100% !important;
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     max-height: 50vh;
   }

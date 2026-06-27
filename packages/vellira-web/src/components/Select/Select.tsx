@@ -54,6 +54,7 @@ export const Select = ({
   const { floatingStyles, setRef, setFloatingRef } = useFloatingPosition({
     open: isOpen,
     matchTriggerWidth: true,
+    mobileSheetBreakpoint: 640,
   });
 
   const getInitialActiveIndex = useCallback(() => {

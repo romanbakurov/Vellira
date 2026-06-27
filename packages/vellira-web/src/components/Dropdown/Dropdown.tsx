@@ -41,6 +41,7 @@ export const Dropdown = ({
   const { floatingStyles, setRef, setFloatingRef } = useFloatingPosition({
     placement,
     matchTriggerWidth,
+    mobileSheetBreakpoint: 640,
   });
 
   const navigableItems = items.filter(isMenuItem);
