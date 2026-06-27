@@ -87,10 +87,25 @@ test.describe('web overlays', () => {
     const listboxBox = await listbox.boundingBox();
     expect(triggerBox).not.toBeNull();
     expect(listboxBox).not.toBeNull();
-    expect(Math.abs(listboxBox!.width - triggerBox!.width)).toBeLessThanOrEqual(
-      1
-    );
-    await expectFloatingNearReference(trigger, listbox);
+
+    const viewportSize = page.viewportSize();
+    expect(viewportSize).not.toBeNull();
+
+    const isMobileSheet = viewportSize!.width < 640;
+
+    if (!isMobileSheet) {
+      expect(
+        Math.abs(listboxBox!.width - triggerBox!.width)
+      ).toBeLessThanOrEqual(1);
+
+      await expectFloatingNearReference(trigger, listbox);
+    } else {
+      expect(listboxBox!.x).toBeGreaterThanOrEqual(0);
+      expect(listboxBox!.x + listboxBox!.width).toBeLessThanOrEqual(
+        viewportSize!.width
+      );
+      expect(listboxBox!.width).toBeGreaterThanOrEqual(triggerBox!.width);
+    }
 
     await page.keyboard.press('ArrowDown');
     await expect(trigger).toHaveAttribute('aria-activedescendant', /option-1$/);
