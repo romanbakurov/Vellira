@@ -6,8 +6,11 @@ export function shouldBuild() {
   return !process.argv.includes('--skip-build');
 }
 
-export function run(command, args, options = {}) {
-  execFileSync(command, args, { stdio: 'inherit', ...options });
+export function run(command, args = [], options = {}) {
+  execFileSync(command, args, {
+    ...options,
+    stdio: 'inherit',
+  });
 }
 
 export function packPackages(packageNames, tempDir) {
@@ -16,7 +19,13 @@ export function packPackages(packageNames, tempDir) {
   for (const packageName of packageNames) {
     const before = new Set(readdirSync(tempDir));
 
-    run('pnpm', ['--filter', packageName, 'pack', '--pack-destination', tempDir]);
+    run('pnpm', [
+      '--filter',
+      packageName,
+      'pack',
+      '--pack-destination',
+      tempDir,
+    ]);
 
     const tarballName = readdirSync(tempDir).find(
       (fileName) => fileName.endsWith('.tgz') && !before.has(fileName)
@@ -33,7 +42,10 @@ export function packPackages(packageNames, tempDir) {
 }
 
 export function writePackageJson(tempDir, packageJson) {
-  writeFileSync(path.join(tempDir, 'package.json'), JSON.stringify(packageJson, null, 2));
+  writeFileSync(
+    path.join(tempDir, 'package.json'),
+    JSON.stringify(packageJson, null, 2)
+  );
 }
 
 export function writeWorkspaceFile(tempDir, dependencies) {

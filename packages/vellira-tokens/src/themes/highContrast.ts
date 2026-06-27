@@ -7,19 +7,19 @@ export const highContrastTheme = {
 
     surface: {
       default: '#000000',
-      muted: '#0F0F0F',
-      subtle: '#0F0F0F',
-      elevated: '#0F0F0F',
+      muted: '#0A0A0A',
+      subtle: '#121212',
+      elevated: '#1A1A1A',
       inverse: '#FFFFFF',
     },
 
     text: {
       ...lightTheme.colors.text,
       primary: '#FFFFFF',
-      secondary: '#FFFFFF',
+      secondary: '#F5F5F5',
       muted: '#E5E5E5',
       inverse: '#000000',
-      disabled: '#E5E5E5',
+      disabled: '#A3A3A3',
       brand: '#4DA3FF',
       danger: '#FF8A8A',
       success: '#9AFFB8',
@@ -30,7 +30,7 @@ export const highContrastTheme = {
     border: {
       ...lightTheme.colors.border,
       default: '#FFFFFF',
-      muted: '#A3A3A3',
+      muted: '#D4D4D4',
       strong: '#FFFFFF',
       focus: '#FFFF00',
       danger: '#FF8A8A',
@@ -40,10 +40,10 @@ export const highContrastTheme = {
     },
 
     interactive: {
-      primary: '#4DA3FF',
-      primaryHover: '#7BBCFF',
-      primaryPressed: '#B8DCFF',
-      primaryMuted: '#001A33',
+      primary: '#66B3FF',
+      primaryHover: '#99CCFF',
+      primaryPressed: '#3399FF',
+      primaryMuted: '#002B55',
 
       secondary: '#FFFFFF',
       secondaryHover: '#E5E5E5',
@@ -134,7 +134,7 @@ export const highContrastTheme = {
     },
 
     focus: {
-      ring: '#FFFF00',
+      ring: '#FFEA00',
       ringOffset: '#000000',
     },
 
