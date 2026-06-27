@@ -212,50 +212,81 @@ if (typeof icons.Search !== 'function') {
   throw new Error('vellira-icons Search export invalid');
 }
 
-if (typeof tokens.theme !== 'object' || tokens.theme === null) {
-  throw new Error('vellira-tokens theme export invalid');
+if (typeof tokens.darkTheme !== 'object' || tokens.darkTheme === null) {
+  throw new Error('vellira-tokens darkTheme export invalid');
 }
 
-const { colors } = tokens.theme;
+if (typeof tokens.lightTheme !== 'object' || tokens.lightTheme === null) {
+  throw new Error('vellira-tokens lightTheme export invalid');
+}
 
-if (!colors.surface) {
+if (
+  typeof tokens.highContrastTheme !== 'object' ||
+  tokens.highContrastTheme === null
+) {
+  throw new Error('vellira-tokens highContrastTheme export invalid');
+}
+
+const theme = tokens.darkTheme;
+
+if (!theme.colors) {
+  throw new Error('primitive color tokens missing');
+}
+
+if (!theme.semantic) {
+  throw new Error('semantic tokens missing');
+}
+
+if (!theme.components) {
+  throw new Error('component tokens missing');
+}
+
+if (!theme.tokens) {
+  throw new Error('shared base tokens missing');
+}
+
+if (!theme.semantic.surface) {
   throw new Error('surface semantic tokens missing');
 }
 
-if (!colors.text) {
+if (!theme.semantic.text) {
   throw new Error('text semantic tokens missing');
 }
 
-if (!colors.border) {
+if (!theme.semantic.border) {
   throw new Error('border semantic tokens missing');
 }
 
-if (!colors.interactive) {
-  throw new Error('interactive semantic tokens missing');
-}
-
-if (!colors.status) {
+if (!theme.semantic.status) {
   throw new Error('status semantic tokens missing');
 }
 
-if (!colors.focus) {
+if (!theme.semantic.focus) {
   throw new Error('focus semantic tokens missing');
 }
 
-if (!colors.overlay) {
-  throw new Error('overlay semantic tokens missing');
-}
-
-if (!colors.divider) {
+if (!theme.semantic.divider) {
   throw new Error('divider semantic tokens missing');
 }
 
-if (!colors.selection) {
-  throw new Error('selection semantic tokens missing');
+if (!theme.semantic.skeleton) {
+  throw new Error('skeleton semantic tokens missing');
 }
 
-if (!colors.skeleton) {
-  throw new Error('skeleton semantic tokens missing');
+if (!theme.components.button) {
+  throw new Error('button component tokens missing');
+}
+
+if (!theme.components.input) {
+  throw new Error('input component tokens missing');
+}
+
+if (!theme.components.checkbox) {
+  throw new Error('checkbox component tokens missing');
+}
+
+if (!theme.components.select) {
+  throw new Error('select component tokens missing');
 }
 
 function assertColorToken(value, name) {
@@ -264,10 +295,14 @@ function assertColorToken(value, name) {
   }
 }
 
-assertColorToken(colors.surface.default, 'surface.default');
-assertColorToken(colors.text.primary, 'text.primary');
-assertColorToken(colors.interactive.primary, 'interactive.primary');
-assertColorToken(colors.status.success, 'status.success');
+assertColorToken(theme.semantic.surface.default, 'semantic.surface.default');
+assertColorToken(theme.semantic.text.primary, 'semantic.text.primary');
+assertColorToken(theme.semantic.status.success.fg, 'semantic.status.success.fg');
+assertColorToken(
+  theme.components.button.primary.default.bg,
+  'components.button.primary.default.bg'
+);
+assertColorToken(theme.components.input.default.bg, 'components.input.default.bg');
 
 console.log('Native package smoke test passed');
 `

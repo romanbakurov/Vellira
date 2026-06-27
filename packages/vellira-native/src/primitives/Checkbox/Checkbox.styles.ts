@@ -1,4 +1,4 @@
-import { theme } from '@romanbakurov/vellira-tokens';
+import { darkTheme as theme } from '@romanbakurov/vellira-tokens';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -7,49 +7,56 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
+
   pressed: {
     opacity: 0.8,
   },
+
   disabled: {
     opacity: 0.5,
   },
-  boxDisabled: {
-    backgroundColor: theme.colors.surface.subtle,
-    borderColor: theme.colors.interactive.disabledForeground,
-  },
+
   box: {
     width: 20,
     height: 20,
     borderWidth: 2,
-    borderColor: theme.colors.interactive.primary,
-    borderRadius: theme.radius.sm,
+    borderColor: theme.components.checkbox.default.border,
+    borderRadius: theme.tokens.radius.sm,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: theme.components.checkbox.default.bg,
   },
+
   boxChecked: {
-    backgroundColor: theme.colors.interactive.primary,
-    borderColor: theme.colors.interactive.primary,
+    backgroundColor: theme.components.checkbox.checked.default.bg,
+    borderColor: theme.components.checkbox.checked.default.border,
+  },
+
+  boxDisabled: {
+    backgroundColor: theme.components.checkbox.disabled.bg,
+    borderColor: theme.components.checkbox.disabled.border,
+  },
+
+  boxError: {
+    borderColor: theme.semantic.status.error.strong,
   },
 
   label: {
-    fontFamily: theme.typography.family.regular,
-    fontSize: theme.typography.size.md,
-    color: theme.colors.text.primary,
+    fontFamily: theme.tokens.typography.family.regular,
+    fontSize: theme.tokens.typography.size.md,
+    color: theme.components.checkbox.default.fg,
   },
+
   labelDisabled: {
-    color: theme.colors.text.disabled,
+    color: theme.components.checkbox.disabled.fg,
   },
 
   container: {
     gap: 4,
   },
 
-  boxError: {
-    borderColor: theme.colors.border.danger,
-  },
-
   errorText: {
-    color: theme.colors.text.danger,
-    fontSize: theme.typography.size.sm,
+    color: theme.semantic.status.error.fg,
+    fontSize: theme.tokens.typography.size.sm,
   },
 });

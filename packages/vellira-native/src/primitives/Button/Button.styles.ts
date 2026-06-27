@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.tokens.radius.md,
   },
 
   fullWidth: {
@@ -15,9 +15,12 @@ export const styles = StyleSheet.create({
   },
 
   text: {
-    fontFamily: theme.typography.family.regular,
-    color: theme.colors.text.inverse,
-    fontWeight: theme.typography.weight.medium,
+    fontFamily: theme.tokens.typography.family.regular,
+    fontWeight: theme.tokens.typography.weight.medium,
+
+    // Кнопка сама задает цвет текста через props,
+    // поэтому это значение используется как fallback.
+    color: theme.components.button.primary.default.fg,
   },
 
   disabled: {

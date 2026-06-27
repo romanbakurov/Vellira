@@ -132,50 +132,83 @@ if (typeof icons.Search !== 'function') {
   throw new Error('vellira-icons Search export invalid');
 }
 
-if (typeof tokens.theme !== 'object' || tokens.theme === null) {
-  throw new Error('vellira-tokens theme export invalid');
-}
-
 const { colors } = tokens.theme;
 
-if (!colors.surface) {
+if (typeof tokens.darkTheme !== 'object' || tokens.darkTheme === null) {
+  throw new Error('vellira-tokens darkTheme export invalid');
+}
+
+if (typeof tokens.lightTheme !== 'object' || tokens.lightTheme === null) {
+  throw new Error('vellira-tokens lightTheme export invalid');
+}
+
+if (
+  typeof tokens.highContrastTheme !== 'object' ||
+  tokens.highContrastTheme === null
+) {
+  throw new Error('vellira-tokens highContrastTheme export invalid');
+}
+
+const theme = tokens.darkTheme;
+
+if (!theme.colors) {
+  throw new Error('primitive color tokens missing');
+}
+
+if (!theme.semantic) {
+  throw new Error('semantic tokens missing');
+}
+
+if (!theme.components) {
+  throw new Error('component tokens missing');
+}
+
+if (!theme.tokens) {
+  throw new Error('shared base tokens missing');
+}
+
+if (!theme.semantic.surface) {
   throw new Error('surface semantic tokens missing');
 }
 
-if (!colors.text) {
+if (!theme.semantic.text) {
   throw new Error('text semantic tokens missing');
 }
 
-if (!colors.border) {
+if (!theme.semantic.border) {
   throw new Error('border semantic tokens missing');
 }
 
-if (!colors.interactive) {
-  throw new Error('interactive semantic tokens missing');
-}
-
-if (!colors.status) {
+if (!theme.semantic.status) {
   throw new Error('status semantic tokens missing');
 }
 
-if (!colors.focus) {
+if (!theme.semantic.focus) {
   throw new Error('focus semantic tokens missing');
 }
 
-if (!colors.overlay) {
-  throw new Error('overlay semantic tokens missing');
-}
-
-if (!colors.divider) {
+if (!theme.semantic.divider) {
   throw new Error('divider semantic tokens missing');
 }
 
-if (!colors.selection) {
-  throw new Error('selection semantic tokens missing');
+if (!theme.semantic.skeleton) {
+  throw new Error('skeleton semantic tokens missing');
 }
 
-if (!colors.skeleton) {
-  throw new Error('skeleton semantic tokens missing');
+if (!theme.components.button) {
+  throw new Error('button component tokens missing');
+}
+
+if (!theme.components.input) {
+  throw new Error('input component tokens missing');
+}
+
+if (!theme.components.checkbox) {
+  throw new Error('checkbox component tokens missing');
+}
+
+if (!theme.components.select) {
+  throw new Error('select component tokens missing');
 }
 
 const assertColor = (value, name) => {
@@ -184,10 +217,14 @@ const assertColor = (value, name) => {
   }
 };
 
-assertColor(colors.surface.default, 'surface.default');
-assertColor(colors.text.primary, 'text.primary');
-assertColor(colors.interactive.primary, 'interactive.primary');
-assertColor(colors.status.success, 'status.success');
+assertColor(theme.semantic.surface.default, 'semantic.surface.default');
+assertColor(theme.semantic.text.primary, 'semantic.text.primary');
+assertColor(theme.semantic.status.success.fg, 'semantic.status.success.fg');
+assertColor(
+  theme.components.button.primary.default.bg,
+  'components.button.primary.default.bg'
+);
+assertColor(theme.components.input.default.bg, 'components.input.default.bg');
 
 await import('@romanbakurov/vellira-web/styles');
 

@@ -3,11 +3,11 @@ html {
 }
 
 body {
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   font-family: var(--font-family-base);
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
-  background: var(--color-surface-default);
+  background: var(--surface-default);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;

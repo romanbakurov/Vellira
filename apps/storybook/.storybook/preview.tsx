@@ -1,26 +1,32 @@
-import { useEffect } from 'react';
 import type { Preview } from '@storybook/react-vite';
 
 import { ThemeProvider } from '@romanbakurov/vellira-web';
 
+import '@romanbakurov/vellira-tokens/css';
 import '@romanbakurov/vellira-web/styles';
 import '@romanbakurov/vellira-assets/styles';
-import '@romanbakurov/vellira-tokens/css';
 
 const withTheme: Preview['decorators'][number] = (Story, context) => {
   const theme = context.globals.theme ?? 'light';
 
-  useEffect(() => {
-    document.documentElement.dataset.velliraTheme = theme;
-
-    return () => {
-      delete document.documentElement.dataset.velliraTheme;
-    };
-  }, [theme]);
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.velliraTheme = theme;
 
   return (
     <ThemeProvider theme={theme}>
-      <Story />
+      <div
+        style={{
+          minHeight: '100vh',
+          width: '100%',
+          background: 'var(--surface-default)',
+          color: 'var(--text-primary)',
+          padding: 24,
+          boxSizing: 'border-box',
+          transition: 'none',
+        }}
+      >
+        <Story />
+      </div>
     </ThemeProvider>
   );
 };
@@ -46,6 +52,12 @@ const preview: Preview = {
   decorators: [withTheme],
 
   parameters: {
+    backgrounds: {
+      disable: true,
+    },
+
+    layout: 'fullscreen',
+
     controls: {
       expanded: true,
     },

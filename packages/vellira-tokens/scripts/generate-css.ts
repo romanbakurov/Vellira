@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { darkTheme } from '../src/themes/dark';
-import { highContrastTheme } from '../src/themes/highContrast';
-import { lightTheme } from '../src/themes/light';
+import { darkTheme } from '../src/dark/theme.js';
+import { highContrastTheme } from '../src/highContrast/theme.js';
+import { lightTheme } from '../src/light/theme.js';
 import { radius } from '../src/tokens/radius';
 import { shadows } from '../src/tokens/shadows';
 import { spacing } from '../src/tokens/spacing';
@@ -111,7 +111,10 @@ function generateThemeBlock(
   selector: string,
   theme: typeof lightTheme
 ): string {
-  return `${selector} {\n${generateVariables(theme.colors, 'color')}}\n`;
+  return `${selector} {\n${generateVariables(theme.colors, 'color')}${generateVariables(
+    theme.semantic,
+    ''
+  )}${generateVariables(theme.components, '')}}\n`;
 }
 
 let css = `/**
