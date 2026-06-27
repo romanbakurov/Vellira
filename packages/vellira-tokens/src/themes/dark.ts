@@ -125,6 +125,11 @@ export const darkTheme = {
       triggerHoverBg: '#2D2145',
       triggerHoverFg: '#F7F4FF',
       triggerHoverRing: 'transparent',
+
+      itemDisabledFg: '#746F86',
+      itemDisabledBg: '#211D2D',
+
+      groupLabelFg: '#A8A1BA',
     },
 
     status: {

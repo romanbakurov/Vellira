@@ -10,7 +10,7 @@
   padding: var(--space-2);
   color: var(--color-menu-trigger-fg);
   background: transparent;
-  border: none;
+  border: 2px solid transparent;
   border-radius: var(--radius-lg);
   cursor: pointer;
 
@@ -23,7 +23,8 @@
   &:hover:not(.disabled) {
     color: var(--color-menu-trigger-hover-fg);
     background: var(--color-menu-trigger-hover-bg);
-    box-shadow: inset 0 0 0 2px var(--color-menu-trigger-hover-ring);
+
+    @include ring(var(--color-menu-trigger-hover-ring));
 
     .iconLeft svg {
       color: currentcolor;
@@ -32,9 +33,16 @@
   }
 
   &.disabled {
-    color: var(--color-action-disabled-fg);
+    color: var(--color-control-disabled-fg);
+    background-color: var(--color-control-disabled-bg);
+    border: 2px dashed var(--color-control-disabled-border);
     cursor: not-allowed;
     pointer-events: none;
+
+    .iconLeft,
+    .arrow {
+      color: var(--color-control-disabled-fg);
+    }
   }
 
   &.iconOnly {
@@ -46,6 +54,8 @@
 
     &:hover:not(.disabled) {
       background: var(--color-menu-trigger-hover-bg);
+
+      @include ring(var(--color-menu-trigger-hover-ring));
 
       .iconLeft {
         transform: rotate(var(--dropdown-rotate-angle, 90deg));

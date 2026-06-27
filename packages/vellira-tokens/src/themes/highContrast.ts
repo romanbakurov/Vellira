@@ -55,7 +55,7 @@ export const highContrastTheme = {
       neutralPressed: '#333333',
 
       disabled: '#0F0F0F',
-      disabledForeground: '#A3A3A3',
+      disabledForeground: '#737373',
     },
 
     action: {
@@ -71,8 +71,8 @@ export const highContrastTheme = {
 
       dangerBg: '#FF8A8A',
       dangerFg: '#000000',
-      dangerHoverBg: '#0F0F0F',
-      dangerHoverFg: '#FFFFFF',
+      dangerHoverBg: '#FFC1C1',
+      dangerHoverFg: '#000000',
 
       disabledBg: '#0F0F0F',
       disabledFg: '#E5E5E5',
@@ -89,18 +89,18 @@ export const highContrastTheme = {
       selectedFg: '#000000',
       hoverBg: '#0F0F0F',
       hoverFg: '#FFFFFF',
-      disabledBg: '#0F0F0F',
-      disabledFg: '#E5E5E5',
-      disabledBorder: '#A3A3A3',
+      disabledBg: '#111111',
+      disabledFg: '#808080',
+      disabledBorder: '#5A5A5A',
     },
 
     menu: {
       itemFg: '#FFFFFF',
-      itemHoverBg: '#0F0F0F',
+      itemHoverBg: '#1A1A1A',
       itemHoverFg: '#FFFFFF',
-      itemActiveBg: '#0F0F0F',
+      itemActiveBg: '#1A1A1A',
       itemActiveFg: '#FFFFFF',
-      itemFocusRing: '#4DA3FF',
+      itemFocusRing: '#FFFF00',
 
       itemDangerFg: '#FF8A8A',
       itemDangerHoverBg: '#FF8A8A',
@@ -111,7 +111,12 @@ export const highContrastTheme = {
       triggerFg: '#FFFFFF',
       triggerHoverBg: '#0F0F0F',
       triggerHoverFg: '#FFFFFF',
-      triggerHoverRing: '#4DA3FF',
+      triggerHoverRing: '#FFFF00',
+
+      itemDisabledFg: '#737373',
+      itemDisabledBg: '#0F0F0F',
+
+      groupLabelFg: '#CFCFCF',
     },
 
     status: {
@@ -145,7 +150,7 @@ export const highContrastTheme = {
 
     divider: {
       default: '#FFFFFF',
-      muted: '#FFFFFF',
+      muted: '#737373',
     },
 
     skeleton: {

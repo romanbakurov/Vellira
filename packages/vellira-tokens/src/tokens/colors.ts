@@ -171,6 +171,11 @@ export const colors = {
     triggerHoverBg: '#eef0ff',
     triggerHoverFg: '#4338ca',
     triggerHoverRing: 'transparent',
+
+    itemDisabledFg: '#9ca3af',
+    itemDisabledBg: '#f3f4f6',
+
+    groupLabelFg: '#6B7280',
   },
 
   status: {
