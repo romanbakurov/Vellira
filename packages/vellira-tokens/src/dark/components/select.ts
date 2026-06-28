@@ -10,7 +10,7 @@ export const select = {
     default: {
       bg: surface.default,
       fg: text.brand,
-      border: border.default,
+      border: border.subtle,
     },
 
     hover: {
@@ -33,7 +33,7 @@ export const select = {
     },
 
     placeholder: {
-      fg: text.muted,
+      fg: text.secondary,
     },
 
     error: {
@@ -45,7 +45,7 @@ export const select = {
   dropdown: {
     bg: surface.elevated,
     fg: text.primary,
-    border: border.focus,
+    border: border.default,
   },
 
   option: {
@@ -62,11 +62,11 @@ export const select = {
     active: {
       bg: surface.active,
       fg: text.primary,
-      ring: focus.ring,
+      ring: 'transparent',
     },
 
     selected: {
-      bg: colors.primary[600],
+      bg: colors.primary[500],
       fg: text.inverse,
     },
 

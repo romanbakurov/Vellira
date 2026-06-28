@@ -124,9 +124,11 @@ export const colorTokenPaths = [
 
 export const semanticTokenPaths = [
   'semantic.border.default',
+  'semantic.border.elevated',
   'semantic.border.focus',
   'semantic.border.muted',
   'semantic.border.strong',
+  'semantic.border.subtle',
   'semantic.divider.default',
   'semantic.divider.muted',
   'semantic.divider.strong',
@@ -817,9 +819,11 @@ export const tokenPaths = [
   'components.tooltip.content.border',
   'components.tooltip.content.fg',
   'semantic.border.default',
+  'semantic.border.elevated',
   'semantic.border.focus',
   'semantic.border.muted',
   'semantic.border.strong',
+  'semantic.border.subtle',
   'semantic.divider.default',
   'semantic.divider.muted',
   'semantic.divider.strong',
@@ -966,9 +970,11 @@ export const baseCssVariableNames = [
 
 export const themeCssVariableNames = [
   '--border-default',
+  '--border-elevated',
   '--border-focus',
   '--border-muted',
   '--border-strong',
+  '--border-subtle',
   '--button-danger-default-bg',
   '--button-danger-default-border',
   '--button-danger-default-fg',
@@ -1343,9 +1349,11 @@ export const themeCssVariableNames = [
 
 export const cssVariableNames = [
   '--border-default',
+  '--border-elevated',
   '--border-focus',
   '--border-muted',
   '--border-strong',
+  '--border-subtle',
   '--button-danger-default-bg',
   '--button-danger-default-border',
   '--button-danger-default-fg',

@@ -19,13 +19,13 @@ export const modal = {
   },
 
   description: {
-    fg: text.muted,
+    fg: text.secondary,
   },
 
   closeButton: {
     default: {
       bg: 'transparent',
-      fg: text.secondary,
+      fg: text.muted,
     },
 
     hover: {

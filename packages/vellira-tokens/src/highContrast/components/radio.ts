@@ -7,32 +7,32 @@ import { text } from '../semantic/text.js';
 export const radio = {
   default: {
     bg: surface.default,
-    fg: text.inverse,
+    fg: text.primary,
     border: border.default,
   },
 
   hover: {
     bg: colors.gray[900],
-    fg: text.inverse,
-    border: colors.info[400],
+    fg: colors.primary[500],
+    border: colors.primary[300],
   },
 
   checked: {
     default: {
-      bg: colors.info[400],
-      fg: text.inverse,
-      border: colors.info[400],
+      bg: colors.primary[400],
+      fg: colors.primary[600],
+      border: colors.primary[500],
     },
 
     hover: {
       bg: colors.info[500],
-      fg: text.inverse,
+      fg: text.primary,
       border: colors.info[500],
     },
 
     pressed: {
       bg: colors.primary[800],
-      fg: text.inverse,
+      fg: text.primary,
       border: colors.primary[800],
     },
   },

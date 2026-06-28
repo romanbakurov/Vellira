@@ -6,21 +6,21 @@ import { text } from '../semantic/text.js';
 export const button = {
   primary: {
     default: {
-      bg: colors.info[400],
-      fg: text.inverse,
-      border: colors.info[400],
+      bg: colors.primary[500],
+      fg: text.primary,
+      border: colors.primary[500],
     },
 
     hover: {
-      bg: colors.info[500],
-      fg: text.inverse,
-      border: colors.info[500],
+      bg: colors.primary[600],
+      fg: text.primary,
+      border: colors.primary[600],
     },
 
     pressed: {
-      bg: colors.info[600],
-      fg: text.inverse,
-      border: colors.info[600],
+      bg: colors.primary[600],
+      fg: text.primary,
+      border: colors.primary[600],
     },
   },
 
@@ -46,15 +46,15 @@ export const button = {
 
   danger: {
     default: {
-      bg: colors.error[300],
+      bg: colors.error[400],
       fg: text.inverse,
-      border: colors.error[300],
+      border: colors.error[400],
     },
 
     hover: {
-      bg: colors.error[200],
+      bg: colors.error[300],
       fg: text.inverse,
-      border: colors.error[200],
+      border: colors.error[300],
     },
 
     pressed: {
@@ -67,6 +67,6 @@ export const button = {
   disabled: {
     bg: surface.subtle,
     fg: text.disabled,
-    border: border.default,
+    border: border.muted,
   },
 } as const;

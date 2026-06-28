@@ -67,6 +67,6 @@ export const button = {
   disabled: {
     bg: surface.subtle,
     fg: text.disabled,
-    border: border.default,
+    border: border.muted,
   },
 } as const;

@@ -3,16 +3,16 @@ import { text } from '../semantic/text.js';
 
 export const formField = {
   label: {
-    fg: text.secondary,
+    fg: text.primary,
   },
 
   description: {
-    fg: text.muted,
+    fg: text.secondary,
   },
 
   helperText: {
     default: {
-      fg: text.muted,
+      fg: text.secondary,
     },
 
     error: {

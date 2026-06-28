@@ -8,21 +8,21 @@ import { text } from '../semantic/text.js';
 export const checkbox = {
   default: {
     bg: surface.default,
-    fg: text.inverse,
-    border: border.default,
+    fg: text.primary,
+    border: border.muted,
   },
 
   hover: {
     bg: colors.gray[900],
     fg: text.inverse,
-    border: colors.info[400],
+    border: colors.primary[500],
   },
 
   checked: {
     default: {
-      bg: colors.info[400],
-      fg: text.inverse,
-      border: colors.info[400],
+      bg: colors.primary[500],
+      fg: text.primary,
+      border: colors.primary[500],
     },
 
     hover: {
@@ -45,7 +45,7 @@ export const checkbox = {
   disabled: {
     bg: surface.subtle,
     fg: text.disabled,
-    border: border.default,
+    border: border.muted,
   },
 
   error: {

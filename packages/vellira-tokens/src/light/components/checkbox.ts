@@ -9,7 +9,7 @@ export const checkbox = {
   default: {
     bg: surface.default,
     fg: text.primary,
-    border: border.default,
+    border: border.subtle,
   },
 
   hover: {
@@ -45,7 +45,7 @@ export const checkbox = {
   disabled: {
     bg: surface.subtle,
     fg: text.disabled,
-    border: border.default,
+    border: border.muted,
   },
 
   error: {

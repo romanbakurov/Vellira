@@ -1,6 +1,6 @@
-import { focus } from '../../light/semantic';
 import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { focus } from '../semantic/focus.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -84,7 +84,7 @@ export const dropdown = {
   },
 
   groupLabel: {
-    fg: text.muted,
+    fg: text.secondary,
   },
 
   separator: {

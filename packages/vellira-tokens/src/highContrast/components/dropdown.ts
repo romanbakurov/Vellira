@@ -30,7 +30,7 @@ export const dropdown = {
     disabled: {
       bg: surface.muted,
       fg: text.disabled,
-      border: border.strong,
+      border: border.muted,
     },
   },
 
