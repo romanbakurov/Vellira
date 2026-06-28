@@ -2,6 +2,28 @@ import { darkTheme } from './dark/theme.js';
 import { overlay } from './semantic/overlay.js';
 
 export { darkTheme } from './dark/theme.js';
+export type {
+  BaseCssVariableName,
+  BaseTokenPath,
+  ColorTokenPath,
+  ComponentTokenPath,
+  CssVariableName,
+  SemanticTokenPath,
+  ThemeCssVariableName,
+  ThemeName,
+  TokenPath,
+} from './generated/token-types.js';
+export {
+  baseCssVariableNames,
+  baseTokenPaths,
+  colorTokenPaths,
+  componentTokenPaths,
+  cssVariableNames,
+  semanticTokenPaths,
+  themeCssVariableNames,
+  themeNames,
+  tokenPaths,
+} from './generated/token-types.js';
 export { highContrastTheme } from './highContrast/theme.js';
 export { lightTheme } from './light/theme.js';
 

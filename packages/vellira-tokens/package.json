@@ -25,9 +25,11 @@
   ],
   "scripts": {
     "clean": "node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', { recursive: true, force: true })\"",
-    "build:tokens": "tsx scripts/generate-css.ts",
+    "generate:types": "tsx scripts/generate-token-types.ts",
+    "generate:types:check": "tsx scripts/generate-token-types.ts --check",
+    "build:tokens": "pnpm run generate:types && tsx scripts/generate-css.ts",
     "build": "pnpm run clean && pnpm run build:tokens && tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "pnpm run generate:types:check && tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
   "publishConfig": {
