@@ -7,6 +7,7 @@ export const text = {
   disabled: colors.gray[500],
 
   inverse: colors.mono[950],
+  onInverse: colors.mono[950],
 
   brand: colors.primary[300],
 } as const;

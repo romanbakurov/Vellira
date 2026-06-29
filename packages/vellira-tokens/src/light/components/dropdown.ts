@@ -1,6 +1,6 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -14,8 +14,8 @@ export const dropdown = {
     },
 
     hover: {
-      bg: colors.vellira[100],
-      fg: colors.primary[900],
+      bg: navigation.brandHover.bg,
+      fg: navigation.brandHover.fg,
       ring: 'transparent',
     },
 
@@ -36,7 +36,7 @@ export const dropdown = {
   content: {
     bg: surface.elevated,
     fg: text.primary,
-    border: colors.vellira[200],
+    border: navigation.border,
   },
 
   item: {
@@ -45,14 +45,11 @@ export const dropdown = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: colors.vellira[100],
-      fg: text.primary,
-    },
+    hover: navigation.hover,
 
     active: {
-      bg: colors.vellira[100],
-      fg: text.primary,
+      bg: navigation.hover.bg,
+      fg: navigation.hover.fg,
       ring: 'transparent',
     },
 

@@ -1,11 +1,11 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
 import { surface } from '../semantic/surface.js';
+import { text } from '../semantic/text.js';
 
 export const tooltip = {
   content: {
     bg: surface.inverse,
-    fg: colors.mono[950],
+    fg: text.onInverse,
     border: border.default,
   },
 

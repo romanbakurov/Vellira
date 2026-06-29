@@ -1,5 +1,5 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
 
@@ -22,9 +22,9 @@ export const tabs = {
     },
 
     active: {
-      bg: colors.primary[600],
+      bg: control.selected.default.bg,
       fg: text.brand,
-      border: colors.primary[600],
+      border: control.selected.default.border,
     },
 
     focus: {
@@ -52,9 +52,9 @@ export const tabs = {
     },
 
     active: {
-      bg: colors.primary[500],
-      fg: text.inverse,
-      border: colors.primary[500],
+      bg: control.selected.muted.bg,
+      fg: control.selected.muted.fg,
+      border: control.selected.muted.border,
     },
 
     disabled: {
@@ -70,7 +70,7 @@ export const tabs = {
     },
 
     hover: {
-      bg: colors.primary[500],
+      bg: control.selected.muted.bg,
     },
 
     active: {

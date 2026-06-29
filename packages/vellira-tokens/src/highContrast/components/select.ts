@@ -1,6 +1,7 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -15,8 +16,8 @@ export const select = {
 
     hover: {
       bg: 'transparent',
-      fg: colors.mono[50],
-      border: colors.warning[500],
+      fg: text.primary,
+      border: navigation.hover.bg,
     },
 
     focus: {
@@ -54,20 +55,16 @@ export const select = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: colors.warning[500],
-      fg: colors.mono[950],
-    },
+    hover: navigation.hover,
 
     active: {
-      bg: colors.warning[500],
-      fg: colors.mono[950],
+      ...navigation.active,
       ring: 'transparent',
     },
 
     selected: {
-      bg: colors.primary[500],
-      fg: colors.mono[50],
+      bg: control.selected.default.bg,
+      fg: text.primary,
     },
 
     disabled: {

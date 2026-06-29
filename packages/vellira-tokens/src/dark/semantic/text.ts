@@ -10,6 +10,7 @@ export const text = {
   hover: colors.primary[400],
 
   inverse: colors.mono[50],
+  onInverse: colors.mono[950],
 
   brand: colors.primary[300],
 } as const;

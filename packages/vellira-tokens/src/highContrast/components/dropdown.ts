@@ -1,6 +1,6 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -9,21 +9,21 @@ export const dropdown = {
   trigger: {
     default: {
       bg: 'transparent',
-      fg: colors.mono[50],
+      fg: text.primary,
       border: 'transparent',
     },
 
     hover: {
       bg: 'transparent',
-      fg: colors.mono[50],
-      border: colors.warning[500],
+      fg: text.primary,
+      border: navigation.hover.bg,
       ring: focus.ring,
     },
 
     focus: {
       bg: 'transparent',
-      fg: colors.mono[50],
-      border: colors.warning[500],
+      fg: text.primary,
+      border: navigation.hover.bg,
       ring: focus.ring,
     },
 
@@ -37,7 +37,7 @@ export const dropdown = {
   content: {
     bg: surface.elevated,
     fg: text.primary,
-    border: colors.gray[200],
+    border: navigation.border,
   },
 
   item: {
@@ -46,14 +46,11 @@ export const dropdown = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: surface.hover,
-      fg: text.primary,
-    },
+    hover: navigation.itemHover,
 
     active: {
-      bg: surface.hover,
-      fg: text.primary,
+      bg: navigation.itemActive.bg,
+      fg: navigation.itemActive.fg,
       ring: focus.ring,
     },
 
@@ -68,12 +65,12 @@ export const dropdown = {
       },
 
       hover: {
-        bg: surface.hover,
+        bg: navigation.itemHover.bg,
         fg: status.error.fg,
       },
 
       active: {
-        bg: surface.hover,
+        bg: navigation.itemActive.bg,
         fg: status.error.fg,
         ring: focus.ring,
       },

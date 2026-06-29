@@ -1,5 +1,5 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
@@ -13,11 +13,7 @@ export const select = {
       border: border.subtle,
     },
 
-    hover: {
-      bg: surface.hover,
-      fg: text.brand,
-      border: colors.primary[300],
-    },
+    hover: control.hover,
 
     focus: {
       bg: surface.default,
@@ -66,8 +62,8 @@ export const select = {
     },
 
     selected: {
-      bg: colors.primary[500],
-      fg: text.inverse,
+      bg: control.selected.muted.bg,
+      fg: control.selected.muted.fg,
     },
 
     disabled: {

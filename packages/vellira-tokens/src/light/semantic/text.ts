@@ -8,6 +8,7 @@ export const text = {
   subtle: colors.mono[800],
 
   inverse: colors.mono[50],
+  onInverse: colors.mono[50],
 
   brand: colors.primary[700],
 } as const;

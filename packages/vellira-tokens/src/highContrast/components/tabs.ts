@@ -1,5 +1,6 @@
-import { colors } from '../../primitives/colors.js';
+import { action } from '../semantic/action.js';
 import { border } from '../semantic/border.js';
+import { navigation } from '../semantic/navigation.js';
 import { text } from '../semantic/text.js';
 
 export const tabs = {
@@ -16,18 +17,18 @@ export const tabs = {
 
     hover: {
       bg: 'transparent',
-      fg: colors.warning[500],
-      border: colors.warning[500],
+      fg: navigation.hover.bg,
+      border: navigation.hover.bg,
     },
 
     active: {
       bg: 'transparent',
       fg: text.brand,
-      border: colors.primary[500],
+      border: action.primary.default.border,
     },
 
     focus: {
-      ring: colors.warning[500], // для contrast
+      ring: navigation.hover.bg,
     },
 
     disabled: {
@@ -45,15 +46,15 @@ export const tabs = {
     },
 
     hover: {
-      bg: colors.warning[500],
+      bg: navigation.hover.bg,
       fg: text.inverse,
       border: 'transparent',
     },
 
     active: {
-      bg: colors.primary[600],
-      fg: colors.mono[50],
-      border: colors.primary[600],
+      bg: action.primary.muted.bg,
+      fg: action.primary.muted.fg,
+      border: action.primary.muted.border,
     },
 
     disabled: {
@@ -65,15 +66,15 @@ export const tabs = {
 
   indicator: {
     default: {
-      bg: colors.warning[500],
+      bg: navigation.hover.bg,
     },
 
     hover: {
-      bg: colors.warning[500],
+      bg: navigation.hover.bg,
     },
 
     active: {
-      bg: colors.primary[300],
+      bg: text.brand,
     },
   },
 

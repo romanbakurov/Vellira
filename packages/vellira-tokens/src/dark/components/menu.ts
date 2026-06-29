@@ -1,4 +1,4 @@
-import { colors } from '../../primitives/colors.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -10,15 +10,9 @@ export const menu = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: surface.active,
-      fg: text.primary,
-    },
+    hover: navigation.hover,
 
-    active: {
-      bg: surface.active,
-      fg: text.primary,
-    },
+    active: navigation.active,
 
     focus: {
       ring: 'transparent',
@@ -52,8 +46,8 @@ export const menu = {
     },
 
     hover: {
-      bg: surface.hover,
-      fg: colors.vellira[50],
+      bg: navigation.triggerHover.bg,
+      fg: navigation.triggerHover.fg,
       ring: 'transparent',
     },
   },

@@ -1,6 +1,6 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -14,10 +14,10 @@ export const input = {
   },
 
   hover: {
-    bg: colors.warning[500],
-    fg: colors.mono[950],
-    border: colors.warning[500],
-    placeholder: colors.mono[950],
+    bg: navigation.hover.bg,
+    fg: navigation.hover.fg,
+    border: navigation.hover.bg,
+    placeholder: navigation.hover.fg,
   },
 
   focus: {
@@ -29,9 +29,9 @@ export const input = {
   },
 
   disabled: {
-    bg: colors.gray[900],
-    fg: colors.gray[600],
-    border: colors.gray[600],
+    bg: surface.muted,
+    fg: text.disabled,
+    border: border.muted,
     placeholder: text.disabled,
   },
 
