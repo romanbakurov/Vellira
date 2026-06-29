@@ -1,5 +1,6 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -8,27 +9,35 @@ export const dropdown = {
   trigger: {
     default: {
       bg: 'transparent',
-      fg: text.brand,
+      fg: text.primary,
       border: 'transparent',
     },
 
     hover: {
-      bg: colors.gray[900],
+      bg: 'transparent',
       fg: text.primary,
-      ring: colors.warning[500],
+      border: navigation.hover.bg,
+      ring: focus.ring,
+    },
+
+    focus: {
+      bg: 'transparent',
+      fg: text.primary,
+      border: navigation.hover.bg,
+      ring: focus.ring,
     },
 
     disabled: {
-      bg: surface.subtle,
+      bg: surface.muted,
       fg: text.disabled,
-      border: border.default,
+      border: border.muted,
     },
   },
 
   content: {
     bg: surface.elevated,
     fg: text.primary,
-    border: border.default,
+    border: navigation.border,
   },
 
   item: {
@@ -37,15 +46,12 @@ export const dropdown = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: colors.gray[800],
-      fg: text.primary,
-    },
+    hover: navigation.itemHover,
 
     active: {
-      bg: colors.gray[800],
-      fg: text.primary,
-      ring: colors.warning[500],
+      bg: navigation.itemActive.bg,
+      fg: navigation.itemActive.fg,
+      ring: focus.ring,
     },
 
     disabled: {
@@ -59,14 +65,14 @@ export const dropdown = {
       },
 
       hover: {
-        bg: colors.error[300],
-        fg: text.inverse,
+        bg: navigation.itemHover.bg,
+        fg: status.error.fg,
       },
 
       active: {
-        bg: colors.error[300],
-        fg: text.inverse,
-        ring: colors.warning[500],
+        bg: navigation.itemActive.bg,
+        fg: status.error.fg,
+        ring: focus.ring,
       },
     },
   },

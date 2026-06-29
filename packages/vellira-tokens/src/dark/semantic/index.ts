@@ -1,6 +1,9 @@
+export { action } from './action.js';
 export { border } from './border.js';
+export { control } from './control.js';
 export { divider } from './divider.js';
 export { focus } from './focus.js';
+export { navigation } from './navigation.js';
 export { skeleton } from './skeleton.js';
 export { status } from './status.js';
 export { surface } from './surface.js';

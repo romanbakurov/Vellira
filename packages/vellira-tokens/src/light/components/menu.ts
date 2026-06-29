@@ -1,4 +1,5 @@
-import { colors } from '../../primitives/colors.js';
+import { action } from '../semantic/action.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -10,15 +11,9 @@ export const menu = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: colors.gray[200],
-      fg: text.primary,
-    },
+    hover: navigation.hover,
 
-    active: {
-      bg: colors.gray[200],
-      fg: text.primary,
-    },
+    active: navigation.active,
 
     focus: {
       ring: 'transparent',
@@ -35,13 +30,13 @@ export const menu = {
       },
 
       hover: {
-        bg: colors.error[50],
-        fg: colors.error[700],
+        bg: action.danger.subtle.bg,
+        fg: action.danger.subtle.fg,
       },
 
       active: {
-        bg: colors.error[50],
-        fg: colors.error[700],
+        bg: action.danger.muted.bg,
+        fg: action.danger.muted.fg,
       },
     },
   },
@@ -52,8 +47,8 @@ export const menu = {
     },
 
     hover: {
-      bg: colors.primary[50],
-      fg: colors.primary[900],
+      bg: navigation.brandHover.bg,
+      fg: navigation.brandHover.fg,
       ring: 'transparent',
     },
   },

@@ -8,8 +8,8 @@ export const input = {
   default: {
     bg: surface.default,
     fg: text.primary,
-    border: border.default,
-    placeholder: text.muted,
+    border: border.elevated,
+    placeholder: text.secondary,
   },
 
   hover: {
@@ -35,7 +35,7 @@ export const input = {
   },
 
   error: {
-    border: status.error.strong,
+    border: status.error.border,
     ring: status.error.fg,
   },
 

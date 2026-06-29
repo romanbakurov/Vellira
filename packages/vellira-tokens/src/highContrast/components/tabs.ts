@@ -1,5 +1,6 @@
-import { colors } from '../../primitives/colors.js';
+import { action } from '../semantic/action.js';
 import { border } from '../semantic/border.js';
+import { navigation } from '../semantic/navigation.js';
 import { text } from '../semantic/text.js';
 
 export const tabs = {
@@ -10,20 +11,50 @@ export const tabs = {
   trigger: {
     default: {
       bg: 'transparent',
-      fg: text.muted,
+      fg: text.primary,
       border: 'transparent',
     },
 
     hover: {
-      bg: colors.gray[900],
+      bg: 'transparent',
+      fg: navigation.hover.bg,
+      border: navigation.hover.bg,
+    },
+
+    active: {
+      bg: 'transparent',
+      fg: text.brand,
+      border: action.primary.default.border,
+    },
+
+    focus: {
+      ring: navigation.hover.bg,
+    },
+
+    disabled: {
+      bg: 'transparent',
+      fg: text.disabled,
+      border: 'transparent',
+    },
+  },
+
+  pills: {
+    default: {
+      bg: 'transparent',
       fg: text.primary,
       border: 'transparent',
     },
 
+    hover: {
+      bg: navigation.hover.bg,
+      fg: text.inverse,
+      border: 'transparent',
+    },
+
     active: {
-      bg: colors.info[400],
-      fg: text.primary,
-      border: colors.info[400],
+      bg: action.primary.muted.bg,
+      fg: action.primary.muted.fg,
+      border: action.primary.muted.border,
     },
 
     disabled: {
@@ -34,7 +65,17 @@ export const tabs = {
   },
 
   indicator: {
-    bg: colors.info[400],
+    default: {
+      bg: navigation.hover.bg,
+    },
+
+    hover: {
+      bg: navigation.hover.bg,
+    },
+
+    active: {
+      bg: text.brand,
+    },
   },
 
   panel: {

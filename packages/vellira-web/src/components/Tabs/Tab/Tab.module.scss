@@ -1,3 +1,5 @@
+@use '@styles/mixins' as *;
+
 .tab {
   display: inline-flex;
   align-items: center;
@@ -24,7 +26,7 @@
     padding: var(--space-2);
   }
 
-  &:focus-visible {
+  &:focus-visible:not(:disabled) {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
   }
@@ -56,14 +58,13 @@
   }
 
   &[aria-selected='true'] {
-    color: var(--tabs-trigger-hover-fg);
+    color: var(--tabs-trigger-active-fg);
   }
 }
 
 // Variant Underlined
 .underline {
   position: relative;
-  border-radius: 0;
 
   &::after {
     content: '';
@@ -72,24 +73,27 @@
     left: 0;
     width: 0;
     height: 3px;
-    background-color: var(--tabs-indicator-bg);
-    transition: width 0.3s ease;
+    background: var(--tabs-indicator-default-bg);
+
+    @include smooth-transition((width, background-color));
   }
 
   &:hover:not(:disabled) {
     color: var(--tabs-trigger-hover-fg);
+  }
 
-    &::after {
-      width: 100%;
-    }
+  &:hover:not(:disabled)::after {
+    width: 100%;
+    background: var(--tabs-indicator-hover-bg);
   }
 
   &[aria-selected='true'] {
-    color: var(--tabs-trigger-hover-fg);
+    color: var(--tabs-trigger-active-fg);
+  }
 
-    &::after {
-      width: 100%;
-    }
+  &[aria-selected='true']::after {
+    width: 100%;
+    background: var(--tabs-indicator-active-bg);
   }
 }
 
@@ -98,13 +102,13 @@
   border-radius: var(--radius-md);
 
   &:hover:not(:disabled) {
-    color: var(--tabs-trigger-hover-fg);
-    background-color: var(--tabs-trigger-hover-bg);
+    color: var(--tabs-pills-hover-fg);
+    background-color: var(--tabs-pills-hover-bg);
   }
 
   &[aria-selected='true'] {
-    color: var(--tabs-trigger-active-fg);
-    background-color: var(--tabs-trigger-active-bg);
+    color: var(--tabs-pills-active-fg);
+    background-color: var(--tabs-pills-active-bg);
   }
 }
 
@@ -121,7 +125,7 @@
     &:hover:not(:disabled) {
       color: var(--tabs-trigger-hover-fg);
       background-color: var(--tabs-trigger-hover-bg);
-      border-left-color: var(--tabs-indicator-bg);
+      border-left-color: var(--tabs-indicator-hover-bg);
     }
 
     &[aria-selected='true'] {
@@ -138,12 +142,12 @@
 
     &:hover:not(:disabled) {
       background-color: var(--tabs-trigger-hover-bg);
-      border-left-color: var(--tabs-indicator-bg);
+      border-left-color: var(--tabs-indicator-hover-bg);
     }
 
     &[aria-selected='true'] {
-      color: var(--tabs-trigger-hover-fg);
-      border-left-color: var(--tabs-indicator-bg);
+      color: var(--tabs-trigger-active-fg);
+      border-left-color: var(--tabs-indicator-active-bg);
     }
   }
 
@@ -151,8 +155,8 @@
     border-radius: var(--radius-lg);
 
     &[aria-selected='true'] {
-      color: var(--tabs-trigger-active-fg);
-      background-color: var(--tabs-trigger-active-bg);
+      color: var(--tabs-pills-active-fg);
+      background-color: var(--tabs-pills-active-bg);
     }
   }
 }

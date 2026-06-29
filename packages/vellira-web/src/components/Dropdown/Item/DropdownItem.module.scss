@@ -24,8 +24,9 @@
   }
 }
 
-.item:focus-visible {
+.item:focus-visible:not(.disabled) {
   outline: none;
+  box-shadow: 0 0 0 2px var(--dropdown-item-active-ring);
 }
 
 .active {
@@ -45,6 +46,7 @@
   }
 
   &.active {
+    color: var(--dropdown-item-danger-active-fg);
     box-shadow: 0 0 0 2px var(--dropdown-item-danger-active-ring);
   }
 }

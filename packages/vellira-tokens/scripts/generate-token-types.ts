@@ -71,6 +71,10 @@ function collectCssVariableNames(
   return sortValues(names);
 }
 
+function collectUniqueValues(valuesBySource: readonly string[][]): string[] {
+  return sortValues(Array.from(new Set(valuesBySource.flat())));
+}
+
 function formatConstArray(name: string, values: readonly string[]): string {
   if (values.length <= 3) {
     return `export const ${name} = [${values
@@ -83,11 +87,16 @@ function formatConstArray(name: string, values: readonly string[]): string {
   return `export const ${name} = [\n${items}\n] as const;\n`;
 }
 
-const colorTokenPaths = collectTokenPaths(lightTheme.colors, 'colors');
-const semanticTokenPaths = collectTokenPaths(lightTheme.semantic, 'semantic');
-const componentTokenPaths = collectTokenPaths(
-  lightTheme.components,
-  'components'
+const themes = [lightTheme, darkTheme, highContrastTheme] as const;
+
+const colorTokenPaths = collectUniqueValues(
+  themes.map((theme) => collectTokenPaths(theme.colors, 'colors'))
+);
+const semanticTokenPaths = collectUniqueValues(
+  themes.map((theme) => collectTokenPaths(theme.semantic, 'semantic'))
+);
+const componentTokenPaths = collectUniqueValues(
+  themes.map((theme) => collectTokenPaths(theme.components, 'components'))
 );
 const baseTokenPaths = collectTokenPaths(lightTheme.tokens, 'tokens');
 const tokenPaths = [
@@ -119,20 +128,20 @@ const baseCssVariableNames = [
 ];
 sortValues(baseCssVariableNames);
 
-const themeCssVariableNames = [
-  ...collectCssVariableNames(lightTheme.colors, 'color'),
-  ...collectCssVariableNames(lightTheme.semantic, ''),
-  ...collectCssVariableNames(lightTheme.components, ''),
-];
-sortValues(themeCssVariableNames);
+const themeCssVariableNames = collectUniqueValues(
+  themes.map((theme) => [
+    ...collectCssVariableNames(theme.colors, 'color'),
+    ...collectCssVariableNames(theme.semantic, ''),
+    ...collectCssVariableNames(theme.components, ''),
+  ])
+);
 
 const cssVariableNames = Array.from(
   new Set([...baseCssVariableNames, ...themeCssVariableNames])
 );
 sortValues(cssVariableNames);
 
-const themeNames = [lightTheme.name, darkTheme.name, highContrastTheme.name];
-sortValues(themeNames);
+const themeNames = collectUniqueValues(themes.map((theme) => [theme.name]));
 
 const content = `/**
  * AUTO-GENERATED FILE

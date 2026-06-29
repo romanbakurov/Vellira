@@ -1,3 +1,9 @@
+/**
+ * Brand palette used across both Light and Dark themes.
+ *
+ * 25–250   → Light surfaces
+ * 300–950  → Dark surfaces & text
+ */
 export const colors = {
   primary: {
     50: '#EEF0FF',
@@ -28,11 +34,14 @@ export const colors = {
   },
 
   vellira: {
-    50: '#F7F4FF',
-    100: '#D8D3E8',
-    200: '#A8A1BA',
-    300: '#746F86',
-    400: '#4B4562',
+    25: '#FDFCFF',
+    50: '#FAF8FF',
+    100: '#F4F1FB',
+    150: '#EEE8FA',
+    200: '#E8E2F3',
+    250: '#D8D3E8',
+    300: '#A8A1BA',
+    400: '#746F86',
     500: '#413957',
     600: '#3A334D',
     700: '#312C44',

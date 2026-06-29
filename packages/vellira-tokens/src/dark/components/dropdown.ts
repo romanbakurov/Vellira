@@ -1,5 +1,6 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -13,9 +14,16 @@ export const dropdown = {
     },
 
     hover: {
-      bg: surface.hover,
-      fg: colors.primary[200],
+      bg: navigation.brandHover.bg,
+      fg: navigation.brandHover.fg,
       ring: 'transparent',
+    },
+
+    focus: {
+      bg: 'transparent',
+      fg: text.brand,
+      border: border.focus,
+      ring: focus.ring,
     },
 
     disabled: {
@@ -37,15 +45,16 @@ export const dropdown = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: surface.active,
-      fg: text.primary,
-    },
+    hover: navigation.hover,
 
     active: {
-      bg: surface.active,
-      fg: text.primary,
+      bg: navigation.active.bg,
+      fg: navigation.active.fg,
       ring: 'transparent',
+    },
+
+    focus: {
+      ring: focus.ring,
     },
 
     disabled: {
@@ -72,7 +81,7 @@ export const dropdown = {
   },
 
   groupLabel: {
-    fg: text.muted,
+    fg: text.secondary,
   },
 
   separator: {

@@ -14,10 +14,15 @@
   border-radius: var(--radius-lg);
   cursor: pointer;
 
-  @include smooth-transition((color, background-color));
+  @include smooth-transition(
+    (color, background-color, border-color, box-shadow)
+  );
 
   &:focus-visible:not(.disabled) {
-    @include focus-ring;
+    color: var(--dropdown-trigger-focus-fg);
+    background: var(--dropdown-trigger-focus-bg);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--dropdown-trigger-focus-ring);
   }
 
   &:hover:not(.disabled) {

@@ -1,26 +1,30 @@
-import { colors } from '../../primitives/colors.js';
+import { navigation } from '../semantic/navigation.js';
+import { status } from '../semantic/status.js';
+import { text } from '../semantic/text.js';
 
 export const menu = {
-  itemFg: colors.mono[50],
-  itemHoverBg: colors.gray[800],
-  itemHoverFg: colors.mono[50],
-  itemActiveBg: colors.gray[800],
-  itemActiveFg: colors.mono[50],
-  itemFocusRing: colors.warning[500],
+  itemFg: text.primary,
 
-  itemDangerFg: colors.error[300],
-  itemDangerHoverBg: colors.error[300],
-  itemDangerHoverFg: colors.mono[950],
-  itemDangerActiveBg: colors.error[300],
-  itemDangerActiveFg: colors.mono[950],
+  itemHoverBg: navigation.hover.bg,
+  itemHoverFg: navigation.hover.fg,
 
-  triggerFg: colors.mono[50],
-  triggerHoverBg: colors.gray[900],
-  triggerHoverFg: colors.mono[50],
-  triggerHoverRing: colors.warning[500],
+  itemActiveBg: navigation.active.bg,
+  itemActiveFg: navigation.active.fg,
+  itemFocusRing: navigation.hover.bg,
 
-  itemDisabledFg: colors.gray[600],
-  itemDisabledBg: colors.gray[900],
+  itemDangerFg: status.error.fg,
+  itemDangerHoverBg: navigation.hover.bg,
+  itemDangerHoverFg: navigation.hover.fg,
+  itemDangerActiveBg: navigation.active.bg,
+  itemDangerActiveFg: navigation.active.fg,
 
-  groupLabelFg: colors.gray[400],
+  triggerFg: text.primary,
+  triggerHoverBg: navigation.brandHover.bg,
+  triggerHoverFg: navigation.brandHover.fg,
+  triggerHoverRing: 'transparent',
+
+  itemDisabledFg: navigation.disabled.fg,
+  itemDisabledBg: navigation.disabled.bg,
+
+  groupLabelFg: navigation.groupLabel.fg,
 } as const;

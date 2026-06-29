@@ -1,5 +1,5 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
@@ -9,15 +9,11 @@ export const select = {
   trigger: {
     default: {
       bg: surface.default,
-      fg: text.brand,
-      border: border.default,
+      fg: text.subtle,
+      border: border.subtle,
     },
 
-    hover: {
-      bg: surface.hover,
-      fg: text.primary,
-      border: colors.primary[300],
-    },
+    hover: control.hover,
 
     focus: {
       bg: surface.default,
@@ -33,7 +29,7 @@ export const select = {
     },
 
     placeholder: {
-      fg: text.muted,
+      fg: text.secondary,
     },
 
     error: {
@@ -45,7 +41,7 @@ export const select = {
   dropdown: {
     bg: surface.elevated,
     fg: text.primary,
-    border: border.focus,
+    border: border.default,
   },
 
   option: {
@@ -62,12 +58,12 @@ export const select = {
     active: {
       bg: surface.active,
       fg: text.primary,
-      ring: focus.ring,
+      ring: 'transparent',
     },
 
     selected: {
-      bg: colors.primary[600],
-      fg: text.inverse,
+      bg: control.selected.muted.bg,
+      fg: control.selected.muted.fg,
     },
 
     disabled: {

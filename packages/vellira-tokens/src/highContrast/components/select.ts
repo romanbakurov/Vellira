@@ -1,6 +1,7 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -9,14 +10,14 @@ export const select = {
   trigger: {
     default: {
       bg: surface.default,
-      fg: text.brand,
+      fg: text.primary,
       border: border.default,
     },
 
     hover: {
-      bg: colors.gray[900],
+      bg: 'transparent',
       fg: text.primary,
-      border: colors.info[400],
+      border: navigation.hover.bg,
     },
 
     focus: {
@@ -29,7 +30,7 @@ export const select = {
     disabled: {
       bg: surface.subtle,
       fg: text.disabled,
-      border: border.default,
+      border: border.disabled,
     },
 
     placeholder: {
@@ -54,20 +55,16 @@ export const select = {
       fg: text.primary,
     },
 
-    hover: {
-      bg: colors.gray[800],
-      fg: text.primary,
-    },
+    hover: navigation.hover,
 
     active: {
-      bg: colors.gray[800],
-      fg: text.primary,
-      ring: focus.ring,
+      ...navigation.active,
+      ring: 'transparent',
     },
 
     selected: {
-      bg: colors.info[400],
-      fg: text.inverse,
+      bg: control.selected.default.bg,
+      fg: text.primary,
     },
 
     disabled: {

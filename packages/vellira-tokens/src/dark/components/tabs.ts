@@ -1,5 +1,5 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
 
@@ -11,7 +11,37 @@ export const tabs = {
   trigger: {
     default: {
       bg: 'transparent',
-      fg: text.muted,
+      fg: text.secondary,
+      border: 'transparent',
+    },
+
+    hover: {
+      bg: surface.hover,
+      fg: text.hover,
+      border: 'transparent',
+    },
+
+    active: {
+      bg: control.selected.default.bg,
+      fg: text.brand,
+      border: control.selected.default.border,
+    },
+
+    focus: {
+      ring: text.brand,
+    },
+
+    disabled: {
+      bg: 'transparent',
+      fg: text.disabled,
+      border: 'transparent',
+    },
+  },
+
+  pills: {
+    default: {
+      bg: 'transparent',
+      fg: text.primary,
       border: 'transparent',
     },
 
@@ -22,9 +52,9 @@ export const tabs = {
     },
 
     active: {
-      bg: colors.primary[600],
-      fg: text.primary,
-      border: colors.primary[600],
+      bg: control.selected.muted.bg,
+      fg: control.selected.muted.fg,
+      border: control.selected.muted.border,
     },
 
     disabled: {
@@ -35,7 +65,17 @@ export const tabs = {
   },
 
   indicator: {
-    bg: colors.primary[500],
+    default: {
+      bg: text.brand,
+    },
+
+    hover: {
+      bg: control.selected.muted.bg,
+    },
+
+    active: {
+      bg: text.brand,
+    },
   },
 
   panel: {

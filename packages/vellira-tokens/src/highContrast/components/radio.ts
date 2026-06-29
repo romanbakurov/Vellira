@@ -1,5 +1,5 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -7,33 +7,21 @@ import { text } from '../semantic/text.js';
 export const radio = {
   default: {
     bg: surface.default,
-    fg: text.inverse,
+    fg: text.primary,
     border: border.default,
   },
 
-  hover: {
-    bg: colors.gray[900],
-    fg: text.inverse,
-    border: colors.info[400],
-  },
+  hover: control.radioHover,
 
   checked: {
-    default: {
-      bg: colors.info[400],
-      fg: text.inverse,
-      border: colors.info[400],
-    },
-
+    default: control.selected.radioDefault,
     hover: {
-      bg: colors.info[500],
-      fg: text.inverse,
-      border: colors.info[500],
+      ...control.selected.hover,
+      fg: text.primary,
     },
-
     pressed: {
-      bg: colors.primary[800],
-      fg: text.inverse,
-      border: colors.primary[800],
+      ...control.selected.active,
+      fg: text.primary,
     },
   },
 

@@ -1,6 +1,7 @@
-import { colors } from '../../primitives/colors.js';
 import { border } from '../semantic/border.js';
+import { control } from '../semantic/control.js';
 import { focus } from '../semantic/focus.js';
+import { navigation } from '../semantic/navigation.js';
 import { status } from '../semantic/status.js';
 import { surface } from '../semantic/surface.js';
 import { text } from '../semantic/text.js';
@@ -9,15 +10,11 @@ export const select = {
   trigger: {
     default: {
       bg: surface.default,
-      fg: text.brand,
+      fg: text.subtle,
       border: border.default,
     },
 
-    hover: {
-      bg: colors.primary[50],
-      fg: colors.primary[900],
-      border: colors.primary[700],
-    },
+    hover: control.hover,
 
     focus: {
       bg: surface.default,
@@ -29,7 +26,7 @@ export const select = {
     disabled: {
       bg: surface.subtle,
       fg: text.disabled,
-      border: border.default,
+      border: border.muted,
     },
 
     placeholder: {
@@ -45,29 +42,26 @@ export const select = {
   dropdown: {
     bg: surface.elevated,
     fg: text.primary,
-    border: border.focus,
+    border: border.muted,
   },
 
   option: {
     default: {
       bg: 'transparent',
       fg: text.primary,
+      border: border.muted,
     },
 
-    hover: {
-      bg: colors.gray[200],
-      fg: text.primary,
-    },
+    hover: navigation.optionHover,
 
     active: {
-      bg: colors.gray[200],
-      fg: text.primary,
-      ring: focus.ring,
+      ...navigation.optionActive,
+      ring: 'transparent',
     },
 
     selected: {
-      bg: colors.primary[700],
-      fg: text.inverse,
+      bg: control.selected.default.bg,
+      fg: control.selected.default.fg,
     },
 
     disabled: {
