@@ -53,7 +53,7 @@ export default [
     files: [
       'packages/**/*.{ts,tsx,js,jsx}',
       'apps/test-app/**/*.{ts,tsx,js,jsx}',
-      'apps/storybook/**/*.{ts,tsx,js,jsx}',
+      'apps/web-storybook/**/*.{ts,tsx,js,jsx}',
     ],
 
     languageOptions: {
@@ -221,7 +221,10 @@ export default [
    * =====================================================
    */
   {
-    files: ['apps/native-playground/**/*.{js,ts,tsx}'],
+    files: [
+      'apps/native-playground/**/*.{js,ts,tsx}',
+      'apps/native-storybook/**/*.{js,ts,tsx}',
+    ],
 
     languageOptions: {
       globals: {

@@ -35,3 +35,5 @@ coverage/
 .tmp-package-smoke/
 .tmp-package-smoke-web/
 .tmp-package-smoke-native/
+
+**/test-results/

@@ -10,12 +10,6 @@ import {
 
 import { DeveloperPanel } from './DeveloperPanel';
 
-const STORYBOOK_THEME_MAP = {
-  light: 'light',
-  dark: 'dark',
-  'high-contrast': 'highContrast',
-} as const;
-
 const themes: NativeThemeName[] = ['light', 'dark', 'highContrast'];
 
 const preview: Preview = {

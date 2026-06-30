@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": true,
+    "strict": true
+  },
+  "include": ["index.ts", ".rnstorybook/**/*.ts", ".rnstorybook/**/*.tsx"],
+  "exclude": ["node_modules", "ios", "android", "dist"]
+}

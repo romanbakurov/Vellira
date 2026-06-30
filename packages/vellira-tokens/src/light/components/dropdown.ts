@@ -16,6 +16,7 @@ export const dropdown = {
     hover: {
       bg: navigation.brandHover.bg,
       fg: navigation.brandHover.fg,
+      border: 'transparent',
       ring: 'transparent',
     },
 

@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "native-storybook",
+    "slug": "native-storybook",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "bundleIdentifier": "com.romanbakurov.vellira.native.storybook"
+    },
+    "android": {
+      "package": "com.romanbakurov.vellira.native.storybook"
+    },
+    "edgeToEdgeEnabled": true,
+    "predictiveBackGestureEnabled": false,
+    "package": "com.anonymous.nativeplayground"
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  }
+}

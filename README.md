@@ -57,11 +57,13 @@ Project documentation:
 
 # Apps
 
-| App                      | Purpose                                  |
-| ------------------------ | ---------------------------------------- |
-| `apps/storybook`         | Web Storybook                            |
-| `apps/native-playground` | Expo playground with on-device Storybook |
-| `apps/test-app`          | Local Vite playground                    |
+| App                      | Purpose               |
+|--------------------------|-----------------------|
+| `apps/web-storybook`     | Web Storybook         |
+| `apps/native-playground` | Expo playground       |
+| `apps/native-storybook`  | on-device Storybook   |
+| `apps/test-app`          | Local Vite playground |
+
 
 ---
 
@@ -69,8 +71,9 @@ Project documentation:
 
 ```text
 apps/
-├── storybook
+├── web-storybook
 ├── native-playground
+├── native-storybook
 └── test-app
 
 packages/
@@ -262,7 +265,7 @@ pnpm install
 Start the web Storybook:
 
 ```bash
-pnpm --filter @vellira/storybook dev
+pnpm --filter @vellira/web-storybook dev
 ```
 
 Run the native playground:

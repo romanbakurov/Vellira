@@ -73,6 +73,7 @@ export const createStyles = (theme: NativeTheme) =>
     focused: {
       color: theme.components.input.focus.fg,
       backgroundColor: 'transparent',
+      borderColor: theme.components.input.focus.border,
     },
 
     errorFocused: {
@@ -82,7 +83,7 @@ export const createStyles = (theme: NativeTheme) =>
     disabled: {
       opacity: 1,
       color: theme.components.input.disabled.fg,
-      backgroundColor: 'transparent',
+      backgroundColor: theme.components.input.disabled.bg,
       borderColor: theme.components.input.disabled.border,
     },
   });

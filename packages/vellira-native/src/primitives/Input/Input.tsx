@@ -147,12 +147,12 @@ export const Input = forwardRef<TextInput, InputProps>(
             style={[
               styles.input,
               styles[size],
+              inputStyle,
               leftIcon && styles.inputWithLeftIcon,
               isFocused && !disabled && styles.focused,
               error && styles.error,
               isFocused && error && !disabled && styles.errorFocused,
               disabled && styles.disabled,
-              inputStyle,
             ]}
           />
         </View>

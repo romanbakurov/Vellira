@@ -71,6 +71,7 @@ export const select = {
     disabled: {
       bg: 'transparent',
       fg: text.disabled,
+      border: border.disabled,
     },
   },
 } as const;

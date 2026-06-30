@@ -37,7 +37,13 @@
     "prepare": "husky",
     "smoke:web": "node scripts/smoke/web.mjs --skip-build",
     "smoke:native": "node scripts/smoke/native.mjs --skip-build",
-    "smoke:packages": "pnpm build && pnpm smoke:web && pnpm smoke:native"
+    "smoke:packages": "pnpm build && pnpm smoke:web && pnpm smoke:native",
+    "playground:native": "pnpm --filter native-playground start",
+    "playground:native:ios": "pnpm --filter native-playground ios",
+    "playground:native:android": "pnpm --filter native-playground android",
+    "storybook:native:ios": "pnpm --filter native-storybook ios",
+    "storybook:native:android": "pnpm --filter native-storybook android",
+    "storybook:native": "pnpm --filter native-storybook start"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",

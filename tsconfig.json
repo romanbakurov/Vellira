@@ -9,6 +9,6 @@
     { "path": "./packages/vellira-web" },
     { "path": "./apps/test-app" },
     { "path": "./apps/native-playground" },
-    { "path": "./apps/storybook" }
+    { "path": "./apps/web-storybook" }
   ]
 }
