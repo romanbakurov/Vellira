@@ -19,8 +19,7 @@
       "package": "com.romanbakurov.vellira.native.storybook"
     },
     "edgeToEdgeEnabled": true,
-    "predictiveBackGestureEnabled": false,
-    "package": "com.anonymous.nativeplayground"
+    "predictiveBackGestureEnabled": false
   },
   "web": {
     "favicon": "./assets/favicon.png"

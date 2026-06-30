@@ -41,9 +41,9 @@
     "playground:native": "pnpm --filter native-playground start",
     "playground:native:ios": "pnpm --filter native-playground ios",
     "playground:native:android": "pnpm --filter native-playground android",
+    "storybook:native": "pnpm --filter native-storybook start:dev",
     "storybook:native:ios": "pnpm --filter native-storybook ios",
-    "storybook:native:android": "pnpm --filter native-storybook android",
-    "storybook:native": "pnpm --filter native-storybook start"
+    "storybook:native:android": "pnpm --filter native-storybook android"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
