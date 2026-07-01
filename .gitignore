@@ -37,3 +37,4 @@ coverage/
 .tmp-package-smoke-native/
 
 **/test-results/
+**/playwright-report/

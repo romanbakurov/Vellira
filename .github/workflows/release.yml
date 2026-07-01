@@ -42,7 +42,7 @@ jobs:
       - name: Build packages and apps
         run: pnpm ci:build
 
-      - name: Typecheck
+      - name: Typecheck & API validation
         run: pnpm ci:typecheck
 
       - name: Install Playwright browsers
