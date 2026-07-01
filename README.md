@@ -58,12 +58,11 @@ Project documentation:
 # Apps
 
 | App                      | Purpose               |
-|--------------------------|-----------------------|
+| ------------------------ | --------------------- |
 | `apps/web-storybook`     | Web Storybook         |
 | `apps/native-playground` | Expo playground       |
 | `apps/native-storybook`  | on-device Storybook   |
 | `apps/test-app`          | Local Vite playground |
-
 
 ---
 
@@ -277,8 +276,8 @@ pnpm --filter native-playground start
 Run the native Storybook:
 
 ```bash
-pnpm --filter native-playground storybook:ios
-pnpm --filter native-playground storybook:android
+pnpm --filter native-storybook ios
+pnpm --filter native-storybook android
 ```
 
 ---

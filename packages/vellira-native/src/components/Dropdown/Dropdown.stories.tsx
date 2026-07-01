@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
 import { ChevronDown, DropdownMenu } from '@romanbakurov/vellira-icons';
-import { theme } from '@romanbakurov/vellira-tokens';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from 'react-native';
+
+import { useTheme } from '../../theme';
 
 import { Dropdown } from './Dropdown';
 
@@ -14,6 +15,47 @@ const items = [
   { type: 'separator' as const },
   { label: 'Delete account', value: 'delete', danger: true },
 ];
+
+function DropdownIcon() {
+  const { theme } = useTheme();
+
+  return (
+    <DropdownMenu
+      style={{
+        transform: [{ rotate: '90deg' }],
+      }}
+      size={20}
+      color={theme.components.dropdown.trigger.default.fg}
+    />
+  );
+}
+
+function ArrowIcon() {
+  const { theme } = useTheme();
+
+  return (
+    <ChevronDown
+      size={16}
+      color={theme.components.dropdown.trigger.default.fg}
+    />
+  );
+}
+
+function TriggerText({ children }: { children: string }) {
+  const { theme } = useTheme();
+
+  return (
+    <Text
+      style={{
+        color: theme.components.dropdown.trigger.default.fg,
+        fontFamily: theme.tokens.typography.family.regular,
+        fontSize: theme.tokens.typography.size.md,
+      }}
+    >
+      {children}
+    </Text>
+  );
+}
 
 const meta = {
   title: 'Components/Dropdown',
@@ -142,15 +184,8 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     label: 'Actions',
-    icon: (
-      <DropdownMenu
-        style={{
-          transform: [{ rotate: '90deg' }],
-        }}
-        size={20}
-        color={theme.components.dropdown.trigger.default.fg}
-      />
-    ),
+    icon: <DropdownIcon />,
+    arrowIcon: <ArrowIcon />,
     showArrow: false,
     items,
   },
@@ -159,13 +194,7 @@ export const Basic: Story = {
 export const TextOnly: Story = {
   args: {
     label: 'Actions',
-    trigger: <Text>Actions</Text>,
-    arrowIcon: (
-      <ChevronDown
-        size={16}
-        color={theme.components.dropdown.trigger.default.fg}
-      />
-    ),
+    trigger: <TriggerText>Actions</TriggerText>,
     showArrow: true,
     items,
   },
@@ -173,7 +202,8 @@ export const TextOnly: Story = {
 
 export const CustomTrigger: Story = {
   args: {
-    trigger: <Text>Account actions</Text>,
+    trigger: <TriggerText>Account actions</TriggerText>,
+    showArrow: true,
     items,
   },
 };
@@ -181,6 +211,7 @@ export const CustomTrigger: Story = {
 export const WithGroupsAndSeparator: Story = {
   args: {
     label: 'Documents',
+    showArrow: true,
     items: [
       { type: 'group', label: 'Recent' },
       { label: 'Document 1', value: 'doc1' },
@@ -196,6 +227,7 @@ export const WithGroupsAndSeparator: Story = {
 export const WithDisabledItems: Story = {
   args: {
     label: 'Project menu',
+    showArrow: true,
     items: [
       { label: 'Rename', value: 'rename' },
       { label: 'Archive', value: 'archive', disabled: true },
@@ -207,6 +239,7 @@ export const WithDisabledItems: Story = {
 export const LongText: Story = {
   args: {
     label: 'Long labels',
+    showArrow: true,
     items: [
       {
         label: 'This option has a long label and wraps onto another line',
@@ -219,6 +252,7 @@ export const LongText: Story = {
 };
 
 const DropdownWithState = () => {
+  const { theme } = useTheme();
   const [value, setValue] = useState<string>();
 
   return (
@@ -233,12 +267,23 @@ const DropdownWithState = () => {
         onSelect={setValue}
       />
 
-      <Text style={{ marginTop: 12 }}>Selected: {value ?? 'none'}</Text>
+      <Text
+        style={{
+          marginTop: 12,
+          color: theme.semantic.text.primary,
+        }}
+      >
+        Selected: {value ?? 'none'}
+      </Text>
     </>
   );
 };
 
 export const Selection: Story = {
+  args: {
+    showArrow: true,
+    items,
+  },
   render: () => <DropdownWithState />,
 };
 
@@ -246,6 +291,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     label: 'Disabled menu',
+    showArrow: true,
     items,
   },
 };

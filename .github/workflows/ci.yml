@@ -43,7 +43,7 @@ jobs:
         run: pnpm docs:api:check
 
       - name: Install Playwright browsers
-        run: pnpm --filter @vellira/storybook run playwright:install
+        run: pnpm --filter @vellira/web-storybook run playwright:install
 
       - name: Test
         run: pnpm test
@@ -58,4 +58,4 @@ jobs:
         run: pnpm check:public-api
 
       - name: Build Storybook
-        run: pnpm --filter @vellira/storybook build
+        run: pnpm --filter @vellira/web-storybook build

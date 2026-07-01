@@ -6,7 +6,7 @@ import { text } from '../semantic/text.js';
 
 export const input = {
   default: {
-    bg: surface.default,
+    bg: 'transparent',
     fg: text.primary,
     border: border.elevated,
     placeholder: text.secondary,
@@ -20,7 +20,7 @@ export const input = {
   },
 
   focus: {
-    bg: surface.default,
+    bg: 'transparent',
     fg: text.primary,
     border: border.focus,
     ring: focus.ring,

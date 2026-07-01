@@ -81,7 +81,7 @@ The web package uses Vitest with `jsdom`. Tests live next to components as `*.te
 Run web Storybook from the workspace root:
 
 ```bash
-pnpm --filter @vellira/storybook dev
+pnpm --filter @vellira/web-storybook dev
 ```
 
 Stories live next to components as `*.stories.tsx` and are also used for Chromatic visual review.

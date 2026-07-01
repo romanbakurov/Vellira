@@ -1,34 +1,33 @@
-# Native Playground
+# Native Storybook
 
-Expo app for developing and testing `@romanbakurov/vellira-native`.
+Expo app for running on-device React Native Storybook for `@romanbakurov/vellira-native`.
 
-The app can run as a normal Expo playground or with React Native Storybook enabled. Native Storybook reads stories from `packages/vellira-native/src/**/*.stories.@(ts|tsx)`, so package-level stories appear here automatically after running the Storybook generation step.
+Native Storybook reads stories from `packages/vellira-native/src/**/*.stories.@(ts|tsx)`, so package-level stories appear here automatically after running the Storybook generation step.
 
 ## Start
 
 ```bash
-pnpm --filter native-playground start
+pnpm --filter native-storybook start
 ```
 
 ## Platforms
 
 ```bash
-pnpm --filter native-playground ios
-pnpm --filter native-playground android
-pnpm --filter native-playground web
+pnpm --filter native-storybook ios
+pnpm --filter native-storybook android
 ```
 
 ## Native Storybook
 
 ```bash
-pnpm --filter native-playground storybook:ios
-pnpm --filter native-playground storybook:android
+pnpm --filter native-storybook ios
+pnpm --filter native-storybook android
 ```
 
 If stories are added or removed, regenerate the React Native Storybook registry:
 
 ```bash
-pnpm --filter native-playground exec sb-rn-get-stories
+pnpm --filter native-storybook exec sb-rn-get-stories
 ```
 
 ## Testing

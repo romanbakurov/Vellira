@@ -25,7 +25,7 @@ export const createStyles = (theme: NativeTheme) =>
       color: theme.components.input.default.fg,
       fontFamily: theme.tokens.typography.family.regular,
       fontSize: theme.tokens.typography.size.md,
-      backgroundColor: 'transparent',
+      backgroundColor: theme.components.input.default.bg,
       borderColor: theme.components.input.default.border,
       borderRadius: theme.tokens.radius.md,
       borderWidth: 1,
@@ -72,7 +72,7 @@ export const createStyles = (theme: NativeTheme) =>
 
     focused: {
       color: theme.components.input.focus.fg,
-      backgroundColor: 'transparent',
+      backgroundColor: theme.components.input.focus.bg,
       borderColor: theme.components.input.focus.border,
     },
 

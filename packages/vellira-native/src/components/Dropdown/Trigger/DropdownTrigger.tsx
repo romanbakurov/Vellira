@@ -57,9 +57,14 @@ export function DropdownTrigger({
     : isPressed
       ? theme.components.dropdown.trigger.hover.fg
       : theme.components.dropdown.trigger.default.fg;
-  const arrow = arrowIcon ?? (
+
+  const arrow = arrowIcon ? (
+    renderColoredNode(arrowIcon, contentColor)
+  ) : (
     <ChevronDown width={16} height={16} color={contentColor} />
   );
+
+  const renderedIcon = icon ? renderColoredNode(icon, contentColor) : null;
 
   return (
     <Pressable
@@ -78,9 +83,7 @@ export function DropdownTrigger({
         triggerStyle,
       ]}
     >
-      {hasIcon && (
-        <View style={styles.icon}>{renderColoredNode(icon, contentColor)}</View>
-      )}
+      {hasIcon && <View style={styles.icon}>{renderedIcon}</View>}
 
       {!isIconOnly &&
         (trigger ? (
@@ -102,7 +105,7 @@ export function DropdownTrigger({
         <Animated.View
           style={[styles.arrow, { transform: [{ rotate: arrowRotate }] }]}
         >
-          {renderColoredNode(arrow, contentColor)}
+          {arrow}
         </Animated.View>
       )}
     </Pressable>
