@@ -1,8 +1,10 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import {
+  linkWorkspaceDependencies,
   packPackages,
   run,
+  runPnpmInstall,
   shouldBuild,
   writePackageJson,
   writeWorkspaceFile,
@@ -27,17 +29,28 @@ if (shouldBuild()) {
 }
 
 const dependencies = packPackages(packageNames, tempDir);
+const externalDependencies = linkWorkspaceDependencies(
+  root,
+  tempDir,
+  'packages/vellira-native',
+  ['react']
+);
 
 writePackageJson(tempDir, {
   private: true,
   type: 'module',
-  dependencies,
-  devDependencies: {
-    react: '^19.0.0',
+  dependencies: {
+    ...dependencies,
+    ...externalDependencies,
   },
 });
 
-writeWorkspaceFile(tempDir, dependencies);
+writeWorkspaceFile(tempDir, {
+  overrides: {
+    ...dependencies,
+    ...externalDependencies,
+  },
+});
 
 const mocksDir = path.join(tempDir, 'mocks');
 mkdirSync(mocksDir, { recursive: true });
@@ -335,7 +348,7 @@ console.log('Native package smoke test passed');
 `
 );
 
-run('pnpm', ['install'], { cwd: tempDir });
+runPnpmInstall(tempDir);
 run(
   'node',
   ['--conditions=react-native', '--loader', './native-loader.mjs', 'smoke.mjs'],

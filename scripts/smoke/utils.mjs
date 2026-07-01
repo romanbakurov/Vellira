@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 export function shouldBuild() {
@@ -11,6 +11,28 @@ export function run(command, args = [], options = {}) {
     ...options,
     stdio: 'inherit',
   });
+}
+
+export function runPnpmInstall(tempDir) {
+  run('pnpm', ['install', '--offline'], { cwd: tempDir });
+}
+
+export function linkWorkspaceDependencies(root, tempDir, packageDir, packages) {
+  const dependencies = {};
+
+  for (const packageName of packages) {
+    const sourcePath = path.join(root, packageDir, 'node_modules', packageName);
+
+    if (!existsSync(sourcePath)) {
+      throw new Error(
+        `Missing ${packageName} in ${packageDir}/node_modules. Run pnpm install before smoke tests.`
+      );
+    }
+
+    dependencies[packageName] = `link:${path.relative(tempDir, sourcePath)}`;
+  }
+
+  return dependencies;
 }
 
 export function packPackages(packageNames, tempDir) {
@@ -49,13 +71,15 @@ export function writePackageJson(tempDir, packageJson) {
 }
 
 export function writeWorkspaceFile(tempDir, dependencies) {
+  const overrides = dependencies.overrides ?? dependencies;
+
   writeFileSync(
     path.join(tempDir, 'pnpm-workspace.yaml'),
     [
       'packages:',
       "  - '.'",
       'overrides:',
-      ...Object.entries(dependencies).map(
+      ...Object.entries(overrides).map(
         ([packageName, tarball]) => `  '${packageName}': '${tarball}'`
       ),
       '',
