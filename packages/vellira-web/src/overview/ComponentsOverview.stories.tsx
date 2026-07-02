@@ -23,7 +23,7 @@ import { Checkbox } from '../primitives/Checkbox';
 import { Input } from '../primitives/Input';
 
 const meta = {
-  title: 'Overview/All Components/Web',
+  title: 'Overview/Web',
   parameters: {
     layout: 'fullscreen',
   },
@@ -247,7 +247,19 @@ function WebComponentsOverview() {
             description='Used in URLs and notifications.'
             required
           >
-            <Input label='Workspace' placeholder='vellira-design' />
+            <input
+              placeholder='vellira-design'
+              style={{
+                width: '100%',
+                minHeight: 40,
+                padding: '0 12px',
+                color: 'var(--input-default-fg)',
+                background: 'var(--input-default-bg)',
+                border: '1px solid var(--input-default-border)',
+                borderRadius: 'var(--radius-md)',
+                boxSizing: 'border-box',
+              }}
+            />
           </FormField>
         </Section>
       </div>
@@ -255,4 +267,4 @@ function WebComponentsOverview() {
   );
 }
 
-export const AllComponents: Story = {};
+export const Overview: Story = {};

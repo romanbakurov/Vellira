@@ -22,9 +22,10 @@ import { FormField } from '../patterns/FormField';
 import { Button } from '../primitives/Button';
 import { Checkbox } from '../primitives/Checkbox';
 import { Input } from '../primitives/Input';
+import { useTheme } from '../theme';
 
 const meta = {
-  title: 'Overview/All Components/Native',
+  title: 'Overview/Native',
   render: () => <NativeComponentsOverview />,
 } satisfies Meta;
 
@@ -50,15 +51,30 @@ const dropdownItems = [
 ];
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
+  const { theme } = useTheme();
+
   return (
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>{title}</Text>
+    <View
+      style={[
+        styles.section,
+        {
+          borderColor: theme.semantic.border.default,
+          backgroundColor: theme.semantic.surface.elevated,
+        },
+      ]}
+    >
+      <Text
+        style={[styles.sectionTitle, { color: theme.semantic.text.primary }]}
+      >
+        {title}
+      </Text>
       {children}
     </View>
   );
 }
 
 function NativeComponentsOverview() {
+  const { theme } = useTheme();
   const [accepted, setAccepted] = useState(true);
   const [plan, setPlan] = useState('pro');
   const [team, setTeam] = useState('engineering');
@@ -161,15 +177,25 @@ function NativeComponentsOverview() {
             <Tabs.Tab index={2}>Settings</Tabs.Tab>
           </Tabs.List>
           <Tabs.Panel index={0}>
-            <Text style={styles.panelText}>
+            <Text
+              style={[styles.panelText, { color: theme.semantic.text.primary }]}
+            >
               Overview content for the native component.
             </Text>
           </Tabs.Panel>
           <Tabs.Panel index={1}>
-            <Text style={styles.panelText}>Usage notes and examples.</Text>
+            <Text
+              style={[styles.panelText, { color: theme.semantic.text.primary }]}
+            >
+              Usage notes and examples.
+            </Text>
           </Tabs.Panel>
           <Tabs.Panel index={2}>
-            <Text style={styles.panelText}>Settings panel content.</Text>
+            <Text
+              style={[styles.panelText, { color: theme.semantic.text.primary }]}
+            >
+              Settings panel content.
+            </Text>
           </Tabs.Panel>
         </Tabs>
       </Section>
@@ -194,7 +220,11 @@ function NativeComponentsOverview() {
         <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
           <Modal.Header>Review changes</Modal.Header>
           <Modal.Body>
-            Confirm the changes before applying them to the workspace.
+            <Text
+              style={[styles.panelText, { color: theme.semantic.text.primary }]}
+            >
+              Confirm the changes before applying them to the workspace.
+            </Text>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onPress={() => setModalOpen(false)}>
@@ -235,12 +265,9 @@ const styles = StyleSheet.create({
     gap: 14,
     padding: 16,
     borderWidth: 1,
-    borderColor: '#D8DCE2',
     borderRadius: 8,
-    backgroundColor: '#FFFFFF',
   },
   sectionTitle: {
-    color: '#171A1F',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -250,9 +277,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
-  panelText: {
-    color: '#2B3038',
-  },
+  panelText: {},
 });
 
-export const AllComponents: Story = {};
+export const Overview: Story = {};

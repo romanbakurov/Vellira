@@ -38,6 +38,19 @@ describe('Native Dropdown', () => {
     unmount();
   });
 
+  it('renders a text trigger safely', () => {
+    const { container, unmount } = render(
+      <Dropdown label='Actions' trigger='Actions' items={items} />
+    );
+
+    const trigger =
+      container.querySelector<HTMLButtonElement>('[role="button"]');
+
+    expect(trigger?.textContent).toContain('Actions');
+
+    unmount();
+  });
+
   it('renders grouped menu content and ignores disabled item presses', () => {
     const onSelect = vi.fn();
     const { container, unmount } = render(
