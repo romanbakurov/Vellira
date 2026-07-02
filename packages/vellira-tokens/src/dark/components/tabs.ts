@@ -1,3 +1,4 @@
+import { action, navigation } from '../../highContrast/semantic';
 import { border } from '../semantic/border.js';
 import { control } from '../semantic/control.js';
 import { surface } from '../semantic/surface.js';
@@ -11,24 +12,24 @@ export const tabs = {
   trigger: {
     default: {
       bg: 'transparent',
-      fg: text.secondary,
+      fg: text.primary,
       border: 'transparent',
     },
 
     hover: {
-      bg: surface.hover,
-      fg: text.hover,
-      border: 'transparent',
+      bg: 'transparent',
+      fg: navigation.hover.bg,
+      border: navigation.hover.bg,
     },
 
     active: {
-      bg: control.selected.default.bg,
+      bg: 'transparent',
       fg: text.brand,
-      border: control.selected.default.border,
+      border: action.primary.default.border,
     },
 
     focus: {
-      ring: text.brand,
+      ring: navigation.hover.bg,
     },
 
     disabled: {
