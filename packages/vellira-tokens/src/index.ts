@@ -10,10 +10,19 @@ export type {
   ColorTokenPath,
   ComponentTokenPath,
   CssVariableName,
+  DarkTheme,
+  HighContrastTheme,
+  LightTheme,
   SemanticTokenPath,
   ThemeCssVariableName,
   ThemeName,
   TokenPath,
+  VelliraBaseTokens,
+  VelliraColors,
+  VelliraComponentTokens,
+  VelliraSemanticTokens,
+  VelliraTheme,
+  WidenTokenValues,
 } from './generated/token-types.js';
 export {
   baseCssVariableNames,
@@ -27,20 +36,6 @@ export {
   tokenPaths,
 } from './generated/token-types.js';
 export { overlay } from './semantic/overlay.js';
-
-type WidenTokenValues<T> = {
-  readonly [K in keyof T]: T[K] extends string
-    ? string
-    : T[K] extends number
-      ? number
-      : T[K] extends boolean
-        ? boolean
-        : T[K] extends object
-          ? WidenTokenValues<T[K]>
-          : T[K];
-};
-
-export type VelliraTheme = WidenTokenValues<typeof lightTheme>;
 
 export const theme = {
   semantic: darkTheme.semantic,
