@@ -8,6 +8,11 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(dirname, '..');
 
 const packageExportContracts = {
+  'packages/vellira-assets/package.json': [
+    './fonts/*',
+    './styles',
+    './styles/*',
+  ],
   'packages/vellira-core/package.json': ['.'],
   'packages/vellira-icons/package.json': ['.', './native', './web'],
   'packages/vellira-native/package.json': ['.'],

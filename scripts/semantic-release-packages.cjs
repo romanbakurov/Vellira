@@ -7,6 +7,7 @@ const publicPackages = [
   '@romanbakurov/vellira-tokens',
   '@romanbakurov/vellira-types',
   '@romanbakurov/vellira-icons',
+  '@romanbakurov/vellira-assets',
   '@romanbakurov/vellira-web',
   '@romanbakurov/vellira-native',
 ];

@@ -12,7 +12,7 @@
     "format": "prettier '**/*.{ts,tsx,json,md,css,scss}' --write",
     "format:check": "prettier '**/*.{ts,tsx,json,md,css,scss}' --check",
     "ci": "pnpm ci:quality && pnpm ci:build && pnpm ci:typecheck && pnpm ci:playwright && pnpm ci:test && pnpm ci:smoke",
-    "ci:quality": "pnpm lint",
+    "ci:quality": "pnpm format:check && pnpm lint",
     "ci:build": "pnpm build && pnpm build:native-playground && pnpm build:storybook",
     "ci:typecheck": "pnpm typecheck && pnpm docs:api:check && pnpm check:public-api",
     "ci:playwright": "pnpm --filter @vellira/web-storybook run playwright:install",
