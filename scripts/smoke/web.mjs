@@ -19,6 +19,7 @@ const packageNames = [
   '@romanbakurov/vellira-icons',
   '@romanbakurov/vellira-tokens',
   '@romanbakurov/vellira-types',
+  '@romanbakurov/vellira-assets',
 ];
 
 rmSync(tempDir, { recursive: true, force: true });
@@ -56,7 +57,7 @@ writeFileSync(
   path.join(tempDir, 'css-loader.mjs'),
   `
 export async function load(url, context, defaultLoad) {
-  if (url.endsWith('.css')) {
+  if (url.endsWith('.css') || url.endsWith('.scss')) {
     return {
       format: 'module',
       shortCircuit: true,
@@ -72,10 +73,14 @@ export async function load(url, context, defaultLoad) {
 writeFileSync(
   path.join(tempDir, 'smoke.mjs'),
   `
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
 import * as web from '@romanbakurov/vellira-web';
 import * as core from '@romanbakurov/vellira-core';
 import * as icons from '@romanbakurov/vellira-icons';
 import * as tokens from '@romanbakurov/vellira-tokens';
+import '@romanbakurov/vellira-assets/styles';
 
 const componentTypes = new Set([
   Symbol.for('react.forward_ref'),
@@ -243,6 +248,23 @@ assertColor(
 assertColor(theme.components.input.default.bg, 'components.input.default.bg');
 
 await import('@romanbakurov/vellira-web/styles');
+
+const assetFiles = [
+  '@romanbakurov/vellira-assets/styles/fonts.scss',
+  '@romanbakurov/vellira-assets/fonts/KantumruyPro-Regular.ttf',
+];
+
+for (const assetFile of assetFiles) {
+  const assetPath = fileURLToPath(import.meta.resolve(assetFile));
+
+  if (!assetPath.includes('node_modules/@romanbakurov/vellira-assets/')) {
+    throw new Error(assetFile + ' did not resolve from the installed assets package');
+  }
+
+  if (!existsSync(assetPath)) {
+    throw new Error(assetFile + ' is missing from the installed assets package');
+  }
+}
 
 console.log('Web package smoke test passed');
 `

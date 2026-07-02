@@ -47,6 +47,21 @@ export function DropdownTrigger({
   });
 
   const renderColoredNode = (node: ReactNode, color: string) => {
+    if (typeof node === 'string' || typeof node === 'number') {
+      return (
+        <Text
+          numberOfLines={1}
+          style={[
+            styles.triggerText,
+            { color },
+            disabled && styles.triggerTextDisabled,
+          ]}
+        >
+          {node}
+        </Text>
+      );
+    }
+
     if (!isValidElement(node)) return node;
 
     return cloneElement(node as ReactElement<{ color?: string }>, { color });
@@ -87,7 +102,7 @@ export function DropdownTrigger({
 
       {!isIconOnly &&
         (trigger ? (
-          trigger
+          renderColoredNode(trigger, contentColor)
         ) : (
           <Text
             numberOfLines={1}
