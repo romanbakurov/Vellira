@@ -14,9 +14,10 @@ const themes: NativeThemeName[] = ['light', 'dark', 'highContrast'];
 
 const preview: Preview = {
   decorators: [
-    (Story) => {
+    (Story, context) => {
       const [themeName, setThemeName] = useState<NativeThemeName>('light');
       const theme = nativeThemes[themeName];
+      const isFullscreen = context.parameters.layout === 'fullscreen';
 
       const nextTheme = () => {
         const currentIndex = themes.indexOf(themeName);
@@ -39,9 +40,9 @@ const preview: Preview = {
               style={{
                 flex: 1,
                 width: '100%',
-                padding: 24,
-                justifyContent: 'center',
-                alignItems: 'center',
+                padding: isFullscreen ? 0 : 24,
+                justifyContent: isFullscreen ? 'flex-start' : 'center',
+                alignItems: isFullscreen ? 'stretch' : 'center',
               }}
             >
               <Story />
