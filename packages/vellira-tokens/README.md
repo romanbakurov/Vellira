@@ -125,6 +125,14 @@ The build generates:
 - CSS variables
 - distributable artifacts
 
+Token path unions, CSS variable name unions, and theme structure types are generated from the token source files:
+
+```bash
+pnpm --filter @romanbakurov/vellira-tokens generate:types
+```
+
+Use `generate:types:check` or the package test script to verify the generated token types are up to date.
+
 ---
 
 ## Principles
